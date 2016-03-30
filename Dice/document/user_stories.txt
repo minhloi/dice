@@ -12,5 +12,6 @@ User stories:
 
 - As a player, I want to be able to exit the game while playing.
 
+- As a player, I want to be able to view an opponents health so that I can know how much more damage I need to inflict.
 
 
