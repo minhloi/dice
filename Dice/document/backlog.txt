@@ -1,0 +1,13 @@
+Working game in text form
+Basic working game in GUI
+    JPanel with split screen for two players
+    Be able to select attack, defend, or special and confirm action
+Add GUI elements for seeing statistics
+    Button that brings to separate screen for highscores and records of actions chosen
+    Display average damage delt/taken per game
+Add more advanced GUI elements
+    Animations
+    Backgrounds
+    Images
+    Multiple Characters
+    Reset/Exit buttons
