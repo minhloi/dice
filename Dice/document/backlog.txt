@@ -1,4 +1,5 @@
 Working game in text form
+    Be able to have 2 players play against each other and select attack, defend, or special with a clear win or lose condition
 Basic working game in GUI
     JPanel with split screen for two players
     Be able to select attack, defend, or special and confirm action
