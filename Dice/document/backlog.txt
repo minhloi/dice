@@ -1,7 +1,7 @@
 1    Working game in text form
         Be able to have 2 players play against each other and select attack, defend with a clear win or lose condition
 2    Modify the game in text form allow user to pick special abilities.
-        Let players able to use special abilities.
+        Let players able to use special abilities, and chance to dodge when hp low.
 3    Modify the game in text form allow players to create profile
 4    Basic working menu in GUI
         JPanel divide into top and bottom
