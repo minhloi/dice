@@ -16,3 +16,4 @@ User stories:
 
 - As a user, I want to be able to view the main menu so that I can choose one of the options.
 
+- As a player, I want to have a chance to use a special ability so that I can gain an advantage over opponent.
