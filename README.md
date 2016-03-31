@@ -1,12 +1,12 @@
-####About this game:
+####1. About this game:
+- To be updated
 
 
+####2. Rules:
+- To be updated.
 
-####Rules:
 
-
-
-####Documents:
+####3. Documents:
 All documents are located in Dice/document folder or see below:  
 ######User stories: https://github.com/minhloi/dice/blob/master/Dice/document/user_stories.md  
 ######Backlog: https://github.com/minhloi/dice/blob/master/Dice/document/backlog.md
