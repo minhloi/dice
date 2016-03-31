@@ -17,7 +17,7 @@ Backlog:
     - Be able to select attack, defend, or special abilities.  
 
 6. Add GUI elements for seeing statistics:
-    - Button that brings to separate screen for highscores and records of actions chosen.  
+    - A button that brings to separate screen for highscores and records of actions chosen.  
 
 7. Add more advanced GUI elements:  
     - Animations  
