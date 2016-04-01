@@ -4,14 +4,16 @@
 
 ####2. Rules:
 
-- 1.  Each player will roll a dice, who have higher value will go first.
-- 2.  If both players rolled same value both get to reroll.
-- 3.  Every game each players allow to use maximum 2 times of special abilites.
-- 4.  If the roll value is greater than defense, damage deal equal value minus defense.
-- 5.  If roll value equal defense, then dealt 1 damage.
-- 6.  If roll value less than defense, then dealt 0 damage.
-- 7.  Player can't use block more than 3 times in a row.
-- 8.  When player use block, damage is half when roll value greater than defense.
+- 1.  Each player needs to select either attack, block or special before every roll.
+- 2.  Each player will roll a dice every turn.
+- 3.  If both players rolled same value both get to reroll.
+- 4.  Every game each players allow to use maximum 2 times of special abilites.
+- 5.  Whoever rolls a higer number gets an additional roll to roll for damage.
+- 6.  If player chooses block, they deal half damage as well as receive half damage.
+- 7.  If player chooses attack, then they deal full damage and take full damage.
+- 8.  Player can't use block more than 3 times in a row.
+- 9.  When player uses his special and wins the roll afterwards, he gets to roll and additional second die for extra damage.
+- 10. When a players health drops to 0 or below he loses the game and the other player wins.
 
 ####3. Documents:
 All documents are located in Dice/document folder or see below:  
