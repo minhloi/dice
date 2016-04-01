@@ -1,3 +1,6 @@
+##Game Name
+###Team 38 Game Project
+
 ####1. About this game:
 - To be updated
 
