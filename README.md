@@ -3,8 +3,10 @@
 
 
 ####2. Rules:
-- To be updated.
 
+- 1.  Each player will roll a dice, who have higher value will go first.
+- 2.  If both players rolled same value both get to reroll.
+- 3.  Every game each players allow to use maximum 2 times of special abilites.
 
 ####3. Documents:
 All documents are located in Dice/document folder or see below:  
