@@ -1,4 +1,4 @@
-##Game Name
+##Fighting Dice
 ###Team 38 Game Project
 
 ####1. About this game:
