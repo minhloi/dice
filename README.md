@@ -2,7 +2,9 @@
 ###Team 38 Game Project
 
 ####1. About this game:
-- To be updated
+- A version of turn-base game. Using dice to determine who will take control in each turn. When taking control 
+- the player allow to decice he/she will attack, block, or use special ability as action. With tatics and luck 
+- who will win the fight. 
 
 
 ####2. Rules:
