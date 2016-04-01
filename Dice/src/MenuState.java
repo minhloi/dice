@@ -22,7 +22,7 @@ public class MenuState extends GameState{
 			System.out.print(i + ". " + menuList[i]+ "\n");
 			
 		}
-		
+						
 			
 	}
 	
