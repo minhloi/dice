@@ -15,7 +15,7 @@
 - 4.  If the winner of the roll chooses attack then the loser of the roll takes full damage unless the loser chooses block in which case they take half of the damage rolled.
 - 5.  If the winner of the roll chooses block then the loser of the roll takes half damage unless the loser chooses block in which case they take a quarter of the damage rolled.
 - 6.  If the winner of the roll chooses special then the loser of the roll takes double the damage unless the loser chooses block in which case they take normal attack damage.
-- 7.  Once a player chooses block, it goes on cooldown for the next turn and is not usable until the turn after.
+- 7.  Once a player chooses block, it goes on cooldown and is not usable for only the next turn.
 - 8.  Every game each player is allowed to use a maximum of 2 special abilites.
 - 9.  When a players health drops to 0 or below he loses the game and the other player wins.
 
