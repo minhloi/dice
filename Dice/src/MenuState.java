@@ -27,28 +27,29 @@ public class MenuState extends GameState{
 			
 		}
 		
+		
 		System.out.print("Please input menu: ");
 		
 		Scanner scanner = new Scanner(System.in);
-	    int selectedMenu = scanner.nextInt();
-	    scanner.close();
-	    
-	    System.out.print("\n");
-	    
-	    if(selectedMenu == 0){
-	    	
-	    	gameController.setState(GameController.PLAY_STATE);
-	    	
-	    	
-	    } else if(selectedMenu == 1){
-	    	
-	    	gameController.setState(GameController.VIEW_RANK_STATE);
-	    	
-	    } else if(selectedMenu == 2){
-	    	
-	    	System.out.print("Exit the game... ");
+		int selectedMenu = scanner.nextInt();
+		scanner.close();
+		
+		System.out.print("\n");
+		
+		if(selectedMenu == 0){
 			
-	    }
+			gameController.setState(GameController.PLAY_STATE);
+			
+			
+		} else if(selectedMenu == 1){
+			
+			gameController.setState(GameController.VIEW_RANK_STATE);
+			
+		} else if(selectedMenu == 2){
+			
+			System.out.print("Exit the game... ");
+			
+		}
 	    
 			
 	}
