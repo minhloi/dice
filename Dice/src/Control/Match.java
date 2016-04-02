@@ -12,6 +12,7 @@ public class Match {
 	private Player rollLoser;
 
 	private int currentPhase;
+	private int currentTurn;
 	private Scanner scanner;
 	
 	// Phase definition
@@ -33,9 +34,27 @@ public class Match {
 	}
 	
 	public void begin(){
-
+		
+		currentTurn = 1;
+		
+		System.out.println("GAME STARTED - TURN " + currentTurn + " :");
+		System.out.println("-----------------------------------------------------");
+		System.out.println();
+		
 		// Begin match by selecting move for each player. 
 		selectMovePhase();	
+	}
+	
+	public void nextTurn(){
+		
+		++currentTurn;
+		System.out.println("TURN " + currentTurn + ":");
+		System.out.println("-----------------------------------------------------");
+		System.out.println();
+		
+		// Begin match by selecting move for each player. 
+		selectMovePhase();	
+			
 	}
 	
 	private void selectMovePhase(){
@@ -106,7 +125,7 @@ public class Match {
 			System.out.println();
 			
 			// Go to next turn.
-			selectMovePhase();
+			nextTurn();
 		}
 		
 	}
