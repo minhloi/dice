@@ -1,3 +1,4 @@
+package Control;
 
 public class ViewRankState extends GameState{
 	
@@ -6,6 +7,11 @@ public class ViewRankState extends GameState{
 	public ViewRankState(GameController controller){
 		
 		gameController = controller;
+		
+	}
+	
+	public void print(){
+		
 		
 	}
 

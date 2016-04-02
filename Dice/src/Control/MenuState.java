@@ -1,3 +1,4 @@
+package Control;
 import java.util.Scanner;
 
 public class MenuState extends GameState{
