@@ -18,14 +18,16 @@ public class Match {
 	public static final int PRINT_HEALTH_PHASE = 0;
 	public static final int SELECT_MOVE_PHASE = 1;
 	public static final int ROLL_DICE_PHASE = 2;
-	public static final int BATTLE_PHASE = 3;	
+	public static final int BATTLE_PHASE = 3;
+	
+	// Player move-set definition
+	private static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
+	private static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 	
 	public Match(Scanner scanner){
-
-		char[] player1MoveSet = {'a', 's', 'd'};
-		char[] player2MoveSet = {'j', 'k', 'l'};
-		player1 = new Player(1, player1MoveSet);
-		player2 = new Player(2, player2MoveSet);
+		
+		player1 = new Player(1);
+		player2 = new Player(2);
 		
 		this.scanner = scanner;
 	}
@@ -56,9 +58,9 @@ public class Match {
 		System.out.println("SELECT-MOVE PHASE:");
 		System.out.println("-----------------------------------------------------");
 		System.out.printf("%-30s %-30s\n","Player 1","Player2");
-		System.out.printf("%-30s %-30s\n", player1.getMoveKey(Player.ATTACK) + ": attack", player2.getMoveKey(Player.ATTACK) + ": attack");
-		System.out.printf("%-30s %-30s\n", player1.getMoveKey(Player.BLOCK) + ": block", player2.getMoveKey(Player.BLOCK) + ": block");
-		System.out.printf("%-30s %-30s\n", player1.getMoveKey(Player.SPECIAL_ATTACK) + ": special attack", player2.getMoveKey(Player.SPECIAL_ATTACK) + ": special attack");
+		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
+		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.BLOCK] + ": block", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
+		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
 		System.out.println();
 		
 		System.out.println("Each player takes turn to input a key above then press enter to select move.");
@@ -122,7 +124,7 @@ public class Match {
 		
 		System.out.println();
 		
-		// reset;
+		// reset for new turn;
 		resetPhase();
 		
 		if(player1.getHealth() < 0){
@@ -162,13 +164,11 @@ public class Match {
 	
 	private void setMoveByKey(char key){
 		
-		char[] player1MoveSet = player1.getMoveSet();
-		char[] player2MoveSet = player2.getMoveSet();
 		boolean found = false;
 		int index = 0;
 		
-		while(found == false && index < player1MoveSet.length){
-			if(key == player1MoveSet[index]){
+		while(found == false && index < PLAYER1_MOVE_SET.length){
+			if(key == PLAYER1_MOVE_SET[index]){
 				found = true;
 				
 				// Player 1 already selected move thus cannot select again.
@@ -183,8 +183,8 @@ public class Match {
 		}
 		
 		index = 0;		
-		while(found == false && index < player2MoveSet.length){
-			if(key == player2MoveSet[index]){
+		while(found == false && index < PLAYER2_MOVE_SET.length){
+			if(key == PLAYER2_MOVE_SET[index]){
 				found = true;
 				
 				// Player 2 already selected move thus cannot select again.
