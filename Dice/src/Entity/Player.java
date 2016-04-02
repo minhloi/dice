@@ -2,9 +2,11 @@ package Entity;
 
 public class Player {
 
-	private int playerNum;
+	private int playerNumber;
 	private String username;	
 	private int health;
+	private Dice dice;
+	
 	private char[] moveSet;
 	private int currentMove;
 	
@@ -17,18 +19,32 @@ public class Player {
 	public static final int SPECIAL_ATTACK = 2;
 	
 	public Player(int number, char[] moveSet){
-		health = DEFAULT_HEALTH_POINT; 
-		currentMove = -1;
+		this.health = DEFAULT_HEALTH_POINT; 
+		this.currentMove = -1;
 		this.moveSet = moveSet;
-		playerNum = number;
+		this.playerNumber = number;
+		this.dice = new Dice();
 	}
 	
 	public int getHealth(){
 		return health;
 	}
 	
+	public int setHealth(int health){
+		this.health = health;
+		return this.health;
+	}
+	
 	public String getUserName(){
 		return username;
+	}
+	
+	public int getNumber(){
+		return playerNumber;
+	}
+	
+	public Dice getDice(){
+		return dice;
 	}
 	
 	public char[] getMoveSet(){

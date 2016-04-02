@@ -8,13 +8,17 @@ public class Match {
 
 	private Player player1; 
 	private Player player2;
+	private Player rollWinner;
+	private Player rollLoser;
+
 	private int currentPhase;
 	private Scanner scanner;
 	
+	// Phase definition
 	public static final int PRINT_HEALTH_PHASE = 0;
 	public static final int SELECT_MOVE_PHASE = 1;
 	public static final int ROLL_DICE_PHASE = 2;
-	public static final int ATTACK_PHASE = 3;	
+	public static final int BATTLE_PHASE = 3;	
 	
 	public Match(Scanner scanner){
 
@@ -36,6 +40,8 @@ public class Match {
 	private void printHealthPhase(){
 		
 		currentPhase = PRINT_HEALTH_PHASE;
+		System.out.println("PRINT-HEALTH PHASE:");
+		System.out.println("-----------------------------------------------------");
 		System.out.println("Player 1 HP: " + player1.getHealth());
 		System.out.println("Player 2 HP: " + player2.getHealth());
 		System.out.println();
@@ -55,11 +61,11 @@ public class Match {
 		System.out.printf("%-30s %-30s\n", player1.getMoveKey(Player.SPECIAL_ATTACK) + ": special attack", player2.getMoveKey(Player.SPECIAL_ATTACK) + ": special attack");
 		System.out.println();
 		
-		System.out.println("Each player takes turn to inputs a key above then press enter to select move.");
+		System.out.println("Each player takes turn to input a key above then press enter to select move.");
 		scanMove();
 		System.out.println();
 		
-		//Advance to roll-dice phase.
+		// Advance to roll-dice phase.
 		rollDicePhase();
  		
 	}
@@ -67,14 +73,63 @@ public class Match {
 	private void rollDicePhase(){
 		
 		currentPhase = ROLL_DICE_PHASE;
+			
 		System.out.println("ROLL-DICE PHASE:");
 		System.out.println("-----------------------------------------------------");
+		System.out.println();
 		
+		rollDie();
+		
+		// Advance to battle phase;
+		battlePhase();
+				
 	}
 	
-	private void AttackPhase(){
+	private void battlePhase(){
 		
-		currentPhase = ATTACK_PHASE;
+		currentPhase = BATTLE_PHASE;
+		System.out.println("BATTLE PHASE:");
+		System.out.println("-----------------------------------------------------");
+		System.out.println();
+		
+		if(rollWinner.getMove() == Player.ATTACK){
+			
+			int damage = rollWinner.getDice().roll();			
+			System.out.println("Player " + rollWinner.getNumber() + " can roll one more for damamge: " + damage);
+			
+			System.out.print("Player " + rollWinner.getNumber() + " selected ATTACK. ");
+			
+			if(rollLoser.getMove() == Player.ATTACK){
+			
+				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				System.out.println("Player " + rollLoser.getNumber() + " also selected ATTACK. Thus player " + rollLoser.getNumber() + " takes full damage which is " + damage);
+			
+			} else if(rollLoser.getMove() == Player.SPECIAL_ATTACK){
+			
+				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				System.out.println("Player " + rollLoser.getNumber() + " selected SPECIAL_ATTACK. Thus player " + rollLoser.getNumber() + " takes full damage which is" + damage);
+			
+			} else if(rollLoser.getMove() == Player.BLOCK){
+				
+				rollLoser.setHealth(rollLoser.getHealth() - 1/2*damage);
+				System.out.println("Player " + rollLoser.getNumber() + " selected BLOCK. Thus player " + rollLoser.getNumber() + " takes half damage which is" + 1/2*damage);
+								
+			}
+			
+		} else if(rollWinner.getMove() == Player.BLOCK){
+			System.out.print("Player " + rollWinner.getNumber() + " won the roll but selected BLOCK thus nothing happens in this turn.");
+		}
+		
+		System.out.println();
+		// reset;
+		resetPhase();
+		
+		System.out.println("Please press any keys for next turn.");
+		scanner.next();
+		
+		
+		// print players' health points.
+		printHealthPhase();
 		
 	}
 	
@@ -93,9 +148,7 @@ public class Match {
 				scanMove();
 			}
 			
-			
 		} else if(input.length() >= 2){
-
 			System.out.println("Invalid input. Please try again.");
 			scanMove();
 		}
@@ -117,7 +170,7 @@ public class Match {
 					System.out.println("Player 1 cannot re-select.");
 				} else {
 					player1.setMove(index);
-					System.out.println("Player 1 selected move succesfully.");
+					System.out.println("Player 1 selected move successfully.");
 				}
 			}
 			++index;
@@ -140,10 +193,50 @@ public class Match {
 		}
 		
 		if(found == false){
+			// Invalid input. Scan again.
 			System.out.println("Invalid input. Please try again.");
 			scanMove();
 		}
 		
+	}
+	
+	private void rollDie(){
+		
+		int player1Dice =  player1.getDice().roll();
+		int player2Dice =  player2.getDice().roll();
+		
+		System.out.println("Player 1 Dice: " + player1Dice);
+		System.out.println("Player 2 Dice: " + player2Dice);
+		System.out.println();
+		
+		if (player1Dice > player2Dice){
+			
+			rollWinner = player1;
+			rollLoser = player2;
+			System.out.println("Player 1 wins this turn.");
+			System.out.println();
+						
+		} else if (player1Dice < player2Dice){
+
+			rollWinner = player2;
+			rollLoser = player1;
+			System.out.println("Player 2 wins this turn.");
+			System.out.println();
+			
+		} else {
+			
+			System.out.println("Tie! Roll again...");
+			System.out.println();
+			rollDie();	
+		}
+		
+	}
+	
+	public void resetPhase(){
+		
+		rollWinner = null;
+		rollLoser = null;
+				
 	}
 	
 }

@@ -39,7 +39,6 @@ public class GameController {
 	}
 		
 	private void printCurrentState(){
-		
 		stateList[currentState].print();
 	}
 		
