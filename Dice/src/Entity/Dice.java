@@ -2,7 +2,7 @@ package Entity;
 
 public class Dice {
 
-	int current;
+	private int current;
 	
 	public Dice(){
 			

@@ -15,10 +15,10 @@ public class Match {
 	private Scanner scanner;
 	
 	// Phase definition
-	public static final int PRINT_HEALTH_PHASE = 0;
-	public static final int SELECT_MOVE_PHASE = 1;
-	public static final int ROLL_DICE_PHASE = 2;
-	public static final int BATTLE_PHASE = 3;
+	
+	public static final int SELECT_MOVE_PHASE = 0;
+	public static final int ROLL_DICE_PHASE = 1;
+	public static final int BATTLE_PHASE = 2;
 	
 	// Player move-set definition
 	private static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
@@ -34,22 +34,8 @@ public class Match {
 	
 	public void begin(){
 
-		// Begin match by display players' health points
-		printHealthPhase();	
-	}
-	
-		
-	private void printHealthPhase(){
-		
-		currentPhase = PRINT_HEALTH_PHASE;
-		System.out.println("PRINT-HEALTH PHASE:");
-		System.out.println("-----------------------------------------------------");
-		System.out.println("Player 1 HP: " + player1.getHealth());
-		System.out.println("Player 2 HP: " + player2.getHealth());
-		System.out.println();
-		
-		// Advance to select-move phase
-		selectMovePhase();
+		// Begin match by selecting move for each player. 
+		selectMovePhase();	
 	}
 	
 	private void selectMovePhase(){
@@ -57,7 +43,7 @@ public class Match {
 		currentPhase = SELECT_MOVE_PHASE;
 		System.out.println("SELECT-MOVE PHASE:");
 		System.out.println("-----------------------------------------------------");
-		System.out.printf("%-30s %-30s\n","Player 1","Player2");
+		System.out.printf("%-30s %-30s\n","Player 1 (HP: " + player1.getHealth() + ")","Player2 (HP: " + player2.getHealth() + ")");
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.BLOCK] + ": block", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
@@ -136,7 +122,7 @@ public class Match {
 			System.out.println("Please press any keys for next turn.");
 			scanner.next();
 			
-			printHealthPhase();
+			selectMovePhase();
 		}
 		
 	}
@@ -171,7 +157,7 @@ public class Match {
 			if(key == PLAYER1_MOVE_SET[index]){
 				found = true;
 				
-				// Player 1 already selected move thus cannot select again.
+				// Player 1 already selected a move thus cannot select again.
 				if(player1.getMove() != Player.NOT_SELECT){
 					System.out.println("Player 1 cannot re-select.");
 				} else {
@@ -187,7 +173,7 @@ public class Match {
 			if(key == PLAYER2_MOVE_SET[index]){
 				found = true;
 				
-				// Player 2 already selected move thus cannot select again.
+				// Player 2 already selected a move thus cannot select again.
 				if(player2.getMove() != Player.NOT_SELECT){
 					System.out.println("Player 2 cannot re-select.");
 				} else {
