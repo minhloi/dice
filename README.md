@@ -2,19 +2,16 @@
 ###Team 38 Game Project
 
 ####1. About this game:
-- A version of turn-base game. Using dice to determine who will take control in each turn. When taking control 
-- the player allow to decice he/she will attack, block, or use special ability as action. With tatics and luck 
-- who will win the fight. 
-
+This game is a version of turn-based game with 2 players. At each turn, each player select their strategic move, such as attack or block, before each roll their dice to determine whether their move will go through. Hence, players are required to use their tactics and luck to be able to win this game. 
 
 ####2. Rules:
 
-- 1.  Each player needs to select either attack, block or special before every roll.
+- 1.  Each player needs to select either attack, block or special attack before every roll.
 - 2.  Both players will roll their dice every turn. Whoever rolls a higer number will get an additional roll to roll for damage.
 - 3.  If both players rolled same value both get to roll again.
 - 4.  If the winner of the roll chooses attack then the loser of the roll takes full damage unless the loser chooses block in which case they take half of the damage rolled.
 - 5.  If the winner of the roll chooses block then the loser of the roll takes half damage unless the loser chooses block in which case they take a quarter of the damage rolled.
-- 6.  If the winner of the roll chooses special then the loser of the roll takes double the damage unless the loser chooses block in which case they take normal attack damage.
+- 6.  If the winner of the roll chooses special attack then the loser of the roll takes double the damage unless the loser chooses block in which case they take normal attack damage.
 - 7.  Once a player chooses block, it goes on cooldown and is not usable for only the next turn.
 - 8.  Every game each player is allowed to use a maximum of 2 special abilites.
 - 9.  When a players health drops to 0 or below he loses the game and the other player wins.
