@@ -12,7 +12,7 @@ public class Player {
 	
 	private static final int DEFAULT_HEALTH_POINT = 30;
 	
-	// Player move definition
+	// Player-move definition
 	public static final int NOT_SELECT = -1;
 	public static final int ATTACK = 0;
 	public static final int BLOCK = 1;
@@ -61,6 +61,10 @@ public class Player {
 	
 	public void setMove(int move){
 		currentMove = move;
+	}
+	
+	public void resetMove(){
+		currentMove = NOT_SELECT;
 	}
 	
 	

@@ -23,6 +23,7 @@ public class PlayState extends State{
 		System.out.println("GAME STARTED");
 		System.out.println("-----------------------------------------------------");
 		System.out.println();
+		
 		currentMatch.begin();
 		
 	};
