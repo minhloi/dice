@@ -78,50 +78,34 @@ public class Match {
 		System.out.println("BATTLE PHASE:");
 		System.out.println("-----------------------------------------------------");
 		
-		if(rollWinner.getMove() == Player.ATTACK){
-			
-			int damage = rollWinner.getDice().roll();			
-			System.out.println("Player " + rollWinner.getNumber() + " rolled one more for damamge: " + damage + ".");
-			
-			System.out.print("Player " + rollWinner.getNumber() + " selected ATTACK. ");
-			
-			if(rollLoser.getMove() == Player.ATTACK){
-			
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
-				System.out.println("Player " + rollLoser.getNumber() + " also selected ATTACK. Thus player " + rollLoser.getNumber() + " takes full damage which is " + damage + ".");
-			
-			} else if(rollLoser.getMove() == Player.SPECIAL_ATTACK){
-			
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
-				System.out.println("Player " + rollLoser.getNumber() + " selected SPECIAL_ATTACK. Thus player " + rollLoser.getNumber() + " takes full damage which is " + damage + ".");
-			
-			} else if(rollLoser.getMove() == Player.BLOCK){
-				
-				rollLoser.setHealth(rollLoser.getHealth() - 1/2*damage);
-				System.out.println("Player " + rollLoser.getNumber() + " selected BLOCK. Thus player " + rollLoser.getNumber() + " takes half damage which is " + 1/2*damage + ".");
-								
-			}
-			
-		} else if(rollWinner.getMove() == Player.BLOCK){
-			
-			System.out.print("Player " + rollWinner.getNumber() + " won the roll but selected BLOCK thus nothing happens in this turn.");
+		// Winner rolls dice again
+		int initialDamage = rollWinner.getDice().roll();			
 		
-		}
+		// Print dice roll of winner
+		System.out.println("Player " + rollWinner.getNumber() + " rolled dice once more is: " + initialDamage + ".");
 		
+		// Print selected move of two players.
+		System.out.print("Player " + rollWinner.getNumber() + " selected " + rollWinner.getMoveInString() + ". ");
+		System.out.println("Player " + rollLoser.getNumber() + " selected " + rollLoser.getMoveInString() + ".");
+		
+		// Calculate damage that loser will be taken.
+		calculateDamage(initialDamage);
 		System.out.println();
 		
-		// reset for new turn;
-		resetPhase();
-		
+		// Check if there is a winner of the match.
 		if(player1.getHealth() < 0){
 			System.out.println("Player 2 win the game. GAME OVER.");
 		} else if(player2.getHealth() < 0){
 			System.out.println("Player 1 win the game. GAME OVER.");
 		} else {
-			// go to next turn.
+			
+			// Reset phase for new turn;
+			resetPhase();
 			System.out.println("Please press any keys for next turn.");
 			scanner.next();
+			System.out.println();
 			
+			// Go to next turn.
 			selectMovePhase();
 		}
 		
@@ -131,18 +115,22 @@ public class Match {
 		
 		String input = scanner.next();
 		
+		// Input must be a single character.
 		if(input.length() == 1){
 			
+			// Read user input from keyboard
 			char key = input.charAt(0);
+			
+			// Convert input-key to move and set move to that player.
 			setMoveByKey(key);
 					
-			// If one or two players have not input yet or provide invalid inputs,
-			// then scan again;
+			// If one/two players provided invalid inputs or haven't provided yet,
+			// then scan again.
 			if(player1.getMove() == Player.NOT_SELECT || player2.getMove() == Player.NOT_SELECT){
 				scanMove();
 			}
 			
-		} else if(input.length() >= 2){
+		} else {
 			System.out.println("Invalid input. Please try again.");
 			scanMove();
 		}
@@ -162,7 +150,7 @@ public class Match {
 					System.out.println("Player 1 cannot re-select.");
 				} else {
 					player1.setMove(index);
-					System.out.println("Player 1 selected move successfully.");
+					System.out.println("Player 1 selected successfully.");
 				}
 			}
 			++index;
@@ -178,7 +166,7 @@ public class Match {
 					System.out.println("Player 2 cannot re-select.");
 				} else {
 					player2.setMove(index);
-					System.out.println("Player 2 selected move successfully.");
+					System.out.println("Player 2 selected successfully.");
 				}
 			}
 			++index;
@@ -220,6 +208,76 @@ public class Match {
 			System.out.println("Tie! Roll again...");
 			System.out.println();
 			rollDie();	
+		}
+		
+	}
+	
+	private void calculateDamage(int initialDamage){
+		
+		// CASE 1: Winner selected ATTACK.
+		if(rollWinner.getMove() == Player.ATTACK){
+			
+			// Loser selected ATTACK or SPECIAL_ATTACK takes full damage.
+			if(rollLoser.getMove() == Player.ATTACK || rollLoser.getMove() == Player.SPECIAL_ATTACK){
+			
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes full damage which is " + initialDamage + ".");
+			
+			// Loser selected BLOCK takes half damage.
+			} else if(rollLoser.getMove() == Player.BLOCK){
+				
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - 1/2*initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes half damage which is " + 1/2*initialDamage + ".");
+								
+			}
+			
+		// CASE 2: Winner selected BLOCK.	
+		} else if(rollWinner.getMove() == Player.BLOCK){
+			
+			// Loser selected ATTACK or SPECIAL_ATTACK takes half damage.
+			if(rollLoser.getMove() == Player.ATTACK || rollLoser.getMove() == Player.SPECIAL_ATTACK){
+						
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - 1/2*initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes half damage which is " + 1/2*initialDamage + ".");
+			
+			// Loser selected BLOCK takes a quarter of damage.
+			} else if(rollLoser.getMove() == Player.BLOCK){
+				
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - 1/4*initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes a quarter of damage which is " + 1/4*initialDamage + ".");
+								
+			}
+		
+
+		// CASE 3: Winner selected SPECIAL_ATTACK.	
+		} else if(rollWinner.getMove() == Player.SPECIAL_ATTACK){
+			
+			// Loser selected ATTACK or SPECIAL_ATTACK takes doubled damage.
+			if(rollLoser.getMove() == Player.ATTACK || rollLoser.getMove() == Player.SPECIAL_ATTACK){
+						
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - 2*initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes doubled damage which is " + 2*initialDamage + ".");
+			
+			// Loser selected BLOCK takes full normal damage.
+			} else if(rollLoser.getMove() == Player.BLOCK){
+				
+				// Set damage.
+				rollLoser.setHealth(rollLoser.getHealth() - initialDamage);
+				// Print damage.
+				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes normal damage which is " + initialDamage + ".");
+								
+			}
+		
 		}
 		
 	}

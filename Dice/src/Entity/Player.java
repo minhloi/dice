@@ -49,6 +49,19 @@ public class Player {
 		return currentMove;
 	}
 	
+	public String getMoveInString(){
+		if(currentMove == ATTACK)
+			return "ATTACK";
+		else if(currentMove == BLOCK)
+			return "BLOCK";
+		else if(currentMove == SPECIAL_ATTACK)
+			return "SPECIAL_ATTACK";
+		else if(currentMove == NOT_SELECT)
+			return "NOT_SELECTED";	
+		else
+			return "";
+	}
+	
 	public void setMove(int move){
 		currentMove = move;
 	}
