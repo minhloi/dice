@@ -26,6 +26,6 @@ All documents are located in Dice/document folder or see below:
 
 ######UML class diagram: (no GUI involved)
 
-![alt text](https://raw.githubusercontent.com/minhloi/dice/master/Dice/document/UML_diagram_no_gui.png "UML diagram")
+![alt text](https://raw.githubusercontent.com/minhloi/dice/master/Dice/document/class_diagram_no_gui.png "UML class diagram")
 
 
