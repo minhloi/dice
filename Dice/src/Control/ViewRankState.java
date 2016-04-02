@@ -1,12 +1,15 @@
 package Control;
 
-public class ViewRankState extends GameState{
+import java.util.Scanner;
+
+public class ViewRankState extends State{
 	
 	private GameController gameController;
 	
-	public ViewRankState(GameController controller){
+	public ViewRankState(GameController controller, Scanner scanner){
 		
-		gameController = controller;
+		this.gameController = controller;
+		this.scanner = scanner;
 		
 	}
 	

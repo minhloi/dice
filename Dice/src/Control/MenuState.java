@@ -1,21 +1,26 @@
 package Control;
 import java.util.Scanner;
 
-public class MenuState extends GameState{
+public class MenuState extends State{
 
 	private String[] menuList; 
 	private int menuLength;
 	private GameController gameController;
 	
-	public MenuState(GameController controller){
+	private static final int START_GAME = 0;
+	private static final int VIEW_RANK = 1;
+	private static final int EXIT = 2;
+	
+	public MenuState(GameController controller, Scanner scanner){
 		
 		menuLength = 3;
 		menuList = new String[menuLength];
-		menuList[0] = "Start game";
-		menuList[1] = "View ranking";
-		menuList[2] = "Exit";
+		menuList[START_GAME] = "Start game";
+		menuList[VIEW_RANK] = "View ranking";
+		menuList[EXIT] = "Exit";
 		
-		gameController = controller;
+		this.scanner = scanner;
+		this.gameController = controller;
 		
 	}
 	
@@ -23,36 +28,44 @@ public class MenuState extends GameState{
 		
 		System.out.print("Menu options: \n");
 		for(int i = 0; i < menuLength; i++){
-			
 			System.out.print(i + ". " + menuList[i]+ "\n");
-			
 		}
+				
+		System.out.print("Please select menu: ");
 		
-		
-		System.out.print("Please input menu: ");
-		
-		Scanner scanner = new Scanner(System.in);
-		int selectedMenu = scanner.nextInt();
-		scanner.close();
+		int selectedOption = scanner.nextInt();
 		
 		System.out.print("\n");
+		route(selectedOption);
+			
+	}
+	
+	private void route(int selectedOption){
 		
-		if(selectedMenu == 0){
+		if(selectedOption == START_GAME){
+			
+			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+			playState.createNewMatch();
 			
 			gameController.setState(GameController.PLAY_STATE);
-			
-			
-		} else if(selectedMenu == 1){
+								
+		}
+		
+		else if(selectedOption == VIEW_RANK){
 			
 			gameController.setState(GameController.VIEW_RANK_STATE);
 			
-		} else if(selectedMenu == 2){
+		} 
+		
+		else if(selectedOption == EXIT){
 			
-			System.out.print("Exit the game... ");
+			// close scanner;
+			scanner.close();
+			
+			System.out.print("Exit! ");
 			
 		}
-	    
-			
+		
 	}
 	
 	

@@ -1,19 +1,29 @@
 package Control;
 
-public class PlayState extends GameState{
+import java.util.Scanner;
+
+public class PlayState extends State{
 
 	private GameController gameController;	
+	private Match currentMatch;
 	
-	public PlayState(GameController controller){
+	public PlayState(GameController controller, Scanner scanner){
 		
-		gameController = controller;
-		
-		
+		this.gameController = controller;
+		this.scanner = scanner;
+	
 	}
 	
+	public void createNewMatch(){
+		currentMatch = new Match(scanner);
+	}
+			
 	public void print(){
 		
-		System.out.println("Starting new game...");
+		System.out.println("GAME STARTED");
+		System.out.println("-----------------------------------------------------");
+		
+		currentMatch.begin();
 		
 	};
 	
