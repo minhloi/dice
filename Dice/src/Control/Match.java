@@ -60,7 +60,9 @@ public class Match {
 		currentPhase = SELECT_MOVE_PHASE;
 		System.out.println("SELECT-MOVE PHASE:");
 		System.out.println("-----------------------------------------------------");
+		// Print players' HP
 		System.out.printf("%-30s %-30s\n","Player 1 (HP: " + player1.getHealth() + ")","Player2 (HP: " + player2.getHealth() + ")");
+		// Print players' move-sets.
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.BLOCK] + ": block", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
 		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
@@ -82,11 +84,14 @@ public class Match {
 		System.out.println("ROLL-DICE PHASE:");
 		System.out.println("-----------------------------------------------------");
 		
+		// Roll die of two players to 
+		// determine winner and loser of this turn.
 		rollDie();
 		
 		System.out.println("Go to battle in 3 seconds...");
 		System.out.println();
 		
+		// Wait 3 seconds, allow players to see their results.
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -114,7 +119,7 @@ public class Match {
 		System.out.print("Player " + rollWinner.getNumber() + " selected " + rollWinner.getMoveInString() + ". ");
 		System.out.println("Player " + rollLoser.getNumber() + " selected " + rollLoser.getMoveInString() + ".");
 		
-		// Calculate damage that loser will be taken.
+		// Calculate damage to the loser.
 		calculateDamage(initialDamage);
 		System.out.println();
 		
@@ -319,6 +324,8 @@ public class Match {
 		
 		rollWinner = null;
 		rollLoser = null;
+		
+		// reset players' selected moves
 		player1.resetMove();
 		player2.resetMove();
 				
