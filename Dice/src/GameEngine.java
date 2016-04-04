@@ -6,7 +6,7 @@ public class GameEngine {
 	
 		GameController gameController = new GameController();
 		
-		// Start by displaying menu first
+		// Start by print menu first
 		gameController.setState(GameController.MENU_STATE);
 		
 		
