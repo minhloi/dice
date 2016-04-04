@@ -130,7 +130,7 @@ public class Match {
 			System.out.println("Player 1 win the game. GAME OVER.");
 		} else {
 			
-			// No one wins then reset phase for new turn
+			// No one wins the game yet then reset phase for new turn
 			resetPhase();
 			System.out.println("Please press any keys for next turn.");
 			scanner.next();
