@@ -56,10 +56,8 @@ public class Player {
 			return "BLOCK";
 		else if(currentMove == SPECIAL_ATTACK)
 			return "SPECIAL_ATTACK";
-		else if(currentMove == NOT_SELECT)
+		else 
 			return "NOT_SELECTED";	
-		else
-			return "";
 	}
 	
 	public void setMove(int move){
