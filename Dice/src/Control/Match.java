@@ -16,7 +16,6 @@ public class Match {
 	private Scanner scanner;
 	
 	// Phase definition
-	
 	public static final int SELECT_MOVE_PHASE = 0;
 	public static final int ROLL_DICE_PHASE = 1;
 	public static final int BATTLE_PHASE = 2;
@@ -41,7 +40,7 @@ public class Match {
 		System.out.println("-----------------------------------------------------");
 		System.out.println();
 		
-		// Begin match by selecting move for each player. 
+		// Begin by allow each player to select their moves. 
 		selectMovePhase();	
 	}
 	
@@ -52,7 +51,6 @@ public class Match {
 		System.out.println("-----------------------------------------------------");
 		System.out.println();
 		
-		// Begin match by selecting move for each player. 
 		selectMovePhase();	
 			
 	}
@@ -112,7 +110,7 @@ public class Match {
 		// Print dice roll of winner
 		System.out.println("Player " + rollWinner.getNumber() + " rolled dice once more is: " + initialDamage + ".");
 		
-		// Print selected move of two players.
+		// Print the selected moves of two players.
 		System.out.print("Player " + rollWinner.getNumber() + " selected " + rollWinner.getMoveInString() + ". ");
 		System.out.println("Player " + rollLoser.getNumber() + " selected " + rollLoser.getMoveInString() + ".");
 		
@@ -127,7 +125,7 @@ public class Match {
 			System.out.println("Player 1 win the game. GAME OVER.");
 		} else {
 			
-			// Reset phase for new turn;
+			// No one wins then reset phase for new turn
 			resetPhase();
 			System.out.println("Please press any keys for next turn.");
 			scanner.next();
@@ -143,13 +141,12 @@ public class Match {
 		
 		String input = scanner.next();
 		
-		// Input must be a single character.
+		// Input for move must be a single character.
 		if(input.length() == 1){
 			
-			// Read user input from keyboard
 			char key = input.charAt(0);
 			
-			// Convert input-key to move and set move to that player.
+			// Convert user input to corresponding move and set move.
 			setMoveByKey(key);
 					
 			// If one/two players provided invalid inputs or haven't provided yet,
@@ -169,6 +166,7 @@ public class Match {
 		boolean found = false;
 		int index = 0;
 		
+		// Loop over all player1's move-set and find corresponding move.
 		while(found == false && index < PLAYER1_MOVE_SET.length){
 			if(key == PLAYER1_MOVE_SET[index]){
 				found = true;
@@ -185,6 +183,7 @@ public class Match {
 		}
 		
 		index = 0;		
+		// Loop over all player2's move-set and find corresponding move.
 		while(found == false && index < PLAYER2_MOVE_SET.length){
 			if(key == PLAYER2_MOVE_SET[index]){
 				found = true;
@@ -234,6 +233,7 @@ public class Match {
 			
 			System.out.println("Tie! Roll again...");
 			System.out.println();
+			// Roll again.
 			rollDie();	
 		}
 		
