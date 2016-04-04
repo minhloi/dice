@@ -26,6 +26,7 @@ public class MenuState extends State{
 	
 	public void print(){
 		
+		// Print all menu options.
 		System.out.print("Menu options: \n");
 		for(int i = 0; i < menuLength; i++){
 			System.out.print(i + ". " + menuList[i]+ "\n");
@@ -33,9 +34,12 @@ public class MenuState extends State{
 				
 		System.out.print("Please select menu: ");
 		
+		// Read input
 		int selectedOption = scanner.nextInt();
 		
 		System.out.print("\n");
+		
+		// Route to corrected state.
 		route(selectedOption);
 			
 	}
@@ -44,15 +48,20 @@ public class MenuState extends State{
 		
 		if(selectedOption == START_GAME){
 			
+			// Get playState object
 			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+			
+			// To start a new game, create a new Match object.
 			playState.createNewMatch();
 			
+			// Begin to render playState.
 			gameController.setState(GameController.PLAY_STATE);
 								
 		}
 		
 		else if(selectedOption == VIEW_RANK){
 			
+			// Begin to render viewRankState
 			gameController.setState(GameController.VIEW_RANK_STATE);
 			
 		} 
