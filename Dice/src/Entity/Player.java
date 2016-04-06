@@ -24,7 +24,7 @@ public class Player {
 	
 	public Player(int number){
 		
-		// Initialized variables
+		// Initialize variables
 		health = DEFAULT_HEALTH_POINT; 
 		currentMove = NOT_SELECT;
 		playerNumber = number;
@@ -93,7 +93,7 @@ public class Player {
 	
 	public void resetMove(){
 		
-		// If Player does not select BLOCK this turn,
+		// If player does not select BLOCK this turn,
 		// then enable it back for next turn.
 		if(currentMove != BLOCK){
 			enableBlock();
