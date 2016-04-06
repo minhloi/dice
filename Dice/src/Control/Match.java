@@ -40,7 +40,7 @@ public class Match {
 		System.out.println("-----------------------------------------------------");
 		System.out.println();
 		
-		// Begin by allow each player to select their moves. 
+		// Begin by allowing each player to select their moves. 
 		selectMovePhase();	
 	}
 	
