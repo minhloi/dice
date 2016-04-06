@@ -66,24 +66,26 @@ public class Match {
 		// Print players' move-sets.
 		System.out.printf("%-30s%-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
 		
-		// Check if player's block is disabled in this turn
+		// Check if player 1 block is disabled in this turn
 		if(player1.isBlockDisabled() == false){
 			System.out.printf("%-30s", PLAYER1_MOVE_SET[Player.BLOCK] + ": block");
 		} else {
 			System.out.printf("%-30s", " ");
 		}
+		// Check if player 2 block is disabled in this turn
 		if(player2.isBlockDisabled() == false){
 			System.out.printf("%-30s\n", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
 		} else {
 			System.out.printf("%-30s\n", " ");
 		}
 		
-		// Check if player can select special attack
+		// Check if player 1 can select special attack
 		if(player1.canUseSpecial() == true){
 			System.out.printf("%-30s", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
 		} else {
 			System.out.printf("%-30s", " ");
 		}
+		// Check if player 2 can select special attack
 		if(player2.canUseSpecial() == true){
 			System.out.printf("%-30s\n", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
 		} else {
