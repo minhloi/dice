@@ -61,11 +61,35 @@ public class Match {
 		System.out.println("SELECT-MOVE PHASE:");
 		System.out.println("-----------------------------------------------------");
 		// Print players' HP
-		System.out.printf("%-30s %-30s\n","Player 1 (HP: " + player1.getHealth() + ")","Player2 (HP: " + player2.getHealth() + ")");
+		System.out.printf("%-30s%-30s\n","Player 1 (HP: " + player1.getHealth() + ")","Player2 (HP: " + player2.getHealth() + ")");
+		
 		// Print players' move-sets.
-		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
-		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.BLOCK] + ": block", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
-		System.out.printf("%-30s %-30s\n", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
+		System.out.printf("%-30s%-30s\n", PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
+		
+		// Check if player's block is disabled in this turn
+		if(player1.isBlockDisabled() == false){
+			System.out.printf("%-30s", PLAYER1_MOVE_SET[Player.BLOCK] + ": block");
+		} else {
+			System.out.printf("%-30s", " ");
+		}
+		if(player2.isBlockDisabled() == false){
+			System.out.printf("%-30s\n", PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
+		} else {
+			System.out.printf("%-30s\n", " ");
+		}
+		
+		// Check if player can select special attack
+		if(player1.canUseSpecial() == true){
+			System.out.printf("%-30s", PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
+		} else {
+			System.out.printf("%-30s", " ");
+		}
+		if(player2.canUseSpecial() == true){
+			System.out.printf("%-30s\n", PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
+		} else {
+			System.out.printf("%-30s\n", " ");
+		}
+		
 		System.out.println();
 		
 		System.out.println("To select move, each player takes turn to input a key above then press enter.");
@@ -170,15 +194,23 @@ public class Match {
 		
 		boolean found = false;
 		int index = 0;
+		int selecting;
 		
 		// Loop over all player1's move-set and find corresponding move.
 		while(found == false && index < PLAYER1_MOVE_SET.length){
 			if(key == PLAYER1_MOVE_SET[index]){
 				found = true;
+				selecting = index;
 				
 				// Player 1 already selected a move thus cannot select again.
 				if(player1.getMove() != Player.NOT_SELECT){
 					System.out.println("Player 1 cannot re-select.");
+				// Check if player 1 is able to select BLOCK.
+				} else if(selecting == Player.BLOCK && player1.isBlockDisabled() == true){
+					System.out.println("Player 1 cannot BLOCK. BLOCK has been disabled for this turn.");
+				// Check if player 1 is able to select SPECIAL_ATTACK.
+				} else if(selecting == Player.SPECIAL_ATTACK && player1.canUseSpecial() == false){
+					System.out.println("Player 1 cannot SPECIAL_ATTACK. Maximum number of used reached.");
 				} else {
 					player1.setMove(index);
 					System.out.println("Player 1 selected successfully.");
@@ -192,10 +224,17 @@ public class Match {
 		while(found == false && index < PLAYER2_MOVE_SET.length){
 			if(key == PLAYER2_MOVE_SET[index]){
 				found = true;
+				selecting = index;
 				
 				// Player 2 already selected a move thus cannot select again.
 				if(player2.getMove() != Player.NOT_SELECT){
 					System.out.println("Player 2 cannot re-select.");
+				// Check if player 2 is able to selec BLOCK	
+				} else if(selecting == Player.BLOCK && player2.isBlockDisabled() == true){
+					System.out.println("Player 2 cannot BLOCK. Block has been disabled for this turn.");
+				// Check if player 2 is able to select SPECIAL_ATTACK.
+				} else if(selecting == Player.SPECIAL_ATTACK && player2.canUseSpecial() == false){
+					System.out.println("Player 2 cannot SPECIAL_ATTACK. Maximum number of used reached.");
 				} else {
 					player2.setMove(index);
 					System.out.println("Player 2 selected successfully.");
