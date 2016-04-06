@@ -233,10 +233,10 @@ public class Match {
 					System.out.println("Player 2 cannot re-select.");
 				// Check if player 2 is able to selec BLOCK	
 				} else if(selecting == Player.BLOCK && player2.isBlockDisabled() == true){
-					System.out.println("Player 2 cannot BLOCK. Block has been disabled for this turn.");
+					System.out.println("Player 2 cannot use BLOCK. Block has been disabled for this turn.");
 				// Check if player 2 is able to select SPECIAL_ATTACK.
 				} else if(selecting == Player.SPECIAL_ATTACK && player2.canUseSpecial() == false){
-					System.out.println("Player 2 cannot SPECIAL_ATTACK. Maximum number of used reached.");
+					System.out.println("Player 2 cannot use SPECIAL_ATTACK. Maximum number of uses has been reached.");
 				} else {
 					player2.setMove(index);
 					System.out.println("Player 2 selected successfully.");
