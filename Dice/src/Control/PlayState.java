@@ -17,13 +17,14 @@ public class PlayState extends State{
 	public void createNewMatch(){
 		currentMatch = new Match(scanner);
 	}
-			
-	public void print(){
-		
-		currentMatch.begin();
-		
-	};
 	
+	public void rematch(){
+			
+	}
+	
+	public void print(){
+		currentMatch.begin();
+	};
 	
 	
 	
