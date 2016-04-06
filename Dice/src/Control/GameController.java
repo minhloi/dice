@@ -18,12 +18,12 @@ public class GameController {
 		
 		stateLength = 3;
 		stateList = new State[stateLength];
-			
 		stateList[MENU_STATE] = new MenuState(this, scanner);
 		stateList[PLAY_STATE] = new PlayState(this, scanner);
 		stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner);
 		
-		currentState = 0;
+		// Default is Menu
+		currentState = MENU_STATE;
 			
 	}
 	
