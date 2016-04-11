@@ -22,12 +22,13 @@ public class Player {
 	public static final int BLOCK = 1;
 	public static final int SPECIAL_ATTACK = 2;
 	
-	public Player(int number){
+	public Player(int number, String username){
 		
 		// Initialize variables
+		playerNumber = number;
+		this.username = username;
 		health = DEFAULT_HEALTH_POINT; 
 		currentMove = NOT_SELECT;
-		playerNumber = number;
 		numSpecialUsed = 0;
 		blockDisabled = false;
 		dice = new Dice();
