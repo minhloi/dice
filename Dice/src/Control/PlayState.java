@@ -33,8 +33,10 @@ public class PlayState extends State{
 	
 	public void rematch(){
 		
-		// If rematch is selected, create a new match
-		// but use current players' information.
+		// TODO: if rematch is selected, it should retain current usernames of two players ;
+		player1 = new Player(1);
+		player2 = new Player(2);
+				
 		currentMatch = new Match(player1, player2, gameController, scanner);
 	}
 	
