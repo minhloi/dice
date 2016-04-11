@@ -24,12 +24,12 @@ public class Match {
 	private static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
 	private static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 	
-	public Match(Scanner scanner){
+	public Match(Player player1, Player player2, Scanner scanner){
 		
-		player1 = new Player(1);
-		player2 = new Player(2);
-		
+		this.player1 = player1;
+		this.player2 = player2;
 		this.scanner = scanner;
+		
 	}
 	
 	public void begin(){
