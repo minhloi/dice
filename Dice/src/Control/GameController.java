@@ -2,12 +2,17 @@ package Control;
 
 import java.util.Scanner;
 
+import Entity.Database;
+
 public class GameController {
 	
 	private State[] stateList;
+	private Scanner scanner;
+	private Database database;
+	
 	private int stateLength;
 	private int currentState;
-	
+		
 	public static final int MENU_STATE = 0;
 	public static final int PLAY_STATE = 1;
 	public static final int VIEW_RANK_STATE = 2;
@@ -15,7 +20,8 @@ public class GameController {
 	
 	public GameController(){
 		
-		Scanner scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);
+		database = new Database();
 		
 		stateLength = 4;
 		stateList = new State[stateLength];
