@@ -1,9 +1,15 @@
+import Control.GameController;
 
 public class GameEngine {
-
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+		GameController gameController = new GameController();
+		
+		// Start by printing the menu first
+		gameController.setState(GameController.MENU_STATE);
+		
+		
 	}
 
 }
