@@ -51,32 +51,58 @@ public class PlayerTest {
 
 	@Test
 	public void testIsBlockDisabled() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		// Default block is not disabled
+		assertFalse(player.isBlockDisabled());
+		
+		// Block is disabled when the player selected BLOCK.
+		player.setMove(Player.BLOCK);
+		assertTrue(player.isBlockDisabled());
+		
 	}
 
 	@Test
 	public void testCanUseSpecial() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		assertTrue(player.canUseSpecial());
+		
+		player.setMove(Player.SPECIAL_ATTACK);
+		assertTrue(player.canUseSpecial());
+		
+		player.setMove(Player.SPECIAL_ATTACK);
+		assertFalse(player.canUseSpecial());
 	}
 
 	@Test
 	public void testGetMove() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		
+		assertEquals(Player.NOT_SELECT, player.getMove());
 	}
 
 	@Test
 	public void testGetMoveInString() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		
+		assertEquals("NOT_SELECTED", player.getMoveInString());
 	}
 
 	@Test
 	public void testSetMove() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		player.setMove(Player.ATTACK);
+		
+		assertEquals(Player.ATTACK, player.getMove());
 	}
 
 	@Test
 	public void testResetMove() {
-		//fail("Not yet implemented");
+		Player player = new Player(1);
+		player.setMove(Player.ATTACK);
+		
+		player.resetMove();
+		assertEquals(Player.NOT_SELECT, player.getMove());
+				
 	}
 
 }
