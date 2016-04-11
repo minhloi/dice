@@ -13,8 +13,9 @@ public class Match {
 
 	private int currentPhase;
 	private int currentTurn;
+	
 	private Scanner scanner;
-	private PlayState playState;
+	private GameController gameController;
 	
 	// Phase definition
 	public static final int SELECT_MOVE_PHASE = 0;
@@ -25,11 +26,11 @@ public class Match {
 	private static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
 	private static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 		
-	public Match(Player player1, Player player2, PlayState playState, Scanner scanner){
+	public Match(Player player1, Player player2, GameController gameController, Scanner scanner){
 		
 		this.player1 = player1;
 		this.player2 = player2;
-		this.playState = playState;
+		this.gameController = gameController;
 		this.scanner = scanner;
 		
 	}
