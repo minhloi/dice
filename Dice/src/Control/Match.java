@@ -153,12 +153,9 @@ public class Match {
 		System.out.println();
 		
 		// Check if there is a winner of the match.
-		if(player1.getHealth() < 0){
-			System.out.println("Player 2 win the game. GAME OVER.");
-		} else if(player2.getHealth() < 0){
-			System.out.println("Player 1 win the game. GAME OVER.");
-		} else {
-			
+		// No one wins the game yet then reset phase for new turn
+		if(player1.getHealth() > 0 && player2.getHealth() > 0){
+		
 			// No one wins the game yet then reset phase for new turn
 			resetPhase();
 			System.out.println("Please press any keys for next turn.");
@@ -167,6 +164,15 @@ public class Match {
 			
 			// Go to next turn.
 			nextTurn();
+		
+		} else {
+			if(player1.getHealth() <= 0){
+				System.out.println("Player 2 win the game. GAME OVER.");
+			} else {
+				System.out.println("Player 1 win the game. GAME OVER.");
+			}
+			
+			gameController.setState(GameController.MATCH_END_MENU_STATE);
 		}
 		
 	}
