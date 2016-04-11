@@ -25,7 +25,7 @@ public class PlayState extends State{
 		player2 = new Player(2);
 		
 		// Create new match.
-		currentMatch = new Match(player1, player2, scanner);
+		currentMatch = new Match(player1, player2, this, scanner);
 	
 	}
 	
@@ -33,7 +33,7 @@ public class PlayState extends State{
 		
 		// If rematch is selected, create a new match
 		// but use current players' information.
-		currentMatch = new Match(player1, player2, scanner);
+		currentMatch = new Match(player1, player2, this, scanner);
 	}
 	
 	public void print(){
@@ -41,7 +41,5 @@ public class PlayState extends State{
 		currentMatch.begin();
 	
 	};
-	
-	
-	
+		
 }
