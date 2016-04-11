@@ -13,8 +13,8 @@ public class Player {
 	private int currentMove;
 	
 	// Some default configurations.
-	private static final int DEFAULT_HEALTH_POINT = 30;
-	private static final int MAX_SPECIAL_ALLOWED = 2;
+	public static final int DEFAULT_HEALTH_POINT = 30;
+	public static final int MAX_SPECIAL_ALLOWED = 2;
 	
 	// Player-move definition
 	public static final int NOT_SELECT = -1;
