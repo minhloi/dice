@@ -4,6 +4,19 @@ import java.util.Scanner;
 
 import Entity.Database;
 
+/**
+ * GameEngine class with initializing  GameControler
+ * 
+ * @author Team 38
+ * 				Thien Duc Phung
+ * 				Minh Loi
+ * 				Daniel Enriquez
+ * 				Brett Bauman
+ * 				Tanner Siffren
+ * @version 04/12/2016
+ *
+ */
+
 public class GameController {
 	
 	private State[] stateList;
@@ -18,7 +31,7 @@ public class GameController {
 	public static final int VIEW_RANK_STATE = 2;
 	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
 	
-	public GameController(){
+	public GameController() {
 		
 		scanner = new Scanner(System.in);
 		database = new Database();
@@ -35,25 +48,27 @@ public class GameController {
 			
 	}
 	
-	public void init(){
+	public void init() {
 		
 		// Load all players' data.
 		database.loadData();
 		
 	}
 	
-	public State getState(int state){
+	public State getState(int state) {
+		
 		return stateList[state];
+		
 	}
 	
-	public void setState(int state){
+	public void setState(int state) {
 		
 		currentState = state;
 		printCurrentState();
 		
 	}
 	
-	public void exitGame(){
+	public void exitGame() {
 		
 		// Before exit
 		database.saveData();
@@ -63,8 +78,10 @@ public class GameController {
 		
 	}
 	
-	private void printCurrentState(){
+	private void printCurrentState() {
+		
 		stateList[currentState].print();
+		
 	}
 		
 }
