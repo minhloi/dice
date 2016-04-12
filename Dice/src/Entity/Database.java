@@ -76,18 +76,37 @@ public class Database {
 	
 	// TODO: Use BubbleSort to sort players by difference of wins and losses
 	public void sortByDifference(){
+		
+		int size = gameData.size();
+		int diffOfCurrent, diffOfNext;
+		PlayerScore currentPlayer, nextPlayer;
+		
+		for(int index = 0; index < size - 1; index++){
+			for(int current = 0; current < size - index - 1; current++ ){
 				
+				currentPlayer = gameData.get(current);
+				nextPlayer = gameData.get(current + 1);
+				
+				diffOfCurrent = currentPlayer.getNumOfWins() - currentPlayer.getNumOfLosses();
+				diffOfNext = nextPlayer.getNumOfWins() - nextPlayer.getNumOfLosses();	
+				
+				if(diffOfCurrent < diffOfNext){
+					swapPlayers(current, current + 1);
+				
+				// Difference of two players are equal, then compare the number of wins.
+				} else if(diffOfCurrent == diffOfNext){
+					if(currentPlayer.getNumOfWins() < nextPlayer.getNumOfWins()){
+						swapPlayers(current, current + 1);
+					}
+				}
+			}
+		}
 		
 	}
 	
-	public void printAll(){
+	public Vector<PlayerScore> getData(){
 		
-		Iterator<PlayerScore> iterator =  gameData.iterator();
-		
-		while(iterator.hasNext()){
-			PlayerScore player = iterator.next();
-			System.out.println(player.getUsername() + ": " + player.getNumOfWins() + " " + player.getNumOfLosses());
-		}
+		return gameData;
 		
 	}
 	
@@ -132,7 +151,20 @@ public class Database {
 	}
 	
 	private PlayerScore createNewPlayer(String username){
-		return new PlayerScore(username, 0, 0);
+		PlayerScore newPlayer = new PlayerScore(username, 0, 0);
+		gameData.add(newPlayer);
+		
+		return newPlayer;
+	}
+	
+	private void swapPlayers(int index1, int index2){
+		
+		PlayerScore player1 = gameData.get(index1);
+		PlayerScore player2 = gameData.get(index2);
+			
+		gameData.set(index1, player2);
+		gameData.set(index2, player1);
+		
 	}
 	
 }
