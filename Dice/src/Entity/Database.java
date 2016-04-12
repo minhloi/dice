@@ -104,14 +104,11 @@ public class Database {
 				currentPlayer = gameData.get(current);
 				nextPlayer = gameData.get(current + 1);
 				
-				diffOfCurrent = currentPlayer.getNumOfWins() - currentPlayer.getNumOfLosses();
-				diffOfNext = nextPlayer.getNumOfWins() - nextPlayer.getNumOfLosses();	
-				
-				if(diffOfCurrent < diffOfNext){
+				if(currentPlayer.getDifference() < nextPlayer.getDifference()){
 					swapPlayers(current, current + 1);
 				
 				// Difference of two players are equal, then compare the number of wins.
-				} else if(diffOfCurrent == diffOfNext){
+				} else if(currentPlayer.getDifference() == nextPlayer.getDifference()){
 					if(currentPlayer.getNumOfWins() < nextPlayer.getNumOfWins()){
 						swapPlayers(current, current + 1);
 					}
