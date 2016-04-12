@@ -5,14 +5,11 @@ import java.util.Scanner;
 /**
  * MatchEnd class with all method to act when the match of the game ended
  * 
- * @author Team 38
- * 				Thien Duc Phung
- * 				Minh Loi
- * 				Daniel Enriquez
- * 				Brett Bauman
- * 				Tanner Siffren
- * @version 04/12/2016
- *
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
  */
 
 public class MatchEndMenuState extends State {

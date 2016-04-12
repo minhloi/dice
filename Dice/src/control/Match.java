@@ -8,14 +8,12 @@ import entity.Player;
 /**
  * Match class with all the require method of the game to play
  * 
- * @author Team 38
- * 				Thien Duc Phung
- * 				Minh Loi
- * 				Daniel Enriquez
- * 				Brett Bauman
- * 				Tanner Siffren
- * @version 04/12/2016
- *
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ * 
  */
 
 public class Match {
