@@ -193,7 +193,9 @@ public class Match {
 			}
 			
 			System.out.println();
-			// It's better to save data after every match.
+			
+			// Exiting game suddenly can lose data so
+			// it's better to save data after every match.
 			database.saveData();
 			gameController.setState(GameController.MATCH_END_MENU_STATE);
 		}
