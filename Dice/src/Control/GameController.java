@@ -18,19 +18,23 @@ import Entity.Database;
  */
 
 public class GameController {
-	
+		
 	private State[] stateList;
 	private Scanner scanner;
 	private Database database;
 	
 	private int stateLength;
 	private int currentState;
-		
+	
+	// All static variable values needed for state of the game
 	public static final int MENU_STATE = 0;
 	public static final int PLAY_STATE = 1;
 	public static final int VIEW_RANK_STATE = 2;
 	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
 	
+	/**
+	 * GameController with initializing all need variables, arrays.
+	 */
 	public GameController() {
 		
 		scanner = new Scanner(System.in);
@@ -48,6 +52,9 @@ public class GameController {
 			
 	}
 	
+	/**
+	 *  Load players' data method
+	 */
 	public void init() {
 		
 		// Load all players' data.
@@ -55,12 +62,25 @@ public class GameController {
 		
 	}
 	
+	/**
+	 *  Method to select the state in game
+	 *  
+	 * @param state - type of state of the game
+	 * @return all the data stored in stateList of current state
+	 * 
+	 */
+	
 	public State getState(int state) {
 		
 		return stateList[state];
 		
 	}
 	
+	/**
+	 *  Method to set the state in game
+	 *  
+	 * @param state - type of state of the game
+	 */
 	public void setState(int state) {
 		
 		currentState = state;
@@ -68,6 +88,9 @@ public class GameController {
 		
 	}
 	
+	/**
+	 *  Method to exit, all data will be save before exit
+	 */
 	public void exitGame() {
 		
 		// Before exit
@@ -78,6 +101,9 @@ public class GameController {
 		
 	}
 	
+	/**
+	 *  Method to print the current state the game in
+	 */
 	private void printCurrentState() {
 		
 		stateList[currentState].print();

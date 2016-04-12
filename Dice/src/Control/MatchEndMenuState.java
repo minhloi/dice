@@ -2,6 +2,19 @@ package Control;
 
 import java.util.Scanner;
 
+/**
+ * MatchEnd class with all method to act when the match of the game ended
+ * 
+ * @author Team 38
+ * 				Thien Duc Phung
+ * 				Minh Loi
+ * 				Daniel Enriquez
+ * 				Brett Bauman
+ * 				Tanner Siffren
+ * @version 04/12/2016
+ *
+ */
+
 public class MatchEndMenuState extends State {
 
 	private String[] menuList; 
@@ -13,7 +26,13 @@ public class MatchEndMenuState extends State {
 	private static final int VIEW_RANK = 2;
 	private static final int EXIT = 3;
 	
-	public MatchEndMenuState(GameController controller, Scanner scanner){
+	/**
+	 * Method with assigned array at end game
+	 * 
+	 * @param controller
+	 * @param scanner
+	 */
+	public MatchEndMenuState(GameController controller, Scanner scanner) {
 		
 		menuLength = 4;
 		menuList = new String[menuLength];
@@ -27,12 +46,15 @@ public class MatchEndMenuState extends State {
 		
 	}
 	
+	/**
+	 * Method to print the menu
+	 */
 	@Override
 	public void print() {
 		
 		// Print all menu options.
 		System.out.print("Menu options: \n");
-		for(int i = 0; i < menuLength; i++){
+		for(int i = 0; i < menuLength; i++) {
 			System.out.print(i + ". " + menuList[i]+ "\n");
 		}
 						
@@ -48,9 +70,14 @@ public class MatchEndMenuState extends State {
 				
 	}
 	
-	public void route(int selectedOption){
+	/**
+	 * Method to decide what to do after the game base on players' choice
+	 * 
+	 * @param selectedOption
+	 */
+	public void route(int selectedOption) {
 	
-		if(selectedOption == REMATCH){
+		if (selectedOption == REMATCH) {
 			
 			// Get playState object
 			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
@@ -63,21 +90,21 @@ public class MatchEndMenuState extends State {
 								
 		}
 		
-		else if(selectedOption == BACK_TO_MAIN_MENU){
+		else if (selectedOption == BACK_TO_MAIN_MENU) {
 			
 			// Begin to render menuState.
 			gameController.setState(GameController.MENU_STATE);
 		
 		}
 		
-		else if(selectedOption == VIEW_RANK){
+		else if (selectedOption == VIEW_RANK) {
 			
 			// Begin to render viewRankState
 			gameController.setState(GameController.VIEW_RANK_STATE);
 			
 		} 
 		
-		else if(selectedOption == EXIT){
+		else if (selectedOption == EXIT) {
 			
 			gameController.exitGame();	
 
