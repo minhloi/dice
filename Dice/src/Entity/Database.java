@@ -11,16 +11,17 @@ import java.util.Iterator;
 
 public class Database {
 
-	FileOutputStream fileOutput;
-	ObjectOutputStream outStream;
+	private FileOutputStream fileOutput;
+	private ObjectOutputStream outStream;
     
-	FileInputStream fileInput;
-	ObjectInputStream inStream;
+	private FileInputStream fileInput;
+	private ObjectInputStream inStream;
     
 	private Vector<PlayerScore> gameData;
 	private static final String FILE_NAME = "database.txt";
 	
 	public Database(){
+		gameData = new Vector<PlayerScore>();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -38,7 +39,7 @@ public class Database {
 	
 		} catch (FileNotFoundException e) {
 		
-			gameData = new Vector();
+			gameData = new Vector<PlayerScore>();
 				
 		} catch (ClassNotFoundException e) {
 		
@@ -121,9 +122,7 @@ public class Database {
 	}
 	
 	public Vector<PlayerScore> getData(){
-		
 		return gameData;
-		
 	}
 	
 	public void incrementWinByName(String username){
