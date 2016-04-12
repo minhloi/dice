@@ -29,15 +29,16 @@ public class PlayState extends State{
 		createProfiles();
 		
 		// Create new match.
-		currentMatch = new Match(player1, player2, gameController, scanner);
+		currentMatch = new Match(player1, player2, gameController, scanner, database);
 	
 	}
 	
 	public void rematch(){
 		
-		// TODO: if rematch is selected, it should retain current usernames of two players ;
-						
-		currentMatch = new Match(player1, player2, gameController, scanner);
+		// Retain username
+		retainProfiles();
+		
+		currentMatch = new Match(player1, player2, gameController, scanner, database);
 	}
 	
 	private void createProfiles(){
@@ -55,6 +56,16 @@ public class PlayState extends State{
 		player1 = new Player(1, player1Username);
 		player2 = new Player(2, player2Username);
 			
+	}
+	
+	private void retainProfiles(){
+		
+		String player1Username = player1.getUserName();
+		String player2Username = player2.getUserName();
+		
+		player1 = new Player(1, player1Username);
+		player2 = new Player(2, player2Username);
+		
 	}
 	
 	public void print(){
