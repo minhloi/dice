@@ -22,7 +22,7 @@ public class PlayerScore implements Serializable {
 		return numOfWins;		
 	}
 	
-	public int getNumOfLossess(){
+	public int getNumOfLosses(){
 		return numOfLosses;		
 	}
 	
