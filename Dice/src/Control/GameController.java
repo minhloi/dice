@@ -26,13 +26,20 @@ public class GameController {
 		stateLength = 4;
 		stateList = new State[stateLength];
 		stateList[MENU_STATE] = new MenuState(this, scanner);
-		stateList[PLAY_STATE] = new PlayState(this, scanner);
-		stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner);
+		stateList[PLAY_STATE] = new PlayState(this, scanner, database);
+		stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
 		stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
 		
 		// Default is Menu
 		currentState = MENU_STATE;
 			
+	}
+	
+	public void init(){
+		
+		// Load all players' data.
+		database.loadData();
+		
 	}
 	
 	public State getState(int state){
@@ -45,7 +52,17 @@ public class GameController {
 		printCurrentState();
 		
 	}
+	
+	public void exitGame(){
 		
+		// Before exit
+		database.saveData();
+		scanner.close();
+		
+		System.out.print("Exit! ");
+		
+	}
+	
 	private void printCurrentState(){
 		stateList[currentState].print();
 	}
