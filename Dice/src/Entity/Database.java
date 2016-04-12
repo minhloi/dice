@@ -48,6 +48,15 @@ public class Database {
 		
 			e.printStackTrace();
 		
+		} finally {
+			
+			try {
+				if(inStream != null){
+					inStream.close();
+				}	
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	
 	}
@@ -64,11 +73,18 @@ public class Database {
 			outStream.writeObject(gameData);
 						
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}  finally {
+			
+			try {
+				if(outStream != null){
+					outStream.close();
+				}	
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
