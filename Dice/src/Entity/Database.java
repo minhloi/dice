@@ -11,11 +11,11 @@ import java.util.Iterator;
 
 public class Database {
 
-    FileOutputStream fileOutput;
-    ObjectOutputStream outStream;
+	FileOutputStream fileOutput;
+	ObjectOutputStream outStream;
     
-    FileInputStream fileInput;
-    ObjectInputStream inStream;
+	FileInputStream fileInput;
+	ObjectInputStream inStream;
     
 	private Vector<PlayerScore> gameData;
 	private static final String FILE_NAME = "database.txt";
