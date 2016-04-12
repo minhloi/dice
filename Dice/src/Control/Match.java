@@ -177,16 +177,18 @@ public class Match {
 		
 		} else {
 			
+			// Player 1 loses
 			if(player1.getHealth() <= 0){
 				
-				database.incrementWinByName(player1.getUserName());
-				database.incrementLossByName(player2.getUserName());
-				
-				System.out.println("Player 2 won the game. GAME OVER.");
-			} else {
-
 				database.incrementWinByName(player2.getUserName());
 				database.incrementLossByName(player1.getUserName());
+				
+				System.out.println("Player 2 won the game. GAME OVER.");
+			// Player 2 loses
+			} else {
+
+				database.incrementWinByName(player1.getUserName());
+				database.incrementLossByName(player2.getUserName());
 				
 				System.out.println("Player 1 won the game. GAME OVER.");
 			
