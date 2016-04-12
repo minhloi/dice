@@ -161,8 +161,15 @@ public class Match {
 		
 			// No one wins the game yet then reset phase for new turn
 			resetPhase();
-			System.out.println("Please press any keys for next turn.");
-			scanner.next();
+			System.out.println("Next turn in 5 seconds...");
+			System.out.println();
+			
+			// Wait 3 seconds, allow players to see their results.
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			System.out.println();
 			
 			// Go to next turn.
