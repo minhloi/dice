@@ -1,6 +1,8 @@
 package Entity;
 
-public class PlayerScore {
+import java.io.Serializable;
+
+public class PlayerScore implements Serializable {
 	
 	private String playerName;
 	private int numOfWins;
