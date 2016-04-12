@@ -1,11 +1,11 @@
-package Control;
+package control;
 
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 
-import Entity.Database;
-import Entity.PlayerScore;
+import entity.Database;
+import entity.PlayerScore;
 
 public class ViewRankState extends State{
 	

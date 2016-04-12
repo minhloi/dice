@@ -1,4 +1,4 @@
-import Control.GameController;
+import control.GameController;
 
 /**
  * GameEngine class with initializing  GameControler

@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

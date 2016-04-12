@@ -1,9 +1,9 @@
-package Control;
+package control;
 
 import java.util.Scanner;
 
-import Entity.Database;
-import Entity.Player;
+import entity.Database;
+import entity.Player;
 
 public class PlayState extends State{
 

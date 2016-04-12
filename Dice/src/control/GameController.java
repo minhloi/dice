@@ -1,8 +1,8 @@
-package Control;
+package control;
 
 import java.util.Scanner;
 
-import Entity.Database;
+import entity.Database;
 
 /**
  * GameEngine class with initializing  GameControler
