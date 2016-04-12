@@ -68,10 +68,7 @@ public class MenuState extends State{
 		
 		else if(selectedOption == EXIT){
 			
-			// close scanner;
-			scanner.close();
-			
-			System.out.print("Exit! ");
+			gameController.exitGame();
 			
 		}
 		

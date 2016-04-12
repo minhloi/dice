@@ -2,6 +2,7 @@ package Control;
 
 import java.util.Scanner;
 
+import Entity.Database;
 import Entity.Player;
 
 public class Match {
@@ -16,7 +17,8 @@ public class Match {
 	
 	private Scanner scanner;
 	private GameController gameController;
-	
+	private Database database;
+		
 	// Phase definition
 	public static final int SELECT_MOVE_PHASE = 0;
 	public static final int ROLL_DICE_PHASE = 1;
@@ -26,12 +28,13 @@ public class Match {
 	private static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
 	private static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 		
-	public Match(Player player1, Player player2, GameController gameController, Scanner scanner){
+	public Match(Player player1, Player player2, GameController gameController, Scanner scanner, Database database){
 		
 		this.player1 = player1;
 		this.player2 = player2;
 		this.gameController = gameController;
 		this.scanner = scanner;
+		this.database = database;
 		
 	}
 	
@@ -158,20 +161,42 @@ public class Match {
 		
 			// No one wins the game yet then reset phase for new turn
 			resetPhase();
-			System.out.println("Please press any keys for next turn.");
-			scanner.next();
+			System.out.println("Next turn in 5 seconds...");
+			System.out.println();
+			
+			// Wait 3 seconds, allow players to see their results.
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			System.out.println();
 			
 			// Go to next turn.
 			nextTurn();
 		
 		} else {
+			
 			if(player1.getHealth() <= 0){
-				System.out.println("Player 2 win the game. GAME OVER.");
+				
+				database.incrementWinByName(player1.getUserName());
+				database.incrementLossByName(player2.getUserName());
+				
+				System.out.println("Player 2 won the game. GAME OVER.");
 			} else {
-				System.out.println("Player 1 win the game. GAME OVER.");
+
+				database.incrementWinByName(player2.getUserName());
+				database.incrementLossByName(player1.getUserName());
+				
+				System.out.println("Player 1 won the game. GAME OVER.");
+			
 			}
 			
+			System.out.println();
+			
+			// Exiting game suddenly can lose data so
+			// it's better to save data after every match.
+			database.saveData();
 			gameController.setState(GameController.MATCH_END_MENU_STATE);
 		}
 		
