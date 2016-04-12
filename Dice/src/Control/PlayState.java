@@ -2,21 +2,24 @@ package Control;
 
 import java.util.Scanner;
 
+import Entity.Database;
 import Entity.Player;
 
 public class PlayState extends State{
 
-	private GameController gameController;	
+	private GameController gameController;
+	private Database database;
 	private Match currentMatch;
 	
 	// Player's sessions
 	private Player player1;
 	private Player player2;
 		
-	public PlayState(GameController controller, Scanner scanner){
+	public PlayState(GameController controller, Scanner scanner, Database database){
 		
 		this.gameController = controller;
 		this.scanner = scanner;
+		this.database = database;
 	
 	}
 	
