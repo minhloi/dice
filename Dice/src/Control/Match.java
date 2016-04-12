@@ -182,16 +182,17 @@ public class Match {
 				database.incrementWinByName(player1.getUserName());
 				database.incrementLossByName(player2.getUserName());
 				
-				System.out.println("Player 2 win the game. GAME OVER.");
+				System.out.println("Player 2 won the game. GAME OVER.");
 			} else {
 
-				database.incrementWinByName(player1.getUserName());
-				database.incrementLossByName(player2.getUserName());
+				database.incrementWinByName(player2.getUserName());
+				database.incrementLossByName(player1.getUserName());
 				
-				System.out.println("Player 1 win the game. GAME OVER.");
+				System.out.println("Player 1 won the game. GAME OVER.");
 			
 			}
 			
+			System.out.println();
 			// It's better to save data after every match.
 			database.saveData();
 			gameController.setState(GameController.MATCH_END_MENU_STATE);
