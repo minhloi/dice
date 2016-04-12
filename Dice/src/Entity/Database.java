@@ -80,12 +80,23 @@ public class Database {
 		
 	}
 	
+	public void printAll(){
+		
+		Iterator<PlayerScore> iterator =  gameData.iterator();
+		
+		while(iterator.hasNext()){
+			PlayerScore player = iterator.next();
+			System.out.println(player.getUsername() + ": " + player.getNumOfWins() + " " + player.getNumOfLosses());
+		}
+		
+	}
+	
 	public void incrementWinByName(String username){
 		
 		PlayerScore target = getPlayerScoreByName(username);
 		
 		if(target == null){
-			target = new PlayerScore(username, 0, 0);
+			target = createNewPlayer(username);
 		} 
 		
 		target.incrementWins();		
@@ -97,7 +108,7 @@ public class Database {
 		PlayerScore target = getPlayerScoreByName(username);
 		
 		if(target == null){
-			target = new PlayerScore(username, 0, 0);
+			target = createNewPlayer(username);
 		} 
 		
 		target.incrementLosses();
@@ -118,6 +129,10 @@ public class Database {
 		
 		return target;
 		
+	}
+	
+	private PlayerScore createNewPlayer(String username){
+		return new PlayerScore(username, 0, 0);
 	}
 	
 }
