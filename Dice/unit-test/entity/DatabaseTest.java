@@ -46,17 +46,37 @@ public class DatabaseTest {
 
 	@Test
 	public void testGetData() {
-		//fail("Not yet implemented");
+		Database database = new Database();
+		database.loadData();
+		Vector<PlayerScore> gameData = database.getData();
+		assertNotNull(gameData);
+	
 	}
 
 	@Test
 	public void testIncrementWinByName() {
-		//fail("Not yet implemented");
+		Database database = new Database();
+		database.incrementWinByName("guest");
+		
+		PlayerScore player = database.getPlayerScoreByName("guest");
+		assertEquals(1, player.getNumOfWins());
+		
+		database.incrementWinByName("guest");
+		assertEquals(2, player.getNumOfWins());
+		
 	}
 
 	@Test
 	public void testIncrementLossByName() {
-		//fail("Not yet implemented");
+		Database database = new Database();
+		database.incrementLossByName("guest");
+		
+		PlayerScore player = database.getPlayerScoreByName("guest");
+		assertEquals(1, player.getNumOfLosses());
+		
+		database.incrementLossByName("guest");
+		assertEquals(2, player.getNumOfLosses());
+		
 	}
 
 }
