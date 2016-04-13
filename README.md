@@ -8,7 +8,7 @@ To be updated
 To be updated
 
 ####3. Change log:
-To be updated
+- Use case diagram now includes a Database actor.
 
 ### Deliverable 1
 ####1. About this game:
