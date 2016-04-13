@@ -7,6 +7,9 @@ To be updated
 ####2. Unit test:
 To be updated
 
+####3. Change log:
+To be updated
+
 ### Deliverable 1
 ####1. About this game:
 This game is a version of turn-based game with 2 players. At each turn, each player select their strategic move, such as attack or block, before each roll their dice to determine whether their move will go through. Hence, players are required to use their tactics and luck to be able to win this game. 
