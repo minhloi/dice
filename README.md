@@ -9,6 +9,7 @@ To be updated
 
 ####3. Change log:
 - Use case diagram now includes a Database actor.
+- Product backlog is grouped into epics with priority and dependencies.
 
 ### Deliverable 1
 ####1. About this game:
