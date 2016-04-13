@@ -30,7 +30,8 @@ public class PlayerTest {
 
 	@Test
 	public void testGetUserName() {
-		// Test username
+		Player player = new Player(1, "guest");
+		assertEquals("guest", player.getUserName());
 	}
 
 	@Test
