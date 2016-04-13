@@ -1,30 +1,12 @@
-Backlog:  
-
-1. Working game in text form:  
-    - Be able to have 2 players play against each other and select attack, defend with a clear win or lose condition.  
-
-2. Modify the game in text form allow user to pick special abilities:  
-    - Let players able to use special abilities  
-
-3. Modify the game in text form allow players to create profiles.  
-
-4. Basic working menu in GUI:  
-    - Using JPanel  
-    - Game name with options button: New Game, View Ranking, Exit.  
-
-5. Basic working game in GUI:  
-    - JPanel with split screen for two players.  
-    - Be able to select attack, defend, or special abilities.  
-
-6. Add GUI elements for seeing statistics:
-    - A button that brings to separate screen for highscores and records of actions chosen.  
-
-7. Add more advanced GUI elements:  
-    - Animations  
-    - Backgrounds  
-    - Images  
-    - Multiple Characters  
-    - Reset/Exit buttons  
-
-8. Modify the game:  
-    - Add in features which allow the game to last longer (more challenging).  
+| ID w/ Priority | Story | Dependencies | Week | Progress |
+| --- | -------------------------------- | ------- | ------- | ------- |
+| 1  | Being able to select menu in console  | N/A | 2 | COMPLETED |
+| 2  | Game is playable in console | N/A | 2 | COMPLETED |
+| 3  | Users is able to enter/create profiles before starting a game | 2 | 2 | COMPLETED |
+| 4  | Being able to save/load user data | 2 | 3 | COMPLETED |
+| 5  | Being able to view ranking in console | 2 | 3 | COMPLETED |
+| 6  | GUI for main menu | 1 | 4 |  |
+| 7  | Basic GUI for playing games | 2 | 4 |  |
+| 8  | GUI for view ranking | 3 | 4 |  |
+| 9  | GUI for sub-menus when the game is paused or ended | 6 7 8 | 4 |  |
+| 10  | Enhanced GUI (such as animation) for playing games| 7 | 5 |  |
