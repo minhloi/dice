@@ -8,37 +8,49 @@ public class PlayerScoreTest {
 
 	@Test
 	public void testPlayerScore() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		assertNotNull(newPlayer);
 	}
 
 	@Test
 	public void testGetUsername() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		assertEquals("guest", newPlayer.getUsername());
 	}
 
 	@Test
 	public void testGetNumOfWins() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		assertEquals(0, newPlayer.getNumOfWins());
 	}
 
 	@Test
 	public void testGetNumOfLosses() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		assertEquals(0, newPlayer.getNumOfLosses());
 	}
 
 	@Test
 	public void testGetDifference() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		newPlayer.incrementWins();
+		newPlayer.incrementWins();
+		newPlayer.incrementLosses();
+		assertEquals(1, newPlayer.getDifference());
 	}
 
 	@Test
 	public void testIncrementWins() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		newPlayer.incrementWins();
+		assertEquals(1, newPlayer.getNumOfWins());
 	}
 
 	@Test
 	public void testIncrementLosses() {
-		//fail("Not yet implemented");
+		PlayerScore newPlayer = new PlayerScore("guest");
+		newPlayer.incrementLosses();
+		assertEquals(1, newPlayer.getNumOfLosses());
 	}
 
 }
