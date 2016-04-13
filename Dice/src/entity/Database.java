@@ -146,7 +146,7 @@ public class Database {
 		
 	}
 	
-	private PlayerScore getPlayerScoreByName(String username){
+	public PlayerScore getPlayerScoreByName(String username){
 		
 		PlayerScore target = null;
 		Iterator<PlayerScore> iterator =  gameData.iterator();
