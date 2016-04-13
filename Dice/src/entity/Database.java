@@ -163,7 +163,7 @@ public class Database {
 	}
 	
 	private PlayerScore createNewPlayer(String username){
-		PlayerScore newPlayer = new PlayerScore(username, 0, 0);
+		PlayerScore newPlayer = new PlayerScore(username);
 		gameData.add(newPlayer);
 		
 		return newPlayer;
