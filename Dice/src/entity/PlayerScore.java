@@ -8,12 +8,12 @@ public class PlayerScore implements Serializable {
 	private int numOfWins;
 	private int numOfLosses;
 	
-	public PlayerScore(String username, int wins, int losses ){
+	public PlayerScore(String username){
 		playerName = username;
-		this.numOfWins = wins;
-		this.numOfLosses = losses;
+		this.numOfWins = 0;
+		this.numOfLosses = 0;
 	}
-	
+		
 	public String getUsername(){
 		return playerName;
 	}
