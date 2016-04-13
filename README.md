@@ -34,8 +34,3 @@ All documents are located in Dice/document folder or see below:
   
 ![alt text](https://raw.githubusercontent.com/minhloi/dice/master/Dice/document/use-case-diagram-2.png "Use case diagram")
 
-######UML class diagram: (no GUI involved)
-
-![alt text](https://raw.githubusercontent.com/minhloi/dice/master/Dice/document/class_diagram_no_gui.png "UML class diagram")
-
-
