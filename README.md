@@ -1,6 +1,13 @@
-##Fighting Dice
-###Team 38 Game Project
+##Fighting Dice - Team 38 Game Project
 
+### Deliverable 2
+####1. Working code:
+To be updated
+
+####2. Unit test:
+To be updated
+
+### Deliverable 1
 ####1. About this game:
 This game is a version of turn-based game with 2 players. At each turn, each player select their strategic move, such as attack or block, before each roll their dice to determine whether their move will go through. Hence, players are required to use their tactics and luck to be able to win this game. 
 
