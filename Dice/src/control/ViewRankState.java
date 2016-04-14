@@ -99,6 +99,7 @@ public class ViewRankState extends State{
 				
 			default:
 				System.out.println("Invalid Input. Please try again.");
+				print();
 				break;
 		}
 	}
