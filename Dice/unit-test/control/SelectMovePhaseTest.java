@@ -45,10 +45,10 @@ public class SelectMovePhaseTest {
 	}
 	
 	@Test
-	public void testInvalidInput() {
+	public void testReselectNotAllowed() {
 		
-		// Mock valid inputs with an invalid input.
-		String selectMove = Match.PLAYER1_MOVE_SET[Player.ATTACK] + "\n" + "abc" + "\n" + Match.PLAYER2_MOVE_SET[Player.BLOCK];
+		// Mock inputs such that player1 selects twice
+		String selectMove = Match.PLAYER1_MOVE_SET[Player.ATTACK] + "\n" + Match.PLAYER1_MOVE_SET[Player.BLOCK] + "\n" + Match.PLAYER2_MOVE_SET[Player.BLOCK];
 		System.setIn(new ByteArrayInputStream(selectMove.getBytes()));
 				
 		Player player1 = new Player(1, "guest");
@@ -58,8 +58,7 @@ public class SelectMovePhaseTest {
 		SelectMovePhase selectMovePhase = new SelectMovePhase(player1, player2, scanner);
 		selectMovePhase.render();
 		
-		// Test if all three separate inputs are scanned correctly
-		// Only valid inputs are set.
+		// Test if the first input of player1 is set but not the second.
 		assertFalse(scanner.hasNext());
 		assertEquals(Player.ATTACK, player1.getMove());
 		assertEquals(Player.BLOCK, player2.getMove());
