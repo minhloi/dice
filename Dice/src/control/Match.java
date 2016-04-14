@@ -452,7 +452,7 @@ public class Match {
 	/**
 	 * Method of reset players' action
 	 */
-	public void resetPhase() {
+	private void resetPhase() {
 		
 		rollWinner = null;
 		rollLoser = null;
