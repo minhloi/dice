@@ -51,12 +51,9 @@ public class MenuState extends State{
 			// Get playState object
 			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
 			
-			// To start a new game, create a new Match object.
+			// Start new game
 			playState.startNew();
 			
-			// Begin to render playState.
-			gameController.setState(GameController.PLAY_STATE);
-								
 		}
 		
 		else if(selectedOption == VIEW_RANK){
