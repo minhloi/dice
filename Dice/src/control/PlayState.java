@@ -23,7 +23,7 @@ public class PlayState extends State{
 	
 	}
 	
-	public void startNewGame(){
+	public void startNew(){
 		
 		// Prompt to enter user names of two players
 		createProfiles();
@@ -38,11 +38,13 @@ public class PlayState extends State{
 		retainProfiles();
 		
 		createNewMatch();
-		
+				
 	}
 	
 	private void createNewMatch(){
+		
 		currentMatch = new Match(player1, player2, gameController, scanner, database);
+	
 	}
 	
 	private void createProfiles(){
@@ -73,7 +75,9 @@ public class PlayState extends State{
 	}
 	
 	public void print(){
+		
 		currentMatch.begin();
+	
 	};
 			
 }
