@@ -56,9 +56,10 @@ public class Match {
 		this.gameController = gameController;
 		this.scanner = scanner;
 		this.database = database;
+		this.currentTurn = 0;
 		
 	}
-	
+		
 	/**
 	 * Method to begin the fight 
 	 */
@@ -77,7 +78,7 @@ public class Match {
 	/**
 	 * Method of current turn 
 	 */
-	public void nextTurn() {
+	private void nextTurn() {
 		
 		++currentTurn;
 		System.out.println("TURN " + currentTurn + ":");
