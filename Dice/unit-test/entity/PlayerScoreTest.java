@@ -15,7 +15,7 @@ public class PlayerScoreTest {
 
 	@Test
 	public void testGetUsername() {
-		// Test if user name is corrected returned.
+		// Test if getUsername is correct.
 		PlayerScore newPlayer = new PlayerScore("guest");
 		assertEquals("guest", newPlayer.getUsername());
 	}
@@ -23,7 +23,7 @@ public class PlayerScoreTest {
 	@Test
 	public void testGetNumOfWins() {
 
-		// Test if numOfWins is corrected returned.
+		// Test if numOfWins is correct.
 		PlayerScore newPlayer = new PlayerScore("guest");
 		assertEquals(0, newPlayer.getNumOfWins());
 	}
@@ -31,7 +31,7 @@ public class PlayerScoreTest {
 	@Test
 	public void testGetNumOfLosses() {
 
-		// Test if numOfLoss is corrected returned.
+		// Test if numOfLoss is correct.
 		PlayerScore newPlayer = new PlayerScore("guest");
 		assertEquals(0, newPlayer.getNumOfLosses());
 	}
@@ -50,7 +50,7 @@ public class PlayerScoreTest {
 	@Test
 	public void testIncrementWins() {
 		
-		// Test if numOfWins incremented
+		// Test if numOfWins is incremented
 		PlayerScore newPlayer = new PlayerScore("guest");
 		newPlayer.incrementWins();
 		assertEquals(1, newPlayer.getNumOfWins());
@@ -59,7 +59,7 @@ public class PlayerScoreTest {
 	@Test
 	public void testIncrementLosses() {
 
-		// Test if numOfLosses incremented
+		// Test if numOfLosses is incremented
 		PlayerScore newPlayer = new PlayerScore("guest");
 		newPlayer.incrementLosses();
 		assertEquals(1, newPlayer.getNumOfLosses());
