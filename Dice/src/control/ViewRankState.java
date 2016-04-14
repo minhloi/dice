@@ -15,8 +15,8 @@ public class ViewRankState extends State{
 	private String[] menuList; 
 	private int menuLength;
 	
-	private static final int BACK_TO_MAIN_MENU = 0;
-	private static final int EXIT = 1;
+	public static final int BACK_TO_MAIN_MENU = 0;
+	public static final int EXIT = 1;
 	
 	public ViewRankState(GameController controller, Scanner scanner, Database database){
 		
