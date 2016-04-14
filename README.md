@@ -10,11 +10,13 @@ To be updated
 ####2. Unit test:
 All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test). Note that some tests might take longer than 3 seconds to complete because we use Thread.sleep() in source code.
 
-
 ####3. Change log:
 - Use case diagram now includes a Database actor.
 - Product backlog is grouped into epics with priority, complexity-point and dependencies.
 
+
+
+***  
 ### Deliverable 1
 ####1. About this game:
 This game is a version of turn-based game with 2 players. At each turn, each player select their strategic move, such as attack or block, before each roll their dice to determine whether their move will go through. Hence, players are required to use their tactics and luck to be able to win this game. 
