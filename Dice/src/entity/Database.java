@@ -95,7 +95,6 @@ public class Database {
 	public void sortByDifference(){
 		
 		int size = gameData.size();
-		int diffOfCurrent, diffOfNext;
 		PlayerScore currentPlayer, nextPlayer;
 		
 		for(int index = 0; index < size - 1; index++){
