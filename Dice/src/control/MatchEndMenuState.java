@@ -65,7 +65,7 @@ public class MatchEndMenuState extends State {
 				
 		System.out.print("\n");
 				
-		// Route to corrected state.
+		// Route to the correct state.
 		route(selectedOption);
 				
 	}
