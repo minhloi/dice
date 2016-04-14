@@ -1,6 +1,5 @@
 package control;
 
-import entity.Database;
 import entity.Player;
 
 public class BattlePhase extends Phase {
@@ -30,15 +29,24 @@ public class BattlePhase extends Phase {
 		System.out.println("Player " + rollLoser.getNumber() + " selected " + rollLoser.getMoveInString() + ".");
 		
 		// Calculate damage to the loser.
-		calculateDamage(initialDamage);
+		try {
+			calculateDamage(initialDamage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println();
 						
 	}
 	
 	/**
 	 * Method to calculate damage dealt to other player
+	 * @throws Exception exception throws when either players has not selected their move.
 	 */
-	private void calculateDamage(int initialDamage) {
+	private void calculateDamage(int initialDamage) throws Exception {
+		
+		if(rollWinner.getMove() == Player.NOT_SELECT || rollLoser.getMove() == Player.NOT_SELECT) {
+			throw new Exception("One of the players have not selected move");
+		}
 		
 		// CASE 1: Winner selected ATTACK.
 		if (rollWinner.getMove() == Player.ATTACK) {
@@ -55,7 +63,7 @@ public class BattlePhase extends Phase {
 			// Loser selected BLOCK takes half damage.
 			} else if (rollLoser.getMove() == Player.BLOCK) {
 				
-				int damage = (int)(initialDamage * (float) 1/2);
+				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
 				rollLoser.setHealth(rollLoser.getHealth() - damage);
 				// Print damage.
@@ -69,7 +77,7 @@ public class BattlePhase extends Phase {
 			// Loser selected ATTACK or SPECIAL_ATTACK takes half damage.
 			if (rollLoser.getMove() == Player.ATTACK || rollLoser.getMove() == Player.SPECIAL_ATTACK) {
 				
-				int damage = (int)(initialDamage * (float) 1/2);
+				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
 				rollLoser.setHealth(rollLoser.getHealth() - damage);
 				// Print damage.
@@ -78,7 +86,7 @@ public class BattlePhase extends Phase {
 			// Loser selected BLOCK takes a quarter of damage.
 			} else if (rollLoser.getMove() == Player.BLOCK) {
 				
-				int damage = (int)(initialDamage * (float) 1/4);
+				int damage = (int) Math.ceil(initialDamage * (float) 1/4);
 				// Set damage.
 				rollLoser.setHealth(rollLoser.getHealth() - damage);
 				// Print damage.
