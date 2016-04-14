@@ -84,10 +84,7 @@ public class MatchEndMenuState extends State {
 			
 			// Rematch.
 			playState.rematch();
-			
-			// Begin to render playState.
-			gameController.setState(GameController.PLAY_STATE);
-								
+											
 		}
 		
 		else if (selectedOption == BACK_TO_MAIN_MENU) {
