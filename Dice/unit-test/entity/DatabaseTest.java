@@ -69,7 +69,7 @@ public class DatabaseTest {
 		Database database = new Database();
 		database.incrementWinByName("guest");
 		
-		// Test if wins of a player incremented
+		// Test if number of wins of a player is incremented
 		PlayerScore player = database.getPlayerScoreByName("guest");
 		assertEquals(1, player.getNumOfWins());
 		
@@ -83,7 +83,7 @@ public class DatabaseTest {
 		Database database = new Database();
 		database.incrementLossByName("guest");
 		
-		// Test if losses of a player incremented
+		// Test if number of losses of a player is incremented
 		PlayerScore player = database.getPlayerScoreByName("guest");
 		assertEquals(1, player.getNumOfLosses());
 		
