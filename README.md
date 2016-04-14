@@ -2,10 +2,14 @@
 
 ### Deliverable 2
 ####1. Working code:
+######a. Executable:
+To be updated
+######b. How to compile:
 To be updated
 
 ####2. Unit test:
-To be updated
+All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test). Note that some tests might take longer than 3 seconds to complete because we use Thread.sleep() in source code.
+
 
 ####3. Change log:
 - Use case diagram now includes a Database actor.
