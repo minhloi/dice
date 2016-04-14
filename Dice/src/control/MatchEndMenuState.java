@@ -5,14 +5,11 @@ import java.util.Scanner;
 /**
  * MatchEnd class with all method to act when the match of the game ended
  * 
- * @author Team 38
- * 				Thien Duc Phung
- * 				Minh Loi
- * 				Daniel Enriquez
- * 				Brett Bauman
- * 				Tanner Siffren
- * @version 04/12/2016
- *
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
  */
 
 public class MatchEndMenuState extends State {
@@ -21,10 +18,10 @@ public class MatchEndMenuState extends State {
 	private int menuLength;
 	private GameController gameController;
 	
-	private static final int REMATCH = 0;
-	private static final int BACK_TO_MAIN_MENU = 1;
-	private static final int VIEW_RANK = 2;
-	private static final int EXIT = 3;
+	public static final int REMATCH = 0;
+	public static final int BACK_TO_MAIN_MENU = 1;
+	public static final int VIEW_RANK = 2;
+	public static final int EXIT = 3;
 	
 	/**
 	 * Method with assigned array at end game
@@ -75,39 +72,42 @@ public class MatchEndMenuState extends State {
 	 * 
 	 * @param selectedOption
 	 */
-	public void route(int selectedOption) {
+	private void route(int selectedOption) {
 	
-		if (selectedOption == REMATCH) {
-			
-			// Get playState object
-			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
-			
-			// Rematch.
-			playState.rematch();
-			
-			// Begin to render menuState.
-			gameController.setState(GameController.PLAY_STATE);
-					
-		}
+		switch (selectedOption){
 		
-		else if (selectedOption == BACK_TO_MAIN_MENU) {
+			case REMATCH:
 			
-			// Begin to render menuState.
-			gameController.setState(GameController.MENU_STATE);
+				// Get playState object
+				PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+				
+				// Rematch.
+				playState.rematch();
+				
+				// Begin to render menuState.
+				gameController.setState(GameController.PLAY_STATE);
+				break;
 		
-		}
+			case BACK_TO_MAIN_MENU:
+			
+				// Begin to render menuState.
+				gameController.setState(GameController.MENU_STATE);
+				break;	
 		
-		else if (selectedOption == VIEW_RANK) {
+			case VIEW_RANK:
 			
-			// Begin to render viewRankState
-			gameController.setState(GameController.VIEW_RANK_STATE);
-			
-		} 
+				// Begin to render viewRankState
+				gameController.setState(GameController.VIEW_RANK_STATE);
+				break;
 		
-		else if (selectedOption == EXIT) {
+			case EXIT:
+				
+				gameController.exitGame();	
+				break;
 			
-			gameController.exitGame();	
-
+			default:
+				System.out.println("Invalid input. Please try again.");
+				print();
 		}
 		
 	}
