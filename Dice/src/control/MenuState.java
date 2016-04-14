@@ -7,9 +7,9 @@ public class MenuState extends State{
 	private int menuLength;
 	private GameController gameController;
 	
-	private static final int START_GAME = 0;
-	private static final int VIEW_RANK = 1;
-	private static final int EXIT = 2;
+	public static final int START_GAME = 0;
+	public static final int VIEW_RANK = 1;
+	public static final int EXIT = 2;
 	
 	public MenuState(GameController controller, Scanner scanner){
 		
@@ -39,37 +39,46 @@ public class MenuState extends State{
 		
 		System.out.print("\n");
 		
-		// Route to corrected state.
+		// Route to the correct state.
 		route(selectedOption);
 			
 	}
 	
 	private void route(int selectedOption){
 		
-		if(selectedOption == START_GAME){
+		switch (selectedOption) {
+		
+			case START_GAME:
 			
-			// Get playState object
-			PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
-			
-			// To start a new game, create a new Match object.
-			playState.createNewMatch();
-			
-			// Begin to render playState.
-			gameController.setState(GameController.PLAY_STATE);
+				// Get playState object
+				PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+				
+				// To start a new game, create a new Match object.
+				playState.startNew();
+				
+				// Begin to render playState.
+				gameController.setState(GameController.PLAY_STATE);
 								
-		}
+				break;
 		
-		else if(selectedOption == VIEW_RANK){
+			case VIEW_RANK:
 			
-			// Begin to render viewRankState
-			gameController.setState(GameController.VIEW_RANK_STATE);
-			
-		} 
+				// Begin to render viewRankState
+				gameController.setState(GameController.VIEW_RANK_STATE);
+				
+				break;
 		
-		else if(selectedOption == EXIT){
+			case EXIT:
 			
-			gameController.exitGame();
+				gameController.exitGame();
+				
+				break;
 			
+			default:
+				
+				System.out.println("Invalid input. Please try again.");
+				print();
+				
 		}
 		
 	}

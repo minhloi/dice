@@ -94,7 +94,7 @@ public class GameController {
 		database.saveData();
 		scanner.close();
 		
-		System.out.print("Exit! ");
+		System.out.print("Exit!");
 		
 	}
 	

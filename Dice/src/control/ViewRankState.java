@@ -15,8 +15,8 @@ public class ViewRankState extends State{
 	private String[] menuList; 
 	private int menuLength;
 	
-	private static final int BACK_TO_MAIN_MENU = 0;
-	private static final int EXIT = 1;
+	public static final int BACK_TO_MAIN_MENU = 0;
+	public static final int EXIT = 1;
 	
 	public ViewRankState(GameController controller, Scanner scanner, Database database){
 		
@@ -66,7 +66,7 @@ public class ViewRankState extends State{
 	}
 	
 	// Print all menu options.
-	public void printMenu(){
+	private void printMenu(){
 	
 		System.out.print("Menu options: \n");
 		for(int i = 0; i < menuLength; i++){
@@ -87,19 +87,20 @@ public class ViewRankState extends State{
 	
 	private void route(int selectedOption){
 		
-		if(selectedOption == BACK_TO_MAIN_MENU){
-			
-			// Begin to render menuState.
-			gameController.setState(GameController.MENU_STATE);
-								
-		}
+		switch (selectedOption){
+			case BACK_TO_MAIN_MENU:
+				// Begin to render menuState.
+				gameController.setState(GameController.MENU_STATE);
+				break;					
 				
-		else if(selectedOption == EXIT){
-			
-			gameController.exitGame();
-			
+			case EXIT:
+				gameController.exitGame();
+				break;
+				
+			default:
+				System.out.println("Invalid Input. Please try again.");
+				print();
+				break;
 		}
-		
 	}
-
 }

@@ -23,22 +23,28 @@ public class PlayState extends State{
 	
 	}
 	
-	public void createNewMatch(){
+	public void startNew(){
 		
-		// Prompt to enter user-names of two players
+		// Prompt to enter user names of two players
 		createProfiles();
 		
-		// Create new match.
-		currentMatch = new Match(player1, player2, gameController, scanner, database);
-	
+		createNewMatch();
+		
 	}
 	
 	public void rematch(){
 		
-		// Retain username
+		// Retain user names
 		retainProfiles();
 		
+		createNewMatch();
+				
+	}
+	
+	private void createNewMatch(){
+		
 		currentMatch = new Match(player1, player2, gameController, scanner, database);
+	
 	}
 	
 	private void createProfiles(){
