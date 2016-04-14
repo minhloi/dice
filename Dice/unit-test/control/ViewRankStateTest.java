@@ -43,7 +43,7 @@ public class ViewRankStateTest {
 		viewRank.print();
 		
 		// Test if ranks are printed.
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 		
 	}
 	
@@ -65,7 +65,7 @@ public class ViewRankStateTest {
 		viewRank.print();
 		
 		// Menu is printing
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 
 		// Exactly two inputs are scanned because the first one is invalid.
 		assertFalse(scanner.hasNext());

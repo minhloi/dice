@@ -40,7 +40,7 @@ public class MenuStateTest {
 		menu.print();
 		
 		// Test if menu is printing
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 		
 	}
 	
@@ -61,7 +61,7 @@ public class MenuStateTest {
 		menu.print();
 		
 		// Menu is printing
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 
 		// Exactly two inputs are scanned because the first one is invalid.
 		assertFalse(scanner.hasNext());

@@ -37,7 +37,7 @@ public class MatchEndMenuStateTest {
 		menu.print();
 		
 		// Test if menu is printing
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class MatchEndMenuStateTest {
 		menu.print();
 		
 		// Menu is printing
-		assertNotEquals("", outContent);
+		assertNotEquals("", outContent.toString());
 
 		// Exactly two inputs are scanned because the first one is invalid.
 		assertFalse(scanner.hasNext());
