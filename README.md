@@ -2,9 +2,8 @@
 
 ### Deliverable 2
 ####1. Working code:
-######a. Executable:
-To be updated
-######b. How to compile:
+The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary in database.txt file.  
+######How to compile:
 - Fork the project.
 - Fetch and pull the project to Eclipse.
 - Compile the GameEngine.java in src/main package.
@@ -15,8 +14,6 @@ All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tr
 ####3. Change log:
 - Use case diagram now includes a Database actor.
 - Product backlog is grouped into epics with priority, complexity-point and dependencies.
-
-
 
 ***  
 ### Deliverable 1
