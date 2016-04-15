@@ -22,6 +22,7 @@ public class GameEngine {
 		
 		// Start by printing the menu first
 		gameController.setState(GameController.MENU_STATE);
+		gameController.renderCurrentState();
 		
 	}
 
