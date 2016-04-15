@@ -81,7 +81,6 @@ public class GameController {
 	public void setState(int state) {
 		
 		currentState = state;
-		printCurrentState();
 		
 	}
 	
@@ -101,7 +100,7 @@ public class GameController {
 	/**
 	 *  Method to print the current state the game in
 	 */
-	private void printCurrentState() {
+	public void render() {
 		
 		stateList[currentState].print();
 		

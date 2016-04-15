@@ -1,4 +1,10 @@
 package main;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+import boundary.GameCanvas;
 import control.GameController;
 
 /**
@@ -15,13 +21,23 @@ public class GameEngine {
 	
 	public static void main(String[] args) {
 	
-		GameController gameController = new GameController();
+		JFrame gameFrame = new JFrame("Fighting Dice");	
+		gameFrame.setSize(new Dimension(GameCanvas.WIDTH, GameCanvas.HEIGHT));
+		gameFrame.setResizable(false);
+		
+		GameCanvas gameCanvas = new GameCanvas();
+		gameFrame.add(gameCanvas);
+		gameFrame.setVisible(true);
+		
+		gameCanvas.render();
+		
+		//GameController gameController = new GameController();
 		
 		// Load necessary data such as players' scores.
-		gameController.init();
+		//gameController.init();
 		
 		// Start by printing the menu first
-		gameController.setState(GameController.MENU_STATE);
+		//gameController.setState(GameController.MENU_STATE);
 		
 	}
 
