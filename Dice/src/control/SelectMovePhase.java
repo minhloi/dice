@@ -4,6 +4,17 @@ import java.util.Scanner;
 
 import entity.Player;
 
+/**
+ * The SelectMovePhase class is for scanning in player choice of 
+ * action. Such as selecting phase, and actions for the game.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class SelectMovePhase extends Phase {
 	
 	private Player player1;

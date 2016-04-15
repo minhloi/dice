@@ -5,6 +5,17 @@ import java.util.Scanner;
 import entity.Database;
 import entity.Player;
 
+/**
+ * PlayState class is use to trigger which state of the game
+ * base on players' selection..
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class PlayState extends State{
 
 	private GameController gameController;

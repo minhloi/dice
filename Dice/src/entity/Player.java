@@ -1,11 +1,23 @@
 package entity;
 
+/**
+ * The Player class is use for initialize player's action
+ * and reset actions before next round.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class Player {
 
 	private int playerNumber;
 	private String username;	
 	private int health;
 	private Dice dice;
+	
 	// Number of times SPECIAL_ATTACK used.
 	private int numSpecialUsed;
 	private boolean blockDisabled;

@@ -7,6 +7,16 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+/**
+ * Junit test of Database Class
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class DatabaseTest {
 
 	@Test

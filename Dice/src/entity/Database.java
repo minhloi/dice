@@ -9,6 +9,18 @@ import java.io.ObjectOutputStream;
 import java.util.Vector;
 import java.util.Iterator;
 
+/**
+ * The Database class is using for store players'
+ * information and access players' information
+ * when need to.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class Database {
 
 	private FileOutputStream fileOutput;

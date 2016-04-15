@@ -2,6 +2,17 @@ package entity;
 
 import java.io.Serializable;
 
+/**
+ * The PlayerScore class is use to get players name and store data
+ * of correct player.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class PlayerScore implements Serializable {
 	
 	private String playerName;

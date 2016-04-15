@@ -9,6 +9,16 @@ import org.junit.Test;
 
 import entity.Player;
 
+/**
+ * Junit test of SelectMovePhase class
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class SelectMovePhaseTest {
 
 	@Test

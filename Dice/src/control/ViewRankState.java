@@ -3,9 +3,19 @@ package control;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
-
 import entity.Database;
 import entity.PlayerScore;
+
+/**
+ * The ViewRankState class is use to display the ranking
+ * menu when players want to view ranking
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
 
 public class ViewRankState extends State{
 	

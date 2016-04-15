@@ -4,6 +4,17 @@ import java.util.Scanner;
 
 import entity.Player;
 
+/**
+ * In this RollDicePhase class will trigger Dice class
+ * to generate the value and display who win the roll
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class RollDicePhase extends Phase {
 	
 	private Player player1;

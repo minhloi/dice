@@ -2,6 +2,17 @@ package control;
 
 import java.util.Scanner;
 
+/**
+ * The State class is for triggering which state need to be
+ * access base on players' decision
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public abstract class State {
 
 	protected Scanner scanner;

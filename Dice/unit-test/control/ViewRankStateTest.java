@@ -11,6 +11,16 @@ import org.junit.Test;
 
 import entity.Database;
 
+/**
+ * Junit test of ViewRankState class
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class ViewRankStateTest {
 
 	@Test

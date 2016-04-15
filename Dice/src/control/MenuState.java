@@ -1,5 +1,17 @@
 package control;
+
 import java.util.Scanner;
+
+/**
+ * MenuState class is where players' select between
+ * play the game, view rank, or exit
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
 
 public class MenuState extends State{
 

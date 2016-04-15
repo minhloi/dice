@@ -2,6 +2,17 @@ package control;
 
 import entity.Player;
 
+/**
+ * BattlePhase containing the action methods such as
+ * damage calculate
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class BattlePhase extends Phase {
 	
 	private Player rollWinner;
