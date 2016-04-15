@@ -3,8 +3,8 @@ package control;
 import java.util.Scanner;
 
 /**
- * MenuState class is where players' select between
- * play the game, view rank, or exit
+ * MenuState class - Where players' select between play the game, 
+ * 			   view rank, or exit
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -23,6 +23,12 @@ public class MenuState extends State{
 	public static final int VIEW_RANK = 1;
 	public static final int EXIT = 2;
 	
+	/**
+	 *  Constructor - Prepare menu
+	 *  
+	 * @param controller - gameController object
+	 * @param scanner - scanner object
+	 */
 	public MenuState(GameController controller, Scanner scanner){
 		
 		menuLength = 3;
@@ -36,6 +42,10 @@ public class MenuState extends State{
 		
 	}
 	
+	/**
+	 * print - Display the menu, collect user's menu choice, and route user to that option
+	 * 
+	 */
 	public void print(){
 		
 		// Print all menu options.
@@ -56,6 +66,12 @@ public class MenuState extends State{
 			
 	}
 	
+	/**
+	 * route - Depending on the user's choice, begin a new game, view rank, or exit 
+	 * 
+	 * @param selectedOption - The menu option the user has chosen: 0 = start new game
+	 * 							1 = view rankings, or 2 = exit
+	 */
 	private void route(int selectedOption){
 		
 		switch (selectedOption) {
