@@ -88,9 +88,12 @@ public class ViewRankState extends State{
 	private void route(int selectedOption){
 		
 		switch (selectedOption){
+		
 			case BACK_TO_MAIN_MENU:
+				
 				// Begin to render menuState.
 				gameController.setState(GameController.MENU_STATE);
+				gameController.renderCurrentState();
 				break;					
 				
 			case EXIT:

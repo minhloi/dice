@@ -58,6 +58,7 @@ public class MenuState extends State{
 				
 				// Begin to render playState.
 				gameController.setState(GameController.PLAY_STATE);
+				gameController.renderCurrentState();
 								
 				break;
 		
@@ -65,6 +66,7 @@ public class MenuState extends State{
 			
 				// Begin to render viewRankState
 				gameController.setState(GameController.VIEW_RANK_STATE);
+				gameController.renderCurrentState();
 				
 				break;
 		

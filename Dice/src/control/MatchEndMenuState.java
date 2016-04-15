@@ -84,20 +84,22 @@ public class MatchEndMenuState extends State {
 				// Rematch.
 				playState.rematch();
 				
-				// Begin to render menuState.
 				gameController.setState(GameController.PLAY_STATE);
+				gameController.renderCurrentState();
 				break;
 		
 			case BACK_TO_MAIN_MENU:
 			
 				// Begin to render menuState.
 				gameController.setState(GameController.MENU_STATE);
+				gameController.renderCurrentState();
 				break;	
 		
 			case VIEW_RANK:
 			
 				// Begin to render viewRankState
 				gameController.setState(GameController.VIEW_RANK_STATE);
+				gameController.renderCurrentState();
 				break;
 		
 			case EXIT:

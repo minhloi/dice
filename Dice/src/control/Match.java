@@ -84,6 +84,7 @@ public class Match {
 			
 			// Go to Menu state
 			gameController.setState(GameController.MATCH_END_MENU_STATE);
+			gameController.renderCurrentState();
 			
 		} else {
 		
