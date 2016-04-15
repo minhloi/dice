@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * MenuState class - Where players' select between play the game, 
- * 			   view rank, or exit
+ * 			   		 view rank, or exit
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -43,8 +43,8 @@ public class MenuState extends State{
 	}
 	
 	/**
-	 * print - Display the menu, collect user's menu choice, and route user to that option
-	 * 
+	 * print - Display the menu, collect user's menu choice, and route user to 
+	 * 		   that option
 	 */
 	public void print(){
 		

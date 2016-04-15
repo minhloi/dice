@@ -6,8 +6,8 @@ import entity.Database;
 import entity.Player;
 
 /**
- * PlayState class is use to trigger which state of the game
- * base on players' selection..
+ * PlayState class - Allow users to create usernames, save the usernames,
+ * 					 and start a match
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -26,6 +26,13 @@ public class PlayState extends State{
 	private Player player1;
 	private Player player2;
 		
+	/**
+	 * Constructor - Create gameController, scanner, and database objects 
+	 * 
+	 * @param controller - gameController object
+	 * @param scanner - scanner object
+	 * @param database - database object
+	 */
 	public PlayState(GameController controller, Scanner scanner, Database database){
 		
 		this.gameController = controller;
@@ -34,6 +41,9 @@ public class PlayState extends State{
 	
 	}
 	
+	/**
+	 * startNew - Create user profiles and start a match
+	 */
 	public void startNew(){
 		
 		// Prompt to enter user names of two players
@@ -43,6 +53,9 @@ public class PlayState extends State{
 		
 	}
 	
+	/**
+	 * rematch - Start another match with current user profiles
+	 */
 	public void rematch(){
 		
 		// Retain user names
@@ -52,12 +65,19 @@ public class PlayState extends State{
 				
 	}
 	
+	/**
+	 * createNewMatch - Start a new match
+	 */
 	private void createNewMatch(){
 		
 		currentMatch = new Match(player1, player2, gameController, scanner, database);
 	
 	}
 	
+	/**
+	 * createProfiles - Ask users for usernames. Then store each one for player1 
+	 * 					and player2
+	 */
 	private void createProfiles(){
 		
 		String player1Username;
@@ -75,6 +95,9 @@ public class PlayState extends State{
 			
 	}
 	
+	/**
+	 *  retainProfiles - Keep current user profiles 
+	 */
 	private void retainProfiles(){
 		
 		String player1Username = player1.getUserName();
@@ -85,6 +108,9 @@ public class PlayState extends State{
 		
 	}
 	
+	/**
+	 * print - Display the start of the match and collect moves
+	 */
 	public void print(){
 		currentMatch.beginTurn();
 	};
