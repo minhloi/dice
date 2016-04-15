@@ -3,8 +3,8 @@ package control;
 import entity.Player;
 
 /**
- * BattlePhase containing the action methods such as
- * damage calculate
+ * The BattlePhase class demonstates a phase of a match, where the rollWinner
+ * causes damage to the rollLoser.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -12,18 +12,23 @@ import entity.Player;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class BattlePhase extends Phase {
 	
 	private Player rollWinner;
 	private Player rollLoser;
 	
+	/**
+	 * The class construtor initializes rollWinner and rollLoser objects.
+	 */
 	public BattlePhase(Player rollWinner, Player rollLoser){
 	
 		this.rollWinner = rollWinner;
 		this.rollLoser = rollLoser;
 	}
 	
+	/**
+	 * Render all actions in the battle phase. 
+	 */ 
 	public void render(){
 
 		System.out.println("BATTLE PHASE:");
@@ -50,8 +55,8 @@ public class BattlePhase extends Phase {
 	}
 	
 	/**
-	 * Method to calculate damage dealt to other player
-	 * @throws Exception exception throws when either players has not selected their move.
+	 * Calculate damage dealt to rollLoser
+	 * @throws Exception exception throws when either players has not selected their moves thus cannot calculdate damage.
 	 */
 	private void calculateDamage(int initialDamage) throws Exception {
 		
