@@ -5,8 +5,8 @@ import java.util.Scanner;
 import entity.Player;
 
 /**
- * The SelectMovePhase class is for scanning in player choice of 
- * action. Such as selecting phase, and actions for the game.
+ * SelectMovePhase class - Capture each of the player's choice of action. Such 
+ * 						   as selecting phase, and actions for the game.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -14,13 +14,19 @@ import entity.Player;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class SelectMovePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
 	private Scanner scanner;
 	
+	/**
+	 * Contructor - Prepare Player and Scanner objects
+	 * 
+	 * @param player1
+	 * @param player2
+	 * @param scanner
+	 */
 	public SelectMovePhase(Player player1, Player player2, Scanner scanner){
 		this.player1 = player1;
 		this.player2 = player2;
@@ -28,6 +34,11 @@ public class SelectMovePhase extends Phase {
 		
 	}
 	
+	/**
+	 * render - Display HP and move-sets. Then check whether block is disabled for
+	 * 			both players and if they can use their special attack. Finally, collect
+	 * 			player's choice of action
+	 */
 	public void render(){
 		
 		System.out.println("SELECT-MOVE PHASE:");
@@ -73,7 +84,7 @@ public class SelectMovePhase extends Phase {
 	}
 		
 	/**
-	 * Method of accepting action of current turn
+	 * scanMove - Method of accepting action of current turn
 	 */
 	private void scanMove() {
 		
@@ -100,7 +111,9 @@ public class SelectMovePhase extends Phase {
 	}
 	
 	/**
-	 * Method to act on the input action
+	 * setMoveByKey - Act on the input action, whether it is a valid option
+	 * 
+	 * @param key Players choice of move
 	 */
 	private void setMoveByKey(char key) {
 		
