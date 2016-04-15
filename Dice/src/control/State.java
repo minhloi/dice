@@ -3,8 +3,7 @@ package control;
 import java.util.Scanner;
 
 /**
- * The State class is for triggering which state need to be
- * access base on players' decision
+ * State class - Abstact class that contains print method and method to return scanner object   
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -22,8 +21,16 @@ public abstract class State {
 	public static final int VIEW_RANK_STATE = 2;
 	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
 	
+	/**
+	 * print
+	 */
 	public abstract void print();
 	
+	/**
+	 * getScanner - Returns the scanner object
+	 * 
+	 * @return scanner object is returned
+	 */
 	public Scanner getScanner(){
 		return scanner;		
 	}
