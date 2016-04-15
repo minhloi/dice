@@ -7,8 +7,7 @@ import entity.Database;
 import entity.PlayerScore;
 
 /**
- * The ViewRankState class is use to display the ranking
- * menu when players want to view ranking
+ * ViewRankState -  Allows the user to view their ranking as well as the other players
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -16,7 +15,6 @@ import entity.PlayerScore;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class ViewRankState extends State{
 	
 	private GameController gameController;
@@ -28,6 +26,14 @@ public class ViewRankState extends State{
 	public static final int BACK_TO_MAIN_MENU = 0;
 	public static final int EXIT = 1;
 	
+	/**
+	 * Contructor - Prepare ranking menu, initialize controller, scanner and database
+	 * 				objects 
+	 * 
+	 * @param controller
+	 * @param scanner
+	 * @param database
+	 */
 	public ViewRankState(GameController controller, Scanner scanner, Database database){
 		
 		this.gameController = controller;
@@ -40,7 +46,10 @@ public class ViewRankState extends State{
 		menuList[EXIT] = "Exit";
 		
 	}
-		
+	
+	/**
+	 * print - Display each of the player's rankings (wins and losses)
+	 */
 	public void print(){
 
 		// Sort data by difference of wins and losses.
@@ -75,7 +84,9 @@ public class ViewRankState extends State{
 	
 	}
 	
-	// Print all menu options.
+	/**
+	 * printMenu - Print all menu options.
+	 */
 	private void printMenu(){
 	
 		System.out.print("Menu options: \n");
@@ -95,6 +106,11 @@ public class ViewRankState extends State{
 			
 	}
 	
+	/**
+	 * route - Route to main menu or exit
+	 * 
+	 * @param selectedOption
+	 */
 	private void route(int selectedOption){
 		
 		switch (selectedOption){
