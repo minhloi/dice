@@ -5,7 +5,8 @@ import java.util.Scanner;
 import entity.Database;
 
 /**
- * GameEngine class with initializing  GameControler
+ * The GameController class controlls all states of the game,
+ * including loading data after opening and saving data before exiting.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -13,7 +14,6 @@ import entity.Database;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class GameController {
 		
 	private State[] stateList;
@@ -24,7 +24,7 @@ public class GameController {
 	private int currentState;
 	
 	/**
-	 * GameController with initializing all need variables, arrays.
+	 * The GameController constructor initializes all game states.
 	 */
 	public GameController() {
 		
@@ -44,7 +44,7 @@ public class GameController {
 	}
 	
 	/**
-	 *  Load players' data method
+	 * Initializes all game data when the game first opened.
 	 */
 	public void init() {
 		
@@ -54,13 +54,11 @@ public class GameController {
 	}
 	
 	/**
-	 *  Method to select the state in game
-	 *  
-	 * @param state - type of state of the game
-	 * @return all the data stored in stateList of current state
+	 * Get a specific state object.
 	 * 
+	 * @param state	- the index of the desired state
+	 * @return the state object
 	 */
-	
 	public State getState(int state) {
 		
 		return stateList[state];
@@ -68,9 +66,9 @@ public class GameController {
 	}
 	
 	/**
-	 *  Method to set the state in game
+	 * Set the game to a specific state.
 	 *  
-	 * @param state - type of state of the game
+	 * @param state	- the index of the desired state
 	 */
 	public void setState(int state) {
 		
@@ -79,11 +77,10 @@ public class GameController {
 	}
 	
 	/**
-	 *  Method to exit, all data will be save before exit
+	 * Perform some necessary action before exiting games.
 	 */
 	public void exitGame() {
 		
-		// Before exit
 		database.saveData();
 		scanner.close();
 		
@@ -92,7 +89,7 @@ public class GameController {
 	}
 	
 	/**
-	 *  Method to render the current state the game in
+	 * Render the current state of the game.
 	 */
 	public void renderCurrentState() {
 		
