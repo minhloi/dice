@@ -23,12 +23,6 @@ public class GameController {
 	private int stateLength;
 	private int currentState;
 	
-	// All static variable values needed for state of the game
-	public static final int MENU_STATE = 0;
-	public static final int PLAY_STATE = 1;
-	public static final int VIEW_RANK_STATE = 2;
-	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
-	
 	/**
 	 * GameController with initializing all need variables, arrays.
 	 */
@@ -39,13 +33,13 @@ public class GameController {
 		
 		stateLength = 4;
 		stateList = new State[stateLength];
-		stateList[MENU_STATE] = new MenuState(this, scanner);
-		stateList[PLAY_STATE] = new PlayState(this, scanner, database);
-		stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
-		stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
+		stateList[State.MENU_STATE] = new MenuState(this, scanner);
+		stateList[State.PLAY_STATE] = new PlayState(this, scanner, database);
+		stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
+		stateList[State.MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
 		
 		// Default is Menu
-		currentState = MENU_STATE;
+		currentState = State.MENU_STATE;
 			
 	}
 	

@@ -92,7 +92,7 @@ public class ViewRankState extends State{
 			case BACK_TO_MAIN_MENU:
 				
 				// Begin to render menuState.
-				gameController.setState(GameController.MENU_STATE);
+				gameController.setState(State.MENU_STATE);
 				gameController.renderCurrentState();
 				break;					
 				

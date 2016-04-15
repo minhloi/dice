@@ -83,7 +83,7 @@ public class Match {
 			database.saveData();
 			
 			// Go to Menu state
-			gameController.setState(GameController.MATCH_END_MENU_STATE);
+			gameController.setState(State.MATCH_END_MENU_STATE);
 			gameController.renderCurrentState();
 			
 		} else {

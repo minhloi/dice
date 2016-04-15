@@ -22,10 +22,10 @@ public class GameControllerTest {
 		GameController gameController = new GameController();	
 		
 		// Test if getState returns a correct object.
-		assertTrue(gameController.getState(GameController.MENU_STATE) instanceof MenuState);
-		assertTrue(gameController.getState(GameController.PLAY_STATE) instanceof PlayState);
-		assertTrue(gameController.getState(GameController.VIEW_RANK_STATE) instanceof ViewRankState);
-		assertTrue(gameController.getState(GameController.MATCH_END_MENU_STATE) instanceof MatchEndMenuState);
+		assertTrue(gameController.getState(State.MENU_STATE) instanceof MenuState);
+		assertTrue(gameController.getState(State.PLAY_STATE) instanceof PlayState);
+		assertTrue(gameController.getState(State.VIEW_RANK_STATE) instanceof ViewRankState);
+		assertTrue(gameController.getState(State.MATCH_END_MENU_STATE) instanceof MatchEndMenuState);
 	}
 
 	@Test

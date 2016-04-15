@@ -1,5 +1,6 @@
 package main;
 import control.GameController;
+import control.State;
 
 /**
  * The GameEngine class is simply a starter of the game.
@@ -21,7 +22,7 @@ public class GameEngine {
 		gameController.init();
 		
 		// Start by printing the menu first
-		gameController.setState(GameController.MENU_STATE);
+		gameController.setState(State.MENU_STATE);
 		gameController.renderCurrentState();
 		
 	}
