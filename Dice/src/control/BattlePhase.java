@@ -18,7 +18,7 @@ public class BattlePhase extends Phase {
 	private Player rollLoser;
 	
 	/**
-	 * The class construtor initializes rollWinner and rollLoser objects.
+	 * The class constructor initializes rollWinner and rollLoser objects.
 	 */
 	public BattlePhase(Player rollWinner, Player rollLoser){
 	
@@ -27,7 +27,7 @@ public class BattlePhase extends Phase {
 	}
 	
 	/**
-	 * Render all actions in the battle phase. 
+	 * render - Render all actions in the battle phase. 
 	 */ 
 	public void render(){
 
@@ -55,7 +55,7 @@ public class BattlePhase extends Phase {
 	}
 	
 	/**
-	 * Calculate damage dealt to rollLoser
+	 * calculateDamage - Calculate damage dealt to rollLoser
 	 * @throws Exception exception throws when either players has not selected their moves thus cannot calculdate damage.
 	 */
 	private void calculateDamage(int initialDamage) throws Exception {

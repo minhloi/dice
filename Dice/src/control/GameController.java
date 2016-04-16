@@ -5,8 +5,8 @@ import java.util.Scanner;
 import entity.Database;
 
 /**
- * The GameController class controlls all states of the game,
- * including loading data after opening and saving data before exiting.
+ * GameController class - controls all states of the game, including loading data 
+ * 						  after opening and saving data before exiting.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -23,7 +23,7 @@ public class GameController {
 	private int currentState;
 	
 	/**
-	 * The GameController constructor initializes all game states.
+	 * GameController constructor - Initializes all game states.
 	 */
 	public GameController() {
 		
@@ -42,7 +42,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Initializes all game data when the game first opened.
+	 * init - Initializes all game data when the game first opened.
 	 */
 	public void init() {
 		
@@ -52,7 +52,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Get a specific state object.
+	 * getState - Get a specific state object.
 	 * 
 	 * @param state	- the index of the desired state
 	 * @return the state object
@@ -69,7 +69,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Set the game to a specific state.
+	 * setState - Set the game to a specific state.
 	 *  
 	 * @param state	- the index of the desired state
 	 */
@@ -83,7 +83,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Perform some necessary action before exiting games.
+	 * exitGame - Perform some necessary action before exiting games.
 	 */
 	public void exitGame() {
 		
@@ -95,7 +95,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Render the current state of the game.
+	 * renderCurrentState - Render the current state of the game.
 	 */
 	public void renderCurrentState() {
 		

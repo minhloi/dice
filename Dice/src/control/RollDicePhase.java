@@ -5,8 +5,8 @@ import java.util.Scanner;
 import entity.Player;
 
 /**
- * In this RollDicePhase class will trigger Dice class
- * to generate the value and display who win the roll
+ * RollDicePhase class - Trigger Dice class to generate the value and display 
+ * 						 who win the roll
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -27,7 +27,7 @@ public class RollDicePhase extends Phase {
 	}
 	
 	/**
-	 * Render roll-dice phase.
+	 * render - Render roll-dice phase.
 	 */
 	public void render(){
 	
@@ -39,21 +39,21 @@ public class RollDicePhase extends Phase {
 	}
 	
 	/**
-	 * Get roll winner of the turn.
+	 * getRollWinner - Get roll winner of the turn.
 	 */
 	public Player getRollWinner(){
 		return rollWinner;
 	}
 	
 	/**
-	 * Get roll loser of the turn.
+	 * getRollLoser - Get roll loser of the turn.
 	 */
 	public Player getRollLoser(){
 		return rollLoser;
 	}
 	
 	/**
-	 * Roll die of two players to determine who wins the turn.
+	 * rollDie - Roll die of two players to determine who wins the turn.
 	 */
 	private void rollDie() {
 		

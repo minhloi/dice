@@ -4,7 +4,7 @@ import control.GameController;
 import control.State;
 
 /**
- * The GameEngine class is simply a starter of the game.
+ * GameEngine class - Starts the game.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -12,7 +12,6 @@ import control.State;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class GameEngine {
 	
 	public static void main(String[] args) {

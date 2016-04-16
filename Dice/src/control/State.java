@@ -3,9 +3,8 @@ package control;
 import java.util.Scanner;
 
 /**
- * The State class is an abstract class, which is used  
- * to create different game states. All subclasses must
- * override print method.
+ * State class - An abstract class, which is used to create different game states. 
+ * 				 All subclasses must override print method.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -13,7 +12,6 @@ import java.util.Scanner;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public abstract class State {
 
 	protected Scanner scanner;

@@ -6,7 +6,7 @@ import entity.Database;
 import entity.Player;
 
 /**
- * The Match class handles all different phases inside a game match.
+ * Match class - Handles all different phases inside a game match.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -30,13 +30,13 @@ public class Match {
 	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 	
 	/**
-	 * The Match constructor initializes all its variables.
+	 * Constructor - Initializes all its variables.
 	 * 
-	 * @param player1
-	 * @param player2
-	 * @param gameController
-	 * @param scanner
-	 * @param database
+	 * @param player1 Player object
+	 * @param player2 Player object
+	 * @param gameController gameController object
+	 * @param scanner Scanner object
+	 * @param database Database object
 	 */
 	public Match(Player player1, Player player2, GameController gameController, Scanner scanner, Database database) {
 		
@@ -50,7 +50,7 @@ public class Match {
 	}
 		
 	/**
-	 * This method is used to render each turn.
+	 * beginTurn - This method is used to render each turn.
 	 */
 	public void beginTurn() {
 		
@@ -119,7 +119,7 @@ public class Match {
 	}
 	
 	/**
-	 * Print out the winner of the match.
+	 * displayWinner - Print out the winner of the match.
 	 */
 	private void displayWinner(){
 		
@@ -142,7 +142,8 @@ public class Match {
 	}
 	
 	/**
-	 * Check if there is a winner.
+	 * hasWinner - Check if there is a winner.
+	 * 
 	 * @return true if there is a winner, and false otherwise
 	 */
 	private boolean hasWinner(){
