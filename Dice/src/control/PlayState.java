@@ -1,7 +1,8 @@
 package control;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
+import boundary.GameObject;
 import entity.Database;
 import entity.Player;
 
@@ -10,23 +11,22 @@ public class PlayState extends State{
 	private GameController gameController;
 	private Database database;
 	private Match currentMatch;
+	private ArrayList<GameObject> objectList;
 	
 	// Player's sessions
 	private Player player1;
 	private Player player2;
 		
-	public PlayState(GameController controller, Scanner scanner, Database database){
+	public PlayState(GameController controller, ArrayList<GameObject> objectList, Database database){
 		
 		this.gameController = controller;
-		this.scanner = scanner;
+		this.objectList = objectList;
 		this.database = database;
 	
 	}
 	
 	public void startNew(){
 		
-		// Prompt to enter user names of two players
-		//createProfiles();
 		player1 = new Player(1, "Guest");
 		player2 = new Player(2, "Guest2");
 		createNewMatch();
@@ -43,12 +43,12 @@ public class PlayState extends State{
 	}
 	
 	private void createNewMatch(){
-		
-		currentMatch = new Match(player1, player2, gameController, scanner, database);
+			
+		currentMatch = new Match(player1, player2, gameController, objectList, database);
 	
 	}
 	
-	private void createProfiles(){
+	/* private void createProfiles(){
 		
 		String player1Username;
 		String player2Username;
@@ -63,7 +63,7 @@ public class PlayState extends State{
 		player1 = new Player(1, player1Username);
 		player2 = new Player(2, player2Username);
 			
-	}
+	} */
 	
 	private void retainProfiles(){
 		

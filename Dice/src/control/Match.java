@@ -1,7 +1,10 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import boundary.GameObject;
+import boundary.PlayerObject;
 import entity.Database;
 import entity.Player;
 
@@ -15,15 +18,14 @@ import entity.Player;
  * @author Tanner Siffren
  * 
  */
-
 public class Match {
 
 	private Player player1; 
 	private Player player2;
 
-	private int currentTurn;
+	private Turn currentTurn;
 	
-	private Scanner scanner;
+	private ArrayList<GameObject> objectList;
 	private GameController gameController;
 	private Database database;
 		
@@ -39,69 +41,24 @@ public class Match {
 	 * @param scanner
 	 * @param database
 	 */
-	public Match(Player player1, Player player2, GameController gameController, Scanner scanner, Database database) {
+	public Match(Player player1, Player player2, GameController gameController, ArrayList<GameObject> objectList, Database database) {
 		
 		this.player1 = player1;
 		this.player2 = player2;
 		this.gameController = gameController;
-		this.scanner = scanner;
+		this.objectList = objectList;
 		this.database = database;
-		this.currentTurn = 0;
+		this.currentTurn = new Turn(player1, player2, objectList);
 		
 	}
 		
 	/**
 	 * Method to begin the fight 
 	 */
-	public void beginTurn() {
+	public void renderTurn() {
 		
-		currentTurn++;
-		
-		System.out.println("TURN " + currentTurn + ":");
-		System.out.println("-----------------------------------------------------");
-		System.out.println();
-		
-		// Begin by allowing each player to select their moves. 
-		SelectMovePhase selectMovePhase = new SelectMovePhase(player1, player2, scanner);
-		selectMovePhase.render();
-		
-		RollDicePhase rollDicePhase = new RollDicePhase(player1, player2);
-		rollDicePhase.render();
-		
-		BattlePhase battlePhase = new BattlePhase(rollDicePhase.getRollWinner(), rollDicePhase.getRollLoser());
-		battlePhase.render();
-		
-		ResetPhase resetPhase = new ResetPhase(player1, player2);
-		resetPhase.render();
-				
-		if(hasWinner()){
-			
-			displayWinner();
-			
-			// Exiting game suddenly can lose data so
-			// it's better to save data after every match.
-			database.saveData();
-			
-			// Go to Menu state
-			gameController.setState(GameController.MATCH_END_MENU_STATE);
-			
-		} else {
-		
-			// No one wins the game yet then go to next turn
-			System.out.println("Next turn in 5 seconds...");
-			System.out.println();
-			
-			// Wait 5 seconds for a new turn.
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println();
-			beginTurn();
-			
-		}
-		
+		currentTurn.render();
+									
 	}
 	
 	private void displayWinner(){

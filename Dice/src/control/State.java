@@ -1,15 +1,15 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import boundary.GameObject;
 
 public abstract class State {
 
-	protected Scanner scanner;
+	protected ArrayList<GameObject> gameObjects;
 	
 	public abstract void print();
-	
-	public Scanner getScanner(){
-		return scanner;		
-	}
+		
 	
 }

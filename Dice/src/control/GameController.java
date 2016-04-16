@@ -1,7 +1,8 @@
 package control;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
+import boundary.GameObject;
 import entity.Database;
 
 /**
@@ -17,7 +18,6 @@ import entity.Database;
 public class GameController {
 		
 	private State[] stateList;
-	private Scanner scanner;
 	private Database database;
 	
 	private int stateLength;
@@ -32,17 +32,16 @@ public class GameController {
 	/**
 	 * GameController with initializing all need variables, arrays.
 	 */
-	public GameController() {
+	public GameController(ArrayList<GameObject> objectList) {
 		
-		scanner = new Scanner(System.in);
 		database = new Database();
-		
+				
 		stateLength = 4;
 		stateList = new State[stateLength];
-		stateList[MENU_STATE] = new MenuState(this, scanner);
-		stateList[PLAY_STATE] = new PlayState(this, scanner, database);
-		stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
-		stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
+		//stateList[MENU_STATE] = new MenuState(this, scanner);
+		stateList[PLAY_STATE] = new PlayState(this, objectList, database);
+		//stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
+		//stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
 		
 		// Default is Menu
 		currentState = MENU_STATE;
@@ -91,8 +90,6 @@ public class GameController {
 		
 		// Before exit
 		database.saveData();
-		scanner.close();
-		
 		System.out.print("Exit!");
 		
 	}
@@ -101,9 +98,7 @@ public class GameController {
 	 *  Method to print the current state the game in
 	 */
 	public void render() {
-		
 		stateList[currentState].print();
-		
 	}
-		
+	
 }

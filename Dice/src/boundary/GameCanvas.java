@@ -2,9 +2,18 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,13 +27,18 @@ public class GameCanvas extends JPanel {
 	public static final int WIDTH = 800;
 	
 	private GameController gameController;
-	private GameObject objects;
+	private ArrayList<GameObject> objectList;
+	private Timer timer;
 	
 	public GameCanvas(){
-		setBackground(Color.BLACK);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		gameController = new GameController();
 		
+		setBackground(Color.WHITE);
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setFocusable(true);
+		
+		objectList = new ArrayList<GameObject>();
+		gameController = new GameController(objectList);
+		timer = new Timer(60, new GameLoop());
 	}
 	
 	public void render(){
@@ -32,8 +46,11 @@ public class GameCanvas extends JPanel {
 		// Load data
 		gameController.init();
 		
-		Timer timer = new Timer(1000, new GameActionListener());
+		// Start timer
 		timer.start();
+		
+		// Add game listener
+		addKeyListener(new CanvasKeyListener());
 		
 		PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
 		playState.startNew();
@@ -41,10 +58,40 @@ public class GameCanvas extends JPanel {
 		
 	}
 	
-	private class GameActionListener implements ActionListener{
+	public void paintComponent(Graphics graphics){
+		
+		super.paintComponent(graphics);
+		
+		Iterator<GameObject> iterator = objectList.iterator();
+		while(iterator.hasNext()){
+			GameObject object = iterator.next();
+			graphics.drawImage(object.getImage(), object.getPositionX(), object.getPositionY(), null);
+		}
+		
+		objectList.clear();
+	}
+		
+	private class GameLoop implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			System.out.println("Test");
+			gameController.render();
+			repaint();
 		}
 	}
 	
+	private class CanvasKeyListener implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent keyEvent) {
+
+		}
+
+		@Override
+		public void keyReleased(KeyEvent keyEvent) {
+		}
+
+		@Override
+		public void keyTyped(KeyEvent keyEvent) {
+		}
+		
+	}
 }

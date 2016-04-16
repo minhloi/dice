@@ -1,4 +1,5 @@
 package main;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -30,15 +31,7 @@ public class GameEngine {
 		gameFrame.setVisible(true);
 		
 		gameCanvas.render();
-		
-		//GameController gameController = new GameController();
-		
-		// Load necessary data such as players' scores.
-		//gameController.init();
-		
-		// Start by printing the menu first
-		//gameController.setState(GameController.MENU_STATE);
-		
+					
 	}
 
 }
