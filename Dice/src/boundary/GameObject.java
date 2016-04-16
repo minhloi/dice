@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class GameObject {
+	
 	protected int positionX;
 	protected int positionY;
 	protected BufferedImage image;
