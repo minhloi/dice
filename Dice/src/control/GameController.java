@@ -20,7 +20,6 @@ public class GameController {
 	private Scanner scanner;
 	private Database database;
 	
-	private int stateLength;
 	private int currentState;
 	
 	/**
@@ -31,8 +30,7 @@ public class GameController {
 		scanner = new Scanner(System.in);
 		database = new Database();
 		
-		stateLength = 4;
-		stateList = new State[stateLength];
+		stateList = new State[State.LENGTH];
 		stateList[State.MENU_STATE] = new MenuState(this, scanner);
 		stateList[State.PLAY_STATE] = new PlayState(this, scanner, database);
 		stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
@@ -58,11 +56,16 @@ public class GameController {
 	 * 
 	 * @param state	- the index of the desired state
 	 * @return the state object
+	 * @throws Exception 
 	 */
-	public State getState(int state) {
+	public State getState(int state) throws Exception {
+		
+		if(state < 0 || state >= State.LENGTH || stateList[state] == null){
+			throw new Exception("State does not exists.");
+		} 
 		
 		return stateList[state];
-		
+				
 	}
 	
 	/**
@@ -70,10 +73,13 @@ public class GameController {
 	 *  
 	 * @param state	- the index of the desired state
 	 */
-	public void setState(int state) {
+	public void setState(int state) throws Exception {
 		
-		currentState = state;
-		
+		if(state < 0 || state >= State.LENGTH || stateList[state] == null){
+			throw new Exception("State does not exists.");
+		} else { 
+			currentState = state;
+		}
 	}
 	
 	/**
