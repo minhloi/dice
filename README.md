@@ -2,7 +2,7 @@
 
 ### Deliverable 2
 ####1. Working code:
-The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary in database.txt file.  
+The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary data in database.txt file.  
 ######How to compile:
 - Clone the project in Eclipse.
 - Import the project in Eclipse.
