@@ -58,12 +58,13 @@ public class ViewRankStateTest {
 	}
 	
 	@Test
-	public void testInvalidInput() {
+	public void testOptionNotExists() {
 		
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		
-		// Mock inputs
+		// Mock an input for a menu option does not exist like -1 
+		// and a valid input.
 		String selectedOption = "-1" + "\n"+ ViewRankState.EXIT;
 		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
 		
@@ -81,6 +82,33 @@ public class ViewRankStateTest {
 		assertFalse(scanner.hasNext());
 	
 	}
+	
+	@Test
+	public void testInvalidInput() {
+		
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		
+		// Mock an input for a menu option is a String
+		// and a valid input.
+		String selectedOption = "you" + "\n"+ ViewRankState.EXIT;
+		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
+		
+		GameController controller = new GameController();
+		Scanner scanner = new Scanner(System.in);
+		Database database = new Database();
+		
+		ViewRankState viewRank = new ViewRankState(controller, scanner, database);
+		viewRank.print();
+		
+		// Menu is printing
+		assertNotEquals("", outContent.toString());
+
+		// Exactly two inputs are scanned because the first one is invalid.
+		assertFalse(scanner.hasNext());
+	
+	}
+
 	
 	
 
