@@ -1,12 +1,13 @@
 package control;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import boundary.GameObject;
 import entity.Database;
 import entity.Player;
 
-public class PlayState extends State{
+public class PlayState extends State implements Listenable {
 
 	private GameController gameController;
 	private Database database;
@@ -77,6 +78,21 @@ public class PlayState extends State{
 	
 	public void print(){
 		currentMatch.renderTurn();
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		currentMatch.onKeyPressed(keyEvent);
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		currentMatch.onKeyReleased(keyEvent);
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		
 	};
 			
 }

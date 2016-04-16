@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ import entity.Player;
  * @author Tanner Siffren
  * 
  */
-public class Match {
+public class Match implements Listenable {
 
 	private Player player1; 
 	private Player player2;
@@ -28,10 +29,7 @@ public class Match {
 	private ArrayList<GameObject> objectList;
 	private GameController gameController;
 	private Database database;
-		
-	// Player move-set definition
-	public static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
-	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
+	
 	
 	/**
 	 * 
@@ -96,6 +94,22 @@ public class Match {
 		}
 		
 		return hasWinner;		
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		currentTurn.onKeyPressed(keyEvent);
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		currentTurn.onKeyReleased(keyEvent);
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 }

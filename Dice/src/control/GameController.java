@@ -83,6 +83,10 @@ public class GameController {
 		
 	}
 	
+	public State getCurrentStateObject(){
+		return stateList[currentState];		
+	}
+	
 	/**
 	 *  Method to exit, all data will be save before exit
 	 */

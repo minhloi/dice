@@ -25,6 +25,7 @@ public class GameEngine {
 		JFrame gameFrame = new JFrame("Fighting Dice");	
 		gameFrame.setSize(new Dimension(GameCanvas.WIDTH, GameCanvas.HEIGHT));
 		gameFrame.setResizable(false);
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		GameCanvas gameCanvas = new GameCanvas();
 		gameFrame.add(gameCanvas);

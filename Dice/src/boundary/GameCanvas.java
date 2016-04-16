@@ -38,16 +38,13 @@ public class GameCanvas extends JPanel {
 		
 		objectList = new ArrayList<GameObject>();
 		gameController = new GameController(objectList);
-		timer = new Timer(60, new GameLoop());
+		timer = new Timer(18, new GameLoop());
 	}
 	
 	public void render(){
 		
 		// Load data
 		gameController.init();
-		
-		// Start timer
-		timer.start();
 		
 		// Add game listener
 		addKeyListener(new CanvasKeyListener());
@@ -56,6 +53,9 @@ public class GameCanvas extends JPanel {
 		playState.startNew();
 		gameController.setState(GameController.PLAY_STATE);
 		
+		// Start timer
+		timer.start();
+				
 	}
 	
 	public void paintComponent(Graphics graphics){
@@ -82,15 +82,17 @@ public class GameCanvas extends JPanel {
 
 		@Override
 		public void keyPressed(KeyEvent keyEvent) {
-
+			GameCanvas.this.gameController.getCurrentStateObject().onKeyPressed(keyEvent);
 		}
 
 		@Override
 		public void keyReleased(KeyEvent keyEvent) {
+			GameCanvas.this.gameController.getCurrentStateObject().onKeyReleased(keyEvent);
 		}
 
 		@Override
 		public void keyTyped(KeyEvent keyEvent) {
+			GameCanvas.this.gameController.getCurrentStateObject().onKeyTyped(keyEvent);
 		}
 		
 	}

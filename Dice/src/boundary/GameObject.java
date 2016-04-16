@@ -16,6 +16,14 @@ public abstract class GameObject {
 		positionY = y;
 	}
 	
+	public void setPositionX(int x){
+		positionX = x;
+	}
+
+	public void setPositionY(int y){
+		positionX = y;
+	}
+	
 	public void setImageByPath(String path){
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(path));
