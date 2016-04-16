@@ -29,9 +29,9 @@ public class PlayState extends State{
 	/**
 	 * Constructor - Initializes gameController, scanner, and database objects 
 	 * 
-	 * @param controller - gameController object which controls game state.
-	 * @param scanner - scanner object which scans input
-	 * @param database - database object which load/save data
+	 * @param controller GameController object which controls game state.
+	 * @param scanner Scanner object which scans input
+	 * @param database Database object which load/save data
 	 */
 	public PlayState(GameController controller, Scanner scanner, Database database){
 		

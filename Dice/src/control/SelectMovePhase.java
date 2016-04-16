@@ -113,7 +113,7 @@ public class SelectMovePhase extends Phase {
 	/**
 	 * setMoveByKey - Set move of each player based on their inputs.
 	 * 
-	 * @param key Players choice of move
+	 * @param key Player's choice of move
 	 */
 	private void setMoveByKey(char key) {
 		
