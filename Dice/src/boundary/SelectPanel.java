@@ -7,6 +7,9 @@ public class SelectPanel extends GameObject {
 	
 	private int playerNumber;
 	private String resourceFolder;
+	
+	public static final int WIDTH = 280;
+	public static final int HEIGHT = 80;
 		
 	public SelectPanel(int playerNumber, int positionX, int positionY){
 		this.playerNumber = playerNumber;

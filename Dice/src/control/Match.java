@@ -55,8 +55,14 @@ public class Match implements Listenable {
 	 */
 	public void renderTurn() {
 		
-		currentTurn.render();
-									
+		boolean rendered;
+		rendered = currentTurn.render();
+		
+		if(rendered == false){
+			currentTurn = new Turn(player1, player2, objectList);
+			currentTurn.render();
+		}
+		
 	}
 	
 	private void displayWinner(){

@@ -17,13 +17,14 @@ public class Turn implements Listenable {
 	private PlayerObject player1Object;
 	private PlayerObject player2Object;
 	private ArrayList<GameObject> objectList;
-	private Phase currentPhase;
+	private Phase phaseList[];
+	private int currentPhase;
 	
 	public static final int PLAYER1_IDLE_POSITION_X = 0;
 	public static final int PLAYER1_IDLE_POSITION_Y = 250;
 	public static final int PLAYER2_IDLE_POSITION_X = 600;
 	public static final int PLAYER2_IDLE_POSITION_Y = 250;
-	
+		
 	public Turn(Player player1, Player player2, ArrayList<GameObject> objectList){
 		
 		this.player1 = player1;
@@ -37,26 +38,47 @@ public class Turn implements Listenable {
 			e.printStackTrace();
 		}
 		
+		phaseList = new Phase[Phase.LENGTH];
+		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, objectList);
+		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, rollWinner, rollLoser, objectList);
+		
 		// The initial phase is SelectMovePhase.
-		this.currentPhase = new SelectMovePhase(player1, player2, this.objectList);
+		this.currentPhase = Phase.SELECT_MOVE_PHASE;
 		
 	}
 	
-	public void render(){
-
-		renderIdlePlayerObjects();
+	public boolean render(){
+		
+		boolean hasNextPhase = false;
+		
+		setPlayerObjectsIdle();
 		objectList.add(player1Object);
 		objectList.add(player2Object);
 		
-		currentPhase.render();
-
+		phaseList[currentPhase].render();
+		if(phaseList[currentPhase].isCompleted()){
+			hasNextPhase = nextPhase();
+		}
+		
+		return hasNextPhase;
 	}
 	
-	private void renderIdlePlayerObjects(){
+	private void setPlayerObjectsIdle(){
 		player1Object.setIdle();
 		player2Object.setIdle();
 	}
-
+	
+	private boolean nextPhase(){
+		boolean hasNext;
+		if(currentPhase >= Phase.LENGTH){
+			hasNext = false; 
+		} else {
+			++currentPhase;
+			hasNext = true;
+		}
+		return hasNext;		
+	}
+	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
 	
@@ -64,6 +86,7 @@ public class Turn implements Listenable {
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
+		phaseList[currentPhase].onKeyReleased(keyEvent);
 	}
 
 	@Override

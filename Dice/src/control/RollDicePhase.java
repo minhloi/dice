@@ -1,7 +1,9 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import boundary.GameObject;
 import entity.Player;
 
 public class RollDicePhase extends Phase {
@@ -10,10 +12,12 @@ public class RollDicePhase extends Phase {
 	private Player player2;
 	private Player rollWinner;
 	private Player rollLoser;
+	private ArrayList<GameObject> objectList;
 	
-	public RollDicePhase(Player player1, Player player2){
+	public RollDicePhase(Player player1, Player player2, Player rollWinner, Player rollLoser, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
+		this.objectList = objectList;
 	}
 	
 	/**
