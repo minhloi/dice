@@ -96,9 +96,9 @@ public class Match {
 			System.out.println("Next turn in 5 seconds...");
 			System.out.println();
 			
-			// Wait 5 seconds for a new turn.
+			// Wait 3 seconds for a new turn.
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

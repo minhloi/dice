@@ -39,12 +39,12 @@ public class RollDicePhase extends Phase {
 		// determine winner and loser of this turn.
 		rollDie();
 		
-		System.out.println("Go to battle in 3 seconds...");
+		System.out.println("Go to battle in 2 seconds...");
 		System.out.println();
 		
-		// Wait 3 seconds, allow players to see their results.
+		// Wait 2 seconds, allow players to see their results.
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
