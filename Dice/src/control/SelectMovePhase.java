@@ -6,7 +6,7 @@ import entity.Player;
 
 /**
  * SelectMovePhase class - Capture each of the player's choice of action. Such 
- * 						   as selecting phase, and actions for the game.
+ * 						   as selecting actions for the game.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -21,7 +21,7 @@ public class SelectMovePhase extends Phase {
 	private Scanner scanner;
 	
 	/**
-	 * Contructor - Prepare Player and Scanner objects
+	 * Constructor - Prepare Player and Scanner objects
 	 * 
 	 * @param player1
 	 * @param player2
@@ -84,7 +84,7 @@ public class SelectMovePhase extends Phase {
 	}
 		
 	/**
-	 * scanMove - Method of accepting action of current turn
+	 * scanMove - Reading input of users
 	 */
 	private void scanMove() {
 		
@@ -111,7 +111,7 @@ public class SelectMovePhase extends Phase {
 	}
 	
 	/**
-	 * setMoveByKey - Act on the input action, whether it is a valid option
+	 * setMoveByKey - Set move of each player based on their inputs.
 	 * 
 	 * @param key Players choice of move
 	 */

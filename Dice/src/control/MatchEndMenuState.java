@@ -3,8 +3,7 @@ package control;
 import java.util.Scanner;
 
 /**
- * MatchEnd class with all method to act when the match of the game ended
- * 
+ * The MatchEndMenuState class displays all menu when a match ended.
  * @author Thien Duc Phung
  * @author Minh Loi
  * @author Daniel Enriquez
@@ -24,8 +23,7 @@ public class MatchEndMenuState extends State {
 	public static final int EXIT = 3;
 	
 	/**
-	 * Method with assigned array at end game
-	 * 
+	 * Constructor initializes the menu list and other properties.
 	 * @param controller
 	 * @param scanner
 	 */
@@ -44,7 +42,7 @@ public class MatchEndMenuState extends State {
 	}
 	
 	/**
-	 * Method to print the menu
+	 * Print out the menu
 	 */
 	@Override
 	public void print() {
@@ -74,8 +72,7 @@ public class MatchEndMenuState extends State {
 	}
 	
 	/**
-	 * Method to decide what to do after the game base on players' choice
-	 * 
+	 * Route user input to the correct game state. 
 	 * @param selectedOption
 	 */
 	private void route(int selectedOption) {

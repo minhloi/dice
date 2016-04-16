@@ -6,16 +6,14 @@ import entity.Database;
 import entity.Player;
 
 /**
- * Match class with all the require method of the game to play
+ * The Match class handles all different phases inside a game match.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
  * @author Daniel Enriquez
  * @author Brett Bauman
  * @author Tanner Siffren
- * 
  */
-
 public class Match {
 
 	private Player player1; 
@@ -32,6 +30,7 @@ public class Match {
 	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 	
 	/**
+	 * The Match constructor initializes all its variables.
 	 * 
 	 * @param player1
 	 * @param player2
@@ -51,7 +50,7 @@ public class Match {
 	}
 		
 	/**
-	 * Method to begin the fight 
+	 * This method is used to render each turn.
 	 */
 	public void beginTurn() {
 		
@@ -68,6 +67,16 @@ public class Match {
 		RollDicePhase rollDicePhase = new RollDicePhase(player1, player2);
 		rollDicePhase.render();
 		
+		System.out.println("Go to battle in 2 seconds...");
+		System.out.println();
+		
+		// Wait 2 seconds, allow players to see their results.
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	
 		BattlePhase battlePhase = new BattlePhase(rollDicePhase.getRollWinner(), rollDicePhase.getRollLoser());
 		battlePhase.render();
 		
@@ -109,6 +118,9 @@ public class Match {
 		
 	}
 	
+	/**
+	 * Print out the winner of the match.
+	 */
 	private void displayWinner(){
 		
 		// Player 1 loses
@@ -120,18 +132,19 @@ public class Match {
 			System.out.println("Player 2 won the game. GAME OVER.");
 		// Player 2 loses
 		} else {
-
 			database.incrementWinByName(player1.getUserName());
 			database.incrementLossByName(player2.getUserName());
 			
 			System.out.println("Player 1 won the game. GAME OVER.");
-		
 		}
 		
 		System.out.println();
-
 	}
 	
+	/**
+	 * Check if there is a winner.
+	 * @return true if there is a winner, and false otherwise
+	 */
 	private boolean hasWinner(){
 		
 		boolean hasWinner;

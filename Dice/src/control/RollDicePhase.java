@@ -14,7 +14,6 @@ import entity.Player;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class RollDicePhase extends Phase {
 	
 	private Player player1;
@@ -28,39 +27,33 @@ public class RollDicePhase extends Phase {
 	}
 	
 	/**
-	 * Method of rolling dice to decide who go first in current turn
+	 * Render roll-dice phase.
 	 */
 	public void render(){
 	
 		System.out.println("ROLL-DICE PHASE:");
 		System.out.println("-----------------------------------------------------");
 		
-		// Roll dice of two players to 
-		// determine winner and loser of this turn.
 		rollDie();
 		
-		System.out.println("Go to battle in 2 seconds...");
-		System.out.println();
-		
-		// Wait 2 seconds, allow players to see their results.
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-				
 	}
 	
+	/**
+	 * Get roll winner of the turn.
+	 */
 	public Player getRollWinner(){
 		return rollWinner;
 	}
 	
+	/**
+	 * Get roll loser of the turn.
+	 */
 	public Player getRollLoser(){
 		return rollLoser;
 	}
 	
 	/**
-	 * Method to roll the dice on both players
+	 * Roll die of two players to determine who wins the turn.
 	 */
 	private void rollDie() {
 		

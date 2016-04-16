@@ -31,7 +31,7 @@ public class ResetPhase extends Phase{
 	}
 	
 	/**
-	 * render - Render each of the players moves
+	 * render - Render resetPhase which resets each of the players moves
 	 */
 	public void render(){
 		player1.resetMove();

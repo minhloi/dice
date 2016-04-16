@@ -27,11 +27,11 @@ public class PlayState extends State{
 	private Player player2;
 		
 	/**
-	 * Constructor - Create gameController, scanner, and database objects 
+	 * Constructor - Initializes gameController, scanner, and database objects 
 	 * 
-	 * @param controller - gameController object
-	 * @param scanner - scanner object
-	 * @param database - database object
+	 * @param controller - gameController object which controls game state.
+	 * @param scanner - scanner object which scans input
+	 * @param database - database object which load/save data
 	 */
 	public PlayState(GameController controller, Scanner scanner, Database database){
 		
@@ -66,7 +66,7 @@ public class PlayState extends State{
 	}
 	
 	/**
-	 * createNewMatch - Start a new match
+	 * createNewMatch - Create a new match object.
 	 */
 	private void createNewMatch(){
 		
@@ -109,7 +109,7 @@ public class PlayState extends State{
 	}
 	
 	/**
-	 * print - Display the start of the match and collect moves
+	 * print - Display the start of the match and begin a turn.
 	 */
 	public void print(){
 		currentMatch.beginTurn();

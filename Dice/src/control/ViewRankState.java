@@ -113,7 +113,7 @@ public class ViewRankState extends State{
 	}
 	
 	/**
-	 * route - Route to main menu or exit
+	 * route - Route user input to main menu or exit
 	 * 
 	 * @param selectedOption
 	 */

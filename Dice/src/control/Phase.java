@@ -1,7 +1,9 @@
 package control;
 
 /**
- * Phase class is an abstract class of all the phase in game
+ * The Phase class is an abstract class, which is used
+ * to create different phase of a match. All subclasses
+ * must override render() method.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -9,7 +11,6 @@ package control;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public abstract class Phase {
 
 	public abstract void render();

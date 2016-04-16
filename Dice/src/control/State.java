@@ -3,7 +3,9 @@ package control;
 import java.util.Scanner;
 
 /**
- * State class - Abstact class that contains print method and method to return scanner object   
+ * The State class is an abstract class, which is used  
+ * to create different game states. All subclasses must
+ * override print method.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -16,15 +18,13 @@ public abstract class State {
 
 	protected Scanner scanner;
 	
+	// Game state definitions.
 	public static final int LENGTH = 4;
 	public static final int MENU_STATE = 0;
 	public static final int PLAY_STATE = 1;
 	public static final int VIEW_RANK_STATE = 2;
 	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
 	
-	/**
-	 * print
-	 */
 	public abstract void print();
 	
 	/**
