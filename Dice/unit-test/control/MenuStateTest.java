@@ -10,7 +10,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 /**
- * Junit test of MenuState class
+ * Junit test for MenuState class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

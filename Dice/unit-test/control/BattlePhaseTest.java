@@ -7,7 +7,7 @@ import org.junit.Test;
 import entity.Player;
 
 /**
- * Junit test of BattlePhase
+ * Junit test for BattlePhase class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

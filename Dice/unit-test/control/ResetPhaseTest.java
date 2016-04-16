@@ -7,7 +7,7 @@ import org.junit.Test;
 import entity.Player;
 
 /**
- * Junit test of ResetPhase class
+ * Junit test for ResetPhase class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

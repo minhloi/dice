@@ -10,7 +10,7 @@ import org.junit.Test;
 import entity.Database;
 
 /**
- * Junit test of PlayState class
+ * Junit test for PlayState class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

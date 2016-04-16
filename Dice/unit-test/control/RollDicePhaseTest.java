@@ -7,7 +7,7 @@ import org.junit.Test;
 import entity.Player;
 
 /**
- * Junit test of RollDicePhase class
+ * Junit test for RollDicePhase class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

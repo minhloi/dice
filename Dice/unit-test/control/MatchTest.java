@@ -10,7 +10,7 @@ import entity.Database;
 import entity.Player;
 
 /**
- * Junit test of Match class.
+ * Junit test for Match class.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

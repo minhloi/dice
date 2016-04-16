@@ -10,7 +10,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 /**
- * Junit test of MatchEndMenuState class
+ * Junit test for MatchEndMenuState class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

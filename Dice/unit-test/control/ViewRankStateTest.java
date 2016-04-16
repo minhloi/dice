@@ -12,7 +12,7 @@ import org.junit.Test;
 import entity.Database;
 
 /**
- * Junit test of ViewRankState class
+ * Junit test for ViewRankState class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
