@@ -83,9 +83,13 @@ public class Match {
 			database.saveData();
 			
 			// Go to Menu state
-			gameController.setState(State.MATCH_END_MENU_STATE);
-			gameController.renderCurrentState();
-			
+			try {
+				gameController.setState(State.MATCH_END_MENU_STATE);
+				gameController.renderCurrentState();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+					
 		} else {
 		
 			// No one wins the game yet then go to next turn

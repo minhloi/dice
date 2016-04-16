@@ -15,7 +15,8 @@ import java.util.Scanner;
 public abstract class State {
 
 	protected Scanner scanner;
-
+	
+	public static final int LENGTH = 4;
 	public static final int MENU_STATE = 0;
 	public static final int PLAY_STATE = 1;
 	public static final int VIEW_RANK_STATE = 2;

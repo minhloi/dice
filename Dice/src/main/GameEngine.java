@@ -22,9 +22,13 @@ public class GameEngine {
 		// Load necessary data such as players' scores.
 		gameController.init();
 		
-		// Start by printing the menu first
-		gameController.setState(State.MENU_STATE);
-		gameController.renderCurrentState();
+		try {
+			// Start by printing the menu first
+			gameController.setState(State.MENU_STATE);
+			gameController.renderCurrentState();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
