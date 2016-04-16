@@ -10,9 +10,8 @@ import java.util.Vector;
 import java.util.Iterator;
 
 /**
- * The Database class is using for store players'
- * information and access players' information
- * when need to.
+ * Database class - Used to store players' information and access players' information
+ * 					when need to.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -20,7 +19,6 @@ import java.util.Iterator;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class Database {
 
 	private FileOutputStream fileOutput;
@@ -32,10 +30,16 @@ public class Database {
 	private Vector<PlayerScore> gameData;
 	private static final String FILE_NAME = "database.txt";
 	
+	/**
+	 * Constructor - New PlayerScore vector
+	 */
 	public Database(){
 		gameData = new Vector<PlayerScore>();
 	}
 	
+	/**
+	 * loadData - Load in Data from file
+	 */
 	@SuppressWarnings("unchecked")
 	public void loadData(){
 		
@@ -74,8 +78,9 @@ public class Database {
 	
 	}
 	
-	// It is better to dump all objects to a file
-	// because we don't know which objects have been changed.
+	/**
+	 * saveData - Save the game data to a file. 
+	 */
 	public void saveData(){
 		
 		try {
@@ -83,6 +88,8 @@ public class Database {
 			fileOutput = new FileOutputStream(FILE_NAME, false);
 			outStream = new ObjectOutputStream(fileOutput);
 			
+			//It is better to dump all objects to a file
+			// because we don't know which objects have been changed.
 			outStream.writeObject(gameData);
 						
 		} catch (FileNotFoundException e1) {
@@ -103,6 +110,9 @@ public class Database {
 		
 	}
 	
+	/**
+	 * sortByDifference - Sort players by difference of wins and losses 
+	 */
 	// TODO: Use BubbleSort to sort players by difference of wins and losses
 	public void sortByDifference(){
 		
@@ -129,10 +139,20 @@ public class Database {
 		
 	}
 	
+	/**
+	 * getData - Return the game data
+	 * 
+	 * @return Returns the game's data
+	 */
 	public Vector<PlayerScore> getData(){
 		return gameData;
 	}
 	
+	/**
+	 * incrementWinByName - Increment the number of wins by username
+	 * 
+	 * @param username The player's username
+	 */
 	public void incrementWinByName(String username){
 		
 		PlayerScore target = getPlayerScoreByName(username);
@@ -145,6 +165,11 @@ public class Database {
 				
 	}
 	
+	/**
+	 * incrementLossByName - Increment the number of losses by username
+	 * 
+	 * @param username The player's username
+	 */
 	public void incrementLossByName(String username){
 		
 		PlayerScore target = getPlayerScoreByName(username);
@@ -157,6 +182,12 @@ public class Database {
 		
 	}
 	
+	/**
+	 * getPlayerScoreByName - Return the score of the player specified
+	 * 
+	 * @param username The player's username
+	 * @return Returns the score of the player with username is specified
+	 */
 	public PlayerScore getPlayerScoreByName(String username){
 		
 		PlayerScore target = null;
@@ -173,6 +204,12 @@ public class Database {
 		
 	}
 	
+	/**
+	 * createNewPlayer - Create and return new PlayerScore object 
+	 * 
+	 * @param username The player's username
+	 * @return Returns the new PlayserScore object
+	 */
 	private PlayerScore createNewPlayer(String username){
 		PlayerScore newPlayer = new PlayerScore(username);
 		gameData.add(newPlayer);
@@ -180,6 +217,12 @@ public class Database {
 		return newPlayer;
 	}
 	
+	/**
+	 * swapPlayers - Swap players in vector with the other
+	 * 
+	 * @param index1 Index of a PlayerScore object in vector
+	 * @param index2 Index of a PlayerScore object in vector
+	 */
 	private void swapPlayers(int index1, int index2){
 		
 		PlayerScore player1 = gameData.get(index1);
