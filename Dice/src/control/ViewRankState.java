@@ -27,7 +27,7 @@ public class ViewRankState extends State{
 	public static final int EXIT = 1;
 	
 	/**
-	 * Contructor - Prepare ranking menu, initialize controller, scanner and database
+	 * Constructor - Prepare ranking menu, initialize controller, scanner and database
 	 * 				objects 
 	 * 
 	 * @param controller
@@ -97,13 +97,19 @@ public class ViewRankState extends State{
 		System.out.print("Please select menu: ");
 		
 		// Read input
-		int selectedOption = scanner.nextInt();
-		
-		System.out.print("\n");
-		
-		// Route to corrected state.
-		route(selectedOption);
+		try {
+			int selectedOption = Integer.parseInt(scanner.next());
+			System.out.print("\n");
 			
+			// Route to the correct state.
+			route(selectedOption);
+			
+		} catch (NumberFormatException e) {
+			System.out.print("\n");
+			System.out.println("Invalid input. Please try again.");
+		    print();
+		}
+					
 	}
 	
 	/**
@@ -116,11 +122,14 @@ public class ViewRankState extends State{
 		switch (selectedOption){
 		
 			case BACK_TO_MAIN_MENU:
-				
 				// Begin to render menuState.
-				gameController.setState(State.MENU_STATE);
-				gameController.renderCurrentState();
-				break;					
+				try {
+					gameController.setState(State.MENU_STATE);
+					gameController.renderCurrentState();
+					break;					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
 			case EXIT:
 				gameController.exitGame();

@@ -58,13 +58,19 @@ public class MatchEndMenuState extends State {
 		System.out.print("Please select menu: ");
 				
 		// Read input
-		int selectedOption = scanner.nextInt();
-				
-		System.out.print("\n");
-				
-		// Route to the correct state.
-		route(selectedOption);
-				
+		try {
+			int selectedOption = Integer.parseInt(scanner.next());
+			System.out.print("\n");
+			
+			// Route to the correct state.
+			route(selectedOption);
+			
+		} catch (NumberFormatException e) {
+			System.out.print("\n");
+			System.out.println("Invalid input. Please try again.");
+		    print();
+		}
+							
 	}
 	
 	/**
@@ -77,33 +83,42 @@ public class MatchEndMenuState extends State {
 		switch (selectedOption){
 		
 			case REMATCH:
-			
-				// Get playState object
-				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
+				try {
+					// Get playState object
+					PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
+					// Rematch.
+					playState.rematch();
+							
+					gameController.setState(State.PLAY_STATE);
+					gameController.renderCurrentState();
 				
-				// Rematch.
-				playState.rematch();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
-				gameController.setState(State.PLAY_STATE);
-				gameController.renderCurrentState();
 				break;
 		
 			case BACK_TO_MAIN_MENU:
-			
 				// Begin to render menuState.
-				gameController.setState(State.MENU_STATE);
-				gameController.renderCurrentState();
+				try {
+					gameController.setState(State.MENU_STATE);
+					gameController.renderCurrentState();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;	
 		
 			case VIEW_RANK:
-			
 				// Begin to render viewRankState
-				gameController.setState(State.VIEW_RANK_STATE);
-				gameController.renderCurrentState();
+				try {
+					gameController.setState(State.VIEW_RANK_STATE);
+					gameController.renderCurrentState();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 		
 			case EXIT:
-				
 				gameController.exitGame();	
 				break;
 			
