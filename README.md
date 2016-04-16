@@ -4,12 +4,12 @@
 ####1. Working code:
 The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary in database.txt file.  
 ######How to compile:
-- Fork the project.
-- Fetch and pull the project to Eclipse.
+- Clone the project in Eclipse.
+- Import the project in Eclipse.
 - Compile the GameEngine.java in src/main package.
 
 ####2. Unit test:
-All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test). Note that some tests might take longer than 3 seconds to complete because we use Thread.sleep() in source code.
+All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test).
 
 ####3. Change log:
 - Use case diagram now includes a Database actor.
