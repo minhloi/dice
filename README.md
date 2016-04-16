@@ -4,7 +4,7 @@
 ####1. Working code:
 The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary data in database.txt file.  
 ######How to compile:
-- Clone the project in Eclipse.
+- Clone the Github repo in Eclipse.
 - Import the project in Eclipse.
 - Compile the GameEngine.java in src/main package.
 
