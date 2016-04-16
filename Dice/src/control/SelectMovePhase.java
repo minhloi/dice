@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import boundary.GameCanvas;
 import boundary.GameObject;
-import boundary.SelectPanel;
+import boundary.Panel;
 import entity.Player;
 
 public class SelectMovePhase extends Phase {
@@ -17,11 +17,6 @@ public class SelectMovePhase extends Phase {
 	// Player move-set definition
 	public static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
 	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
-	
-	public static final int PANEL_1_POSITION_X = 20;
-	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - SelectPanel.HEIGHT - 80;
-	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - SelectPanel.WIDTH - 20;
-	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - SelectPanel.HEIGHT - 80;
 	
 	public SelectMovePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
 		this.player1 = player1;
@@ -36,19 +31,19 @@ public class SelectMovePhase extends Phase {
 			setCompleted();			
 		} else {
 			
-			SelectPanel player1SelectPanel = new SelectPanel(1, PANEL_1_POSITION_X, PANEL_1_POSITION_Y);
-			SelectPanel player2SelectPanel = new SelectPanel(2, PANEL_2_POSITION_X, PANEL_2_POSITION_Y);
+			Panel player1SelectPanel = new Panel(1, Turn.PANEL_1_POSITION_X, Turn.PANEL_1_POSITION_Y);
+			Panel player2SelectPanel = new Panel(2, Turn.PANEL_2_POSITION_X, Turn.PANEL_2_POSITION_Y);
 			
 			if(player1.getMove() == Player.NOT_SELECT){
-				player1SelectPanel.setState(SelectPanel.SELECTING);
+				player1SelectPanel.setState(Panel.SELECTING);
 			} else {
-				player1SelectPanel.setState(SelectPanel.READY);
+				player1SelectPanel.setState(Panel.READY);
 			}
 			
 			if(player2.getMove() == Player.NOT_SELECT){
-				player2SelectPanel.setState(SelectPanel.SELECTING);
+				player2SelectPanel.setState(Panel.SELECTING);
 			} else {
-				player2SelectPanel.setState(SelectPanel.READY);
+				player2SelectPanel.setState(Panel.READY);
 			}
 			
 			objectList.add(player1SelectPanel);
@@ -85,7 +80,11 @@ public class SelectMovePhase extends Phase {
 				player2.setMove(Player.SPECIAL_ATTACK);
 				break;
 		}
-
+		
+		if(player1.getMove() != Player.NOT_SELECT && player2.getMove() != Player.NOT_SELECT){
+			setCompleted();			
+		}
+		
 	}
 
 	@Override

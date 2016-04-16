@@ -3,7 +3,9 @@ package control;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import boundary.GameCanvas;
 import boundary.GameObject;
+import boundary.Panel;
 import boundary.PlayerObject;
 import entity.Player;
 
@@ -20,6 +22,11 @@ public class Turn implements Listenable {
 	private Phase phaseList[];
 	private int currentPhase;
 	
+	public static final int PANEL_1_POSITION_X = 20;
+	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - Panel.HEIGHT - 80;
+	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - Panel.WIDTH - 20;
+	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - Panel.HEIGHT - 80;
+		
 	public static final int PLAYER1_IDLE_POSITION_X = 0;
 	public static final int PLAYER1_IDLE_POSITION_Y = 250;
 	public static final int PLAYER2_IDLE_POSITION_X = 600;
