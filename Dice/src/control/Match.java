@@ -93,7 +93,7 @@ public class Match {
 		} else {
 		
 			// No one wins the game yet then go to next turn
-			System.out.println("Next turn in 5 seconds...");
+			System.out.println("Next turn in 3 seconds...");
 			System.out.println();
 			
 			// Wait 3 seconds for a new turn.
