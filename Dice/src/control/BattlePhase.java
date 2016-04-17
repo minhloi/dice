@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import boundary.DiceObject;
 import boundary.GameObject;
 import boundary.Panel;
+import boundary.PlayerObject;
 import entity.Player;
 
 public class BattlePhase extends Phase {
@@ -14,15 +15,19 @@ public class BattlePhase extends Phase {
 	private Player player2;
 	private Player turnWinner;
 	private Player turnLoser;
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
 	
 	private int winnerCurrentDice;
 	private boolean winnerDiceStopped;
 	
 	private ArrayList<GameObject> objectList;
 	
-	public BattlePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
+	public BattlePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
+		this.player1Object = player1Object;
+		this.player2Object = player2Object;
 		this.objectList = objectList;
 		winnerDiceStopped = false;
 		
@@ -32,6 +37,9 @@ public class BattlePhase extends Phase {
 		Panel winnerPanel;
 		DiceObject winnerDice;
 		
+		player1Object.setIdle(PlayerObject.PLAYER1_DEFAULT_POSITION_X, PlayerObject.PLAYER1_DEFAULT_POSITION_Y);
+		player2Object.setIdle(PlayerObject.PLAYER2_DEFAULT_POSITION_X, PlayerObject.PLAYER2_DEFAULT_POSITION_Y);
+	
 		if(player1.getTurnInfo().isTurnWinner()){
 			turnWinner = player1;
 			turnLoser = player2;
@@ -42,9 +50,11 @@ public class BattlePhase extends Phase {
 		
 		if(player1.getTurnInfo().isTurnWinner()){
 			winnerPanel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
+			winnerPanel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			winnerDice = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
 		} else {
 			winnerPanel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
+			winnerPanel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			winnerDice = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y );
 		}
 		
@@ -53,6 +63,9 @@ public class BattlePhase extends Phase {
 		}
 		
 		winnerDice.setImageByDiceNum(winnerCurrentDice);
+		
+		objectList.add(player1Object);
+		objectList.add(player2Object);
 		
 		objectList.add(winnerPanel);
 		objectList.add(winnerDice);

@@ -6,14 +6,12 @@ public class TurnInfo {
 	private boolean blockDisabled;
 	private boolean turnWinner;
 	private boolean moveAlreadySet;
-	private Player player;
 	
-	public TurnInfo(Player player){
+	public TurnInfo(){
 		blockDisabled = false;
 		turnWinner = false;
 		moveAlreadySet = false;
 		currentMove = Player.NOT_SELECT;
-		this.player = player;
 	}
 	
 	public boolean isBlockDisabled(){
@@ -56,22 +54,14 @@ public class TurnInfo {
 			throw new Exception("Player has already set move. Overriding move is not allowed.");
 		} else {
 			currentMove = move;
-			switch(currentMove){
-				case Player.BLOCK:
-					disableBlock();
-					break;
-				case Player.SPECIAL_ATTACK:
-					player.incrementSpecialUsed();
-					break;
-			}
 		}
 	}
 	
-	private void disableBlock(){
+	public void disableBlock(){
 		blockDisabled = true;
 	}
 	
-	private void enableBlock(){
+	public void enableBlock(){
 		blockDisabled = false;
 	}
 	

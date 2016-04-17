@@ -4,26 +4,32 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import boundary.GameCanvas;
 import boundary.GameObject;
 import boundary.Panel;
+import boundary.PlayerObject;
 import entity.Player;
 
 public class SelectMovePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
 	private ArrayList<GameObject> objectList;
 	
 	// Player move-set definition
 	public static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
 	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
 	
-	public SelectMovePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
+	public SelectMovePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
+		this.player1Object = player1Object;
+		this.player2Object = player2Object;
 		this.objectList = objectList;
 		
+		this.player1Object.setIdle(PlayerObject.PLAYER1_DEFAULT_POSITION_X, PlayerObject.PLAYER1_DEFAULT_POSITION_Y);
+		this.player2Object.setIdle(PlayerObject.PLAYER2_DEFAULT_POSITION_X, PlayerObject.PLAYER2_DEFAULT_POSITION_Y);
 	}
 	
 	public void render(){
@@ -47,6 +53,9 @@ public class SelectMovePhase extends Phase {
 			player2Panel.drawString("Waiting for Player 1.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
 		}
+		
+		objectList.add(player1Object);
+		objectList.add(player2Object);
 		
 		objectList.add(player1Panel);
 		objectList.add(player2Panel);

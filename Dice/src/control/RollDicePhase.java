@@ -9,12 +9,15 @@ import java.util.Scanner;
 import boundary.DiceObject;
 import boundary.GameObject;
 import boundary.Panel;
+import boundary.PlayerObject;
 import entity.Player;
 
 public class RollDicePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
 	
 	private boolean dice1Stopped;
 	private boolean dice2Stopped;
@@ -28,9 +31,12 @@ public class RollDicePhase extends Phase {
 	public static final int TIE_ROLLING_AGAIN = 1;
 	public static final int HAS_WINNER = 2;
 		
-	public RollDicePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
+	public RollDicePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
+		
 		this.player1 = player1;
 		this.player2 = player2;
+		this.player1Object = player1Object;
+		this.player2Object = player2Object;
 		this.objectList = objectList;
 		this.dice1Stopped = false;
 		this.dice2Stopped = false;
@@ -38,6 +44,9 @@ public class RollDicePhase extends Phase {
 		this.player2CurrentDice = player2.getDice().roll();
 		this.currentState = ROLLING;
 		
+		this.player1Object.setIdle(PlayerObject.PLAYER1_DEFAULT_POSITION_X, PlayerObject.PLAYER1_DEFAULT_POSITION_Y);
+		this.player2Object.setIdle(PlayerObject.PLAYER2_DEFAULT_POSITION_X, PlayerObject.PLAYER2_DEFAULT_POSITION_Y);
+			
 	}
 	
 	public void render(){
@@ -85,6 +94,9 @@ public class RollDicePhase extends Phase {
 
 		DiceObject dice2Object = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y);
 		dice2Object.setImageByDiceNum(player2CurrentDice);
+		
+		objectList.add(player1Object);
+		objectList.add(player2Object);
 		
 		objectList.add(player1Panel);
 		objectList.add(player2Panel);
@@ -152,8 +164,6 @@ public class RollDicePhase extends Phase {
 					break;
 			}
 
-			System.out.println(player1.getTurnInfo().isTurnWinner());
-			System.out.println(player2.getTurnInfo().isTurnWinner());
 		}
 				
 	}

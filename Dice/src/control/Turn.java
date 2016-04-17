@@ -26,16 +26,16 @@ public class Turn implements Listenable {
 		this.objectList = objectList;
 		
 		try {
-			this.player1Object = new PlayerObject(1, PlayerObject.PLAYER1_IDLE_POSITION_X, PlayerObject.PLAYER1_IDLE_POSITION_Y);
-			this.player2Object = new PlayerObject(2, PlayerObject.PLAYER2_IDLE_POSITION_X, PlayerObject.PLAYER2_IDLE_POSITION_Y);
+			this.player1Object = new PlayerObject(1);
+			this.player2Object = new PlayerObject(2);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		
 		phaseList = new Phase[Phase.LENGTH];
-		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, objectList);
-		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, objectList);
-		phaseList[Phase.BATTLE_PHASE] = new BattlePhase(player1, player2, objectList);
+		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, player1Object, player2Object, objectList);
+		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, player1Object, player2Object, objectList);
+		phaseList[Phase.BATTLE_PHASE] = new BattlePhase(player1, player2, player1Object, player2Object, objectList);
 		
 		// The initial phase is SelectMovePhase.
 		this.currentPhase = Phase.SELECT_MOVE_PHASE;
@@ -45,10 +45,6 @@ public class Turn implements Listenable {
 	
 	public void render(){
 	
-		setPlayerObjectsIdle();
-		objectList.add(player1Object);
-		objectList.add(player2Object);
-		
 		if(phaseList[currentPhase].isCompleted()){
 			if(hasNextPhase()){
 				renderNextPhase();
@@ -60,12 +56,7 @@ public class Turn implements Listenable {
 		}
 		
 	}
-	
-	private void setPlayerObjectsIdle(){
-		player1Object.setIdle();
-		player2Object.setIdle();
-	}
-	
+		
 	private boolean hasNextPhase(){
 		boolean hasNext;
 		if(currentPhase >= Phase.LENGTH - 1){

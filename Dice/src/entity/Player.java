@@ -29,7 +29,7 @@ public class Player {
 		this.health = DEFAULT_HEALTH_POINT; 
 		numSpecialUsed = 0;
 		dice = new Dice();
-		turnInfo = new TurnInfo(this);
+		turnInfo = new TurnInfo();
 	}
 	
 	public int getHealth(){
@@ -68,9 +68,22 @@ public class Player {
 		++numSpecialUsed;
 	}
 	
-	public void resetTurnKeeper(){
-		turnInfo = new TurnInfo(this);
-	}
-	
+	public void resetTurnInfo(){
 		
+		int previousMove = turnInfo.getMove();
+		
+		turnInfo = new TurnInfo();
+		switch(previousMove){
+			case Player.BLOCK:
+				turnInfo.disableBlock();
+				break;
+			case Player.SPECIAL_ATTACK:
+				incrementSpecialUsed();
+				break;
+			default:
+				turnInfo.enableBlock();
+		}
+		
+	}
+			
 }
