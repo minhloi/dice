@@ -6,11 +6,10 @@ public class Player {
 	private String username;	
 	private int health;
 	private Dice dice;
+	private TurnInfo turnInfo;
+	
 	// Number of times SPECIAL_ATTACK used.
 	private int numSpecialUsed;
-	private boolean blockDisabled;
-	
-	private int currentMove;
 	
 	// Some default configurations.
 	public static final int DEFAULT_HEALTH_POINT = 10;
@@ -25,13 +24,12 @@ public class Player {
 	public Player(int number, String username){
 		
 		// Initialize variables
-		playerNumber = number;
+		this.playerNumber = number;
 		this.username = username;
-		health = DEFAULT_HEALTH_POINT; 
-		currentMove = NOT_SELECT;
+		this.health = DEFAULT_HEALTH_POINT; 
 		numSpecialUsed = 0;
-		blockDisabled = false;
 		dice = new Dice();
+		turnInfo = new TurnInfo(this);
 	}
 	
 	public int getHealth(){
@@ -55,8 +53,8 @@ public class Player {
 		return dice;
 	}
 	
-	public boolean isBlockDisabled(){
-		return blockDisabled;
+	public TurnInfo getTurnInfo(){
+		return turnInfo;
 	}
 	
 	public boolean canUseSpecial(){
@@ -65,55 +63,14 @@ public class Player {
 		} else
 			return true;	
 	}
-		
-	public int getMove(){
-		return currentMove;
-	}
-	
-	public String getMoveInString(){
-		if(currentMove == ATTACK)
-			return "ATTACK";
-		else if(currentMove == BLOCK)
-			return "BLOCK";
-		else if(currentMove == SPECIAL_ATTACK)
-			return "SPECIAL_ATTACK";
-		else 
-			return "NOT_SELECTED";	
-	}
-	
-	// Assume that setMove is called only once in a turn,
-	// meaning once player selected a move, he cannot change.
-	public void setMove(int move){
-		currentMove = move;
-		if(currentMove == BLOCK){
-			disableBlock();
-		} else if(currentMove == SPECIAL_ATTACK){
-			incrementSpecialUsed();
-		}
-	}
-	
-	public void resetMove(){
-		
-		// If player does not select BLOCK this turn,
-		// then enable it back for next turn.
-		if(currentMove != BLOCK){
-			enableBlock();
-		}
-		
-		currentMove = NOT_SELECT;
-		
-	}
-	
-	private void disableBlock(){
-		blockDisabled = true;
-	}
-	
-	private void enableBlock(){
-		blockDisabled = false;
-	}
-	
-	private void incrementSpecialUsed(){
+
+	public void incrementSpecialUsed(){
 		++numSpecialUsed;
 	}
+	
+	public void resetTurnKeeper(){
+		turnInfo = new TurnInfo(this);
+	}
+	
 		
 }

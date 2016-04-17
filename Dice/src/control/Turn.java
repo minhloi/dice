@@ -11,8 +11,6 @@ public class Turn implements Listenable {
 	
 	private Player player1;
 	private Player player2;
-	private Player rollWinner;
-	private Player rollLoser;
 	
 	private PlayerObject player1Object;
 	private PlayerObject player2Object;
@@ -36,7 +34,8 @@ public class Turn implements Listenable {
 		
 		phaseList = new Phase[Phase.LENGTH];
 		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, objectList);
-		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, rollWinner, rollLoser, objectList);
+		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, objectList);
+		phaseList[Phase.BATTLE_PHASE] = new BattlePhase(player1, player2, objectList);
 		
 		// The initial phase is SelectMovePhase.
 		this.currentPhase = Phase.SELECT_MOVE_PHASE;

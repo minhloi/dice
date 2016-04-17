@@ -37,6 +37,10 @@ public class Panel extends GameObject {
 	public void drawString(String string, int positionX, int positionY, Color color){
 		drawString(string, positionX, positionY, color, defaultFont);
 	}
+	
+	public void drawString(String string, int positionX, int positionY, Font font){
+		drawString(string, positionX, positionY, defaultColor, font);
+	}
 		
 	public void drawString(String string, int positionX, int positionY, Color color, Font font){
 		Graphics graphics = image.getGraphics();
@@ -46,7 +50,5 @@ public class Panel extends GameObject {
 		graphics.drawString(string, positionX, positionY);
 		graphics.dispose();
 	}
-	
-	
 	
 }

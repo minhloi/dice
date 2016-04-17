@@ -1,6 +1,7 @@
 package control;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,12 +30,7 @@ public class RollDicePhase extends Phase {
 	public static final int TIE_ROLLING_AGAIN = 1;
 	public static final int HAS_WINNER = 2;
 		
-	public static final int DICE1_POSITION_X = Panel.PANEL_1_POSITION_X + Panel.WIDTH - DiceObject.WIDTH - 10;
-	public static final int DICE1_POSITION_Y = Panel.PANEL_1_POSITION_Y + 10;
-	public static final int DICE2_POSITION_X = Panel.PANEL_2_POSITION_X + Panel.WIDTH - DiceObject.WIDTH - 10;
-	public static final int DICE2_POSITION_Y = Panel.PANEL_2_POSITION_Y + 10;
-
-	public RollDicePhase(Player player1, Player player2, Player rollWinner, Player rollLoser, ArrayList<GameObject> objectList){
+	public RollDicePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
 		this.objectList = objectList;
@@ -73,23 +69,23 @@ public class RollDicePhase extends Phase {
 		} else if(currentState == HAS_WINNER){
 			if(rollWinner.getNumber() == 1){
 				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player1Panel.drawString("Press w to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+				player1Panel.drawString("Press w to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
 				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}
 			
 			if(rollWinner.getNumber() == 2){
 				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player2Panel.drawString("Press i to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+				player2Panel.drawString("Press i to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
 				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}
 		}
 		
-		DiceObject dice1Object = new DiceObject(DICE1_POSITION_X, DICE1_POSITION_Y);
+		DiceObject dice1Object = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y);
 		dice1Object.setImageByDiceNum(player1CurrentDice);
 
-		DiceObject dice2Object = new DiceObject(DICE2_POSITION_X, DICE2_POSITION_Y);
+		DiceObject dice2Object = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y);
 		dice2Object.setImageByDiceNum(player2CurrentDice);
 		
 		objectList.add(player1Panel);
