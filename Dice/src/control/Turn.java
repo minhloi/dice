@@ -21,6 +21,7 @@ public class Turn implements Listenable {
 	private ArrayList<GameObject> objectList;
 	private Phase phaseList[];
 	private int currentPhase;
+	private boolean turnCompleted;
 	
 	public static final int PANEL_1_POSITION_X = 20;
 	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - Panel.HEIGHT - 80;
@@ -51,23 +52,26 @@ public class Turn implements Listenable {
 		
 		// The initial phase is SelectMovePhase.
 		this.currentPhase = Phase.SELECT_MOVE_PHASE;
+		this.turnCompleted = false;
 		
 	}
 	
-	public boolean render(){
-		
-		boolean hasNextPhase = false;
-		
+	public void render(){
+	
 		setPlayerObjectsIdle();
 		objectList.add(player1Object);
 		objectList.add(player2Object);
 		
-		phaseList[currentPhase].render();
 		if(phaseList[currentPhase].isCompleted()){
-			hasNextPhase = nextPhase();
+			if(hasNextPhase()){
+				renderNextPhase();
+			} else {
+				setTurnCompleted();
+			}
+		} else {
+			phaseList[currentPhase].render();
 		}
 		
-		return hasNextPhase;
 	}
 	
 	private void setPlayerObjectsIdle(){
@@ -75,15 +79,28 @@ public class Turn implements Listenable {
 		player2Object.setIdle();
 	}
 	
-	private boolean nextPhase(){
+	private boolean hasNextPhase(){
 		boolean hasNext;
-		if(currentPhase >= Phase.LENGTH){
+		if(currentPhase >= Phase.LENGTH - 1){
 			hasNext = false; 
 		} else {
-			++currentPhase;
 			hasNext = true;
 		}
-		return hasNext;		
+		return hasNext;
+	}
+	
+	private void renderNextPhase(){
+		if(hasNextPhase() == true){
+			++currentPhase;
+			phaseList[currentPhase].render();
+		}
+	}
+	
+	public boolean isTurnCompleted(){
+		return turnCompleted;
+	}
+	private void setTurnCompleted(){
+		turnCompleted = true;
 	}
 	
 	@Override

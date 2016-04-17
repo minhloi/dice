@@ -31,23 +31,25 @@ public class SelectMovePhase extends Phase {
 			setCompleted();			
 		} else {
 			
-			Panel player1SelectPanel = new Panel(1, Turn.PANEL_1_POSITION_X, Turn.PANEL_1_POSITION_Y);
-			Panel player2SelectPanel = new Panel(2, Turn.PANEL_2_POSITION_X, Turn.PANEL_2_POSITION_Y);
+			Panel player1Panel = new Panel(1, Turn.PANEL_1_POSITION_X, Turn.PANEL_1_POSITION_Y);
+			Panel player2Panel = new Panel(2, Turn.PANEL_2_POSITION_X, Turn.PANEL_2_POSITION_Y);
 			
 			if(player1.getMove() == Player.NOT_SELECT){
-				player1SelectPanel.setState(Panel.SELECTING);
+				player1Panel.drawString("Press a key to select your move.", Panel.ALIGN_TOP, Panel.ALIGN_LEFT);
+				player1Panel.drawString("Press a key to select your move.", Panel.ALIGN_TOP, Panel.ALIGN_LEFT);
+				
 			} else {
-				player1SelectPanel.setState(Panel.READY);
+				player1Panel.drawString("Ready.", Panel.ALIGN_TOP, Panel.ALIGN_LEFT);
 			}
 			
 			if(player2.getMove() == Player.NOT_SELECT){
-				player2SelectPanel.setState(Panel.SELECTING);
+				player2Panel.drawString("Press a key to select your move.", Panel.ALIGN_TOP, Panel.ALIGN_LEFT);
 			} else {
-				player2SelectPanel.setState(Panel.READY);
+				player2Panel.drawString("Ready.", Panel.ALIGN_TOP, Panel.ALIGN_LEFT);
 			}
 			
-			objectList.add(player1SelectPanel);
-			objectList.add(player2SelectPanel);
+			objectList.add(player1Panel);
+			objectList.add(player2Panel);
 			
 		}	
 	}
