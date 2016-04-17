@@ -26,6 +26,8 @@ public class GameCanvas extends JPanel {
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 800;
 	
+	public static final int TIMER = 25; // in ms
+	
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
 	private Timer timer;
@@ -38,7 +40,7 @@ public class GameCanvas extends JPanel {
 		
 		objectList = new ArrayList<GameObject>();
 		gameController = new GameController(objectList);
-		timer = new Timer(18, new GameLoop());
+		timer = new Timer(TIMER, new GameLoop());
 	}
 	
 	public void render(){

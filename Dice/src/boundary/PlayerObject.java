@@ -5,6 +5,7 @@ public class PlayerObject extends GameObject{
 	private int playerNumber;
 	private String resourceFolder;
 	private int currentState;
+
 	private int currentPositionX;
 	private int currentPositionY;
 	
@@ -12,17 +13,31 @@ public class PlayerObject extends GameObject{
 	public static final int WIDTH = 240;
 	
 	public static final int IDLE = 0;
-	public static final int WALKING = 1;
+	public static final int RUNNING = 1;
 	public static final int ATTACKING = 2;
-	public static final int WALKING_BACK = 3;	
+	public static final int RUNNING_BACK = 3;	
 	
 	public static final int PLAYER1_DEFAULT_POSITION_X = 0;
 	public static final int PLAYER1_DEFAULT_POSITION_Y = 220;
+	public static final int PLAYER1_FRONT_OF_PLAYER2 = 480;
+	
 	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH;
 	public static final int PLAYER2_DEFAULT_POSITION_Y = 220;
+	public static final int PLAYER2_FRONT_OF_PLAYER1 = 100;
 	
-	public static final double VELOCITY = 0.16; // in px/ms 
+	// There are a total of 8 states in one running step
+	public static final int STATES_PER_STEP = 8;
 	
+	// Step per pixel: How big a step is.
+	public static final int STEP_PER_PX = 50;
+	
+	// How fast does a state change depends on how big the step is.
+	// For example, if the step is small then the state will change very fast.
+	public static final int STATE_CHANGE_SPEED = STEP_PER_PX / STATES_PER_STEP;
+	
+	// Running speed: How many pixels it runs per 25 ms (The game loop runs every 25 ms).
+	public static final int RUNNING_SPEED = 6;
+		
 	public static final String IDLE_IMAGE = "idle.png";
 	
 	public PlayerObject(int playerNumber) throws Exception{
@@ -35,32 +50,87 @@ public class PlayerObject extends GameObject{
 		this.resourceFolder = "/character/player" + this.playerNumber + "/";
 	}
 	
-	public void setIdle(int positionX, int positionY){
-		currentPositionX = positionX;
-		currentPositionY = positionY;
+	public void setIdle(){
+		
+		if(playerNumber == 1){
+			currentPositionX = PLAYER1_DEFAULT_POSITION_X;
+			currentPositionY = PLAYER1_DEFAULT_POSITION_Y;
+		} else {
+			currentPositionX = PLAYER2_DEFAULT_POSITION_X;
+			currentPositionY = PLAYER2_DEFAULT_POSITION_Y;
+		}
+		
 		currentState = IDLE;
 		
 		setPosition(currentPositionX, currentPositionY);
 		setImageByPath(resourceFolder + IDLE_IMAGE);		
 	}
 	
-	public void moveTo(int destinationX){
+	public void setIdle(int positionX, int positionY){
 		
-		if(currentPositionX >= destinationX){
-			currentState = IDLE;	
-		} else {
-			currentState = WALKING;
-			currentPositionX +=
-		}
+		currentPositionX = positionX;
+		currentPositionY = positionY;
+	
+		setPosition(currentPositionX, currentPositionY);
+		setImageByPath(resourceFolder + IDLE_IMAGE);		
+	
 	}
 	
+	public void moveToOpponent(){
+		
+		if(playerNumber == 1){
+			
+			currentState = RUNNING;
+			currentPositionX += RUNNING_SPEED;
+				
+			if(currentPositionX >= PLAYER1_FRONT_OF_PLAYER2){
+			
+				currentState = IDLE;
+				setIdle(currentPositionX, PLAYER1_DEFAULT_POSITION_Y);
+			
+			} else {
+				
+				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+				setPositionX(currentPositionX);
+				setImageByPath(resourceFolder + "run_" + currentRunningState + ".png");
+			
+			}
+		
+		} else {
+			
+			currentState = RUNNING;
+			currentPositionX -= RUNNING_SPEED;
+		
+			if(currentPositionX <= PlayerObject.PLAYER2_FRONT_OF_PLAYER1){
+			
+				currentState = IDLE;	
+			
+			} else {
+			
+				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+				setPositionX(currentPositionX);
+				setImageByPath(resourceFolder + "run_" + currentRunningState + ".png");
+			}
+		}
+	}
+		
 	public void moveBack(int destinationX){
 		
 	
 	}
-	
+		
 	public int getState(){
 		return currentState;
+	}
+	
+	public boolean isIdle(){
+		boolean isIdle;
+		if(currentState == IDLE){
+			isIdle = true;
+		} else {
+			isIdle = false;
+		}
+		return isIdle;	 
 	}
 	
 }

@@ -28,8 +28,8 @@ public class SelectMovePhase extends Phase {
 		this.player2Object = player2Object;
 		this.objectList = objectList;
 		
-		this.player1Object.setIdle(PlayerObject.PLAYER1_DEFAULT_POSITION_X, PlayerObject.PLAYER1_DEFAULT_POSITION_Y);
-		this.player2Object.setIdle(PlayerObject.PLAYER2_DEFAULT_POSITION_X, PlayerObject.PLAYER2_DEFAULT_POSITION_Y);
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
 	}
 	
 	public void render(){

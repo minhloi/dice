@@ -44,29 +44,23 @@ public class RollDicePhase extends Phase {
 		this.player2CurrentDice = player2.getDice().roll();
 		this.currentState = ROLLING;
 		
-		this.player1Object.setIdle(PlayerObject.PLAYER1_DEFAULT_POSITION_X, PlayerObject.PLAYER1_DEFAULT_POSITION_Y);
-		this.player2Object.setIdle(PlayerObject.PLAYER2_DEFAULT_POSITION_X, PlayerObject.PLAYER2_DEFAULT_POSITION_Y);
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
 			
 	}
 	
 	public void render(){
 				
-		// Keep rolling until players press stop.
-		if(dice1Stopped == false ){
-			player1CurrentDice =  player1.getDice().roll();
-		}
-		if(dice2Stopped == false){
-			player2CurrentDice =  player2.getDice().roll();			
-		}
-
 		Panel player1Panel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
 		Panel player2Panel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
 		
 		if(currentState == ROLLING){
+			rollingDie();
 			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 		
 		} else if(currentState == TIE_ROLLING_AGAIN){
+			rollingDie();
 			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
 			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
@@ -106,6 +100,16 @@ public class RollDicePhase extends Phase {
 		
 	}
 	
+	private void rollingDie(){
+		// Keep rolling until players press stop.
+		if(dice1Stopped == false ){
+			player1CurrentDice =  player1.getDice().roll();
+		}
+		if(dice2Stopped == false){
+				player2CurrentDice =  player2.getDice().roll();			
+		}
+	}
+	
 	private boolean setWinner(){
 		boolean hasWinner = false;
 		if(player1CurrentDice > player2CurrentDice ){
@@ -118,7 +122,7 @@ public class RollDicePhase extends Phase {
 		return hasWinner;
 	}
 	
-	private void rollAgain(){
+	private void setToRollAgain(){
 		dice1Stopped = false;
 		dice2Stopped = false;
 	}
@@ -134,6 +138,7 @@ public class RollDicePhase extends Phase {
 
 		int keyCode = keyEvent.getKeyCode();
 		if(currentState == ROLLING || currentState == TIE_ROLLING_AGAIN){
+			
 			switch(keyCode){
 				case 87: //w
 					dice1Stopped = true;
@@ -148,11 +153,12 @@ public class RollDicePhase extends Phase {
 					currentState = HAS_WINNER;
 				} else {
 					currentState = TIE_ROLLING_AGAIN;
-					rollAgain();
+					setToRollAgain();
 				}
 			}
 
 		} else if(currentState == HAS_WINNER){
+			
 			switch(keyCode){
 				case 87: //w
 					if(player1.getTurnInfo().isTurnWinner())
