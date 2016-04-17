@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,15 +25,14 @@ public class RollDicePhase extends Phase {
 	
 	private ArrayList<GameObject> objectList;
 	
-	public static final int ROLLING_STATE = 0;
-	public static final int ROLLING_AGAIN_STATE = 1;
-	public static final int DISPLAY_WINNER_STATE = 2;
-	
-	
-	public static final int DICE1_POSITION_X = Turn.PANEL_1_POSITION_X + Panel.WIDTH - DiceObject.WIDTH - 10;
-	public static final int DICE1_POSITION_Y = Turn.PANEL_1_POSITION_Y + 10;
-	public static final int DICE2_POSITION_X = Turn.PANEL_2_POSITION_X + 10;
-	public static final int DICE2_POSITION_Y = Turn.PANEL_2_POSITION_Y + 10;
+	public static final int ROLLING = 0;
+	public static final int TIE_ROLLING_AGAIN = 1;
+	public static final int HAS_WINNER = 2;
+		
+	public static final int DICE1_POSITION_X = Panel.PANEL_1_POSITION_X + Panel.WIDTH - DiceObject.WIDTH - 10;
+	public static final int DICE1_POSITION_Y = Panel.PANEL_1_POSITION_Y + 10;
+	public static final int DICE2_POSITION_X = Panel.PANEL_2_POSITION_X + Panel.WIDTH - DiceObject.WIDTH - 10;
+	public static final int DICE2_POSITION_Y = Panel.PANEL_2_POSITION_Y + 10;
 
 	public RollDicePhase(Player player1, Player player2, Player rollWinner, Player rollLoser, ArrayList<GameObject> objectList){
 		this.player1 = player1;
@@ -42,35 +42,49 @@ public class RollDicePhase extends Phase {
 		this.dice2Stopped = false;
 		this.player1CurrentDice = player1.getDice().roll();
 		this.player2CurrentDice = player2.getDice().roll();
-		this.currentState = ROLLING_STATE;
+		this.currentState = ROLLING;
 		
 	}
 	
 	public void render(){
 				
-		if(dice1Stopped == true && dice2Stopped == true){
-			if(setWinner() == true){
-				setCompleted();
-			} else {
-				rollAgain();
-			}
-			
-		} else {
-			
-			// Keep rolling until players press stop.
-			if(dice1Stopped == false ){
-				player1CurrentDice =  player1.getDice().roll();
-			}
-			
-			if(dice2Stopped == false){
-				player2CurrentDice =  player2.getDice().roll();			
-			}
-
+		// Keep rolling until players press stop.
+		if(dice1Stopped == false ){
+			player1CurrentDice =  player1.getDice().roll();
+		}
+		if(dice2Stopped == false){
+			player2CurrentDice =  player2.getDice().roll();			
 		}
 
-		Panel player1Panel = new Panel(1, Turn.PANEL_1_POSITION_X, Turn.PANEL_1_POSITION_Y);
-		Panel player2Panel = new Panel(2, Turn.PANEL_2_POSITION_X, Turn.PANEL_2_POSITION_Y);
+		Panel player1Panel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
+		Panel player2Panel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
 		
+		if(currentState == ROLLING){
+			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+		
+		} else if(currentState == TIE_ROLLING_AGAIN){
+			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			
+			player2Panel.drawString("Tie. Rolling again", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+		
+		} else if(currentState == HAS_WINNER){
+			if(rollWinner.getNumber() == 1){
+				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
+				player1Panel.drawString("Press w to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			} else {
+				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
+			}
+			
+			if(rollWinner.getNumber() == 2){
+				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
+				player2Panel.drawString("Press i to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			} else {
+				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
+			}
+		}
 		
 		DiceObject dice1Object = new DiceObject(DICE1_POSITION_X, DICE1_POSITION_Y);
 		dice1Object.setImageByDiceNum(player1CurrentDice);
@@ -115,7 +129,7 @@ public class RollDicePhase extends Phase {
 	public void onKeyReleased(KeyEvent keyEvent) {
 
 		int keyCode = keyEvent.getKeyCode();
-		if(currentState == ROLLING_STATE){
+		if(currentState == ROLLING || currentState == TIE_ROLLING_AGAIN){
 			switch(keyCode){
 				case 87: //w
 					dice1Stopped = true;
@@ -124,7 +138,29 @@ public class RollDicePhase extends Phase {
 					dice2Stopped = true;
 					break;
 			}
-		}		
+			
+			if(dice1Stopped == true & dice2Stopped == true){
+				if(setWinner()){
+					currentState = HAS_WINNER;
+				} else {
+					currentState = TIE_ROLLING_AGAIN;
+					rollAgain();
+				}
+			}
+
+		} else if(currentState == HAS_WINNER){
+			switch(keyCode){
+				case 87: //w
+					if(rollWinner.getNumber() == 1)
+						setCompleted();
+					break;
+				case 73: //i
+					if(rollWinner.getNumber() == 2)
+						setCompleted();
+					break;
+			}
+		}
+				
 	}
 
 	@Override

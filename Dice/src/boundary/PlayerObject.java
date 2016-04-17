@@ -7,7 +7,12 @@ public class PlayerObject extends GameObject{
 	private int playerNumber;
 	private String resourceFolder;
 	
-	public static final String IDLE_FILE = "idle.png";
+	public static final int PLAYER1_IDLE_POSITION_X = 0;
+	public static final int PLAYER1_IDLE_POSITION_Y = 250;
+	public static final int PLAYER2_IDLE_POSITION_X = 600;
+	public static final int PLAYER2_IDLE_POSITION_Y = 250;
+		
+	public static final String IDLE = "idle.png";
 	
 	public PlayerObject(int playerNumber, int idlePositionX, int idlePositionY) throws Exception{
 		
@@ -24,7 +29,7 @@ public class PlayerObject extends GameObject{
 	
 	public void setIdle(){
 		setPosition(idlePositionX, idlePositionY);
-		setImageByPath(resourceFolder + IDLE_FILE);		
+		setImageByPath(resourceFolder + IDLE);		
 	}
 	
 	

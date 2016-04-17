@@ -3,9 +3,7 @@ package control;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import boundary.GameCanvas;
 import boundary.GameObject;
-import boundary.Panel;
 import boundary.PlayerObject;
 import entity.Player;
 
@@ -23,16 +21,6 @@ public class Turn implements Listenable {
 	private int currentPhase;
 	private boolean turnCompleted;
 	
-	public static final int PANEL_1_POSITION_X = 20;
-	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - Panel.HEIGHT - 80;
-	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - Panel.WIDTH - 20;
-	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - Panel.HEIGHT - 80;
-		
-	public static final int PLAYER1_IDLE_POSITION_X = 0;
-	public static final int PLAYER1_IDLE_POSITION_Y = 250;
-	public static final int PLAYER2_IDLE_POSITION_X = 600;
-	public static final int PLAYER2_IDLE_POSITION_Y = 250;
-		
 	public Turn(Player player1, Player player2, ArrayList<GameObject> objectList){
 		
 		this.player1 = player1;
@@ -40,8 +28,8 @@ public class Turn implements Listenable {
 		this.objectList = objectList;
 		
 		try {
-			this.player1Object = new PlayerObject(1, PLAYER1_IDLE_POSITION_X, PLAYER1_IDLE_POSITION_Y);
-			this.player2Object = new PlayerObject(2, PLAYER2_IDLE_POSITION_X, PLAYER2_IDLE_POSITION_Y);
+			this.player1Object = new PlayerObject(1, PlayerObject.PLAYER1_IDLE_POSITION_X, PlayerObject.PLAYER1_IDLE_POSITION_Y);
+			this.player2Object = new PlayerObject(2, PlayerObject.PLAYER2_IDLE_POSITION_X, PlayerObject.PLAYER2_IDLE_POSITION_Y);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
