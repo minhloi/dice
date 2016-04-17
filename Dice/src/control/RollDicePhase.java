@@ -15,8 +15,6 @@ public class RollDicePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
-	private Player rollWinner;
-	private Player rollLoser;
 	
 	private boolean dice1Stopped;
 	private boolean dice2Stopped;
@@ -67,14 +65,14 @@ public class RollDicePhase extends Phase {
 			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		
 		} else if(currentState == HAS_WINNER){
-			if(rollWinner.getNumber() == 1){
+			if(player1.getTurnInfo().isTurnWinner()){
 				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
 				player1Panel.drawString("Press w to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
 				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}
 			
-			if(rollWinner.getNumber() == 2){
+			if(player2.getTurnInfo().isTurnWinner()){
 				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
 				player2Panel.drawString("Press i to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
@@ -99,12 +97,10 @@ public class RollDicePhase extends Phase {
 	private boolean setWinner(){
 		boolean hasWinner = false;
 		if(player1CurrentDice > player2CurrentDice ){
-			rollWinner = player1;
-			rollLoser = player2;
+			player1.getTurnInfo().setTurnWinner();
 			hasWinner = true;
 		} else if(player1CurrentDice < player2CurrentDice){
-			rollWinner = player2;
-			rollLoser = player1;
+			player2.getTurnInfo().setTurnWinner();
 			hasWinner = true;
 		}
 		return hasWinner;
@@ -147,14 +143,17 @@ public class RollDicePhase extends Phase {
 		} else if(currentState == HAS_WINNER){
 			switch(keyCode){
 				case 87: //w
-					if(rollWinner.getNumber() == 1)
+					if(player1.getTurnInfo().isTurnWinner())
 						setCompleted();
 					break;
 				case 73: //i
-					if(rollWinner.getNumber() == 2)
+					if(player2.getTurnInfo().isTurnWinner())
 						setCompleted();
 					break;
 			}
+
+			System.out.println(player1.getTurnInfo().isTurnWinner());
+			System.out.println(player2.getTurnInfo().isTurnWinner());
 		}
 				
 	}
