@@ -12,13 +12,13 @@ public class BattlePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
-	private Player rollWinner;
-	private Player rollLoser;
+	private Player turnWinner;
+	private Player turnLoser;
+	
 	private int winnerCurrentDice;
 	private boolean winnerDiceStopped;
 	
 	private ArrayList<GameObject> objectList;
-	
 	
 	public BattlePhase(Player player1, Player player2, ArrayList<GameObject> objectList){
 		this.player1 = player1;
@@ -26,22 +26,21 @@ public class BattlePhase extends Phase {
 		this.objectList = objectList;
 		winnerDiceStopped = false;
 		
-		if(player1.getTurnInfo().isTurnWinner()){
-			rollWinner = player1;
-			rollLoser = player2;
-		} else {
-			rollWinner = player2;
-			rollLoser = player1;
-		}
-		
-	}
-	
+	}	
 	public void render(){
 		
 		Panel winnerPanel;
 		DiceObject winnerDice;
 		
-		if(player1.getNumber() == 1){
+		if(player1.getTurnInfo().isTurnWinner()){
+			turnWinner = player1;
+			turnLoser = player2;
+		} else {
+			turnWinner = player2;
+			turnLoser = player1;
+		}
+		
+		if(player1.getTurnInfo().isTurnWinner()){
 			winnerPanel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
 			winnerDice = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
 		} else {
@@ -50,8 +49,10 @@ public class BattlePhase extends Phase {
 		}
 		
 		if(winnerDiceStopped == false){
-			winnerCurrentDice = rollWinner.getDice().roll();
+			winnerCurrentDice = turnWinner.getDice().roll();
 		}
+		
+		winnerDice.setImageByDiceNum(winnerCurrentDice);
 		
 		objectList.add(winnerPanel);
 		objectList.add(winnerDice);
@@ -64,77 +65,78 @@ public class BattlePhase extends Phase {
 	 */
 	private void calculateDamage(int initialDamage) throws Exception {
 		
-		if(rollWinner.getTurnInfo().getMove() == Player.NOT_SELECT || rollLoser.getTurnInfo().getMove() == Player.NOT_SELECT) {
+		
+		if(turnWinner.getTurnInfo().getMove() == Player.NOT_SELECT || turnLoser.getTurnInfo().getMove() == Player.NOT_SELECT) {
 			throw new Exception("One of the players have not selected move");
 		}
 		
 		// CASE 1: Winner selected ATTACK.
-		if (rollWinner.getTurnInfo().getMove() == Player.ATTACK) {
+		if (turnWinner.getTurnInfo().getMove() == Player.ATTACK) {
 			
 			// Loser selected ATTACK or SPECIAL_ATTACK takes full damage.
-			if (rollLoser.getTurnInfo().getMove() == Player.ATTACK || rollLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
+			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 				
 				int damage = initialDamage;
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + damage + " damage (full damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (full damage).");
 			
 			// Loser selected BLOCK takes half damage.
-			} else if (rollLoser.getTurnInfo().getMove() == Player.BLOCK) {
+			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + damage + " damage (half damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (half damage).");
 								
 			}
 			
 		// CASE 2: Winner selected BLOCK.	
-		} else if (rollWinner.getTurnInfo().getMove() == Player.BLOCK) {
+		} else if (turnWinner.getTurnInfo().getMove() == Player.BLOCK) {
 			
 			// Loser selected ATTACK or SPECIAL_ATTACK takes half damage.
-			if (rollLoser.getTurnInfo().getMove() == Player.ATTACK || rollLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
+			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 				
 				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + (damage) + " damage (half damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + (damage) + " damage (half damage).");
 			
 			// Loser selected BLOCK takes a quarter of damage.
-			} else if (rollLoser.getTurnInfo().getMove() == Player.BLOCK) {
+			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = (int) Math.ceil(initialDamage * (float) 1/4);
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + (damage) + " damage (1/4 damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + (damage) + " damage (1/4 damage).");
 								
 			}
 		
 
 		// CASE 3: Winner selected SPECIAL_ATTACK.	
-		} else if (rollWinner.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
+		} else if (turnWinner.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 			
 			// Loser selected ATTACK or SPECIAL_ATTACK takes doubled damage.
-			if (rollLoser.getTurnInfo().getMove() == Player.ATTACK || rollLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
+			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 						
 				int damage = 2 * initialDamage;
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + damage + " damage (doubled damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (doubled damage).");
 			
 			// Loser selected BLOCK takes full normal damage.
-			} else if (rollLoser.getTurnInfo().getMove() == Player.BLOCK) {
+			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = initialDamage;
 				// Set damage.
-				rollLoser.setHealth(rollLoser.getHealth() - damage);
+				turnLoser.setHealth(turnLoser.getHealth() - damage);
 				// Print damage.
-				System.out.println("Therefore, player " + rollLoser.getNumber() + " takes " + damage + " damage (normal damage).");
+				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (normal damage).");
 								
 			}
 		
@@ -152,9 +154,9 @@ public class BattlePhase extends Phase {
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keyCode = keyEvent.getKeyCode();
 		
-		if(rollWinner.getNumber() == 1 && keyCode == 87){
+		if(player1.getTurnInfo().isTurnWinner() && keyCode == 87){
 			winnerDiceStopped = true;
-		} else if(rollWinner.getNumber() == 2 && keyCode == 73){
+		} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 73){
 			winnerDiceStopped = true;
 		}
 				
