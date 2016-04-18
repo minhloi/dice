@@ -90,8 +90,8 @@ public class PlayerObject extends GameObject{
 			
 			} else {
 				
-				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
 				setPositionX(currentPositionX);
+				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
 				setImageByPath(resourceFolder + "run_" + currentRunningState + ".png");
 			
 			}
