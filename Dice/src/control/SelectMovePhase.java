@@ -39,7 +39,7 @@ public class SelectMovePhase extends Phase {
 		
 		if(player1.getTurnInfo().getMove() == Player.NOT_SELECT){
 			player1Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			player1Panel.drawString(PLAYER1_MOVE_SET[Player.ATTACK] + ": atk  " + PLAYER1_MOVE_SET[Player.BLOCK] + ": block  " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special atk" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Color(0x3b7d86));
+			player1Panel.drawString(PLAYER1_MOVE_SET[Player.ATTACK] + ": atk   " + PLAYER1_MOVE_SET[Player.BLOCK] + ": block   " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special atk" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Color(0x3b7d86));
 		} else {
 			player1Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
 			player1Panel.drawString("Waiting for Player 2.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
@@ -47,7 +47,7 @@ public class SelectMovePhase extends Phase {
 		
 		if(player2.getTurnInfo().getMove() == Player.NOT_SELECT){
 			player2Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			player2Panel.drawString(PLAYER2_MOVE_SET[Player.ATTACK] + ": atk  " + PLAYER2_MOVE_SET[Player.BLOCK] + ": block  " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special atk" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM,  new Color(0x3b7d86));
+			player2Panel.drawString(PLAYER2_MOVE_SET[Player.ATTACK] + ": atk   " + PLAYER2_MOVE_SET[Player.BLOCK] + ": block   " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special atk" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM,  new Color(0x3b7d86));
 		} else {
 			player2Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
 			player2Panel.drawString("Waiting for Player 1.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);

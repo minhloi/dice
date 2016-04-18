@@ -70,14 +70,14 @@ public class RollDicePhase extends Phase {
 		} else if(currentState == HAS_WINNER){
 			if(player1.getTurnInfo().isTurnWinner()){
 				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player1Panel.drawString("Press W to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
+				player1Panel.drawString("Press W to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Serif", Font.BOLD, 16));
 			} else {
 				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}
 			
 			if(player2.getTurnInfo().isTurnWinner()){
 				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player2Panel.drawString("Press I to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
+				player2Panel.drawString("Press I to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Serif", Font.BOLD, 16));
 			} else {
 				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}

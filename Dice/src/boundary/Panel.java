@@ -14,9 +14,9 @@ public class Panel extends GameObject {
 	public static final int HEIGHT = 80;
 	
 	public static final int PANEL_1_POSITION_X = 20;
-	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 80;
+	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 120;
 	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - WIDTH - 20;
-	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 80;
+	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 120;
 	
 	public static final int ALIGN_TOP = 30;
 	public static final int ALIGN_BOTTOM = 60;
@@ -26,7 +26,7 @@ public class Panel extends GameObject {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.defaultColor = new Color(0x333333);
-		this.defaultFont = new Font("Arial", Font.PLAIN, 18);
+		this.defaultFont = new Font("Serif", Font.BOLD, 18);
 		setImageByPath("/panel.png");
 	}
 		
