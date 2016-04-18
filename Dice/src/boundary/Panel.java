@@ -28,6 +28,7 @@ public class Panel extends GameObject {
 		this.defaultColor = new Color(0x333333);
 		this.defaultFont = new Font("Serif", Font.BOLD, 18);
 		setImageByPath("/panel.png");
+		
 	}
 		
 	public void drawString(String string, int positionX, int positionY){
