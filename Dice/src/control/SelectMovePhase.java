@@ -18,8 +18,8 @@ public class SelectMovePhase extends Phase {
 	private ArrayList<GameObject> objectList;
 	
 	// Player move-set definition
-	public static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
-	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
+	public static final char[] PLAYER1_MOVE_SET = {'A', 'S', 'D'};
+	public static final char[] PLAYER2_MOVE_SET = {'J', 'K', 'L'};
 	
 	public SelectMovePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;

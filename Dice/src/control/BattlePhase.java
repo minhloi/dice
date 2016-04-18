@@ -97,7 +97,7 @@ public class BattlePhase extends Phase {
 		if(player1.getTurnInfo().isTurnWinner()){
 			completed = player1Object.runLeft(PlayerObject.PLAYER1_DEFAULT_POSITION_X);
 		} else {
-			completed = player2Object.runLeft(PlayerObject.PLAYER2_DEFAULT_POSITION_X);
+			completed = player2Object.runRight(PlayerObject.PLAYER2_DEFAULT_POSITION_X);
 		}
 		return completed;
 		
@@ -141,7 +141,7 @@ public class BattlePhase extends Phase {
 			winnerDiceObject = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
 		} else {
 			winnerPanel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
-			winnerPanel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			winnerPanel.drawString("Press I to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			winnerDiceObject = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y );
 		}
 				

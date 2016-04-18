@@ -56,28 +56,28 @@ public class RollDicePhase extends Phase {
 		
 		if(currentState == ROLLING){
 			rollingDie();
-			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player1Panel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player2Panel.drawString("Press I to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 		
 		} else if(currentState == TIE_ROLLING_AGAIN){
 			rollingDie();
 			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
-			player1Panel.drawString("Press w to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			player1Panel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
 			player2Panel.drawString("Tie. Rolling again", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
-			player2Panel.drawString("Press i to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			player2Panel.drawString("Press I to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		
 		} else if(currentState == HAS_WINNER){
 			if(player1.getTurnInfo().isTurnWinner()){
 				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player1Panel.drawString("Press w to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
+				player1Panel.drawString("Press W to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
 				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}
 			
 			if(player2.getTurnInfo().isTurnWinner()){
 				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player2Panel.drawString("Press i to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
+				player2Panel.drawString("Press I to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Arial", Font.BOLD, 13));
 			} else {
 				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
 			}

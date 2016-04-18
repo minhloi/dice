@@ -28,7 +28,7 @@ public class PlayerObject extends GameObject{
 	public static final int STATES_PER_STEP = 8;
 	
 	// Step per pixel: How big a step is.
-	public static final int STEP_PER_PX = 50;
+	public static final int STEP_PER_PX = 96;
 	
 	// How fast does a state change depends on how big the step is.
 	// For example, if the step is small then the state will change very fast.

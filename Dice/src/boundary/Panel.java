@@ -25,7 +25,7 @@ public class Panel extends GameObject {
 	public Panel(int positionX, int positionY){
 		this.positionX = positionX;
 		this.positionY = positionY;
-		this.defaultColor = new Color(0x787038);
+		this.defaultColor = new Color(0x333333);
 		this.defaultFont = new Font("Arial", Font.PLAIN, 18);
 		setImageByPath("/panel.png");
 	}
