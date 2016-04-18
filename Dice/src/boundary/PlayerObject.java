@@ -5,6 +5,7 @@ public class PlayerObject extends GameObject{
 	private int playerNumber;
 	private String resourceFolder;
 	private int currentState;
+	private int runState;
 	private int attackState;
 
 	private int currentPositionX;
@@ -27,8 +28,8 @@ public class PlayerObject extends GameObject{
 	// There are a total of 8 states in one running step
 	public static final int STATES_PER_STEP = 8;
 	
-	// Step per pixel: How big a step is.
-	public static final int STEP_PER_PX = 96;
+	// Step per pixel: How big the step is.
+	public static final int STEP_PER_PX = 70;
 	
 	// How fast does a state change depends on how big the step is.
 	// For example, if the step is small then the state will change very fast.
@@ -83,17 +84,28 @@ public class PlayerObject extends GameObject{
 		
 		currentState = RUNNING;
 		currentPositionX += RUNNING_SPEED;
+		
+		//int currentRunningState = (runState / 2) + 1;
+		int currentRunningState = (((runState / 2) + 1) % STATES_PER_STEP) + 1;
+		
+		/*if(currentRunningState >= STATES_PER_STEP){
+			runState = 0;
+		}*/
+		++runState;
+		
+		//int currentRunningState = (int)Math.round ((float)((destinationX - currentPositionX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1 ;
+		
+		System.out.println(currentRunningState);
+		setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
+		setPositionX(currentPositionX);
+		
 		if(currentPositionX >= destinationX){
 			completed = true;	
 		} else {
 			completed = false;
-			
-			int currentRunningState = ((destinationX - currentPositionX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
-			setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
-			
-			setPositionX(currentPositionX);
 		}
+		
 		return completed;
 	}
 	
@@ -104,7 +116,15 @@ public class PlayerObject extends GameObject{
 		currentState = RUNNING;
 		currentPositionX -= RUNNING_SPEED;
 
-		int currentRunningState = ((currentPositionX - destinationX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+		int currentRunningState = (((runState / 2) + 1) % STATES_PER_STEP) + 1;
+		/*if(currentRunningState >= STATES_PER_STEP){
+			runState = 0;
+		}*/
+		++runState;
+		
+		//int currentRunningState = (int)Math.round(((float)((currentPositionX - destinationX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1);
+		System.out.println(currentRunningState);
+		
 		setPositionX(currentPositionX);
 		setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
 	
