@@ -44,9 +44,6 @@ public class RollDicePhase extends Phase {
 		this.player2CurrentDice = player2.getDice().roll();
 		this.currentState = ROLLING;
 		
-		this.player1Object.setIdle();
-		this.player2Object.setIdle();
-			
 	}
 	
 	public void render(){
@@ -89,6 +86,9 @@ public class RollDicePhase extends Phase {
 		DiceObject dice2Object = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y);
 		dice2Object.setImageByDiceNum(player2CurrentDice);
 		
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
+				
 		objectList.add(player1Object);
 		objectList.add(player2Object);
 		

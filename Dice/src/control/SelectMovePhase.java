@@ -28,8 +28,6 @@ public class SelectMovePhase extends Phase {
 		this.player2Object = player2Object;
 		this.objectList = objectList;
 		
-		this.player1Object.setIdle();
-		this.player2Object.setIdle();
 	}
 	
 	public void render(){
@@ -53,6 +51,9 @@ public class SelectMovePhase extends Phase {
 			player2Panel.drawString("Waiting for Player 1.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
 		}
+		
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
 		
 		objectList.add(player1Object);
 		objectList.add(player2Object);

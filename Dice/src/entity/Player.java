@@ -71,8 +71,9 @@ public class Player {
 	public void resetTurnInfo(){
 		
 		int previousMove = turnInfo.getMove();
-		
+
 		turnInfo = new TurnInfo();
+		
 		switch(previousMove){
 			case Player.BLOCK:
 				turnInfo.disableBlock();

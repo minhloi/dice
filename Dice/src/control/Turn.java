@@ -45,7 +45,7 @@ public class Turn implements Listenable {
 	
 	public void render(){
 	
-		if(phaseList[currentPhase].isCompleted()){
+		/*if(phaseList[currentPhase].isCompleted()){
 			if(hasNextPhase()){
 				renderNextPhase();
 			} else {
@@ -53,10 +53,24 @@ public class Turn implements Listenable {
 			}
 		} else {
 			phaseList[currentPhase].render();
-		}
+		}*/
 		
+		phaseList[currentPhase].render();
+		if(phaseList[currentPhase].isCompleted()){
+			if(hasNextPhase()){
+				setNextPhase();
+			} else {
+				setTurnCompleted();
+				resetTurn();
+			}
+		}
 	}
 		
+	private void resetTurn(){
+		player1.resetTurnInfo();
+		player2.resetTurnInfo();
+	}
+	
 	private boolean hasNextPhase(){
 		boolean hasNext;
 		if(currentPhase >= Phase.LENGTH - 1){
@@ -67,10 +81,9 @@ public class Turn implements Listenable {
 		return hasNext;
 	}
 	
-	private void renderNextPhase(){
+	private void setNextPhase(){
 		if(hasNextPhase() == true){
 			++currentPhase;
-			phaseList[currentPhase].render();
 		}
 	}
 	

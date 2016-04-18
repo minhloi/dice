@@ -95,7 +95,7 @@ public class PlayerObject extends GameObject{
 		
 		//int currentRunningState = (int)Math.round ((float)((destinationX - currentPositionX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1 ;
 		
-		System.out.println(currentRunningState);
+		//System.out.println(currentRunningState);
 		setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
 		setPositionX(currentPositionX);
@@ -123,7 +123,7 @@ public class PlayerObject extends GameObject{
 		++runState;
 		
 		//int currentRunningState = (int)Math.round(((float)((currentPositionX - destinationX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1);
-		System.out.println(currentRunningState);
+		//System.out.println(currentRunningState);
 		
 		setPositionX(currentPositionX);
 		setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
