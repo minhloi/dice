@@ -84,17 +84,17 @@ public class GameCanvas extends JPanel {
 
 		@Override
 		public void keyPressed(KeyEvent keyEvent) {
-			GameCanvas.this.gameController.getCurrentStateObject().onKeyPressed(keyEvent);
+			gameController.getCurrentStateObject().onKeyPressed(keyEvent);
 		}
 
 		@Override
 		public void keyReleased(KeyEvent keyEvent) {
-			GameCanvas.this.gameController.getCurrentStateObject().onKeyReleased(keyEvent);
+			gameController.getCurrentStateObject().onKeyReleased(keyEvent);
 		}
 
 		@Override
 		public void keyTyped(KeyEvent keyEvent) {
-			GameCanvas.this.gameController.getCurrentStateObject().onKeyTyped(keyEvent);
+			gameController.getCurrentStateObject().onKeyTyped(keyEvent);
 		}
 		
 	}

@@ -21,10 +21,10 @@ public class BattlePhase extends Phase {
 	private DiceObject winnerDiceObject;
 	private int winnerCurrentDice;
 	
-	
-	
 	public static final int ROLLING = 0;
-	public static final int ATTACKING = 1;
+	public static final int RUNNING_TOWARDS_OPPONENT = 1;
+	public static final int ATTACKING = 2;
+	public static final int RETURNING = 3;
 	
 	private ArrayList<GameObject> objectList;
 	
@@ -48,25 +48,26 @@ public class BattlePhase extends Phase {
 			player1Object.setIdle();
 			player2Object.setIdle();
 		
-		} else if(currentState == ATTACKING) {
+		} else if(currentState == RUNNING_TOWARDS_OPPONENT) {
 
-			if(player1.getTurnInfo().isTurnWinner()){
-				
-				boolean arrived = player1Object.runRight(PlayerObject.FRONT_OF_PLAYER2);
-				if(arrived) {
-					player1Object.setIdle();
-				}
-				
-			} else {
-			
-				boolean arrived = player2Object.runLeft(PlayerObject.FRONT_OF_PLAYER1);
-				if(arrived){
-					player2Object.setIdle();
-				}
+			boolean completed = runTowardsOpponent();
+			if(completed == true){
+				++currentState;
 			}
 			
+		} else if(currentState == ATTACKING){
+			boolean completed = getTurnWinnerObject().attack();
+			if(completed == true){
+				++currentState;
+			}
+			
+		} else if(currentState == RETURNING){
+			boolean completed = runBack();
+			if(completed == true){
+				setCompleted();
+			}
 		}
-		
+				
 		renderWinnerPanel();
 		renderWinnerDiceObject();
 				
@@ -76,6 +77,30 @@ public class BattlePhase extends Phase {
 		objectList.add(winnerPanel);
 		objectList.add(winnerDiceObject);
 											
+	}
+	
+	private boolean runTowardsOpponent(){
+		
+		boolean completed;
+		if(player1.getTurnInfo().isTurnWinner()){
+			completed = player1Object.runRight(PlayerObject.FRONT_OF_PLAYER2);
+		} else {
+			completed = player2Object.runLeft(PlayerObject.FRONT_OF_PLAYER1);
+		}
+		return completed;
+		
+	}
+	
+	private boolean runBack(){
+		
+		boolean completed;
+		if(player1.getTurnInfo().isTurnWinner()){
+			completed = player1Object.runLeft(PlayerObject.PLAYER1_DEFAULT_POSITION_X);
+		} else {
+			completed = player2Object.runLeft(PlayerObject.PLAYER2_DEFAULT_POSITION_X);
+		}
+		return completed;
+		
 	}
 	
 	private Player getTurnLoser(){
@@ -96,6 +121,16 @@ public class BattlePhase extends Phase {
 			turnWinner = player2;
 		}
 		return turnWinner;
+	}
+	
+	private PlayerObject getTurnWinnerObject(){
+		PlayerObject turnWinnerObject;
+		if(player1.getTurnInfo().isTurnWinner()){
+			turnWinnerObject = player1Object;
+		} else {
+			turnWinnerObject = player2Object;
+		}
+		return turnWinnerObject;
 	}
 	
 	private void renderWinnerPanel(){

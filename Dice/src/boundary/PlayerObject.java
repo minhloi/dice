@@ -5,6 +5,7 @@ public class PlayerObject extends GameObject{
 	private int playerNumber;
 	private String resourceFolder;
 	private int currentState;
+	private int attackState;
 
 	private int currentPositionX;
 	private int currentPositionY;
@@ -15,7 +16,6 @@ public class PlayerObject extends GameObject{
 	public static final int IDLE = 0;
 	public static final int RUNNING = 1;
 	public static final int ATTACKING = 2;
-	public static final int RUNNING_BACK = 3;	
 	
 	public static final int PLAYER1_DEFAULT_POSITION_X = 0;
 	public static final int PLAYER1_DEFAULT_POSITION_Y = 220;
@@ -36,7 +36,9 @@ public class PlayerObject extends GameObject{
 	
 	// Running speed: How many pixels it runs per 25 ms (The game loop runs every 25 ms).
 	public static final int RUNNING_SPEED = 6;
-		
+	
+	public static final int ATTACK_STATE_NUM = 7;
+	
 	public static final String IDLE_IMAGE = "idle.png";
 	
 	public PlayerObject(int playerNumber) throws Exception{
@@ -83,20 +85,15 @@ public class PlayerObject extends GameObject{
 		currentPositionX += RUNNING_SPEED;
 			
 		if(currentPositionX >= destinationX){
-		
 			completed = true;	
-			
 		} else {
-			
 			completed = false;
 			
 			int currentRunningState = ((destinationX - currentPositionX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
 			setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
 			setPositionX(currentPositionX);
-			
 		}
-		
 		return completed;
 	}
 	
@@ -106,20 +103,33 @@ public class PlayerObject extends GameObject{
 		
 		currentState = RUNNING;
 		currentPositionX -= RUNNING_SPEED;
-		//System.out.println(currentPositionX);
+
+		int currentRunningState = ((currentPositionX - destinationX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+		setPositionX(currentPositionX);
+		setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
+	
 		if(currentPositionX <= destinationX){
-			
-			//System.out.println("Finished");
-			
 			completed = true;
-			
 		} else {
-		
 			completed = false;
-			
-			int currentRunningState = ((currentPositionX - destinationX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
-			setPositionX(currentPositionX);
-			setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
+		}
+		
+		return completed;
+	}
+	
+	public boolean attack(){
+		
+		boolean completed;
+		
+		currentState = ATTACKING;
+		attackState++;
+		setImageByPath(resourceFolder + "attack_" + attackState + ".png");
+		
+		if(attackState >= ATTACK_STATE_NUM){
+			resetAttackState();
+			completed = true; 
+		} else {
+			completed = false;
 		}
 		
 		return completed;
@@ -139,4 +149,8 @@ public class PlayerObject extends GameObject{
 		return isIdle;	 
 	}
 	
+	private void resetAttackState(){
+		attackState = 0;
+	}
+		
 }
