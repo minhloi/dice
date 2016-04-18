@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import boundary.Background;
 import boundary.GameObject;
 import boundary.PlayerObject;
 import entity.Database;
@@ -29,7 +30,7 @@ public class Match implements Listenable {
 	private ArrayList<GameObject> objectList;
 	private GameController gameController;
 	private Database database;
-	
+	private Background background;
 	
 	/**
 	 * 
@@ -47,7 +48,7 @@ public class Match implements Listenable {
 		this.objectList = objectList;
 		this.database = database;
 		this.currentTurn = new Turn(player1, player2, objectList);
-		
+		this.background = new Background("forest.png");
 	}
 		
 	/**
@@ -55,7 +56,8 @@ public class Match implements Listenable {
 	 */
 	public void renderTurn() {
 		
-
+		objectList.add(background);
+		
 		currentTurn.render();
 		
 		if(currentTurn.isTurnCompleted()){
