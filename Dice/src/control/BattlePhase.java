@@ -49,11 +49,20 @@ public class BattlePhase extends Phase {
 			player2Object.setIdle();
 		
 		} else if(currentState == ATTACKING) {
+
+			if(player1.getTurnInfo().isTurnWinner()){
+				
+				boolean arrived = player1Object.runRight(PlayerObject.FRONT_OF_PLAYER2);
+				if(arrived) {
+					player1Object.setIdle();
+				}
+				
+			} else {
 			
-			movePlayerToOpponent();
-			
-			if(player1Object.isIdle() && player2Object.isIdle()){
-				setCompleted();
+				boolean arrived = player2Object.runLeft(PlayerObject.FRONT_OF_PLAYER1);
+				if(arrived){
+					player2Object.setIdle();
+				}
 			}
 			
 		}
@@ -114,17 +123,7 @@ public class BattlePhase extends Phase {
 		winnerDiceObject.setImageByDiceNum(winnerCurrentDice);
 				
 	}
-	
-	private void movePlayerToOpponent(){
 		
-		if(player1.getTurnInfo().isTurnWinner()){
-			player1Object.moveToOpponent();
-		} else {
-			player2Object.moveToOpponent();
-		}
-		
-	}
-	
 	/**
 	 * Method to calculate damage dealt to other player
 	 * @throws Exception exception throws when either players has not selected their move.

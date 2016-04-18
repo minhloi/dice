@@ -19,11 +19,10 @@ public class PlayerObject extends GameObject{
 	
 	public static final int PLAYER1_DEFAULT_POSITION_X = 0;
 	public static final int PLAYER1_DEFAULT_POSITION_Y = 220;
-	public static final int PLAYER1_FRONT_OF_PLAYER2 = 480;
-	
 	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH;
 	public static final int PLAYER2_DEFAULT_POSITION_Y = 220;
-	public static final int PLAYER2_FRONT_OF_PLAYER1 = 100;
+	public static final int FRONT_OF_PLAYER1 = 80;
+	public static final int FRONT_OF_PLAYER2 = 480;
 	
 	// There are a total of 8 states in one running step
 	public static final int STATES_PER_STEP = 8;
@@ -75,50 +74,57 @@ public class PlayerObject extends GameObject{
 		setImageByPath(resourceFolder + IDLE_IMAGE);		
 	
 	}
-	
-	public void moveToOpponent(){
 		
-		if(playerNumber == 1){
-			
-			currentState = RUNNING;
-			currentPositionX += RUNNING_SPEED;
-				
-			if(currentPositionX >= PLAYER1_FRONT_OF_PLAYER2){
-			
-				currentState = IDLE;
-				setIdle(currentPositionX, PLAYER1_DEFAULT_POSITION_Y);
-			
-			} else {
-				
-				setPositionX(currentPositionX);
-				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
-				setImageByPath(resourceFolder + "run_" + currentRunningState + ".png");
-			
-			}
+	public boolean runRight(int destinationX){
 		
+		boolean completed;
+		
+		currentState = RUNNING;
+		currentPositionX += RUNNING_SPEED;
+			
+		if(currentPositionX >= destinationX){
+		
+			completed = true;	
+			
 		} else {
 			
-			currentState = RUNNING;
-			currentPositionX -= RUNNING_SPEED;
-		
-			if(currentPositionX <= PlayerObject.PLAYER2_FRONT_OF_PLAYER1){
+			completed = false;
 			
-				currentState = IDLE;	
+			int currentRunningState = ((destinationX - currentPositionX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+			setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
-			} else {
+			setPositionX(currentPositionX);
 			
-				int currentRunningState = ((currentPositionX - PLAYER1_DEFAULT_POSITION_X) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
-				setPositionX(currentPositionX);
-				setImageByPath(resourceFolder + "run_" + currentRunningState + ".png");
-			}
 		}
+		
+		return completed;
 	}
-		
-	public void moveBack(int destinationX){
-		
 	
-	}
+	public boolean runLeft(int destinationX){
 		
+		boolean completed;
+		
+		currentState = RUNNING;
+		currentPositionX -= RUNNING_SPEED;
+		//System.out.println(currentPositionX);
+		if(currentPositionX <= destinationX){
+			
+			//System.out.println("Finished");
+			
+			completed = true;
+			
+		} else {
+		
+			completed = false;
+			
+			int currentRunningState = ((currentPositionX - destinationX) / STATE_CHANGE_SPEED) % STATES_PER_STEP + 1 ;
+			setPositionX(currentPositionX);
+			setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
+		}
+		
+		return completed;
+	}
+			
 	public int getState(){
 		return currentState;
 	}
