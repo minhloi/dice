@@ -23,7 +23,7 @@ public class PlayerObject extends GameObject{
 	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH;
 	public static final int PLAYER2_DEFAULT_POSITION_Y = 210;
 	public static final int FRONT_OF_PLAYER1 = 80;
-	public static final int FRONT_OF_PLAYER2 = 480;
+	public static final int FRONT_OF_PLAYER2 = 460;
 	
 	// There are a total of 8 states in one running step
 	public static final int STATES_PER_STEP = 8;
@@ -36,7 +36,7 @@ public class PlayerObject extends GameObject{
 	public static final int STATE_CHANGE_SPEED = STEP_PER_PX / STATES_PER_STEP;
 	
 	// Running speed: How many pixels it runs per 25 ms (The game loop runs every 25 ms).
-	public static final int RUNNING_SPEED = 6;
+	public static final int RUNNING_SPEED = 9;
 	
 	public static final int ATTACK_STATE_NUM = 7;
 	
