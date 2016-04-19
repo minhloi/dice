@@ -25,7 +25,8 @@ public class Match implements Listenable {
 
 	private Player player1; 
 	private Player player2;
-
+	
+	private boolean matchEnded;
 	private Turn currentTurn;
 	
 	private PlayerObject player1Object;
@@ -68,7 +69,7 @@ public class Match implements Listenable {
 		this.healthBar2 = new HealthBar(HealthBar.PLAYER2_POSITION_X, HealthBar.PLAYER2_POSITION_Y);
 		
 		this.currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
-		
+		this.matchEnded = false;
 	}
 		
 	/**
@@ -86,14 +87,21 @@ public class Match implements Listenable {
 		objectList.add(healthBar1);
 		objectList.add(healthBar2);
 		
-		currentTurn.render();
-		
+		if(matchEnded == false){
+			currentTurn.render();
+		} else {
+			
+			player1Object.setIdle();
+			player1Object.setIdle();
+			//displayWinner();
+			//displayMenu();
+		}
+				
 		if(currentTurn.isTurnCompleted()){
 			if(!hasWinner()){
 				setNewTurn();
 			} else {
-				//displayWinner();
-				//displayMenu();
+				setMatchEnd();
 			}
 		} 
 			
@@ -101,6 +109,10 @@ public class Match implements Listenable {
 	
 	private void setNewTurn(){
 		currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
+	}
+	
+	private void setMatchEnd(){
+		matchEnded = true;
 	}
 		
 	private void displayWinner(){
