@@ -29,6 +29,8 @@ public class GameEngine {
 		
 		GameCanvas gameCanvas = new GameCanvas();
 		gameFrame.add(gameCanvas);
+		gameFrame.pack();
+		gameFrame.setLocationRelativeTo(null);
 		gameFrame.setVisible(true);
 		
 		gameCanvas.render();

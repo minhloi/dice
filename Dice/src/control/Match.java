@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import boundary.Background;
 import boundary.GameObject;
+import boundary.HealthBar;
 import boundary.PlayerObject;
 import entity.Database;
 import entity.Player;
@@ -27,6 +28,12 @@ public class Match implements Listenable {
 
 	private Turn currentTurn;
 	
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
+	
+	private HealthBar healthBar1;
+	private HealthBar healthBar2;
+		
 	private ArrayList<GameObject> objectList;
 	private GameController gameController;
 	private Database database;
@@ -47,8 +54,21 @@ public class Match implements Listenable {
 		this.gameController = gameController;
 		this.objectList = objectList;
 		this.database = database;
-		this.currentTurn = new Turn(player1, player2, objectList);
+		
+		try {
+			this.player1Object = new PlayerObject(1);
+			this.player2Object = new PlayerObject(2);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
 		this.background = new Background("forest.png");
+		
+		this.healthBar1 = new HealthBar(HealthBar.PLAYER1_POSITION_X, HealthBar.PLAYER1_POSITION_Y);
+		this.healthBar2 = new HealthBar(HealthBar.PLAYER2_POSITION_X, HealthBar.PLAYER2_POSITION_Y);
+		
+		this.currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
+		
 	}
 		
 	/**
@@ -57,40 +77,61 @@ public class Match implements Listenable {
 	public void renderTurn() {
 		
 		objectList.add(background);
+		objectList.add(player1Object);
+		objectList.add(player2Object);
+		
+		healthBar1.setHealthBar(player1.getHealth());
+		healthBar2.setHealthBar(player2.getHealth());
+		
+		objectList.add(healthBar1);
+		objectList.add(healthBar2);
 		
 		currentTurn.render();
 		
 		if(currentTurn.isTurnCompleted()){
-			setNewTurn();
-		}
+			if(!hasWinner()){
+				setNewTurn();
+			} else {
+				//displayWinner();
+				//displayMenu();
+			}
+		} 
 			
 	}
 	
 	private void setNewTurn(){
-		currentTurn = new Turn(player1, player2, objectList);
+		currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
 	}
-	
+		
 	private void displayWinner(){
 		
-		// Player 1 loses
+		database.incrementWinByName(getWinner().getUserName());
+		database.incrementLossByName(getLoser().getUserName());
+		
+	}
+	
+	private Player getWinner(){
+		Player winner = null;
 		if (player1.getHealth() <= 0) {
-			
-			database.incrementWinByName(player2.getUserName());
-			database.incrementLossByName(player1.getUserName());
-			
-			System.out.println("Player 2 won the game. GAME OVER.");
-		// Player 2 loses
-		} else {
-
-			database.incrementWinByName(player1.getUserName());
-			database.incrementLossByName(player2.getUserName());
-			
-			System.out.println("Player 1 won the game. GAME OVER.");
-		
+			winner = player2;
+		} else if(player2.getHealth() <= 0){
+			winner = player1;
 		}
-		
-		System.out.println();
-
+		return winner;
+	}
+	
+	private Player getLoser(){
+		Player loser = null;
+		if (player1.getHealth() <= 0) {
+			loser = player1;
+		} else if(player2.getHealth() <= 0){
+			loser = player2;
+		}
+		return loser;
+	}
+	
+	private void displayMenu(){
+				
 	}
 	
 	private boolean hasWinner(){

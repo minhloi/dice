@@ -58,6 +58,11 @@ public class BattlePhase extends Phase {
 		} else if(currentState == ATTACKING){
 			boolean completed = getTurnWinnerObject().attack();
 			if(completed == true){
+				try {
+					calculateDamage(winnerCurrentDice);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				++currentState;
 			}
 			
@@ -181,17 +186,13 @@ public class BattlePhase extends Phase {
 				int damage = initialDamage;
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (full damage).");
-			
+				
 			// Loser selected BLOCK takes half damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (half damage).");
 								
 			}
 			
@@ -204,17 +205,13 @@ public class BattlePhase extends Phase {
 				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + (damage) + " damage (half damage).");
-			
+				
 			// Loser selected BLOCK takes a quarter of damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = (int) Math.ceil(initialDamage * (float) 1/4);
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + (damage) + " damage (1/4 damage).");
 								
 			}
 		
@@ -228,17 +225,13 @@ public class BattlePhase extends Phase {
 				int damage = 2 * initialDamage;
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (doubled damage).");
-			
+				
 			// Loser selected BLOCK takes full normal damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
 				int damage = initialDamage;
 				// Set damage.
 				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				// Print damage.
-				System.out.println("Therefore, player " + turnLoser.getNumber() + " takes " + damage + " damage (normal damage).");
 								
 			}
 		
@@ -256,10 +249,12 @@ public class BattlePhase extends Phase {
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keyCode = keyEvent.getKeyCode();
 		
-		if(player1.getTurnInfo().isTurnWinner() && keyCode == 87){
-			currentState++;
-		} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 73){
-			currentState++;
+		if(currentState == ROLLING){
+			if(player1.getTurnInfo().isTurnWinner() && keyCode == 87){
+				currentState++;
+			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 73){
+				currentState++;
+			}
 		}
 				
 	}

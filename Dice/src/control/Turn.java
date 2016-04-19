@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import boundary.GameObject;
+import boundary.HealthBar;
 import boundary.PlayerObject;
 import entity.Player;
 
@@ -19,18 +20,13 @@ public class Turn implements Listenable {
 	private int currentPhase;
 	private boolean turnCompleted;
 	
-	public Turn(Player player1, Player player2, ArrayList<GameObject> objectList){
+	public Turn(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		
 		this.player1 = player1;
 		this.player2 = player2;
+		this.player1Object = player1Object;
+		this.player2Object = player2Object;
 		this.objectList = objectList;
-		
-		try {
-			this.player1Object = new PlayerObject(1);
-			this.player2Object = new PlayerObject(2);
-		} catch (Exception e){
-			e.printStackTrace();
-		}
 		
 		phaseList = new Phase[Phase.LENGTH];
 		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, player1Object, player2Object, objectList);
@@ -45,16 +41,6 @@ public class Turn implements Listenable {
 	
 	public void render(){
 	
-		/*if(phaseList[currentPhase].isCompleted()){
-			if(hasNextPhase()){
-				renderNextPhase();
-			} else {
-				setTurnCompleted();
-			}
-		} else {
-			phaseList[currentPhase].render();
-		}*/
-		
 		phaseList[currentPhase].render();
 		if(phaseList[currentPhase].isCompleted()){
 			if(hasNextPhase()){

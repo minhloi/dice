@@ -32,35 +32,88 @@ public class SelectMovePhase extends Phase {
 	
 	public void render(){
 		
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
+		
 		Panel player1Panel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
 		Panel player2Panel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
 		
 		if(player1.getTurnInfo().getMove() == Player.NOT_SELECT){
+			String moveSet = getAvailabelMoveSet(1);
 			player1Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			player1Panel.drawString(PLAYER1_MOVE_SET[Player.ATTACK] + ": Attack   " + PLAYER1_MOVE_SET[Player.BLOCK] + ": Block   " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Color(0x3b7d86));
+			player1Panel.drawString( moveSet, Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Color(0x3b7d86));
 		} else {
 			player1Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
 			player1Panel.drawString("Waiting for Player 2.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		}
 		
 		if(player2.getTurnInfo().getMove() == Player.NOT_SELECT){
+			String moveSet = getAvailabelMoveSet(2);
 			player2Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			player2Panel.drawString(PLAYER2_MOVE_SET[Player.ATTACK] + ": Attack   " + PLAYER2_MOVE_SET[Player.BLOCK] + ": Block   " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special" , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM,  new Color(0x3b7d86));
+			player2Panel.drawString( moveSet, Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM,  new Color(0x3b7d86));
 		} else {
 			player2Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
 			player2Panel.drawString("Waiting for Player 1.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
 		}
 		
-		this.player1Object.setIdle();
-		this.player2Object.setIdle();
-		
-		objectList.add(player1Object);
-		objectList.add(player2Object);
-		
 		objectList.add(player1Panel);
 		objectList.add(player2Panel);
 	
+	}
+	
+	private String getAvailabelMoveSet(int playerNum){
+		String moveSet;
+		if(playerNum == player1.getNumber()){
+			moveSet = PLAYER1_MOVE_SET[Player.ATTACK] + ": Attack";
+			if(player1.getTurnInfo().isBlockDisabled() == false){
+				moveSet += "   " + PLAYER1_MOVE_SET[Player.BLOCK] + ": Block";
+			}
+			if(player1.canUseSpecial()){
+				moveSet += "   " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
+			}
+		} else {
+			moveSet = PLAYER2_MOVE_SET[Player.ATTACK] + ": Attack";
+			if(player2.getTurnInfo().isBlockDisabled() == false){
+				moveSet += "   " + PLAYER2_MOVE_SET[Player.BLOCK] + ": Block";
+			}
+			if(player2.canUseSpecial()){
+				moveSet += "   " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
+			}
+		}
+		return moveSet;
+	}
+	
+	
+	private boolean isPlayer1Selected(){
+		boolean result;
+		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
+	
+	private boolean isPlayer2Selected(){
+		boolean result;
+		if(player2.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
+	
+	private boolean isBothSelected(){
+		boolean result;
+		
+		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT && player2.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
 	}
 		
 	@Override
@@ -75,30 +128,36 @@ public class SelectMovePhase extends Phase {
 		try {
 			switch(keyCode){
 				case 65: //a
-					player1.getTurnInfo().setMove(Player.ATTACK);
+					if(!isPlayer1Selected())
+						player1.getTurnInfo().setMove(Player.ATTACK);
 					break;
 				case 83: //s
-					player1.getTurnInfo().setMove(Player.BLOCK);
+					if(!isPlayer1Selected() && player1.getTurnInfo().isBlockDisabled() == false)
+						player1.getTurnInfo().setMove(Player.BLOCK);
 					break;
 				case 68: //d
-					player1.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
+					if(!isPlayer1Selected() && player1.canUseSpecial() == true)
+						player1.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
 					break;
 				case 74: //j
-					player2.getTurnInfo().setMove(Player.ATTACK);
+					if(!isPlayer2Selected())
+						player2.getTurnInfo().setMove(Player.ATTACK);
 					break;
 				case 75: //k
-					player2.getTurnInfo().setMove(Player.BLOCK);
+					if(!isPlayer2Selected() && player2.getTurnInfo().isBlockDisabled() == false)
+						player2.getTurnInfo().setMove(Player.BLOCK);
 					break;
 				case 76: //l
-					player2.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
+					if(!isPlayer2Selected() && player2.canUseSpecial() == true)
+						player2.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
 					break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT && player2.getTurnInfo().getMove() != Player.NOT_SELECT){
-			setCompleted();			
+		if(isBothSelected()){
+			setCompleted();
 		}
 		
 	}
