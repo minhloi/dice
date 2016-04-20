@@ -148,7 +148,7 @@ public class RollDicePhase extends Phase {
 				case 87: //w
 					dice1Stopped = true;
 					break;
-				case 73: //i
+				case 85: //u
 					dice2Stopped = true;
 					break;
 			}
