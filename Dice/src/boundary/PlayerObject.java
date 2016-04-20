@@ -19,26 +19,19 @@ public class PlayerObject extends GameObject{
 	public static final int ATTACKING = 2;
 	
 	public static final int PLAYER1_DEFAULT_POSITION_X = 0;
-	public static final int PLAYER1_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 410;
+	public static final int PLAYER1_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 400;
 	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH;
-	public static final int PLAYER2_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 410;
+	public static final int PLAYER2_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 400;
 	public static final int FRONT_OF_PLAYER1 = PLAYER1_DEFAULT_POSITION_X + 80;
 	public static final int FRONT_OF_PLAYER2 = PLAYER2_DEFAULT_POSITION_X - 100;
 	
 	// There are a total of 8 states in one running step
-	public static final int STATES_PER_STEP = 8;
-	
-	// Step per pixel: How big the step is.
-	public static final int STEP_PER_PX = 70;
-	
-	// How fast does a state change depends on how big the step is.
-	// For example, if the step is small then the state will change very fast.
-	public static final int STATE_CHANGE_SPEED = STEP_PER_PX / STATES_PER_STEP;
+	public static final int NUM_OF_RUN_STATE = 8;
 	
 	// Running speed: How many pixels it runs per 25 ms (The game loop runs every 25 ms).
 	public static final int RUNNING_SPEED = 12;
 	
-	public static final int ATTACK_STATE_NUM = 7;
+	public static final int NUM_OF_ATTACK_STATE = 7;
 	
 	public static final String IDLE_IMAGE = "idle.png";
 	
@@ -85,17 +78,9 @@ public class PlayerObject extends GameObject{
 		currentState = RUNNING;
 		currentPositionX += RUNNING_SPEED;
 		
-		//int currentRunningState = (runState / 2) + 1;
-		int currentRunningState = (((runState / 2) + 1) % STATES_PER_STEP) + 1;
-		
-		/*if(currentRunningState >= STATES_PER_STEP){
-			runState = 0;
-		}*/
+		int currentRunningState = (((runState / 2) + 1) % NUM_OF_RUN_STATE) + 1;
 		++runState;
 		
-		//int currentRunningState = (int)Math.round ((float)((destinationX - currentPositionX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1 ;
-		
-		//System.out.println(currentRunningState);
 		setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
 		setPositionX(currentPositionX);
@@ -116,14 +101,8 @@ public class PlayerObject extends GameObject{
 		currentState = RUNNING;
 		currentPositionX -= RUNNING_SPEED;
 
-		int currentRunningState = (((runState / 2) + 1) % STATES_PER_STEP) + 1;
-		/*if(currentRunningState >= STATES_PER_STEP){
-			runState = 0;
-		}*/
+		int currentRunningState = (((runState / 2) + 1) % NUM_OF_RUN_STATE) + 1;
 		++runState;
-		
-		//int currentRunningState = (int)Math.round(((float)((currentPositionX - destinationX) / STATE_CHANGE_SPEED)) % STATES_PER_STEP + 1);
-		//System.out.println(currentRunningState);
 		
 		setPositionX(currentPositionX);
 		setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
@@ -145,7 +124,7 @@ public class PlayerObject extends GameObject{
 		attackState++;
 		setImageByPath(resourceFolder + "attack_" + attackState + ".png");
 		
-		if(attackState >= ATTACK_STATE_NUM){
+		if(attackState >= NUM_OF_ATTACK_STATE){
 			resetAttackState();
 			completed = true; 
 		} else {

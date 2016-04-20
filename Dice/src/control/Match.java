@@ -92,7 +92,7 @@ public class Match implements Listenable {
 		} else {
 			
 			player1Object.setIdle();
-			player1Object.setIdle();
+			player2Object.setIdle();
 			//displayWinner();
 			//displayMenu();
 		}

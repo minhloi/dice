@@ -30,7 +30,12 @@ public class RollDicePhase extends Phase {
 	public static final int ROLLING = 0;
 	public static final int TIE_ROLLING_AGAIN = 1;
 	public static final int HAS_WINNER = 2;
-		
+	
+	private static final Color GREEN = new Color(0x398564);
+	private static final Color RED = new Color(0x90243a);
+	private static final Color BLUE = new Color(0x3b7d86);
+	
+	
 	public RollDicePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		
 		this.player1 = player1;
@@ -58,25 +63,25 @@ public class RollDicePhase extends Phase {
 		
 		} else if(currentState == TIE_ROLLING_AGAIN){
 			rollingDie();
-			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, BLUE);
 			player1Panel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
-			player2Panel.drawString("Tie. Rolling again", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player2Panel.drawString("Tie. Rolling again", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, BLUE);
 			player2Panel.drawString("Press I to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		
 		} else if(currentState == HAS_WINNER){
 			if(player1.getTurnInfo().isTurnWinner()){
-				player1Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player1Panel.drawString("Press W to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Serif", Font.BOLD, 16));
+				player1Panel.drawString("You win! Press W to", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, GREEN);
+				player1Panel.drawString("roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, GREEN);
 			} else {
-				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
+				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, RED);
 			}
 			
 			if(player2.getTurnInfo().isTurnWinner()){
-				player2Panel.drawString("You win!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x449775));
-				player2Panel.drawString("Press I to roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Font("Serif", Font.BOLD, 16));
+				player2Panel.drawString("You win! Press I to", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, GREEN);
+				player2Panel.drawString("roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, GREEN);
 			} else {
-				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x90243a));
+				player2Panel.drawString("You Lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, RED);
 			}
 		}
 		

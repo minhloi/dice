@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class Panel extends GameObject {
 	
@@ -14,9 +15,9 @@ public class Panel extends GameObject {
 	public static final int HEIGHT = 80;
 	
 	public static final int PANEL_1_POSITION_X = 50;
-	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 110;
+	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 100;
 	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - WIDTH - 50;
-	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 110;
+	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 100;
 	
 	public static final int ALIGN_TOP = 30;
 	public static final int ALIGN_BOTTOM = 60;
@@ -26,7 +27,7 @@ public class Panel extends GameObject {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.defaultColor = new Color(0x333333);
-		this.defaultFont = new Font("Serif", Font.BOLD, 18);
+		this.defaultFont = new Font("SansSerif", Font.BOLD, 16);
 		setImageByPath("/panel.png");
 		
 	}
@@ -44,7 +45,11 @@ public class Panel extends GameObject {
 	}
 		
 	public void drawString(String string, int positionX, int positionY, Color color, Font font){
-		Graphics graphics = image.createGraphics();
+		Graphics2D graphics = image.createGraphics();
+		
+		// Make font rendered better
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		
 		graphics.setColor(color);
 		graphics.setFont(font);
 		
