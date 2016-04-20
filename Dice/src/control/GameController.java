@@ -38,7 +38,7 @@ public class GameController {
 				
 		stateLength = 4;
 		stateList = new State[stateLength];
-		//stateList[MENU_STATE] = new MenuState(this, scanner);
+		stateList[MENU_STATE] = new MenuState(this, objectList);
 		stateList[PLAY_STATE] = new PlayState(this, objectList, database);
 		//stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
 		//stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);

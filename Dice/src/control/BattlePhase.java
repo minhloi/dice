@@ -146,7 +146,7 @@ public class BattlePhase extends Phase {
 			winnerDiceObject = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
 		} else {
 			winnerPanel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
-			winnerPanel.drawString("Press I to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			winnerPanel.drawString("Press U to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			winnerDiceObject = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y );
 		}
 				
@@ -252,7 +252,7 @@ public class BattlePhase extends Phase {
 		if(currentState == ROLLING){
 			if(player1.getTurnInfo().isTurnWinner() && keyCode == 87){
 				currentState++;
-			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 73){
+			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 85){
 				currentState++;
 			}
 		}

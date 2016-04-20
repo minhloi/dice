@@ -1,17 +1,24 @@
 package control;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import boundary.Background;
+import boundary.GameObject;
 
 public class MenuState extends State{
 
 	private String[] menuList; 
 	private int menuLength;
 	private GameController gameController;
+	private ArrayList<GameObject> objectList;
+	private Background background;
 	
 	public static final int START_GAME = 0;
 	public static final int VIEW_RANK = 1;
 	public static final int EXIT = 2;
 	
-	public MenuState(GameController controller, Scanner scanner){
+	public MenuState(GameController controller, ArrayList<GameObject> objectList){
 		
 		menuLength = 3;
 		menuList = new String[menuLength];
@@ -19,29 +26,16 @@ public class MenuState extends State{
 		menuList[VIEW_RANK] = "View ranking";
 		menuList[EXIT] = "Exit";
 		
-		this.scanner = scanner;
+		this.objectList = objectList;
 		this.gameController = controller;
+		this.background = new Background("menu_background.png");
 		
 	}
 	
 	public void print(){
 		
-		// Print all menu options.
-		System.out.print("Menu options: \n");
-		for(int i = 0; i < menuLength; i++){
-			System.out.print(i + ". " + menuList[i]+ "\n");
-		}
-				
-		System.out.print("Please select menu: ");
+		objectList.add(background);
 		
-		// Read input
-		int selectedOption = scanner.nextInt();
-		
-		System.out.print("\n");
-		
-		// Route to the correct state.
-		route(selectedOption);
-			
 	}
 	
 	private void route(int selectedOption){
@@ -80,6 +74,24 @@ public class MenuState extends State{
 				print();
 				
 		}
+		
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
 		
 	}
 	

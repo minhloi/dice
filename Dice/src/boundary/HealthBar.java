@@ -25,7 +25,10 @@ public class HealthBar extends GameObject {
 	public static final int PLAYER2_POSITION_Y = 60;
 	
 	public HealthBar(int positionX, int positionY){
+		
 		setPosition(positionX, positionY);
+		
+		
 	}
 	
 	public void setHealthBar(int healthPoint){
@@ -41,14 +44,14 @@ public class HealthBar extends GameObject {
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		
 		graphics.setColor(Color.WHITE);
-		graphics.fillRect(HEALTH_NUM_WIDTH, 8, BAR_MAX_WIDTH ,BAR_HEIGHT);
+		graphics.fillRect(HEALTH_NUM_WIDTH, 18, BAR_MAX_WIDTH ,BAR_HEIGHT);
 		
 		graphics.setFont(new Font("SansSerif", Font.BOLD, 32));
 		graphics.setColor(Color.BLUE);
 		
 		int barWidth = BAR_MAX_WIDTH*(healthPoint)/ Player.DEFAULT_HEALTH_POINT;
-		graphics.fillRect(HEALTH_NUM_WIDTH, 8, barWidth ,BAR_HEIGHT);
-		graphics.drawString("" + healthPoint, 0, 25);
+		graphics.fillRect(HEALTH_NUM_WIDTH, 18, barWidth ,BAR_HEIGHT);
+		graphics.drawString("" + healthPoint, 0, 35);
 		
 		graphics.dispose();
 	}
