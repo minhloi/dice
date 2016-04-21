@@ -21,7 +21,7 @@ public abstract class GameObject {
 	}
 
 	public void setPositionY(int y){
-		positionX = y;
+		positionY = y;
 	}
 	
 	public void setImageByPath(String path){
