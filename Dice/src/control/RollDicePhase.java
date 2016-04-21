@@ -58,20 +58,20 @@ public class RollDicePhase extends Phase {
 		
 		if(currentState == ROLLING){
 			rollingDie();
-			player1Panel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player1Panel.drawString("Press E to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			player2Panel.drawString("Press U to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 		
 		} else if(currentState == TIE_ROLLING_AGAIN){
 			rollingDie();
 			player1Panel.drawString("Tie. Rolling again.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, BLUE);
-			player1Panel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			player1Panel.drawString("Press E to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 			
 			player2Panel.drawString("Tie. Rolling again", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, BLUE);
 			player2Panel.drawString("Press U to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		
 		} else if(currentState == HAS_WINNER){
 			if(player1.getTurnInfo().isTurnWinner()){
-				player1Panel.drawString("You win! Press W to", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, GREEN);
+				player1Panel.drawString("You win! Press E to", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, GREEN);
 				player1Panel.drawString("roll for damage.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, GREEN);
 			} else {
 				player1Panel.drawString("You lose!", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, RED);
@@ -145,7 +145,7 @@ public class RollDicePhase extends Phase {
 		if(currentState == ROLLING || currentState == TIE_ROLLING_AGAIN){
 			
 			switch(keyCode){
-				case 87: //w
+				case 69: //e
 					dice1Stopped = true;
 					break;
 				case 85: //u
@@ -165,7 +165,7 @@ public class RollDicePhase extends Phase {
 		} else if(currentState == HAS_WINNER){
 			
 			switch(keyCode){
-				case 87: //w
+				case 69: //e
 					if(player1.getTurnInfo().isTurnWinner())
 						setCompleted();
 					break;
