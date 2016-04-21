@@ -142,7 +142,7 @@ public class BattlePhase extends Phase {
 		
 		if(player1.getTurnInfo().isTurnWinner()){
 			winnerPanel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
-			winnerPanel.drawString("Press W to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			winnerPanel.drawString("Press E to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
 			winnerDiceObject = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
 		} else {
 			winnerPanel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
@@ -250,7 +250,7 @@ public class BattlePhase extends Phase {
 		int keyCode = keyEvent.getKeyCode();
 		
 		if(currentState == ROLLING){
-			if(player1.getTurnInfo().isTurnWinner() && keyCode == 87){
+			if(player1.getTurnInfo().isTurnWinner() && keyCode == 69){
 				currentState++;
 			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 85){
 				currentState++;
