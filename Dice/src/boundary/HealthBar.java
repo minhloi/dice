@@ -12,16 +12,16 @@ import entity.Player;
 
 public class HealthBar extends GameObject {
 
-	public static final int IMAGE_HEIGHT = 50;
-	public static final int IMAGE_WIDTH = 280;
+	public static final int HEIGHT = 50;
+	public static final int WIDTH = 280;
 	
 	public static final int HEALTH_NUM_WIDTH = 50;
-	public static final int BAR_MAX_WIDTH = IMAGE_WIDTH - HEALTH_NUM_WIDTH;
+	public static final int BAR_MAX_WIDTH = WIDTH - HEALTH_NUM_WIDTH;
 	public static final int BAR_HEIGHT = 12;
 	
 	public static final int PLAYER1_POSITION_X = 60;
 	public static final int PLAYER1_POSITION_Y = 60;
-	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - IMAGE_WIDTH - 60;
+	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - WIDTH - 60;
 	public static final int PLAYER2_POSITION_Y = 60;
 	
 	public HealthBar(int positionX, int positionY){
@@ -37,7 +37,7 @@ public class HealthBar extends GameObject {
 			healthPoint = 0;
 		}
 		
-		image = new BufferedImage(IMAGE_WIDTH, IMAGE_HEIGHT, BufferedImage.TYPE_INT_ARGB);		
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
 		
 		Graphics2D graphics = image.createGraphics();
 		// Make font rendered better
