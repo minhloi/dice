@@ -51,13 +51,13 @@ public class GameCanvas extends JPanel {
 		// Add game listener
 		addKeyListener(new CanvasKeyListener());
 		
-		PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
-		playState.startNew();
-		gameController.setState(GameController.PLAY_STATE);
+		//PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+		//playState.startNew();
+		//gameController.setState(GameController.PLAY_STATE);
 		
 		// Start timer
 		timer.start();
-				
+					
 	}
 	
 	public void paintComponent(Graphics graphics){

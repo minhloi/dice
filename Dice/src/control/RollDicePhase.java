@@ -27,9 +27,9 @@ public class RollDicePhase extends Phase {
 	
 	private ArrayList<GameObject> objectList;
 	
-	public static final int ROLLING = 0;
-	public static final int TIE_ROLLING_AGAIN = 1;
-	public static final int HAS_WINNER = 2;
+	private static final int ROLLING = 0;
+	private static final int TIE_ROLLING_AGAIN = 1;
+	private static final int HAS_WINNER = 2;
 	
 	private static final Color GREEN = new Color(0x398564);
 	private static final Color RED = new Color(0x90243a);

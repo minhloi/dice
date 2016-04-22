@@ -4,45 +4,60 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import boundary.Background;
+import boundary.GameCanvas;
 import boundary.GameObject;
+import boundary.SelectableMenu;
 
 public class MenuState extends State{
 
-	private String[] menuList; 
-	private int menuLength;
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
 	private Background background;
+	private SelectableMenu menu;
+	private String[] menuItems;
+	private int menuLength;
+	private int selectedOption;
 	
-	public static final int START_GAME = 0;
-	public static final int VIEW_RANK = 1;
-	public static final int EXIT = 2;
+	private static final int START_NEW_GAME = 0;
+	private static final int VIEW_RANK = 1;
+	private static final int EXIT = 2;
+	
+	private static final int MENU_HEIGHT = 300;
+	private static final int MENU_WIDTH = 300;
+	private static final int MENU_POSITION_X = (GameCanvas.WIDTH - MENU_WIDTH) / 2 ;
+	private static final int MENU_POSITION_Y = (GameCanvas.HEIGHT - MENU_HEIGHT) - 70;
 	
 	public MenuState(GameController controller, ArrayList<GameObject> objectList){
 		
-		menuLength = 3;
-		menuList = new String[menuLength];
-		menuList[START_GAME] = "Start game";
-		menuList[VIEW_RANK] = "View ranking";
-		menuList[EXIT] = "Exit";
-		
 		this.objectList = objectList;
 		this.gameController = controller;
-		this.background = new Background("menu_background.png");
+		this.background = new Background("main_background.png");
 		
+		this.menuLength = 3;
+		this.menuItems = new String[3];
+		menuItems[START_NEW_GAME] = "Start new game";
+		menuItems[VIEW_RANK] = "View rankings";
+		menuItems[EXIT] = "Quit";
+		
+		this.selectedOption = START_NEW_GAME;
 	}
 	
 	public void print(){
 		
 		objectList.add(background);
 		
+		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, MENU_POSITION_X, MENU_POSITION_Y);
+		menu.setSelectedIndex(selectedOption);
+		menu.drawMenu(menuItems);
+		
+		objectList.add(menu);
 	}
 	
 	private void route(int selectedOption){
 		
 		switch (selectedOption) {
 		
-			case START_GAME:
+			case START_NEW_GAME:
 			
 				// Get playState object
 				PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
@@ -85,8 +100,14 @@ public class MenuState extends State{
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
+		int keycode = keyEvent.getKeyCode();
+		switch(keycode){
+			case KeyEvent.VK_DOWN:
+				break;
+			case KeyEvent.VK_UP:
+				break;
+		}
+
 	}
 
 	@Override
@@ -94,6 +115,5 @@ public class MenuState extends State{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
+		
 }
