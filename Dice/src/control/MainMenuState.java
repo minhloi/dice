@@ -8,7 +8,7 @@ import boundary.GameCanvas;
 import boundary.GameObject;
 import boundary.SelectableMenu;
 
-public class MenuState extends State{
+public class MainMenuState extends State{
 
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
@@ -27,7 +27,7 @@ public class MenuState extends State{
 	private static final int MENU_POSITION_X = (GameCanvas.WIDTH - MENU_WIDTH) / 2 ;
 	private static final int MENU_POSITION_Y = (GameCanvas.HEIGHT - MENU_HEIGHT) - 70;
 	
-	public MenuState(GameController controller, ArrayList<GameObject> objectList){
+	public MainMenuState(GameController controller, ArrayList<GameObject> objectList){
 		
 		this.objectList = objectList;
 		this.gameController = controller;
@@ -105,8 +105,6 @@ public class MenuState extends State{
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

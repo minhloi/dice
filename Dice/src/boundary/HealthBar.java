@@ -19,9 +19,9 @@ public class HealthBar extends GameObject {
 	public static final int BAR_MAX_WIDTH = WIDTH - HEALTH_NUM_WIDTH;
 	public static final int BAR_HEIGHT = 12;
 	
-	public static final int PLAYER1_POSITION_X = 60;
+	public static final int PLAYER1_POSITION_X = 30;
 	public static final int PLAYER1_POSITION_Y = 60;
-	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - WIDTH - 60;
+	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - WIDTH - 30;
 	public static final int PLAYER2_POSITION_Y = 60;
 	
 	public HealthBar(int positionX, int positionY){

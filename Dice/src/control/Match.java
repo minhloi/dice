@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import boundary.Background;
+import boundary.GameCanvas;
 import boundary.GameObject;
 import boundary.HealthBar;
+import boundary.LargePanel;
 import boundary.PlayerObject;
 import entity.Database;
 import entity.Player;
@@ -39,6 +41,11 @@ public class Match implements Listenable {
 	private GameController gameController;
 	private Database database;
 	private Background background;
+	private LargePanel menuPanel;
+	private MatchEndMenu menu;
+	
+	public static final int PANEL_POSITION_X = (GameCanvas.WIDTH - LargePanel.WIDTH) / 2;
+	public static final int PANEL_POSITION_Y = (GameCanvas.HEIGHT - LargePanel.HEIGHT) / 2;
 	
 	/**
 	 * 
@@ -55,7 +62,7 @@ public class Match implements Listenable {
 		this.gameController = gameController;
 		this.objectList = objectList;
 		this.database = database;
-		
+				
 		try {
 			this.player1Object = new PlayerObject(1);
 			this.player2Object = new PlayerObject(2);
@@ -70,6 +77,8 @@ public class Match implements Listenable {
 		
 		this.currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
 		this.matchEnded = false;
+		this.menuPanel = new LargePanel(PANEL_POSITION_X, PANEL_POSITION_Y);
+		this.menu = new MatchEndMenu(this.gameController, this.objectList);
 	}
 		
 	/**
@@ -90,11 +99,10 @@ public class Match implements Listenable {
 		if(matchEnded == false){
 			currentTurn.render();
 		} else {
-			
 			player1Object.setIdle();
 			player2Object.setIdle();
-			//displayWinner();
-			//displayMenu();
+			saveData();
+			displayMenu();
 		}
 				
 		if(currentTurn.isTurnCompleted()){
@@ -115,11 +123,10 @@ public class Match implements Listenable {
 		matchEnded = true;
 	}
 		
-	private void displayWinner(){
-		
+	private void saveData(){
 		database.incrementWinByName(getWinner().getUserName());
 		database.incrementLossByName(getLoser().getUserName());
-		
+		database.saveData();
 	}
 	
 	private Player getWinner(){
@@ -143,7 +150,10 @@ public class Match implements Listenable {
 	}
 	
 	private void displayMenu(){
-				
+		
+		objectList.add(menuPanel);
+		menu.render();
+
 	}
 	
 	private boolean hasWinner(){
@@ -162,7 +172,6 @@ public class Match implements Listenable {
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		currentTurn.onKeyPressed(keyEvent);
 	}
 
 	@Override
@@ -172,7 +181,6 @@ public class Match implements Listenable {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
 		
 	}
 		

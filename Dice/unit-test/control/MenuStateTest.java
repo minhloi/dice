@@ -19,7 +19,7 @@ public class MenuStateTest {
 		Scanner scanner = new Scanner(System.in);
 		
 		// Test if a MenuState object is created
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		assertNotNull(menu);
 		
 	}
@@ -30,13 +30,13 @@ public class MenuStateTest {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		
-		String selectedOption = "" + MenuState.EXIT;
+		String selectedOption = "" + MainMenuState.EXIT;
 		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
 		
 		GameController controller = new GameController();
 		Scanner scanner = new Scanner(System.in);
 		
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		menu.print();
 		
 		// Test if menu is printing
@@ -51,13 +51,13 @@ public class MenuStateTest {
 		System.setOut(new PrintStream(outContent));
 		
 		// Mock option inputs.
-		String selectedOption = "-1" + "\n"+ MenuState.EXIT;
+		String selectedOption = "-1" + "\n"+ MainMenuState.EXIT;
 		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
 		
 		GameController controller = new GameController();
 		Scanner scanner = new Scanner(System.in);
 		
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		menu.print();
 		
 		// Menu is printing
