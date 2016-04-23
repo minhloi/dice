@@ -18,9 +18,9 @@ public class PlayerObject extends GameObject{
 	public static final int RUNNING = 1;
 	public static final int ATTACKING = 2;
 	
-	public static final int PLAYER1_DEFAULT_POSITION_X = 200;
+	public static final int PLAYER1_DEFAULT_POSITION_X = 180;
 	public static final int PLAYER1_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 200;
-	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH - 200;
+	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH - 180;
 	public static final int PLAYER2_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 200;
 	public static final int FRONT_OF_PLAYER1 = PLAYER1_DEFAULT_POSITION_X + 50;
 	public static final int FRONT_OF_PLAYER2 = PLAYER2_DEFAULT_POSITION_X - 50;
