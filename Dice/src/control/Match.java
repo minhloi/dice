@@ -63,7 +63,7 @@ public class Match implements Listenable {
 			e.printStackTrace();
 		}
 		
-		this.background = new Background("forest.png");
+		this.background = new Background("play_background.png");
 		
 		this.healthBar1 = new HealthBar(HealthBar.PLAYER1_POSITION_X, HealthBar.PLAYER1_POSITION_Y);
 		this.healthBar2 = new HealthBar(HealthBar.PLAYER2_POSITION_X, HealthBar.PLAYER2_POSITION_Y);

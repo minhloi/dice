@@ -94,9 +94,6 @@ public class RollDicePhase extends Phase {
 		this.player1Object.setIdle();
 		this.player2Object.setIdle();
 				
-		objectList.add(player1Object);
-		objectList.add(player2Object);
-		
 		objectList.add(player1Panel);
 		objectList.add(player2Panel);
 		

@@ -75,9 +75,6 @@ public class BattlePhase extends Phase {
 				
 		renderWinnerPanel();
 		renderWinnerDiceObject();
-				
-		objectList.add(player1Object);
-		objectList.add(player2Object);
 		
 		objectList.add(winnerPanel);
 		objectList.add(winnerDiceObject);

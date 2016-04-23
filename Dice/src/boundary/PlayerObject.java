@@ -22,8 +22,8 @@ public class PlayerObject extends GameObject{
 	public static final int PLAYER1_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 200;
 	public static final int PLAYER2_DEFAULT_POSITION_X = GameCanvas.WIDTH - WIDTH - 200;
 	public static final int PLAYER2_DEFAULT_POSITION_Y = GameCanvas.HEIGHT - 200;
-	public static final int FRONT_OF_PLAYER1 = PLAYER1_DEFAULT_POSITION_X + 80;
-	public static final int FRONT_OF_PLAYER2 = PLAYER2_DEFAULT_POSITION_X - 100;
+	public static final int FRONT_OF_PLAYER1 = PLAYER1_DEFAULT_POSITION_X + 50;
+	public static final int FRONT_OF_PLAYER2 = PLAYER2_DEFAULT_POSITION_X - 50;
 	
 	// There are a total of 8 states in one running step
 	public static final int NUM_OF_RUN_STATE = 8;
