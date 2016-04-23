@@ -75,7 +75,7 @@ public class GameCanvas extends JPanel {
 		
 	private class GameLoop implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			gameController.render();
+			gameController.renderCurrentState();
 			repaint();
 		}
 	}

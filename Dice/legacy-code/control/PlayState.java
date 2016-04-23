@@ -1,9 +1,7 @@
 package control;
 
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.util.Scanner;
 
-import boundary.GameObject;
 import entity.Database;
 import entity.Player;
 
@@ -18,12 +16,11 @@ import entity.Player;
  * @author Tanner Siffren
  */
 
-public class PlayState extends State implements Listenable {
+public class PlayState extends State{
 
 	private GameController gameController;
 	private Database database;
 	private Match currentMatch;
-	private ArrayList<GameObject> objectList;
 	
 	// Player's sessions
 	private Player player1;
@@ -36,10 +33,10 @@ public class PlayState extends State implements Listenable {
 	 * @param scanner Scanner object which scans input
 	 * @param database Database object which load/save data
 	 */
-	public PlayState(GameController controller, ArrayList<GameObject> objectList, Database database){
+	public PlayState(GameController controller, Scanner scanner, Database database){
 		
 		this.gameController = controller;
-		this.objectList = objectList;
+		this.scanner = scanner;
 		this.database = database;
 	
 	}
@@ -49,8 +46,8 @@ public class PlayState extends State implements Listenable {
 	 */
 	public void startNew(){
 		
-		player1 = new Player(1, "Guest");
-		player2 = new Player(2, "Guest2");
+		// Prompt to enter user names of two players
+		createProfiles();
 		
 		createNewMatch();
 		
@@ -72,8 +69,8 @@ public class PlayState extends State implements Listenable {
 	 * createNewMatch - Create a new match object.
 	 */
 	private void createNewMatch(){
-			
-		currentMatch = new Match(player1, player2, gameController, objectList, database);
+		
+		currentMatch = new Match(player1, player2, gameController, scanner, database);
 	
 	}
 	
@@ -81,7 +78,7 @@ public class PlayState extends State implements Listenable {
 	 * createProfiles - Ask users for usernames. Then store each one for player1 
 	 * 					and player2
 	 */
-	/* private void createProfiles(){
+	private void createProfiles(){
 		
 		String player1Username;
 		String player2Username;
@@ -96,7 +93,7 @@ public class PlayState extends State implements Listenable {
 		player1 = new Player(1, player1Username);
 		player2 = new Player(2, player2Username);
 			
-	} */
+	}
 	
 	/**
 	 *  retainProfiles - Keep current user profiles 
@@ -115,22 +112,7 @@ public class PlayState extends State implements Listenable {
 	 * print - Display the start of the match and begin a turn.
 	 */
 	public void print(){
-		currentMatch.renderTurn();
-	}
-
-	@Override
-	public void onKeyPressed(KeyEvent keyEvent) {
-		currentMatch.onKeyPressed(keyEvent);
-	}
-
-	@Override
-	public void onKeyReleased(KeyEvent keyEvent) {
-		currentMatch.onKeyReleased(keyEvent);
-	}
-
-	@Override
-	public void onKeyTyped(KeyEvent keyEvent) {
-		
+		currentMatch.beginTurn();
 	};
 			
 }

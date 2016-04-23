@@ -1,12 +1,11 @@
 package main;
-import java.awt.Color;
+
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
 import boundary.GameCanvas;
-import control.GameController;
+
 
 /**
  * The GameEngine class is simply a starter of the game.

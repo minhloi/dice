@@ -63,20 +63,20 @@ public class MainMenuState extends State{
 			case START_NEW_GAME:
 			
 				// Get playState object
-				PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
 				
 				// To start a new game, create a new Match object.
 				playState.startNew();
 				
 				// Begin to render playState.
-				gameController.setState(GameController.PLAY_STATE);
+				gameController.setState(State.PLAY_STATE);
 								
 				break;
 		
 			case VIEW_RANK:
 			
 				// Begin to render viewRankState
-				gameController.setState(GameController.VIEW_RANK_STATE);
+				gameController.setState(State.VIEW_RANK_STATE);
 				
 				break;
 		

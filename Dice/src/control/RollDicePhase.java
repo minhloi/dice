@@ -12,6 +12,16 @@ import boundary.Panel;
 import boundary.PlayerObject;
 import entity.Player;
 
+/**
+ * RollDicePhase class - Trigger Dice class to generate the value and display 
+ * 						 who win the roll
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
 public class RollDicePhase extends Phase {
 	
 	private Player player1;
@@ -51,6 +61,9 @@ public class RollDicePhase extends Phase {
 		
 	}
 	
+	/**
+	 * render - Render roll-dice phase.
+	 */
 	public void render(){
 				
 		Panel player1Panel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);

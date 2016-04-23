@@ -6,7 +6,8 @@ import boundary.GameObject;
 import entity.Database;
 
 /**
- * GameEngine class with initializing  GameControler
+ * GameController class - controls all states of the game, including loading data 
+ * 						  after opening and saving data before exiting.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -14,35 +15,27 @@ import entity.Database;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class GameController {
 		
 	private State[] stateList;
 	private Database database;
 	
-	private int stateLength;
 	private int currentState;
 	
-	// All static variable values needed for state of the game
-	public static final int MENU_STATE = 0;
-	public static final int PLAY_STATE = 1;
-	public static final int VIEW_RANK_STATE = 2;
-	
 	/**
-	 * GameController with initializing all need variables, arrays.
+	 * GameController constructor - Initializes all game states.
 	 */
 	public GameController(ArrayList<GameObject> objectList) {
 		
 		database = new Database();
 				
-		stateLength = 3;
-		stateList = new State[stateLength];
-		stateList[MENU_STATE] = new MainMenuState(this, objectList);
-		stateList[PLAY_STATE] = new PlayState(this, objectList, database);
-		//stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
-		
+		stateList = new State[State.LENGTH];
+		stateList[State.MENU_STATE] = new MainMenuState(this, objectList);
+		stateList[State.PLAY_STATE] = new PlayState(this, objectList, database);
+		//stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, objectList, database);
+
 		// Default is Menu
-		currentState = MENU_STATE;
+		currentState = State.MENU_STATE;
 			
 	}
 	
@@ -71,14 +64,12 @@ public class GameController {
 	}
 	
 	/**
-	 *  Method to set the state in game
+	 * setState - Set the game to a specific state.
 	 *  
-	 * @param state - type of state of the game
+	 * @param state	- the index of the desired state
 	 */
 	public void setState(int state) {
-		
 		currentState = state;
-		
 	}
 	
 	public State getCurrentStateObject(){
@@ -90,16 +81,16 @@ public class GameController {
 	 */
 	public void exitGame() {
 		
-		// Before exit
 		database.saveData();
 		
 		System.exit(0);
 	}
 	
 	/**
-	 *  Method to print the current state the game in
+	 * renderCurrentState - Render the current state of the game.
 	 */
-	public void render() {
+	public void renderCurrentState() {
+		
 		stateList[currentState].print();
 	}
 	

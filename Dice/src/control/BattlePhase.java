@@ -9,6 +9,16 @@ import boundary.Panel;
 import boundary.PlayerObject;
 import entity.Player;
 
+/**
+ * The BattlePhase class demonstates a phase of a match, where the rollWinner
+ * causes damage to the rollLoser.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
 public class BattlePhase extends Phase {
 	
 	private Player player1;
@@ -26,6 +36,9 @@ public class BattlePhase extends Phase {
 	public static final int ATTACKING = 2;
 	public static final int RETURNING = 3;
 	
+	/**
+	 * The class constructor initializes rollWinner and rollLoser objects.
+	 */
 	private ArrayList<GameObject> objectList;
 	
 	public BattlePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
@@ -39,6 +52,9 @@ public class BattlePhase extends Phase {
 		
 	}	
 	
+	/**
+	 * render - Render all actions in the battle phase. 
+	 */ 
 	public void render(){
 		
 		if(currentState == ROLLING){
@@ -162,8 +178,8 @@ public class BattlePhase extends Phase {
 	}
 		
 	/**
-	 * Method to calculate damage dealt to other player
-	 * @throws Exception exception throws when either players has not selected their move.
+	 * calculateDamage - Calculate damage dealt to rollLoser
+	 * @throws Exception exception throws when either players has not selected their moves thus cannot calculdate damage.
 	 */
 	private void calculateDamage(int initialDamage) throws Exception {
 		

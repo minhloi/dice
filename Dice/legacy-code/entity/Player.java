@@ -15,13 +15,15 @@ public class Player {
 	private String username;	
 	private int health;
 	private Dice dice;
-	private TurnInfo turnInfo;
-		
+	
 	// Number of times SPECIAL_ATTACK used.
 	private int numSpecialUsed;
+	private boolean blockDisabled;
+	
+	private int currentMove;
 	
 	// Some default configurations.
-	public static final int DEFAULT_HEALTH_POINT = 1;
+	public static final int DEFAULT_HEALTH_POINT = 10;
 	public static final int MAX_SPECIAL_ALLOWED = 2;
 	
 	// Player-move definition
@@ -39,12 +41,13 @@ public class Player {
 	public Player(int number, String username){
 		
 		// Initialize variables
-		this.playerNumber = number;
+		playerNumber = number;
 		this.username = username;
-		this.health = DEFAULT_HEALTH_POINT; 
+		health = DEFAULT_HEALTH_POINT; 
+		currentMove = NOT_SELECT;
 		numSpecialUsed = 0;
+		blockDisabled = false;
 		dice = new Dice();
-		turnInfo = new TurnInfo();
 	}
 	
 	/**
@@ -53,6 +56,7 @@ public class Player {
 	 * @return Returns the player's health
 	 */
 	public int getHealth(){
+		
 		return health;
 	}
 	
@@ -63,6 +67,7 @@ public class Player {
 	 * @return Returns player's health
 	 */
 	public int setHealth(int health){
+		
 		this.health = health;
 		return this.health;
 	}
@@ -73,6 +78,7 @@ public class Player {
 	 * @return Returns the player's username
 	 */
 	public String getUserName(){
+		
 		return username;
 	}
 	
@@ -82,6 +88,7 @@ public class Player {
 	 * @return Returns the player's ID number
 	 */
 	public int getNumber(){
+		
 		return playerNumber;
 	}
 	
@@ -91,11 +98,18 @@ public class Player {
 	 * @return Returns the Dice object
 	 */
 	public Dice getDice(){
+		
 		return dice;
 	}
 	
-	public TurnInfo getTurnInfo(){
-		return turnInfo;
+	/**
+	 * isBlockDisabled - Get the boolean value that determines whether block is disabled
+	 * 
+	 * @return Returns the boolean value of blockDisabled
+	 */
+	public boolean isBlockDisabled(){
+		
+		return blockDisabled;
 	}
 	
 	/**
@@ -104,22 +118,94 @@ public class Player {
 	 * @return Returns boolean value to determine if special attack can be used
 	 */
 	public boolean canUseSpecial(){
+		
 		if(numSpecialUsed >= MAX_SPECIAL_ALLOWED){
 			return false;
 		} else
 			return true;	
 	}
-
-	public void incrementSpecialUsed(){
-		++numSpecialUsed;
+		
+	/**
+	 * getMove - Get the current move
+	 * 
+	 * @return Returns the current move
+	 */
+	public int getMove(){
+		
+		return currentMove;
+	}
+	
+	/**
+	 * getMoveInString - Return the type of move used  
+	 * 
+	 * @return Returns the type of move
+	 */
+	public String getMoveInString(){
+		
+		if(currentMove == ATTACK)
+			return "ATTACK";
+		else if(currentMove == BLOCK)
+			return "BLOCK";
+		else if(currentMove == SPECIAL_ATTACK)
+			return "SPECIAL_ATTACK";
+		else 
+			return "NOT_SELECTED";	
+	}
+	
+	/**
+	 * setMove - Set the move and check for disable block and special attack capability
+	 * 
+	 * @param move Player's move choice
+	 */
+	public void setMove(int move){
+		
+		// Assume that setMove is called only once in a turn,
+		// meaning once player selected a move, he cannot change.
+		currentMove = move;
+		if(currentMove == BLOCK){
+			disableBlock();
+		} else if(currentMove == SPECIAL_ATTACK){
+			incrementSpecialUsed();
+		}
+	}
+	
+	/**
+	 * resetMove - Reset the move of the player
+	 */
+	public void resetMove(){
+		
+		// If player does not select BLOCK this turn,
+		// then enable it back for next turn.
+		if(currentMove != BLOCK){
+			enableBlock();
+		}
+		
+		currentMove = NOT_SELECT;
 		
 	}
 	
-	public void resetTurnInfo(){
+	/**
+	 * disableBlock - Set blockDisabled to true
+	 */
+	private void disableBlock(){
 		
-		int previousMove = turnInfo.getMove();
-
-		turnInfo = new TurnInfo();
+		blockDisabled = true;
 	}
-					
+	
+	/**
+	 * enableBlock - Set blockDisabled to false
+	 */
+	private void enableBlock(){
+		
+		blockDisabled = false;
+	}
+	
+	/**
+	 * incrementSpecialUsed - Increment the number of special attacks used
+	 */
+	private void incrementSpecialUsed(){
+		
+		++numSpecialUsed;
+	}
+		
 }

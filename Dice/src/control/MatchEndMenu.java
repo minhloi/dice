@@ -81,25 +81,25 @@ public class MatchEndMenu implements Listenable {
 			case REMATCH:
 			
 				// Get playState object
-				PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
+				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
 				
 				// Rematch.
 				playState.rematch();
 				
 				// Begin to render menuState.
-				gameController.setState(GameController.PLAY_STATE);
+				gameController.setState(State.PLAY_STATE);
 				break;
 		
 			case BACK_TO_MAIN_MENU:
 			
 				// Begin to render menuState.
-				gameController.setState(GameController.MENU_STATE);
+				gameController.setState(State.MENU_STATE);
 				break;	
 		
 			case VIEW_RANK:
 			
 				// Begin to render viewRankState
-				gameController.setState(GameController.VIEW_RANK_STATE);
+				gameController.setState(State.VIEW_RANK_STATE);
 				break;
 		
 			case EXIT:

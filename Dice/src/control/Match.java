@@ -2,7 +2,6 @@ package control;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import boundary.Background;
 import boundary.GameCanvas;
@@ -15,14 +14,13 @@ import entity.Database;
 import entity.Player;
 
 /**
- * Match class with all the require method of the game to play
+ * Match class - Handles all different phases inside a game match.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
  * @author Daniel Enriquez
  * @author Brett Bauman
  * @author Tanner Siffren
- * 
  */
 public class Match implements Listenable {
 
@@ -49,12 +47,13 @@ public class Match implements Listenable {
 	public static final int PANEL_POSITION_Y = (GameCanvas.HEIGHT - LargePanel.HEIGHT) / 2;
 	
 	/**
+	 * Constructor - Initializes all its variables.
 	 * 
-	 * @param player1
-	 * @param player2
-	 * @param gameController
-	 * @param scanner
-	 * @param database
+	 * @param player1 Player object
+	 * @param player2 Player object
+	 * @param gameController gameController object
+	 * @param scanner Scanner object
+	 * @param database Database object
 	 */
 	public Match(Player player1, Player player2, GameController gameController, ArrayList<GameObject> objectList, Database database) {
 		
@@ -83,7 +82,7 @@ public class Match implements Listenable {
 	}
 		
 	/**
-	 * Method to begin the fight 
+	 * beginTurn - This method is used to render each turn.
 	 */
 	public void renderTurn() {
 		
@@ -105,7 +104,7 @@ public class Match implements Listenable {
 			saveData();
 			displayMenu();
 		}
-				
+		
 		if(currentTurn.isTurnCompleted()){
 			if(!hasWinner()){
 				setNewTurn();
@@ -123,7 +122,7 @@ public class Match implements Listenable {
 	private void setMatchEnd(){
 		matchEnded = true;
 	}
-		
+	
 	private void saveData(){
 		database.incrementWinByName(getWinner().getUserName());
 		database.incrementLossByName(getLoser().getUserName());
@@ -164,6 +163,11 @@ public class Match implements Listenable {
 
 	}
 	
+	/**
+	 * hasWinner - Check if there is a winner.
+	 * 
+	 * @return true if there is a winner, and false otherwise
+	 */
 	private boolean hasWinner(){
 		
 		boolean hasWinner;

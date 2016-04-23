@@ -9,6 +9,16 @@ import boundary.Panel;
 import boundary.PlayerObject;
 import entity.Player;
 
+/**
+ * SelectMovePhase class - Capture each of the player's choice of action. Such 
+ * 						   as selecting actions for the game.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
 public class SelectMovePhase extends Phase {
 	
 	private Player player1;
@@ -21,6 +31,13 @@ public class SelectMovePhase extends Phase {
 	public static final char[] PLAYER1_MOVE_SET = {'A', 'S', 'D'};
 	public static final char[] PLAYER2_MOVE_SET = {'J', 'K', 'L'};
 	
+	/**
+	 * Constructor - Prepare Player and Scanner objects
+	 * 
+	 * @param player1
+	 * @param player2
+	 * @param scanner
+	 */
 	public SelectMovePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
@@ -30,6 +47,11 @@ public class SelectMovePhase extends Phase {
 		
 	}
 	
+	/**
+	 * render - Display HP and move-sets. Then check whether block is disabled for
+	 * 			both players and if they can use their special attack. Finally, collect
+	 * 			player's choice of action
+	 */
 	public void render(){
 		
 		this.player1Object.setIdle();
