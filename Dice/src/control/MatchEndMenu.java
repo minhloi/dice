@@ -57,12 +57,12 @@ public class MatchEndMenu implements Listenable {
 	
 	public void render() {
 		
-		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y + 140);
+		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y + 120);
 		menu.setMarginTop(10);
 		menu.setFont(new Font("Arial", Font.BOLD, 26));
 		menu.setSelectedIndex(selectedOption);
 		menu.setUnselectedColor(new Color(0xdcdba9));
-		menu.setSelectedColor(new Color(0x5363516));
+		menu.setSelectedColor(new Color(0x9f3636));
 		menu.drawMenu(menuItems);
 		
 		objectList.add(menu);
@@ -135,7 +135,7 @@ public class MatchEndMenu implements Listenable {
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
-		System.out.println(keycode);
+
 		switch(keycode){
 			case KeyEvent.VK_DOWN:
 				selectNextOption();

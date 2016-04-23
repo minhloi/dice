@@ -10,6 +10,7 @@ import boundary.GameObject;
 import boundary.HealthBar;
 import boundary.LargePanel;
 import boundary.PlayerObject;
+import boundary.WinnerTitle;
 import entity.Database;
 import entity.Player;
 
@@ -152,6 +153,13 @@ public class Match implements Listenable {
 	private void displayMenu(){
 		
 		objectList.add(menuPanel);
+		
+		int winTitlePositionX = (GameCanvas.WIDTH - WinnerTitle.WIDTH) / 2;
+		int winTitlePositionY = PANEL_POSITION_Y + 60;
+		WinnerTitle winnerTitle = new WinnerTitle(getWinner().getNumber(), winTitlePositionX, winTitlePositionY);
+		
+		objectList.add(winnerTitle);
+		
 		menu.render();
 
 	}
@@ -179,7 +187,6 @@ public class Match implements Listenable {
 		if(matchEnded == false){
 			currentTurn.onKeyReleased(keyEvent);
 		} else {
-			System.out.println("Test");
 			menu.onKeyReleased(keyEvent);
 		}
 	}
