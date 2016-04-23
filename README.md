@@ -1,12 +1,13 @@
 ##Fighting Dice - Team 38 Game Project
+### Deliverable 3
 
 ### Deliverable 2
 ####1. Working code:
-The game is fully working in text form (console). You can select menu, play games and view ranks of other players. All game data will be stored as binary data in database.txt file.  
+The game is working in text form (console). You can select menu, play games and view ranks of other players in console. All game data will be stored as binary data in database.txt file.  
 ######How to compile:
 - Clone the Github repo in Eclipse.
 - Import the project in Eclipse.
-- Compile the GameEngine.java in src/main package.
+- Compile the GameEngine.java in legacy-code/main package.
 
 ####2. Unit test:
 All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test).
