@@ -92,8 +92,8 @@ public class GameController {
 		
 		// Before exit
 		database.saveData();
-		System.out.print("Exit!");
 		
+		System.exit(0);
 	}
 	
 	/**

@@ -30,6 +30,7 @@ public class PlayState extends State implements Listenable {
 		
 		player1 = new Player(1, "Guest");
 		player2 = new Player(2, "Guest2");
+		
 		createNewMatch();
 		
 	}
