@@ -1,6 +1,7 @@
 ##Fighting Dice - Team 38 Game Project
 ### Deliverable 3
 
+***
 ### Deliverable 2
 ####1. Working code:
 The game is working in text form (console). You can select menu, play games and view ranks of other players in console. All game data will be stored as binary data in database.txt file.  
