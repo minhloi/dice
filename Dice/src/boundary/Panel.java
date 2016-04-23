@@ -14,10 +14,10 @@ public class Panel extends GameObject {
 	public static final int WIDTH = 280;
 	public static final int HEIGHT = 80;
 	
-	public static final int PANEL_1_POSITION_X = 50;
-	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 100;
-	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - WIDTH - 50;
-	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 100;
+	public static final int PANEL_1_POSITION_X = 30;
+	public static final int PANEL_1_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 240;
+	public static final int PANEL_2_POSITION_X = GameCanvas.WIDTH - WIDTH - 30;
+	public static final int PANEL_2_POSITION_Y = GameCanvas.HEIGHT - HEIGHT - 240;
 	
 	public static final int ALIGN_TOP = 30;
 	public static final int ALIGN_BOTTOM = 60;

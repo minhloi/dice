@@ -30,8 +30,7 @@ public class SelectableMenu extends GameObject {
 		
 		Graphics2D graphics = image.createGraphics();
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		graphics.setFont(new Font("Serif", Font.BOLD, 32));
-		
+		graphics.setFont(new Font("Impact", Font.BOLD, 32));
 		FontMetrics fontMetrics = graphics.getFontMetrics();
 		int fontHeight = fontMetrics.getHeight();
 

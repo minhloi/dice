@@ -53,7 +53,7 @@ public class MenuState extends State{
 		objectList.add(menu);
 	}
 	
-	private void route(int selectedOption){
+	private void route(){
 		
 		switch (selectedOption) {
 		
@@ -83,13 +83,24 @@ public class MenuState extends State{
 				
 				break;
 			
-			default:
-				
-				System.out.println("Invalid input. Please try again.");
-				print();
-				
 		}
 		
+	}
+	
+	private void selectNextOption(){
+		if(selectedOption >= menuLength - 1){
+			selectedOption = 0;
+		} else {
+			selectedOption++;
+		}
+	}
+	
+	private void selectPrevOption(){
+		if(selectedOption <= 0){
+			selectedOption = menuLength - 1;
+		} else {
+			selectedOption--;
+		}
 	}
 
 	@Override
@@ -103,11 +114,15 @@ public class MenuState extends State{
 		int keycode = keyEvent.getKeyCode();
 		switch(keycode){
 			case KeyEvent.VK_DOWN:
+				selectNextOption();
 				break;
 			case KeyEvent.VK_UP:
+				selectPrevOption();
+				break;
+			case KeyEvent.VK_ENTER:
+				route();
 				break;
 		}
-
 	}
 
 	@Override
