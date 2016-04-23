@@ -27,7 +27,6 @@ public class GameController {
 	public static final int MENU_STATE = 0;
 	public static final int PLAY_STATE = 1;
 	public static final int VIEW_RANK_STATE = 2;
-	public static final int MATCH_END_MENU_STATE = 3; // Menu displayed when a match ended
 	
 	/**
 	 * GameController with initializing all need variables, arrays.
@@ -36,12 +35,11 @@ public class GameController {
 		
 		database = new Database();
 				
-		stateLength = 4;
+		stateLength = 3;
 		stateList = new State[stateLength];
 		stateList[MENU_STATE] = new MainMenuState(this, objectList);
 		stateList[PLAY_STATE] = new PlayState(this, objectList, database);
 		//stateList[VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
-		//stateList[MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
 		
 		// Default is Menu
 		currentState = MENU_STATE;

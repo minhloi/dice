@@ -1,8 +1,9 @@
 package control;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import boundary.GameObject;
 import boundary.SelectableMenu;
@@ -45,18 +46,23 @@ public class MatchEndMenu implements Listenable {
 		menuLength = 4;
 		menuItems = new String[menuLength];
 		menuItems[REMATCH] = "Rematch";
-		menuItems[BACK_TO_MAIN_MENU] = "Back to main menu.";
+		menuItems[BACK_TO_MAIN_MENU] = "Back to main menu";
 		menuItems[VIEW_RANK] = "View rankings";
 		menuItems[EXIT] = "Quit";
 				
 		this.gameController = controller;
 		this.objectList = objectList;
-		this.selectedOption = -1;
+		this.selectedOption = REMATCH;
 	}
 	
 	public void render() {
 		
-		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y);
+		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y + 140);
+		menu.setMarginTop(10);
+		menu.setFont(new Font("Arial", Font.BOLD, 26));
+		menu.setSelectedIndex(selectedOption);
+		menu.setUnselectedColor(new Color(0xdcdba9));
+		menu.setSelectedColor(new Color(0x5363516));
 		menu.drawMenu(menuItems);
 		
 		objectList.add(menu);
@@ -129,6 +135,7 @@ public class MatchEndMenu implements Listenable {
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
+		System.out.println(keycode);
 		switch(keycode){
 			case KeyEvent.VK_DOWN:
 				selectNextOption();
@@ -147,7 +154,6 @@ public class MatchEndMenu implements Listenable {
 
 
 	}
-	
-	
+		
 	
 }

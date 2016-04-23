@@ -1,4 +1,5 @@
 package control;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -48,6 +49,8 @@ public class MainMenuState extends State{
 		
 		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, MENU_POSITION_X, MENU_POSITION_Y);
 		menu.setSelectedIndex(selectedOption);
+		menu.setMarginTop(24);
+		menu.setUnselectedColor(new Color(0x8fbfd9));
 		menu.drawMenu(menuItems);
 		
 		objectList.add(menu);

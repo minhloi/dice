@@ -12,7 +12,7 @@ public class Player {
 	private int numSpecialUsed;
 	
 	// Some default configurations.
-	public static final int DEFAULT_HEALTH_POINT = 10;
+	public static final int DEFAULT_HEALTH_POINT = 1;
 	public static final int MAX_SPECIAL_ALLOWED = 2;
 	
 	// Player-move definition
@@ -78,9 +78,11 @@ public class Player {
 			case Player.BLOCK:
 				turnInfo.disableBlock();
 				break;
+				
 			case Player.SPECIAL_ATTACK:
 				incrementSpecialUsed();
 				break;
+			
 			default:
 				turnInfo.enableBlock();
 		}

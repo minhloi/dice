@@ -15,7 +15,11 @@ public class SelectableMenu extends GameObject {
 	private int height;
 	private int width;
 	
+	private Color selectedColor;
+	private Color unselectedColor;
 	private int selectedIndex;
+	private int marginTop;
+	private Font font;
 	
 	public SelectableMenu(int width, int height, int positionX, int positionY){
 		this.width = width;
@@ -23,6 +27,11 @@ public class SelectableMenu extends GameObject {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.selectedIndex = -1;
+		this.marginTop = 0;
+		this.selectedColor = Color.WHITE;
+		this.unselectedColor = Color.WHITE;
+		this.font = new Font("Impact", Font.BOLD, 32);
+		
 		image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 	}
 	
@@ -30,29 +39,45 @@ public class SelectableMenu extends GameObject {
 		
 		Graphics2D graphics = image.createGraphics();
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		graphics.setFont(new Font("Impact", Font.BOLD, 32));
+		graphics.setFont(font);
 		FontMetrics fontMetrics = graphics.getFontMetrics();
 		int fontHeight = fontMetrics.getHeight();
 
-		int marginTop = 0;
+		int positionY = 0;
 		int length = itemList.length;
 		for (int index = 0; index < length; index++){
 			String item = itemList[index];
 			int stringWidth = fontMetrics.stringWidth(item);
 			int alignCenter = (width - stringWidth) / 2;
-			marginTop += fontHeight + 25;
+			positionY += fontHeight + marginTop;
 			if(selectedIndex == index){
-				graphics.setColor(Color.WHITE);
+				graphics.setColor(selectedColor);
 			} else {
-				graphics.setColor(new Color(0x8fbfd9));
+				graphics.setColor(unselectedColor);
 			}
-			graphics.drawString(item, alignCenter , marginTop);
+			graphics.drawString(item, alignCenter , positionY);
 			
 		}
 		
 		graphics.dispose();
 	}
-		
+	
+	public void setFont(Font font){
+		this.font = font;
+	}
+	
+	public void setMarginTop(int marginTop){
+		this.marginTop = marginTop;
+	}
+	
+	public void setSelectedColor(Color color){
+		this.selectedColor = color;
+	}
+	
+	public void setUnselectedColor(Color color){
+		this.unselectedColor = color;
+	}
+	
 	public void setSelectedIndex(int index){
 		selectedIndex = index;
 	}

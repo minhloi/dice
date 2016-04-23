@@ -176,7 +176,12 @@ public class Match implements Listenable {
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
-		currentTurn.onKeyReleased(keyEvent);
+		if(matchEnded == false){
+			currentTurn.onKeyReleased(keyEvent);
+		} else {
+			System.out.println("Test");
+			menu.onKeyReleased(keyEvent);
+		}
 	}
 
 	@Override
