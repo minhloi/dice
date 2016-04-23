@@ -1,7 +1,9 @@
 package control;
 
-import java.util.Scanner;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
+import boundary.GameObject;
 import entity.Database;
 import entity.Player;
 
@@ -16,11 +18,12 @@ import entity.Player;
  * @author Tanner Siffren
  */
 
-public class PlayState extends State{
+public class PlayState extends State implements Listenable {
 
 	private GameController gameController;
 	private Database database;
 	private Match currentMatch;
+	private ArrayList<GameObject> objectList;
 	
 	// Player's sessions
 	private Player player1;
@@ -33,10 +36,10 @@ public class PlayState extends State{
 	 * @param scanner Scanner object which scans input
 	 * @param database Database object which load/save data
 	 */
-	public PlayState(GameController controller, Scanner scanner, Database database){
+	public PlayState(GameController controller, ArrayList<GameObject> objectList, Database database){
 		
 		this.gameController = controller;
-		this.scanner = scanner;
+		this.objectList = objectList;
 		this.database = database;
 	
 	}
@@ -46,8 +49,8 @@ public class PlayState extends State{
 	 */
 	public void startNew(){
 		
-		// Prompt to enter user names of two players
-		createProfiles();
+		player1 = new Player(1, "Guest");
+		player2 = new Player(2, "Guest2");
 		
 		createNewMatch();
 		
@@ -69,8 +72,8 @@ public class PlayState extends State{
 	 * createNewMatch - Create a new match object.
 	 */
 	private void createNewMatch(){
-		
-		currentMatch = new Match(player1, player2, gameController, scanner, database);
+			
+		currentMatch = new Match(player1, player2, gameController, objectList, database);
 	
 	}
 	
@@ -78,7 +81,7 @@ public class PlayState extends State{
 	 * createProfiles - Ask users for usernames. Then store each one for player1 
 	 * 					and player2
 	 */
-	private void createProfiles(){
+	/* private void createProfiles(){
 		
 		String player1Username;
 		String player2Username;
@@ -93,7 +96,7 @@ public class PlayState extends State{
 		player1 = new Player(1, player1Username);
 		player2 = new Player(2, player2Username);
 			
-	}
+	} */
 	
 	/**
 	 *  retainProfiles - Keep current user profiles 
@@ -112,7 +115,22 @@ public class PlayState extends State{
 	 * print - Display the start of the match and begin a turn.
 	 */
 	public void print(){
-		currentMatch.beginTurn();
+		currentMatch.renderTurn();
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		currentMatch.onKeyPressed(keyEvent);
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		currentMatch.onKeyReleased(keyEvent);
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		
 	};
 			
 }

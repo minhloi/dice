@@ -32,33 +32,18 @@ public class GameControllerTest {
 		GameController gameController = new GameController();	
 		
 		// Test if getState returns a correct object.
-		try {
-			assertTrue(gameController.getState(State.MENU_STATE) instanceof MenuState);
-			assertTrue(gameController.getState(State.PLAY_STATE) instanceof PlayState);
-			assertTrue(gameController.getState(State.VIEW_RANK_STATE) instanceof ViewRankState);
-			assertTrue(gameController.getState(State.MATCH_END_MENU_STATE) instanceof MatchEndMenuState);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		assertTrue(gameController.getState(GameController.MENU_STATE) instanceof MainMenuState);
+		assertTrue(gameController.getState(GameController.PLAY_STATE) instanceof PlayState);
+		assertTrue(gameController.getState(GameController.VIEW_RANK_STATE) instanceof ViewRankState);
+		assertTrue(gameController.getState(GameController.MATCH_END_MENU_STATE) instanceof MatchEndMenuState);
 	}
-	
-	@Test(expected = Exception.class)
-	public void testGetStateExceptionThrown() throws Exception {
+
+	@Test
+	public void testSetState() {
+		
 		GameController gameController = new GameController();	
+		assertNotNull(gameController);
 		
-		// Test if getState throws an exception when state does not exists.
-		gameController.getState(-1);
-		
-	}
-	
-	@Test(expected = Exception.class)
-	public void testSetStateExceptionThrown() throws Exception {
-		GameController gameController = new GameController();	
-		
-		// Test if setState throws an exception when state does not exists.
-		gameController.setState(100);
-				
 	}
 
 	@Test
@@ -71,7 +56,7 @@ public class GameControllerTest {
 		
 		gameController.exitGame();
 		
-		// The game exited successfully.
+		// The game exited sucessfully.
 		assertEquals("Exit!", outContent.toString());
 		
 	}

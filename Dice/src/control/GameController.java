@@ -1,7 +1,8 @@
 package control;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
+import boundary.GameObject;
 import entity.Database;
 
 /**
@@ -17,7 +18,6 @@ import entity.Database;
 public class GameController {
 		
 	private State[] stateList;
-	private Scanner scanner;
 	private Database database;
 	
 	private int currentState;
@@ -25,24 +25,22 @@ public class GameController {
 	/**
 	 * GameController constructor - Initializes all game states.
 	 */
-	public GameController() {
+	public GameController(ArrayList<GameObject> objectList) {
 		
-		scanner = new Scanner(System.in);
 		database = new Database();
-		
+				
 		stateList = new State[State.LENGTH];
-		stateList[State.MENU_STATE] = new MenuState(this, scanner);
-		stateList[State.PLAY_STATE] = new PlayState(this, scanner, database);
-		stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, scanner, database);
-		stateList[State.MATCH_END_MENU_STATE] = new MatchEndMenuState(this, scanner);
-		
+		stateList[State.MENU_STATE] = new MainMenuState(this, objectList);
+		stateList[State.PLAY_STATE] = new PlayState(this, objectList, database);
+		//stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, objectList, database);
+
 		// Default is Menu
 		currentState = State.MENU_STATE;
 			
 	}
 	
 	/**
-	 * init - Initializes all game data when the game first opened.
+	 *  Load players' data method
 	 */
 	public void init() {
 		
@@ -52,20 +50,17 @@ public class GameController {
 	}
 	
 	/**
-	 * getState - Get a specific state object.
+	 *  Method to select the state in game
+	 *  
+	 * @param state - type of state of the game
+	 * @return all the data stored in stateList of current state
 	 * 
-	 * @param state	- the index of the desired state
-	 * @return the state object
-	 * @throws Exception 
 	 */
-	public State getState(int state) throws Exception {
-		
-		if(state < 0 || state >= State.LENGTH || stateList[state] == null){
-			throw new Exception("State does not exists.");
-		} 
+	
+	public State getState(int state) {
 		
 		return stateList[state];
-				
+		
 	}
 	
 	/**
@@ -73,25 +68,22 @@ public class GameController {
 	 *  
 	 * @param state	- the index of the desired state
 	 */
-	public void setState(int state) throws Exception {
-		
-		if(state < 0 || state >= State.LENGTH || stateList[state] == null){
-			throw new Exception("State does not exists.");
-		} else { 
-			currentState = state;
-		}
+	public void setState(int state) {
+		currentState = state;
+	}
+	
+	public State getCurrentStateObject(){
+		return stateList[currentState];		
 	}
 	
 	/**
-	 * exitGame - Perform some necessary action before exiting games.
+	 *  Method to exit, all data will be save before exit
 	 */
 	public void exitGame() {
 		
 		database.saveData();
-		scanner.close();
 		
-		System.out.print("Exit!");
-		
+		System.exit(0);
 	}
 	
 	/**
@@ -100,7 +92,6 @@ public class GameController {
 	public void renderCurrentState() {
 		
 		stateList[currentState].print();
-		
 	}
-		
+	
 }

@@ -29,7 +29,7 @@ public class MenuStateTest {
 		Scanner scanner = new Scanner(System.in);
 		
 		// Test if a MenuState object is created
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		assertNotNull(menu);
 		
 	}
@@ -40,13 +40,13 @@ public class MenuStateTest {
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		
-		String selectedOption = "" + MenuState.EXIT;
+		String selectedOption = "" + MainMenuState.EXIT;
 		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
 		
 		GameController controller = new GameController();
 		Scanner scanner = new Scanner(System.in);
 		
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		menu.print();
 		
 		// Test if menu is printing
@@ -55,47 +55,19 @@ public class MenuStateTest {
 	}
 	
 	@Test
-	public void testOptionNotExist() {
-		
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		
-		// Mock an input for a menu option does not exist (such as 100) 
-		// and a valid input (such as 0, which is MenuState.EXIT)
-		// If the first input is invalid, the console asks to provide a valid input.
-		String selectedOption = "100" + "\n"+ MenuState.EXIT;
-		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
-		
-		GameController controller = new GameController();
-		Scanner scanner = new Scanner(System.in);
-		
-		MenuState menu = new MenuState(controller, scanner);
-		menu.print();
-		
-		// Menu is printing
-		assertNotEquals("", outContent.toString());
-
-		// Exactly two inputs are scanned because the first one is invalid.
-		assertFalse(scanner.hasNext());
-	
-	}
-	
-	@Test
 	public void testInvalidInput() {
 		
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		
-		// Mock an input for a menu option is a string (such as "you") 
-		// and a valid input (such as 0, which is MenuState.EXIT)
-		// If the first input is invalid, the console asks to provide a valid input.
-		String selectedOption = "you" + "\n"+ MenuState.EXIT;
+		// Mock option inputs.
+		String selectedOption = "-1" + "\n"+ MainMenuState.EXIT;
 		System.setIn(new ByteArrayInputStream(selectedOption.getBytes()));
 		
 		GameController controller = new GameController();
 		Scanner scanner = new Scanner(System.in);
 		
-		MenuState menu = new MenuState(controller, scanner);
+		MainMenuState menu = new MainMenuState(controller, scanner);
 		menu.print();
 		
 		// Menu is printing

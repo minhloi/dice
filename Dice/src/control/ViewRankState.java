@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
@@ -34,10 +35,9 @@ public class ViewRankState extends State{
 	 * @param scanner
 	 * @param database
 	 */
-	public ViewRankState(GameController controller, Scanner scanner, Database database){
+	public ViewRankState(GameController controller, Database database){
 		
 		this.gameController = controller;
-		this.scanner = scanner;
 		this.database = database;
 		
 		menuLength = 2;
@@ -89,26 +89,7 @@ public class ViewRankState extends State{
 	 */
 	private void printMenu(){
 	
-		System.out.print("Menu options: \n");
-		for(int i = 0; i < menuLength; i++){
-			System.out.print(i + ". " + menuList[i]+ "\n");
-		}
-				
-		System.out.print("Please select menu: ");
-		
-		// Read input
-		try {
-			int selectedOption = Integer.parseInt(scanner.next());
-			System.out.print("\n");
-			
-			// Route to the correct state.
-			route(selectedOption);
-			
-		} catch (NumberFormatException e) {
-			System.out.print("\n");
-			System.out.println("Invalid input. Please try again.");
-		    print();
-		}
+	
 					
 	}
 	
@@ -140,5 +121,23 @@ public class ViewRankState extends State{
 				print();
 				break;
 		}
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

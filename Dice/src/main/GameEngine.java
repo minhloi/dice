@@ -1,10 +1,14 @@
 package main;
 
-import control.GameController;
-import control.State;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+import boundary.GameCanvas;
+
 
 /**
- * GameEngine class - Starts the game.
+ * The GameEngine class is simply a starter of the game.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -12,23 +16,24 @@ import control.State;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
+
 public class GameEngine {
 	
 	public static void main(String[] args) {
 	
-		GameController gameController = new GameController();
+		JFrame gameFrame = new JFrame("Fighting Dice");	
+		gameFrame.setSize(new Dimension(GameCanvas.WIDTH, GameCanvas.HEIGHT));
+		gameFrame.setResizable(false);
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// Load necessary data such as players' scores.
-		gameController.init();
+		GameCanvas gameCanvas = new GameCanvas();
+		gameFrame.add(gameCanvas);
+		gameFrame.pack();
+		gameFrame.setLocationRelativeTo(null);
+		gameFrame.setVisible(true);
 		
-		try {
-			// Start by printing the menu first
-			gameController.setState(State.MENU_STATE);
-			gameController.renderCurrentState();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		gameCanvas.render();
+					
 	}
 
 }

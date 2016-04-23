@@ -1,7 +1,15 @@
 package control;
 
-import java.util.Scanner;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
+import boundary.Background;
+import boundary.GameCanvas;
+import boundary.GameObject;
+import boundary.HealthBar;
+import boundary.LargePanel;
+import boundary.PlayerObject;
+import boundary.WinnerTitle;
 import entity.Database;
 import entity.Player;
 
@@ -14,20 +22,29 @@ import entity.Player;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-public class Match {
+public class Match implements Listenable {
 
 	private Player player1; 
 	private Player player2;
-
-	private int currentTurn;
 	
-	private Scanner scanner;
+	private boolean matchEnded;
+	private Turn currentTurn;
+	
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
+	
+	private HealthBar healthBar1;
+	private HealthBar healthBar2;
+		
+	private ArrayList<GameObject> objectList;
 	private GameController gameController;
 	private Database database;
-		
-	// Player move-set definition
-	public static final char[] PLAYER1_MOVE_SET = {'a', 's', 'd'};
-	public static final char[] PLAYER2_MOVE_SET = {'j', 'k', 'l'};
+	private Background background;
+	private LargePanel menuPanel;
+	private MatchEndMenu menu;
+	
+	public static final int PANEL_POSITION_X = (GameCanvas.WIDTH - LargePanel.WIDTH) / 2;
+	public static final int PANEL_POSITION_Y = (GameCanvas.HEIGHT - LargePanel.HEIGHT) / 2;
 	
 	/**
 	 * Constructor - Initializes all its variables.
@@ -38,107 +55,112 @@ public class Match {
 	 * @param scanner Scanner object
 	 * @param database Database object
 	 */
-	public Match(Player player1, Player player2, GameController gameController, Scanner scanner, Database database) {
+	public Match(Player player1, Player player2, GameController gameController, ArrayList<GameObject> objectList, Database database) {
 		
 		this.player1 = player1;
 		this.player2 = player2;
 		this.gameController = gameController;
-		this.scanner = scanner;
+		this.objectList = objectList;
 		this.database = database;
-		this.currentTurn = 0;
+				
+		try {
+			this.player1Object = new PlayerObject(1);
+			this.player2Object = new PlayerObject(2);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		
+		this.background = new Background("play_background.png");
+		
+		this.healthBar1 = new HealthBar(HealthBar.PLAYER1_POSITION_X, HealthBar.PLAYER1_POSITION_Y);
+		this.healthBar2 = new HealthBar(HealthBar.PLAYER2_POSITION_X, HealthBar.PLAYER2_POSITION_Y);
+		
+		this.currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
+		this.matchEnded = false;
+		this.menuPanel = new LargePanel(PANEL_POSITION_X, PANEL_POSITION_Y);
+		this.menu = new MatchEndMenu(this.gameController, this.objectList);
 	}
 		
 	/**
 	 * beginTurn - This method is used to render each turn.
 	 */
-	public void beginTurn() {
+	public void renderTurn() {
 		
-		currentTurn++;
+		objectList.add(background);
+		objectList.add(player1Object);
+		objectList.add(player2Object);
 		
-		System.out.println("TURN " + currentTurn + ":");
-		System.out.println("-----------------------------------------------------");
-		System.out.println();
+		healthBar1.setHealthBar(player1.getHealth());
+		healthBar2.setHealthBar(player2.getHealth());
 		
-		// Begin by allowing each player to select their moves. 
-		SelectMovePhase selectMovePhase = new SelectMovePhase(player1, player2, scanner);
-		selectMovePhase.render();
+		objectList.add(healthBar1);
+		objectList.add(healthBar2);
 		
-		RollDicePhase rollDicePhase = new RollDicePhase(player1, player2);
-		rollDicePhase.render();
-		
-		System.out.println("Go to battle in 2 seconds...");
-		System.out.println();
-		
-		// Wait 2 seconds, allow players to see their results.
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	
-		BattlePhase battlePhase = new BattlePhase(rollDicePhase.getRollWinner(), rollDicePhase.getRollLoser());
-		battlePhase.render();
-		
-		ResetPhase resetPhase = new ResetPhase(player1, player2);
-		resetPhase.render();
-				
-		if(hasWinner()){
-			
-			displayWinner();
-			
-			// Exiting game suddenly can lose data so
-			// it's better to save data after every match.
-			database.saveData();
-			
-			// Go to Menu state
-			try {
-				gameController.setState(State.MATCH_END_MENU_STATE);
-				gameController.renderCurrentState();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-					
+		if(matchEnded == false){
+			currentTurn.render();
 		} else {
-		
-			// No one wins the game yet then go to next turn
-			System.out.println("Next turn in 3 seconds...");
-			System.out.println();
-			
-			// Wait 3 seconds for a new turn.
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println();
-			beginTurn();
-			
+			player1Object.setIdle();
+			player2Object.setIdle();
+			saveData();
+			displayMenu();
 		}
 		
+		if(currentTurn.isTurnCompleted()){
+			if(!hasWinner()){
+				setNewTurn();
+			} else {
+				setMatchEnd();
+			}
+		} 
+			
 	}
 	
-	/**
-	 * displayWinner - Print out the winner of the match.
-	 */
-	private void displayWinner(){
-		
-		// Player 1 loses
+	private void setNewTurn(){
+		currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
+	}
+	
+	private void setMatchEnd(){
+		matchEnded = true;
+	}
+	
+	private void saveData(){
+		database.incrementWinByName(getWinner().getUserName());
+		database.incrementLossByName(getLoser().getUserName());
+		database.saveData();
+	}
+	
+	private Player getWinner(){
+		Player winner = null;
 		if (player1.getHealth() <= 0) {
-			
-			database.incrementWinByName(player2.getUserName());
-			database.incrementLossByName(player1.getUserName());
-			
-			System.out.println("Player 2 won the game. GAME OVER.");
-		// Player 2 loses
-		} else {
-			database.incrementWinByName(player1.getUserName());
-			database.incrementLossByName(player2.getUserName());
-			
-			System.out.println("Player 1 won the game. GAME OVER.");
+			winner = player2;
+		} else if(player2.getHealth() <= 0){
+			winner = player1;
 		}
+		return winner;
+	}
+	
+	private Player getLoser(){
+		Player loser = null;
+		if (player1.getHealth() <= 0) {
+			loser = player1;
+		} else if(player2.getHealth() <= 0){
+			loser = player2;
+		}
+		return loser;
+	}
+	
+	private void displayMenu(){
 		
-		System.out.println();
+		objectList.add(menuPanel);
+		
+		int winTitlePositionX = (GameCanvas.WIDTH - WinnerTitle.WIDTH) / 2;
+		int winTitlePositionY = PANEL_POSITION_Y + 60;
+		WinnerTitle winnerTitle = new WinnerTitle(getWinner().getNumber(), winTitlePositionX, winTitlePositionY);
+		
+		objectList.add(winnerTitle);
+		
+		menu.render();
+
 	}
 	
 	/**
@@ -158,6 +180,24 @@ public class Match {
 		}
 		
 		return hasWinner;		
+	}
+
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		if(matchEnded == false){
+			currentTurn.onKeyReleased(keyEvent);
+		} else {
+			menu.onKeyReleased(keyEvent);
+		}
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
+		
 	}
 		
 }

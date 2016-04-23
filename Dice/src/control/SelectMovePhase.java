@@ -1,7 +1,12 @@
 package control;
 
-import java.util.Scanner;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
+import boundary.GameObject;
+import boundary.Panel;
+import boundary.PlayerObject;
 import entity.Player;
 
 /**
@@ -18,7 +23,13 @@ public class SelectMovePhase extends Phase {
 	
 	private Player player1;
 	private Player player2;
-	private Scanner scanner;
+	private PlayerObject player1Object;
+	private PlayerObject player2Object;
+	private ArrayList<GameObject> objectList;
+	
+	// Player move-set definition
+	public static final char[] PLAYER1_MOVE_SET = {'A', 'S', 'D'};
+	public static final char[] PLAYER2_MOVE_SET = {'J', 'K', 'L'};
 	
 	/**
 	 * Constructor - Prepare Player and Scanner objects
@@ -27,10 +38,12 @@ public class SelectMovePhase extends Phase {
 	 * @param player2
 	 * @param scanner
 	 */
-	public SelectMovePhase(Player player1, Player player2, Scanner scanner){
+	public SelectMovePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;
 		this.player2 = player2;
-		this.scanner = scanner;
+		this.player1Object = player1Object;
+		this.player2Object = player2Object;
+		this.objectList = objectList;
 		
 	}
 	
@@ -41,141 +54,138 @@ public class SelectMovePhase extends Phase {
 	 */
 	public void render(){
 		
-		System.out.println("SELECT-MOVE PHASE:");
-		System.out.println("-----------------------------------------------------");
-		// Print players' HP
-		System.out.printf("%-30s%-30s\n","Player 1 (HP: " + player1.getHealth() + ")","Player2 (HP: " + player2.getHealth() + ")");
+		this.player1Object.setIdle();
+		this.player2Object.setIdle();
 		
-		// Print players' move-sets.
-		System.out.printf("%-30s%-30s\n", Match.PLAYER1_MOVE_SET[Player.ATTACK] + ": attack", Match.PLAYER2_MOVE_SET[Player.ATTACK] + ": attack");
+		Panel player1Panel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
+		Panel player2Panel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
 		
-		// Check if player 1 block is disabled in this turn
-		if (player1.isBlockDisabled() == false) {
-			System.out.printf("%-30s", Match.PLAYER1_MOVE_SET[Player.BLOCK] + ": block");
+		if(player1.getTurnInfo().getMove() == Player.NOT_SELECT){
+			String moveSet = getAvailabelMoveSet(1);
+			player1Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player1Panel.drawString( moveSet, Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM, new Color(0x3b7d86));
 		} else {
-			System.out.printf("%-30s", " ");
-		}
-		// Check if player 2 block is disabled in this turn
-		if (player2.isBlockDisabled() == false) {
-			System.out.printf("%-30s\n", Match.PLAYER2_MOVE_SET[Player.BLOCK] + ": block");
-		} else {
-			System.out.printf("%-30s\n", " ");
+			player1Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player1Panel.drawString("Waiting for Player 2.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
 		}
 		
-		// Check if player 1 can select special attack
-		if (player1.canUseSpecial() == true) {
-			System.out.printf("%-30s", Match.PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
+		if(player2.getTurnInfo().getMove() == Player.NOT_SELECT){
+			String moveSet = getAvailabelMoveSet(2);
+			player2Panel.drawString("Press a key to select move.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			player2Panel.drawString( moveSet, Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM,  new Color(0x3b7d86));
 		} else {
-			System.out.printf("%-30s", " ");
-		}
-		// Check if player 2 can select special attack
-		if (player2.canUseSpecial() == true) {
-			System.out.printf("%-30s\n", Match.PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": special attack");
-		} else {
-			System.out.printf("%-30s\n", " ");
+			player2Panel.drawString("Ready.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP, new Color(0x3b7d86));
+			player2Panel.drawString("Waiting for Player 1.", Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			
 		}
 		
-		System.out.println();
-		
-		System.out.println("To select move, each player takes turn to input a key above then press enter.");
-		scanMove();
-		System.out.println();
+		objectList.add(player1Panel);
+		objectList.add(player2Panel);
 	
 	}
-		
-	/**
-	 * scanMove - Reading input of users
-	 */
-	private void scanMove() {
-		
-		String input = scanner.next();
-		
-		// Input for move must be a single character.
-		if (input.length() == 1) {
-			
-			char key = input.charAt(0);
-			
-			// Convert user input to corresponding move and set move.
-			setMoveByKey(key);
-					
-			// If one/two players provided invalid inputs or haven't provided yet,
-			// then scan again.
-			if (player1.getMove() == Player.NOT_SELECT || player2.getMove() == Player.NOT_SELECT) {
-				scanMove();
+	
+	private String getAvailabelMoveSet(int playerNum){
+		String moveSet;
+		if(playerNum == player1.getNumber()){
+			moveSet = PLAYER1_MOVE_SET[Player.ATTACK] + ": Attack";
+			if(player1.getTurnInfo().isBlockDisabled() == false){
+				moveSet += "   " + PLAYER1_MOVE_SET[Player.BLOCK] + ": Block";
 			}
-			
+			if(player1.canUseSpecial()){
+				moveSet += "   " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
+			}
 		} else {
-			System.out.println("Invalid input. Please try again.");
-			scanMove();
+			moveSet = PLAYER2_MOVE_SET[Player.ATTACK] + ": Attack";
+			if(player2.getTurnInfo().isBlockDisabled() == false){
+				moveSet += "   " + PLAYER2_MOVE_SET[Player.BLOCK] + ": Block";
+			}
+			if(player2.canUseSpecial()){
+				moveSet += "   " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
+			}
 		}
+		return moveSet;
 	}
 	
-	/**
-	 * setMoveByKey - Set move of each player based on their inputs.
-	 * 
-	 * @param key Player's choice of move
-	 */
-	private void setMoveByKey(char key) {
+	
+	private boolean isPlayer1Selected(){
+		boolean result;
+		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
+	
+	private boolean isPlayer2Selected(){
+		boolean result;
+		if(player2.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
+	
+	private boolean isBothSelected(){
+		boolean result;
 		
-		boolean found = false;
-		int index = 0;
-		int selecting;
+		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT && player2.getTurnInfo().getMove() != Player.NOT_SELECT){
+			result = true;
+		} else {
+			result = false;
+		}
+		return result;
+	}
 		
-		// Loop over all player1's move-set and find corresponding move.
-		while(found == false && index < Match.PLAYER1_MOVE_SET.length) {
-			if (key == Match.PLAYER1_MOVE_SET[index]) {
-				found = true;
-				selecting = index;
-				
-				// Player 1 already selected a move thus cannot select again.
-				if (player1.getMove() != Player.NOT_SELECT) {
-					System.out.println("Player 1 cannot re-select.");
-				// Check if player 1 is able to select BLOCK.
-				} else if (selecting == Player.BLOCK && player1.isBlockDisabled() == true) {
-					System.out.println("Player 1 cannot BLOCK. BLOCK has been disabled for this turn.");
-				// Check if player 1 is able to select SPECIAL_ATTACK.
-				} else if (selecting == Player.SPECIAL_ATTACK && player1.canUseSpecial() == false) {
-					System.out.println("Player 1 cannot SPECIAL_ATTACK. Maximum number of used reached.");
-				} else {
-					player1.setMove(index);
-					System.out.println("Player 1 selected successfully.");
-				}
+	@Override
+	public void onKeyPressed(KeyEvent keyEvent) {
+		
+	}
+
+	@Override
+	public void onKeyReleased(KeyEvent keyEvent) {
+		int keyCode = keyEvent.getKeyCode();
+		
+		try {
+			switch(keyCode){
+				case 65: //a
+					if(!isPlayer1Selected())
+						player1.getTurnInfo().setMove(Player.ATTACK);
+					break;
+				case 83: //s
+					if(!isPlayer1Selected() && player1.getTurnInfo().isBlockDisabled() == false)
+						player1.getTurnInfo().setMove(Player.BLOCK);
+					break;
+				case 68: //d
+					if(!isPlayer1Selected() && player1.canUseSpecial() == true)
+						player1.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
+					break;
+				case 74: //j
+					if(!isPlayer2Selected())
+						player2.getTurnInfo().setMove(Player.ATTACK);
+					break;
+				case 75: //k
+					if(!isPlayer2Selected() && player2.getTurnInfo().isBlockDisabled() == false)
+						player2.getTurnInfo().setMove(Player.BLOCK);
+					break;
+				case 76: //l
+					if(!isPlayer2Selected() && player2.canUseSpecial() == true)
+						player2.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
+					break;
 			}
-			++index;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		index = 0;		
-		
-		// Loop over all player2's move-set and find corresponding move.
-		while(found == false && index < Match.PLAYER2_MOVE_SET.length) {
-			
-			if (key == Match.PLAYER2_MOVE_SET[index]) {
-				found = true;
-				selecting = index;
-				
-				// Player 2 already selected a move thus cannot select again.
-				if (player2.getMove() != Player.NOT_SELECT) {
-					System.out.println("Player 2 cannot re-select.");
-				// Check if player 2 is able to select BLOCK	
-				} else if (selecting == Player.BLOCK && player2.isBlockDisabled() == true) {
-					System.out.println("Player 2 cannot select BLOCK. Block has been disabled for this turn.");
-				// Check if player 2 is able to select SPECIAL_ATTACK.
-				} else if (selecting == Player.SPECIAL_ATTACK && player2.canUseSpecial() == false) {
-					System.out.println("Player 2 cannot select SPECIAL_ATTACK. Maximum number of uses has been reached.");
-				} else {
-					player2.setMove(index);
-					System.out.println("Player 2 selected successfully.");
-				}
-			}
-			++index;
+		if(isBothSelected()){
+			setCompleted();
 		}
 		
-		if (found == false) {
-			
-			// Invalid input. Scan again.
-			System.out.println("Invalid input. Please try again.");
-			scanMove();
-		}
+	}
+
+	@Override
+	public void onKeyTyped(KeyEvent keyEvent) {
 		
 	}
 	
