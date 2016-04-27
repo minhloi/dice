@@ -16,7 +16,6 @@ import boundary.GameCanvas;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class GameEngine {
 	
 	public static void main(String[] args) {

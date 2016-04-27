@@ -25,10 +25,9 @@ public class ProfileForm implements Listenable {
 		this.player2 = player2;
 		this.objectList = objectList;
 		this.background = new Background("create_profiles.png");
-		this.profileTextField = new ProfileTextField();
 		this.completed = false;
 		
-		createProfileFor(player1);
+		createNewProfileFor(player1);
 		
 	}
 	
@@ -36,11 +35,12 @@ public class ProfileForm implements Listenable {
 		
 		objectList.add(background);
 		
+		profileTextField = new ProfileTextField();
 		profileTextField.drawUsername(currentPlayer.getNumber(), currentText);
 		objectList.add(profileTextField);		
 	}
 	
-	public void createProfileFor(Player player){
+	public void createNewProfileFor(Player player){
 		this.currentText = "";
 		this.currentPlayer = player;
 	}
@@ -67,7 +67,7 @@ public class ProfileForm implements Listenable {
 				if(currentText != ""){
 					currentPlayer.setUsername(currentText);
 					if(currentPlayer.getNumber() == 1){
-						createProfileFor(player2);
+						createNewProfileFor(player2);
 					} else if(currentPlayer.getNumber() == 2){
 						setCompleted();
 					}
@@ -82,7 +82,8 @@ public class ProfileForm implements Listenable {
 				break;
 			
 			default:
-				currentText = currentText + (char)keycode;
+				if(keycode >= 65 && keycode <= 90 || keycode == KeyEvent.VK_SPACE)
+					currentText = currentText + (char)keycode;
 		}
 				
 	}

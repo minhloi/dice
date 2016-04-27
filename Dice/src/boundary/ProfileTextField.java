@@ -20,14 +20,17 @@ public class ProfileTextField extends GameObject {
 	
 	public ProfileTextField(){
 		setPosition(DEFAULT_POSITION_X, DEFAULT_POSITION_Y);
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
+		
 	}
 	public ProfileTextField(int positionX, int postionY){
 		setPosition(positionX, positionY);
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
+		
 	}
 	
 	public void drawUsername(int playerNumber, String username){
 		
-		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
 		Graphics2D graphics = image.createGraphics();
 		
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -37,7 +40,7 @@ public class ProfileTextField extends GameObject {
 		FontMetrics labelMetrics = graphics.getFontMetrics();
 		int fontHeight = labelMetrics.getHeight();
 		
-		String label = "Player " + playerNumber + " please enter your username";
+		String label = "Please enter player " + playerNumber + "'s name";
 		int labelWidth = labelMetrics.stringWidth(label);
 		graphics.drawString(label, (WIDTH - labelWidth) / 2, fontHeight );
 		
