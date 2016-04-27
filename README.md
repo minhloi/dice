@@ -11,7 +11,9 @@
   - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
   - All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
   - Font used is Sniglet: https://www.fontsquirrel.com/fonts/sniglet 
+
 ***
+
 ### Deliverable 2
 ####1. Working code:
 The game is working in text form (console). You can select menu, play games and view ranks of other players in console. All game data will be stored as binary data in database.txt file.  
