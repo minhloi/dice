@@ -4,6 +4,8 @@
 ####2. How to compile:
 ####3. License and Credits:
 - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
+- All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
+- Font used is Sniglet: https://www.fontsquirrel.com/fonts/sniglet
 
 ***
 ### Deliverable 2
