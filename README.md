@@ -5,6 +5,7 @@
 - Clone the Github repo in Eclipse.
 - Import the project in Eclipse.
 - Compile the GameEngine.java in sr/main package.
+  
 ####3. License and Credits:
 - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
 - All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
