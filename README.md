@@ -1,6 +1,8 @@
 ##Fighting Dice - Team 38 Game Project
 ### Deliverable 3
-
+####1. Executeable:
+####2. How to compile:
+####3. License and Credits:
 ***
 ### Deliverable 2
 ####1. Working code:
