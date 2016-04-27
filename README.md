@@ -1,5 +1,7 @@
 ##Fighting Dice - Team 38 Game Project
+
 ### Deliverable 3 
+
 ####1. Executable: 
 
 ####2. How to compile: 
@@ -15,6 +17,7 @@
 ***
 
 ### Deliverable 2
+
 ####1. Working code:
 The game is working in text form (console). You can select menu, play games and view ranks of other players in console. All game data will be stored as binary data in database.txt file.  
 ######How to compile:
@@ -30,12 +33,13 @@ All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tr
 - Product backlog is grouped into epics with priority, complexity-point and dependencies. 
 
 ***  
+
 ### Deliverable 1
+
 ####1. About this game:
 This game is a version of turn-based game with 2 players. At each turn, each player select their strategic move, such as attack or block, before each roll their dice to determine whether their move will go through. Hence, players are required to use their tactics and luck to be able to win this game. 
 
 ####2. Rules:
-
 - 1.  Each player needs to select either attack, block or special attack before every roll.
 - 2.  Both players will roll their dice every turn. Whoever rolls a higer number will get an additional roll to roll for damage.
 - 3.  If both players rolled same value both get to roll again.
