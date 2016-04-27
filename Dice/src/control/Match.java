@@ -101,7 +101,6 @@ public class Match implements Listenable {
 		} else {
 			player1Object.setIdle();
 			player2Object.setIdle();
-			saveData();
 			displayMenu();
 		}
 		
@@ -110,6 +109,8 @@ public class Match implements Listenable {
 				setNewTurn();
 			} else {
 				setMatchEnd();
+				saveData();
+				
 			}
 		} 
 			
