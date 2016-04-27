@@ -1,15 +1,16 @@
 ##Fighting Dice - Team 38 Game Project
-### Deliverable 3
-####1. Executable:
-####2. How to compile:
+### Deliverable 3 
+####1. Executable: 
+
+####2. How to compile: 
   - Clone the Github repo in Eclipse.
-  - Import the project in Eclipse.
-  - Compile the GameEngine.java in sr/main package.  
-####3. License and Credits:
+  - Import the project in Eclipse. 
+  - Compile the GameEngine.java in sr/main package. 
+
+####3. License and Credits: 
   - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
   - All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
-  - Font used is Sniglet: https://www.fontsquirrel.com/fonts/sniglet
-
+  - Font used is Sniglet: https://www.fontsquirrel.com/fonts/sniglet 
 ***
 ### Deliverable 2
 ####1. Working code:
@@ -24,7 +25,7 @@ All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tr
 
 ####3. Change log:
 - Use case diagram now includes a Database actor.
-- Product backlog is grouped into epics with priority, complexity-point and dependencies.
+- Product backlog is grouped into epics with priority, complexity-point and dependencies. 
 
 ***  
 ### Deliverable 1
