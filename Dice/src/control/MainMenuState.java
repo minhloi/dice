@@ -65,8 +65,8 @@ public class MainMenuState extends State{
 				// Get playState object
 				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
 				
-				// To start a new game, create a new Match object.
-				playState.startNew();
+				// Before starting new game, create user profiles.
+				playState.createProfiles();
 				
 				// Begin to render playState.
 				gameController.setState(State.PLAY_STATE);
