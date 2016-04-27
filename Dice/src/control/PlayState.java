@@ -136,6 +136,9 @@ public class PlayState extends State implements Listenable {
 			currentMatch.renderTurn();
 		} else if(currentState == CREATING_PROFILES){
 			profileForm.render();
+			if(profileForm.isCompleted()){
+				beginMatch();
+			}
 		}
 	}
 	
@@ -145,13 +148,16 @@ public class PlayState extends State implements Listenable {
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		currentMatch.onKeyPressed(keyEvent);
+		
 	}
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
-		currentMatch.onKeyReleased(keyEvent);
-	}
+		if(currentState == PLAYING){
+			currentMatch.onKeyReleased(keyEvent);
+		} else if(currentState == CREATING_PROFILES){
+			profileForm.onKeyReleased(keyEvent);
+		}}
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
