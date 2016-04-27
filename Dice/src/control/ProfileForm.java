@@ -24,7 +24,7 @@ public class ProfileForm implements Listenable {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.objectList = objectList;
-		this.background = new Background("main_background.png");
+		this.background = new Background("create_profiles.png");
 		this.profileTextField = new ProfileTextField();
 		this.completed = false;
 		

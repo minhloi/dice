@@ -16,7 +16,7 @@ public class ProfileTextField extends GameObject {
 	private static final int DEFAULT_POSITION_X = 0;
 	private static final int DEFAULT_POSITION_Y = (GameCanvas.HEIGHT - HEIGHT) / 2;
 	
-	private static final int MARGIN_TOP = 60;
+	private static final int MARGIN_TOP = 80;
 	
 	public ProfileTextField(){
 		setPosition(DEFAULT_POSITION_X, DEFAULT_POSITION_Y);
@@ -31,17 +31,20 @@ public class ProfileTextField extends GameObject {
 		Graphics2D graphics = image.createGraphics();
 		
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		graphics.setFont(new Font("Tahoma", Font.BOLD, 38));
-		graphics.setColor(Color.BLUE);
+		graphics.setColor(new Color(0x2b759a));
+		graphics.setFont(new Font("Arial", Font.BOLD, 38));
 		
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		int fontHeight = fontMetrics.getHeight();
+		FontMetrics labelMetrics = graphics.getFontMetrics();
+		int fontHeight = labelMetrics.getHeight();
 		
 		String label = "Player " + playerNumber + " please enter your username";
-		int labelWidth = fontMetrics.stringWidth(label);
+		int labelWidth = labelMetrics.stringWidth(label);
 		graphics.drawString(label, (WIDTH - labelWidth) / 2, fontHeight );
 		
-		int usernameWidth = fontMetrics.stringWidth(username);
+		graphics.setColor(new Color(0x184257));
+		graphics.setFont(new Font("Tahoma", Font.BOLD, 50));
+		FontMetrics usernameMetrics = graphics.getFontMetrics();
+		int usernameWidth = usernameMetrics.stringWidth(username);
 		graphics.drawString(username, (WIDTH - usernameWidth) / 2, fontHeight + MARGIN_TOP );
 		
 		graphics.dispose();
