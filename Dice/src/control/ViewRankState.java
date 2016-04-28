@@ -65,7 +65,7 @@ public class ViewRankState extends State{
 			
 			rankingTable.drawHeader();
 			int index = 0;
-			while(iterator.hasNext()){
+			while(iterator.hasNext() && index < 5){
 				++index;
 				
 				PlayerScore player = iterator.next();
