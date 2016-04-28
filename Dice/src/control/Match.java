@@ -126,7 +126,7 @@ public class Match implements Listenable {
 	}
 	
 	private void saveData(){
-		System.out.println("test tess");
+
 		database.incrementWinByName(getWinner().getUserName());
 		database.incrementLossByName(getLoser().getUserName());
 		database.saveData();
