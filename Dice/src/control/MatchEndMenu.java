@@ -98,6 +98,9 @@ public class MatchEndMenu implements Listenable {
 		
 			case VIEW_RANK:
 			
+				ViewRankState viewRankState = (ViewRankState) gameController.getState(State.VIEW_RANK_STATE);
+				viewRankState.setBackState(State.PLAY_STATE);
+				
 				// Begin to render viewRankState
 				gameController.setState(State.VIEW_RANK_STATE);
 				break;

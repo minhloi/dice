@@ -32,7 +32,7 @@ public class GameController {
 		stateList = new State[State.LENGTH];
 		stateList[State.MENU_STATE] = new MainMenuState(this, objectList);
 		stateList[State.PLAY_STATE] = new PlayState(this, objectList, database);
-		//stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, objectList, database);
+		stateList[State.VIEW_RANK_STATE] = new ViewRankState(this, objectList, database);
 
 		// Default is Menu
 		currentState = State.MENU_STATE;

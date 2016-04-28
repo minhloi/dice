@@ -1,9 +1,14 @@
 package control;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
+
+import boundary.Background;
+import boundary.GameObject;
+import boundary.RankingTable;
 import entity.Database;
 import entity.PlayerScore;
 
@@ -20,12 +25,10 @@ public class ViewRankState extends State{
 	
 	private GameController gameController;
 	private Database database;
-	
-	private String[] menuList; 
-	private int menuLength;
-	
-	public static final int BACK_TO_MAIN_MENU = 0;
-	public static final int EXIT = 1;
+	private ArrayList<GameObject> objectList;
+	private RankingTable rankingTable;
+	private Background background;
+	private int backState;
 	
 	/**
 	 * Constructor - Prepare ranking menu, initialize controller, scanner and database
@@ -35,16 +38,14 @@ public class ViewRankState extends State{
 	 * @param scanner
 	 * @param database
 	 */
-	public ViewRankState(GameController controller, Database database){
+	public ViewRankState(GameController controller, ArrayList<GameObject> objectList, Database database){
 		
 		this.gameController = controller;
 		this.database = database;
+		this.objectList = objectList;
+		this.background = new Background("ranking_background.png");
 		
-		menuLength = 2;
-		menuList = new String[menuLength];
-		menuList[BACK_TO_MAIN_MENU] = "Back to main menu";
-		menuList[EXIT] = "Exit";
-		
+		this.backState = MENU_STATE;
 	}
 	
 	/**
@@ -52,6 +53,10 @@ public class ViewRankState extends State{
 	 */
 	public void print(){
 
+		objectList.add(background);
+		
+		rankingTable = new RankingTable();
+				
 		// Sort data by difference of wins and losses.
 		database.sortByDifference();
 		Vector<PlayerScore> data = database.getData();
@@ -61,68 +66,33 @@ public class ViewRankState extends State{
 		if(size > 0){
 		
 			Iterator<PlayerScore> iterator =  data.iterator();
-			System.out.println("Viewing ranks of players in order of DIFF.");
 			
-			System.out.printf("%-25s%-10s%-10s%-10s\n", "Username", "Wins", "Losses", "DIFF");
-			System.out.println("-----------------------------------------------------------------------------");
-			
-			while(iterator.hasNext()){
+			rankingTable.drawHeader();
+			int index = 0;
+			while(iterator.hasNext() && index < 5){
+				++index;
+				
 				PlayerScore player = iterator.next();
 				int numOfWins = player.getNumOfWins();
 				int numOfLosses = player.getNumOfLosses();
 				int diff = numOfWins - numOfLosses;
-				System.out.printf("%-25s%-10s%-10s%-10s\n", player.getUsername(), numOfWins, numOfLosses, diff);
-				
+
+				rankingTable.drawPlayerScore(index + ". " + player.getUsername(), numOfWins, numOfLosses, diff);
 			}
 			
 		} else {
-			System.out.println("No records in database.");
+			rankingTable.drawNoRecords();
 		}
-				
-		System.out.println();
-		printMenu();
-	
-	}
-	
-	/**
-	 * printMenu - Print all menu options.
-	 */
-	private void printMenu(){
-	
-	
-					
-	}
-	
-	/**
-	 * route - Route user input to main menu or exit
-	 * 
-	 * @param selectedOption
-	 */
-	private void route(int selectedOption){
 		
-		switch (selectedOption){
-		
-			case BACK_TO_MAIN_MENU:
-				// Begin to render menuState.
-				try {
-					gameController.setState(State.MENU_STATE);
-					gameController.renderCurrentState();
-					break;					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			case EXIT:
-				gameController.exitGame();
-				break;
-				
-			default:
-				System.out.println("Invalid Input. Please try again.");
-				print();
-				break;
-		}
+		objectList.add(rankingTable);
+	
 	}
-
+	
+	public void setBackState(int state){
+		backState = state;		
+	}
+	
+	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
 		// TODO Auto-generated method stub
@@ -131,8 +101,11 @@ public class ViewRankState extends State{
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
+		int keycode = keyEvent.getKeyCode();
+		if(keycode == KeyEvent.VK_ESCAPE){
+			gameController.setState(backState);
+		}
+
 	}
 
 	@Override

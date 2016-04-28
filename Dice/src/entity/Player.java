@@ -21,7 +21,7 @@ public class Player {
 	private int numSpecialUsed;
 	
 	// Some default configurations.
-	public static final int DEFAULT_HEALTH_POINT = 1;
+	public static final int DEFAULT_HEALTH_POINT = 20;
 	public static final int MAX_SPECIAL_ALLOWED = 2;
 	
 	// Player-move definition
@@ -36,11 +36,11 @@ public class Player {
 	 * @param number Player ID number 
 	 * @param username The player's username
 	 */
-	public Player(int number, String username){
+	public Player(int number){
 		
 		// Initialize variables
 		this.playerNumber = number;
-		this.username = username;
+		this.username = "";
 		this.health = DEFAULT_HEALTH_POINT; 
 		numSpecialUsed = 0;
 		dice = new Dice();
@@ -65,6 +65,10 @@ public class Player {
 	public int setHealth(int health){
 		this.health = health;
 		return this.health;
+	}
+	
+	public void setUsername(String username){
+		this.username = username;
 	}
 	
 	/**

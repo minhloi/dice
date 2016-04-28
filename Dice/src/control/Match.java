@@ -98,20 +98,22 @@ public class Match implements Listenable {
 		
 		if(matchEnded == false){
 			currentTurn.render();
+			
+			if(currentTurn.isTurnCompleted()){
+				if(!hasWinner()){
+					setNewTurn();
+				} else {
+					setMatchEnd();
+					saveData();
+				}
+			}
+		
 		} else {
+			
 			player1Object.setIdle();
 			player2Object.setIdle();
-			saveData();
 			displayMenu();
 		}
-		
-		if(currentTurn.isTurnCompleted()){
-			if(!hasWinner()){
-				setNewTurn();
-			} else {
-				setMatchEnd();
-			}
-		} 
 			
 	}
 	
@@ -124,6 +126,7 @@ public class Match implements Listenable {
 	}
 	
 	private void saveData(){
+
 		database.incrementWinByName(getWinner().getUserName());
 		database.incrementLossByName(getLoser().getUserName());
 		database.saveData();

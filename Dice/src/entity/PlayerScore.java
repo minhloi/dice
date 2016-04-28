@@ -11,6 +11,8 @@ import java.io.Serializable;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
+
+@SuppressWarnings("serial")
 public class PlayerScore implements Serializable {
 	
 	private String playerName;
