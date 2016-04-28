@@ -28,6 +28,8 @@ public class ViewRankState extends State{
 	private ArrayList<GameObject> objectList;
 	private RankingTable rankingTable;
 	private Background background;
+	private int backState;
+	
 	/**
 	 * Constructor - Prepare ranking menu, initialize controller, scanner and database
 	 * 				objects 
@@ -42,6 +44,8 @@ public class ViewRankState extends State{
 		this.database = database;
 		this.objectList = objectList;
 		this.background = new Background("ranking_background.png");
+		
+		this.backState = MENU_STATE;
 	}
 	
 	/**
@@ -84,6 +88,10 @@ public class ViewRankState extends State{
 	
 	}
 	
+	public void setBackState(int state){
+		backState = state;		
+	}
+	
 	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
@@ -93,8 +101,11 @@ public class ViewRankState extends State{
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
+		int keycode = keyEvent.getKeyCode();
+		if(keycode == KeyEvent.VK_ESCAPE){
+			gameController.setState(backState);
+		}
+
 	}
 
 	@Override

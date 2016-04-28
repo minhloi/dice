@@ -21,7 +21,7 @@ public class Player {
 	private int numSpecialUsed;
 	
 	// Some default configurations.
-	public static final int DEFAULT_HEALTH_POINT = 1;
+	public static final int DEFAULT_HEALTH_POINT = 20;
 	public static final int MAX_SPECIAL_ALLOWED = 2;
 	
 	// Player-move definition
