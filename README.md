@@ -1,11 +1,11 @@
 ##Fighting Dice - Team 38 Game Project
 
 #####Team members:
-- Brett Bauman  
-- Daniel Enriquez  
+- Brett Bauman (bbauman1)
+- Daniel Enriquez (denriquez12)
 - Minh Loi (minhloi)  
-- Thien Duc Phung  
-- Tanner Siffren  
+- Thien Duc Phung (thphung)
+- Tanner Siffren  (tanner-siffren)
 
 ### Deliverable 3 
 
