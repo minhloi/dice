@@ -20,7 +20,8 @@
   - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
   - All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
   - Font used for titles is Sniglet: https://www.fontsquirrel.com/fonts/sniglet 
-  - All other assets are created by us.
+  - All other assets are created by us.  
+
 ***
 
 ### Deliverable 2
