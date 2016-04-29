@@ -32,7 +32,7 @@ public class Panel extends GameObject {
 	public static final int ALIGN_LEFT = 15;
 	
 	/**
-	 * Constructor - Set the panel's coordinates and image
+	 * Set the panel's coordinates and image
 	 * 
 	 * @param positionX Horizontal position in pixels
 	 * @param positionY Vertical position in pixels

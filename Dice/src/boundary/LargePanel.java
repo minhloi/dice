@@ -16,7 +16,7 @@ public class LargePanel extends GameObject {
 	public static final int HEIGHT = 346;
 	
 	/**
-	 * Constructor - Set image as the panel
+	 * Set image as the panel
 	 * 
 	 * @param positionX Horizontal position in pixels 
 	 * @param positionY Vertical position in pixels
