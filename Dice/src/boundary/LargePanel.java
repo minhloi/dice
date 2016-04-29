@@ -1,8 +1,7 @@
 package boundary;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * LargePanel class - Displays a large panel for after-game instructions
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -16,6 +15,12 @@ public class LargePanel extends GameObject {
 	public static final int WIDTH = 468;
 	public static final int HEIGHT = 346;
 	
+	/**
+	 * Constructor - Set image as the panel
+	 * 
+	 * @param positionX Horizontal position in pixels 
+	 * @param positionY Vertical position in pixels
+	 */
 	public LargePanel(int positionX, int positionY){
 		setPosition(positionX, positionY);
 		setImageByPath("/big_panel.png");
