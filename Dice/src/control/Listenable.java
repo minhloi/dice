@@ -3,8 +3,7 @@ package control;
 import java.awt.event.KeyEvent;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The Listenable class is for keys actions
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

@@ -12,8 +12,7 @@ import boundary.LargePanel;
 import boundary.SelectableMenu;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The PauseState class is for the screen when ESC is pressed during the game
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -40,12 +39,15 @@ public class PausedState extends State {
 	public static final int VIEW_RANK = 3;
 	public static final int EXIT = 4;
 	
+	// Size of the menu panel when the game is paused
 	private static final int MENU_WIDTH = 468;
 	private static final int MENU_HEIGHT = 346;
 	
+	// Position of the menu panel when the game is pause
 	public static final int PANEL_POSITION_X = (GameCanvas.WIDTH - LargePanel.WIDTH) / 2;
 	public static final int PANEL_POSITION_Y = (GameCanvas.HEIGHT - LargePanel.HEIGHT) / 2;
 		
+	// Pause state menu initializer
 	public PausedState(GameController gameController, ArrayList<GameObject> objectList){
 		
 		menuLength = 5;
@@ -64,6 +66,7 @@ public class PausedState extends State {
 		this.background = new Background("play_background.png");
 	}
 	
+	// Setting the attributes for the menu in pause state
 	public void render(){
 		
 		objectList.add(background);
@@ -81,6 +84,7 @@ public class PausedState extends State {
 				
 	}
 	
+	// Menu options for the pause state
 	private void route() {
 		
 		switch (selectedOption){
@@ -124,6 +128,7 @@ public class PausedState extends State {
 		
 	}
 	
+	// Selecting options
 	private void selectNextOption(){
 		if(selectedOption >= menuLength - 1){
 			selectedOption = 0;
@@ -132,6 +137,7 @@ public class PausedState extends State {
 		}
 	}
 	
+	// Selecting Options
 	private void selectPrevOption(){
 		if(selectedOption <= 0){
 			selectedOption = menuLength - 1;
@@ -140,11 +146,13 @@ public class PausedState extends State {
 		}
 	}
 	
+	// Keys actions
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
 		
 	}
 
+	// Keys actions
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
@@ -162,6 +170,7 @@ public class PausedState extends State {
 		}
 	}
 
+	// Keys actions
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
 		
