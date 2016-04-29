@@ -2,8 +2,12 @@ package control;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import boundary.GameObject;
+import boundary.PlayerObject;
 import entity.Player;
 
 /**
@@ -21,10 +25,22 @@ public class BattlePhaseTest {
 	@Test
 	public void testBattlePhase() {
 	
-		Player rollWinner = new Player(1, "guest");
-		Player rollLoser = new Player(2, "guest2");
-
-		BattlePhase battlePhase = new BattlePhase(rollWinner, rollLoser);
+		Player player1 = new Player(1);
+		Player player2 = new Player(2);
+		PlayerObject player1Object = null;
+		PlayerObject player2Object = null;
+		
+		try {
+			player1Object = new PlayerObject(1);
+			player2Object = new PlayerObject(2);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<GameObject> objectList = new ArrayList();
+		
+		BattlePhase battlePhase = new BattlePhase(player1, player2, player1Object, player2Object, objectList);
 		assertNotNull(battlePhase);
 			
 	}
@@ -32,16 +48,6 @@ public class BattlePhaseTest {
 	@Test  
 	public void testRender() {
 
-		Player rollWinner = new Player(1, "guest");
-		Player rollLoser = new Player(2, "guest2");
 		
-		rollWinner.setMove(Player.BLOCK);
-		rollLoser.setMove(Player.BLOCK);
-				
-		BattlePhase battlePhase = new BattlePhase(rollWinner, rollLoser);
-		battlePhase.render();
-		
-		// Test if health point of rollLoser is deducted. 
-		assertTrue(rollLoser.getHealth() != Player.DEFAULT_HEALTH_POINT);
 	}
 }

@@ -19,14 +19,14 @@ public class PlayerTest {
 	@Test
 	public void testPlayer() {
 		// Test if a Player object is created.
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		assertNotNull(player);
 	}
 	
 	@Test
 	public void testGetHealth() {
 		// Test if HP is returned correctly
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		int playerHP = player.getHealth();
 		
 		assertEquals( Player.DEFAULT_HEALTH_POINT, playerHP);
@@ -36,7 +36,7 @@ public class PlayerTest {
 	public void testSetHealth() {
 
 		// Test if HP of a player is set successfully.
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		player.setHealth(20);
 		
 		assertEquals( 20, player.getHealth());
@@ -45,14 +45,16 @@ public class PlayerTest {
 	@Test
 	public void testGetUserName() {
 		// Test if a player's name is correctly returned
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
+		player.setUsername("guest");
+		
 		assertEquals("guest", player.getUserName());
 	}
 
 	@Test
 	public void testGetNumber() {
 		// Test if a player's number is correctly returned
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		int playerNumber = player.getNumber();
 		
 		assertEquals(1, playerNumber);
@@ -61,82 +63,40 @@ public class PlayerTest {
 	@Test
 	public void testGetDice() {
 		
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		Dice playerDice = player.getDice();
+		
 		// Test if a Dice object of a player is correctly returned
 		assertNotNull(playerDice);
 		
 	}
 
 	@Test
-	public void testIsBlockDisabled() {
-		
-		Player player = new Player(1, "guest");
-		// Default block is not disabled
-		assertFalse(player.isBlockDisabled());
-		
-		// Test if block is disabled when the player selected BLOCK.
-		player.setMove(Player.BLOCK);
-		assertTrue(player.isBlockDisabled());
-		
-	}
-
-	@Test
 	public void testCanUseSpecial() {
 		// Default a player is allowed to use special.
-		Player player = new Player(1, "guest");
+		Player player = new Player(1);
 		assertTrue(player.canUseSpecial());
 		
-		player.setMove(Player.SPECIAL_ATTACK);
+		player.incrementSpecialUsed();
 		assertTrue(player.canUseSpecial());
 		
 		// Test if a player can use special after using twice.
-		player.setMove(Player.SPECIAL_ATTACK);
+		player.incrementSpecialUsed();
 		assertFalse(player.canUseSpecial());
 	}
 
 	@Test
-	public void testGetMove() {
-		Player player = new Player(1, "guest");
-		// Test if a player's move is returned correctly
-		assertEquals(Player.NOT_SELECT, player.getMove());
-	}
-
-	@Test
-	public void testGetMoveInString() {
-		Player player = new Player(1, "guest");
+	public void testResetTurnInfo() {
+		Player player = new Player(1);
+		try {
+			player.getTurnInfo().setMove(Player.ATTACK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		// Test if strings are returned correctly.
-		player.setMove(Player.NOT_SELECT);
-		assertEquals("NOT_SELECTED", player.getMoveInString());
+		player.resetTurnInfo();
+		assertEquals(Player.NOT_SELECT, player.getTurnInfo().getMove());
 		
-		player.setMove(Player.BLOCK);
-		assertEquals("BLOCK", player.getMoveInString());
-		
-		player.setMove(Player.ATTACK);
-		assertEquals("ATTACK", player.getMoveInString());
-		
-		player.setMove(Player.SPECIAL_ATTACK);
-		assertEquals("SPECIAL_ATTACK", player.getMoveInString());
-	}
-
-	@Test
-	public void testSetMove() {
-		// Test if a move is successfully set.
-		Player player = new Player(1, "guest");
-		player.setMove(Player.ATTACK);
-		
-		assertEquals(Player.ATTACK, player.getMove());
-	}
-
-	@Test
-	public void testResetMove() {
-		// Test if a player's move is reset.
-		Player player = new Player(1, "guest");
-		player.setMove(Player.ATTACK);
-		
-		player.resetMove();
-		assertEquals(Player.NOT_SELECT, player.getMove());
 	}
 
 }

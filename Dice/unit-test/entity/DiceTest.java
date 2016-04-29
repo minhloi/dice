@@ -31,9 +31,21 @@ public class DiceTest {
 		int number = dice.roll();
 		
 		// Test if a random number falls within the range.
-		assertTrue(number >= 1);
-		assertTrue(number <= 6);
-
+		assertTrue(number >= 1 && number <= 6);
+		
+	}
+	
+	@Test
+	public void testGetCurrent(){
+		
+		Dice dice = new Dice();
+		dice.roll();
+		
+		int number = dice.getCurrent();
+		
+		// Test if a random number falls within the range.
+		assertTrue(number >= 1 && number <= 6);
+				
 	}
 
 }
