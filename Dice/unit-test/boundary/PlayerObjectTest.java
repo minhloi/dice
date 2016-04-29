@@ -16,7 +16,14 @@ public class PlayerObjectTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test(expected = Exception.class)
+	public void testPlayerObjectException() throws Exception {
+		
+		new PlayerObject(0);
 				
 	}
+	
 
 }

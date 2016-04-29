@@ -33,7 +33,7 @@ public class ProfileTextField extends GameObject {
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
 		
 	}
-	public ProfileTextField(int positionX, int postionY){
+	public ProfileTextField(int positionX, int positionY){
 		setPosition(positionX, positionY);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
 		

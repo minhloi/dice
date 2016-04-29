@@ -302,7 +302,7 @@ public class BattlePhase extends Phase {
 		
 		Player turnLoser = getTurnLoser();
 		
-		int damage = (int) Math.ceil( getDamageRatio() * initialDamage);
+		int damage = (int) Math.ceil( getDamageRatio() * (float) initialDamage);
 		turnLoser.setHealth(turnLoser.getHealth() - damage);
 	}
 	

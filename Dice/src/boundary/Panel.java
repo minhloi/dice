@@ -15,7 +15,6 @@ import java.awt.RenderingHints;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class Panel extends GameObject {
 	
 	private Color defaultColor;
@@ -39,7 +38,6 @@ public class Panel extends GameObject {
 		this.defaultColor = new Color(0x333333);
 		this.defaultFont = new Font("SansSerif", Font.BOLD, 16);
 		setImageByPath("/panel.png");
-		
 	}
 		
 	public void drawString(String string, int positionX, int positionY){
