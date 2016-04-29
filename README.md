@@ -7,7 +7,7 @@
 - Thien Duc Phung (thphung)
 - Tanner Siffren  (tanner-siffren)
 
-### Deliverable 3 
+### Deliverable 3 (Final)
 
 ####1. Executable: 
 
