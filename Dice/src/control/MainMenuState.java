@@ -10,8 +10,7 @@ import boundary.GameObject;
 import boundary.SelectableMenu;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * MainMenuState class is the first screen with menu screen when the game start
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -30,15 +29,18 @@ public class MainMenuState extends State{
 	private int menuLength;
 	private int selectedOption;
 	
+	// Option variables of main menu screen
 	private static final int START_NEW_GAME = 0;
 	private static final int VIEW_RANK = 1;
 	private static final int EXIT = 2;
 	
+	// Position variables of main menu screen
 	private static final int MENU_HEIGHT = 300;
 	private static final int MENU_WIDTH = 300;
 	private static final int MENU_POSITION_X = (GameCanvas.WIDTH - MENU_WIDTH) / 2 ;
 	private static final int MENU_POSITION_Y = (GameCanvas.HEIGHT - MENU_HEIGHT) - 70;
 	
+	// Create the main menu screen panel
 	public MainMenuState(GameController controller, ArrayList<GameObject> objectList){
 		
 		this.objectList = objectList;
@@ -54,6 +56,7 @@ public class MainMenuState extends State{
 		this.selectedOption = START_NEW_GAME;
 	}
 	
+	// Setting attributes for the main menu panel
 	@Override
 	public void render(){
 		
@@ -68,6 +71,7 @@ public class MainMenuState extends State{
 		objectList.add(menu);
 	}
 	
+	// Options of main menu screen
 	private void route(){
 		
 		switch (selectedOption) {
@@ -102,6 +106,7 @@ public class MainMenuState extends State{
 		
 	}
 	
+	// Select options
 	private void selectNextOption(){
 		if(selectedOption >= menuLength - 1){
 			selectedOption = 0;
@@ -110,6 +115,7 @@ public class MainMenuState extends State{
 		}
 	}
 	
+	// Select options
 	private void selectPrevOption(){
 		if(selectedOption <= 0){
 			selectedOption = menuLength - 1;
@@ -118,10 +124,12 @@ public class MainMenuState extends State{
 		}
 	}
 
+	// Keys action
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
 	}
 
+	// Keys action
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
@@ -138,6 +146,7 @@ public class MainMenuState extends State{
 		}
 	}
 
+	// Keys action
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
 		// TODO Auto-generated method stub
