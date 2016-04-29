@@ -8,8 +8,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The ProfileTextField class shows the user profile information
+ *
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
