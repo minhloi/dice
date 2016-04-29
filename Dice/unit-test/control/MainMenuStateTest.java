@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import boundary.GameObject;
-import entity.Database;
 
 /**
- * Junit test for ViewRankState class
+ * Junit test for MenuState class
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -19,19 +18,20 @@ import entity.Database;
  * @author Tanner Siffren
  */
 
-public class ViewRankStateTest {
+public class MainMenuStateTest {
 
+	
 	@Test
-	public void testViewRankState() {
+	public void testMainMenuState() {
 		
 		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
 		GameController controller = new GameController(objectList);
-		Database database = new Database();
 		
 		// Test if a MainMenuState object is created
-		ViewRankState viewRankState = new ViewRankState(controller, objectList, database);
-		assertNotNull(viewRankState);
-			
-	}
+		MainMenuState mainMenuState = new MainMenuState(controller, objectList);
+		assertNotNull(mainMenuState);
 		
+	}
+
+
 }

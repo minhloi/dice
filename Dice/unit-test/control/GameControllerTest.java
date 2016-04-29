@@ -2,10 +2,11 @@ package control;
 
 import static org.junit.Assert.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.ArrayList;
 
 import org.junit.Test;
+
+import boundary.GameObject;
 
 /**
  * Junit test for GameController class
@@ -23,42 +24,31 @@ public class GameControllerTest {
 	public void testGameController() {
 		
 		// Test if a GameController object is created.
-		GameController gameController = new GameController();	
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController gameController = new GameController(objectList);
+		
 		assertNotNull(gameController);
 	}
 
 	@Test
 	public void testGetState() {
-		GameController gameController = new GameController();	
+	
 		
 		// Test if getState returns a correct object.
-		assertTrue(gameController.getState(GameController.MENU_STATE) instanceof MainMenuState);
-		assertTrue(gameController.getState(GameController.PLAY_STATE) instanceof PlayState);
-		assertTrue(gameController.getState(GameController.VIEW_RANK_STATE) instanceof ViewRankState);
-		assertTrue(gameController.getState(GameController.MATCH_END_MENU_STATE) instanceof MatchEndMenuState);
-	}
-
-	@Test
-	public void testSetState() {
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController gameController = new GameController(objectList);
 		
-		GameController gameController = new GameController();	
-		assertNotNull(gameController);
+		assertTrue(gameController.getState(State.MENU_STATE) instanceof MainMenuState);
+		assertTrue(gameController.getState(State.PLAY_STATE) instanceof PlayState);
+		assertTrue(gameController.getState(State.VIEW_RANK_STATE) instanceof ViewRankState);
+		assertTrue(gameController.getState(State.PAUSED_STATE) instanceof PausedState);
 		
 	}
-
+	
 	@Test
 	public void testExitGame() {
-		
-		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(outContent));
-		
-		GameController gameController = new GameController();
-		
-		gameController.exitGame();
-		
-		// The game exited sucessfully.
-		assertEquals("Exit!", outContent.toString());
-		
+	
+			
 	}
 
 }
