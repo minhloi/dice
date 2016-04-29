@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import boundary.GameObject;
 import boundary.HealthBar;
+import boundary.Move;
 import boundary.PlayerObject;
 import entity.Player;
 
@@ -49,7 +50,15 @@ public class Turn implements Listenable {
 				setTurnCompleted();
 				resetTurn();
 			}
-		}
+		} 
+		// Display players' selected moves when both are ready
+		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT && player2.getTurnInfo().getMove() != Player.NOT_SELECT){
+			Move player1Move = new Move(player1.getTurnInfo().getMove(), PlayerObject.PLAYER1_DEFAULT_POSITION_X - 120, PlayerObject.PLAYER1_DEFAULT_POSITION_Y + 30);
+			Move player2Move = new Move(player2.getTurnInfo().getMove(), PlayerObject.PLAYER2_DEFAULT_POSITION_X + 120, PlayerObject.PLAYER2_DEFAULT_POSITION_Y + 30);
+			
+			objectList.add(player1Move);
+			objectList.add(player2Move);
+		}	
 	}
 		
 	private void resetTurn(){
