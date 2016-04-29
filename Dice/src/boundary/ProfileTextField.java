@@ -29,7 +29,7 @@ public class ProfileTextField extends GameObject {
 	private static final int MARGIN_TOP = 80;
 	
 	/**
-	 * The defaukt position of the profile text field
+	 * The default position of the profile text field
 	 * 
 	 * */
 	public ProfileTextField(){
