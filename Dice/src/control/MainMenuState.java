@@ -43,7 +43,8 @@ public class MainMenuState extends State{
 		this.selectedOption = START_NEW_GAME;
 	}
 	
-	public void print(){
+	@Override
+	public void render(){
 		
 		objectList.add(background);
 		

@@ -29,4 +29,8 @@ public class Dice {
 		return current;		
 	}
 	
+	public int getCurrent(){
+		return current;
+	}
+	
 }

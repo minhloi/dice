@@ -5,60 +5,60 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import boundary.Background;
+import boundary.GameCanvas;
 import boundary.GameObject;
+import boundary.LargePanel;
 import boundary.SelectableMenu;
 
-/**
- * MatchEnd class with all method to act when the match of the game ended
- * 
- * @author Thien Duc Phung
- * @author Minh Loi
- * @author Daniel Enriquez
- * @author Brett Bauman
- * @author Tanner Siffren
- */
-
-public class MatchEndMenu implements Listenable {
+public class PausedState extends State {
 	
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
+	private Background background;
 	
 	private String[] menuItems; 
 	private int menuLength;
 	private SelectableMenu menu;
 	private int selectedOption;
+	private LargePanel menuPanel;
 	
-	public static final int REMATCH = 0;
-	public static final int BACK_TO_MAIN_MENU = 1;
-	public static final int VIEW_RANK = 2;
-	public static final int EXIT = 3;
+	public static final int RESUME = 0;
+	public static final int RESTART_NEW_GAME = 1;
+	public static final int GO_TO_MAIN_MENU = 2;
+	public static final int VIEW_RANK = 3;
+	public static final int EXIT = 4;
 	
 	private static final int MENU_WIDTH = 468;
 	private static final int MENU_HEIGHT = 346;
 	
-	/**
-	 * Method with assigned array at end game
-	 * 
-	 * @param controller
-	 * @param scanner
-	 */
-	public MatchEndMenu(GameController controller, ArrayList<GameObject> objectList) {
+	public static final int PANEL_POSITION_X = (GameCanvas.WIDTH - LargePanel.WIDTH) / 2;
+	public static final int PANEL_POSITION_Y = (GameCanvas.HEIGHT - LargePanel.HEIGHT) / 2;
 		
-		menuLength = 4;
+	public PausedState(GameController gameController, ArrayList<GameObject> objectList){
+		
+		menuLength = 5;
 		menuItems = new String[menuLength];
-		menuItems[REMATCH] = "Rematch";
-		menuItems[BACK_TO_MAIN_MENU] = "Back to main menu";
+		menuItems[RESUME] = "Resume";
+		menuItems[RESTART_NEW_GAME] = "Restart new game";
+		menuItems[GO_TO_MAIN_MENU] = "Go to main menu";
 		menuItems[VIEW_RANK] = "View rankings";
 		menuItems[EXIT] = "Quit";
-				
-		this.gameController = controller;
-		this.objectList = objectList;
-		this.selectedOption = REMATCH;
+	
+		this.gameController = gameController;
+		this.objectList = objectList;	
+		this.selectedOption = RESUME;
+		
+		this.menuPanel = new LargePanel(PANEL_POSITION_X, PANEL_POSITION_Y);
+		this.background = new Background("play_background.png");
 	}
 	
-	public void render() {
+	public void render(){
 		
-		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y + 120);
+		objectList.add(background);
+		objectList.add(menuPanel);
+		
+		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, PANEL_POSITION_X, PANEL_POSITION_Y + 50);
 		menu.setMarginTop(10);
 		menu.setFont(new Font("Arial", Font.BOLD, 26));
 		menu.setSelectedIndex(selectedOption);
@@ -67,31 +67,29 @@ public class MatchEndMenu implements Listenable {
 		menu.drawMenu(menuItems);
 		
 		objectList.add(menu);
-		
+				
 	}
 	
-	/**
-	 * Method to decide what to do after the game base on players' choice
-	 * 
-	 * @param selectedOption
-	 */
 	private void route() {
-	
+		
 		switch (selectedOption){
 		
-			case REMATCH:
+			case RESUME:
 			
-				// Get playState object
-				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
-				
-				// Rematch.
-				playState.rematch();
-				
 				// Begin to render menuState.
 				gameController.setState(State.PLAY_STATE);
 				break;
 		
-			case BACK_TO_MAIN_MENU:
+			case RESTART_NEW_GAME:
+				
+				PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
+				playState.rematch();
+				
+				gameController.setState(State.PLAY_STATE);
+				
+				break;
+				
+			case GO_TO_MAIN_MENU:
 			
 				// Begin to render menuState.
 				gameController.setState(State.MENU_STATE);
@@ -100,7 +98,7 @@ public class MatchEndMenu implements Listenable {
 			case VIEW_RANK:
 			
 				ViewRankState viewRankState = (ViewRankState) gameController.getState(State.VIEW_RANK_STATE);
-				viewRankState.setBackState(State.PLAY_STATE);
+				viewRankState.setBackState(State.PAUSED_STATE);
 				
 				// Begin to render viewRankState
 				gameController.setState(State.VIEW_RANK_STATE);
@@ -130,7 +128,7 @@ public class MatchEndMenu implements Listenable {
 			selectedOption--;
 		}
 	}
-
+	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
 		
@@ -155,9 +153,7 @@ public class MatchEndMenu implements Listenable {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-
-
-	}
 		
-	
+	}
+
 }

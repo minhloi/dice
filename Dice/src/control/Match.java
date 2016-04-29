@@ -110,8 +110,8 @@ public class Match implements Listenable {
 		
 		} else {
 			
-			player1Object.setIdle();
-			player2Object.setIdle();
+			getWinnerObject().setIdle();
+			getLoserObject().setDead();
 			displayMenu();
 		}
 			
@@ -150,6 +150,26 @@ public class Match implements Listenable {
 			loser = player2;
 		}
 		return loser;
+	}
+	
+	private PlayerObject getWinnerObject(){
+		PlayerObject winnerObject;
+		if(getWinner().getNumber() == 1){
+			winnerObject = player1Object;
+		} else {
+			winnerObject = player2Object;
+		}
+		return winnerObject;
+	}
+	
+	private PlayerObject getLoserObject(){
+		PlayerObject loserObject;
+		if(getLoser().getNumber() == 1){
+			loserObject = player1Object;
+		} else {
+			loserObject = player2Object;
+		}
+		return loserObject;
 	}
 	
 	private void displayMenu(){
@@ -191,8 +211,13 @@ public class Match implements Listenable {
 
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
+		
 		if(matchEnded == false){
-			currentTurn.onKeyReleased(keyEvent);
+			if(keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE){
+				gameController.setState(State.PAUSED_STATE);
+			} else {
+				currentTurn.onKeyReleased(keyEvent);
+			}
 		} else {
 			menu.onKeyReleased(keyEvent);
 		}

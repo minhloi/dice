@@ -131,7 +131,8 @@ public class PlayState extends State implements Listenable {
 	/**
 	 * print - Display the start of the match and begin a turn.
 	 */
-	public void print(){
+	@Override
+	public void render(){
 		if(currentState == PLAYING){
 			currentMatch.renderTurn();
 		} else if(currentState == CREATING_PROFILES){
