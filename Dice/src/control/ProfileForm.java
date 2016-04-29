@@ -8,6 +8,17 @@ import boundary.GameObject;
 import boundary.ProfileTextField;
 import entity.Player;
 
+/**
+ * The BattlePhase class demonstates a phase of a match, where the rollWinner
+ * causes damage to the rollLoser.
+ * 
+ * @author Thien Duc Phung
+ * @author Minh Loi
+ * @author Daniel Enriquez
+ * @author Brett Bauman
+ * @author Tanner Siffren
+ */
+
 public class ProfileForm implements Listenable {
 	
 	private Player player1;
