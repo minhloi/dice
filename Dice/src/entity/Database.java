@@ -31,7 +31,7 @@ public class Database {
 	private static final String FILE_NAME = "database.txt";
 	
 	/**
-	 * Constructor - New PlayerScore vector
+	 * New PlayerScore vector
 	 */
 	public Database(){
 		gameData = new Vector<PlayerScore>();

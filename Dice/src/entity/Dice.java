@@ -28,7 +28,12 @@ public class Dice {
 		current = random.nextInt(6) + 1;
 		return current;		
 	}
-	
+
+	/**
+	 * getCurrent - Get the current dice roll
+	 * 
+	 * @return Returns the current dice roll
+	 */
 	public int getCurrent(){
 		return current;
 	}
