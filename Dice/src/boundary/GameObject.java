@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * 
+ * GameObject class is the parent class of all game objects
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
