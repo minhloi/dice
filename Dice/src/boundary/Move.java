@@ -3,8 +3,7 @@ package boundary;
 import entity.Player;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * Move class - Display the type of move selected
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -17,6 +16,13 @@ public class Move extends GameObject {
 
 	private String resourceFolder;
 	
+	/**
+	 * Constructor - Find and set the appropriate move image  
+	 * 
+	 * @param move Move type
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 */
 	public Move(int move, int positionX, int positionY){
 		
 		setPosition(positionX, positionY);
