@@ -6,8 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * GameObject class is the parent class of all game objects
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

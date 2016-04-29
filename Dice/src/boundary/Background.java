@@ -1,8 +1,7 @@
 package boundary;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The Background class is use for adding image as a background
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

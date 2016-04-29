@@ -16,8 +16,7 @@ import javax.swing.Timer;
 import control.GameController;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The GameCanvas class is use for creating the entire game screen
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -29,15 +28,18 @@ import control.GameController;
 @SuppressWarnings("serial")
 public class GameCanvas extends JPanel {
 	
+	// Game screen size
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 650;
 	
+	// Timer every round of games
 	public static final int TIMER = 25; // in ms
 	
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
 	private Timer timer;
 	
+	// Create the game screen 
 	public GameCanvas(){
 		
 		setBackground(Color.WHITE);
@@ -57,15 +59,12 @@ public class GameCanvas extends JPanel {
 		// Add game listener
 		addKeyListener(new CanvasKeyListener());
 		
-		//PlayState playState = (PlayState) gameController.getState(GameController.PLAY_STATE);
-		//playState.startNew();
-		//gameController.setState(GameController.PLAY_STATE);
-		
 		// Start timer
 		timer.start();
 					
 	}
 	
+	// Paint method to paint the background of the game screen
 	public void paintComponent(Graphics graphics){
 		
 		super.paintComponent(graphics);
@@ -86,6 +85,7 @@ public class GameCanvas extends JPanel {
 		}
 	}
 	
+	// Key methods for actions picking between two players
 	private class CanvasKeyListener implements KeyListener{
 
 		@Override
