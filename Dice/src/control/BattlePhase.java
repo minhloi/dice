@@ -222,12 +222,12 @@ public class BattlePhase extends Phase {
 				
 	}
 	
-	private float getDamageRatio(){
+	private double getDamageRatio(){
 		
 		Player turnWinner = getTurnWinner();
 		Player turnLoser = getTurnLoser();
 		
-		float damageRatio = 1 ;
+		double damageRatio = 1 ;
 		
 		// CASE 1: Winner selected ATTACK.
 		if (turnWinner.getTurnInfo().getMove() == Player.ATTACK) {
@@ -240,7 +240,7 @@ public class BattlePhase extends Phase {
 			// Loser selected BLOCK takes half damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
-				damageRatio = 1/2;			
+				damageRatio = 0.5;			
 			
 			}
 			
@@ -250,12 +250,12 @@ public class BattlePhase extends Phase {
 			// Loser selected ATTACK or SPECIAL_ATTACK takes half damage.
 			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 				
-				damageRatio = 1/2;
+				damageRatio = 0.5;
 				
 			// Loser selected BLOCK takes a quarter of damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
-				damageRatio = 1/4;
+				damageRatio = 0.25;
 								
 			}
 		
@@ -283,13 +283,13 @@ public class BattlePhase extends Phase {
 	
 	private String getDamageRatioInString(){
 		String ratio = "";
-		if( getDamageRatio()== (float)1 ){
+		if( getDamageRatio()== (double)1 ){
 			ratio = "full";
-		} else if( getDamageRatio()== (float)1/2 ){
+		} else if( getDamageRatio()== (double)1/2 ){
 			ratio = "half";
-		} else if( getDamageRatio()== (float)1/4 ){
+		} else if( getDamageRatio()== (double)1/4 ){
 			ratio = "1/4";
-		} else if( getDamageRatio()== (float)2 ){
+		} else if( getDamageRatio()== (double)2 ){
 			ratio = "double";
 		}
 		return ratio;
@@ -302,7 +302,7 @@ public class BattlePhase extends Phase {
 		
 		Player turnLoser = getTurnLoser();
 		
-		int damage = (int) Math.ceil( getDamageRatio() * (float) initialDamage);
+		int damage = (int) Math.ceil( getDamageRatio() * (double) initialDamage);
 		turnLoser.setHealth(turnLoser.getHealth() - damage);
 	}
 	
