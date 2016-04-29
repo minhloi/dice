@@ -9,8 +9,7 @@ import java.awt.image.BufferedImage;
 import entity.Player;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The HealthBar class is setting HP bar for the game
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -21,18 +20,22 @@ import entity.Player;
 
 public class HealthBar extends GameObject {
 
+	// Size of the Health Bar panel
 	public static final int HEIGHT = 50;
 	public static final int WIDTH = 280;
 	
+	// Size of the Health Bar
 	public static final int HEALTH_NUM_WIDTH = 50;
 	public static final int BAR_MAX_WIDTH = WIDTH - HEALTH_NUM_WIDTH;
 	public static final int BAR_HEIGHT = 12;
 	
+	// Position variables of Health Bar
 	public static final int PLAYER1_POSITION_X = 30;
 	public static final int PLAYER1_POSITION_Y = 60;
 	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - WIDTH - 30;
 	public static final int PLAYER2_POSITION_Y = 60;
 	
+	// Setting position for the Health Bar
 	public HealthBar(int positionX, int positionY){
 		
 		setPosition(positionX, positionY);
@@ -40,6 +43,7 @@ public class HealthBar extends GameObject {
 		
 	}
 	
+	// Setting the image and number representiation of the Health Bar
 	public void setHealthBar(int healthPoint){
 		
 		if(healthPoint < 0 ){
