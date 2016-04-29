@@ -27,7 +27,7 @@ public class ProfileForm implements Listenable {
 		this.background = new Background("create_profiles.png");
 		this.completed = false;
 		
-		createNewProfileFor(player1);
+		createNewProfileFor(this.player1);
 		
 	}
 	
@@ -65,7 +65,7 @@ public class ProfileForm implements Listenable {
 		switch (keycode){
 			case KeyEvent.VK_ENTER:
 				if(currentText != ""){
-					currentPlayer.setUsername(currentText);
+					currentPlayer.setUsername(currentText.trim());
 					if(currentPlayer.getNumber() == 1){
 						createNewProfileFor(player2);
 					} else if(currentPlayer.getNumber() == 2){

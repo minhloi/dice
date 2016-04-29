@@ -29,7 +29,7 @@ public class BattlePhase extends Phase {
 	private int currentState;
 	private Panel winnerPanel;
 	private DiceObject winnerDiceObject;
-	private int winnerCurrentDice;
+	private boolean loserDead;
 	
 	public static final int ROLLING = 0;
 	public static final int RUNNING_TOWARDS_OPPONENT = 1;
@@ -47,7 +47,7 @@ public class BattlePhase extends Phase {
 		this.player1Object = player1Object;
 		this.player2Object = player2Object;
 		this.objectList = objectList;
-		
+		this.loserDead = false;
 		this.currentState = ROLLING;
 		
 	}	
@@ -59,7 +59,7 @@ public class BattlePhase extends Phase {
 		
 		if(currentState == ROLLING){
 			
-			winnerCurrentDice = getTurnWinner().getDice().roll();
+			getTurnWinner().getDice().roll();
 			
 			player1Object.setIdle();
 			player2Object.setIdle();
@@ -75,7 +75,7 @@ public class BattlePhase extends Phase {
 			boolean completed = getTurnWinnerObject().attack();
 			if(completed == true){
 				try {
-					calculateDamage(winnerCurrentDice);
+					calculateDamage(getTurnWinner().getDice().getCurrent());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,7 +83,15 @@ public class BattlePhase extends Phase {
 			}
 			
 		} else if(currentState == RETURNING){
+			
 			boolean completed = runBack();
+			
+			if(isLoserDead()){
+				setLoserDeadPosition();
+			} else if(hasWinner()) {
+				loserDying();
+			}
+			
 			if(completed == true){
 				setCompleted();
 			}
@@ -121,6 +129,34 @@ public class BattlePhase extends Phase {
 		
 	}
 	
+	private boolean hasWinner(){
+		boolean hasWinner = false;
+		if(getTurnLoser().getHealth() <= 0){
+			hasWinner = true;
+		}
+		return hasWinner;
+	}
+	
+	private void loserDying(){
+		if(getTurnLoser().getNumber() == 1){
+			loserDead = player1Object.dying();
+		} else {
+			loserDead = player2Object.dying();
+		}
+	}
+	
+	private boolean isLoserDead(){
+		return loserDead;
+	}
+	
+	private void setLoserDeadPosition(){
+		if(getTurnLoser().getNumber() == 1){
+			player1Object.setDead();
+		} else {
+			player2Object.setDead();
+		}
+	}
+	
 	private Player getTurnLoser(){
 		Player turnLoser;
 		if(!player1.getTurnInfo().isTurnWinner()){
@@ -155,12 +191,21 @@ public class BattlePhase extends Phase {
 		
 		if(player1.getTurnInfo().isTurnWinner()){
 			winnerPanel = new Panel(Panel.PANEL_1_POSITION_X, Panel.PANEL_1_POSITION_Y);
-			winnerPanel.drawString("Press E to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			winnerDiceObject = new DiceObject(DiceObject.DICE1_POSITION_X, DiceObject.DICE1_POSITION_Y );
+			if(currentState == ROLLING){
+				winnerPanel.drawString("Press E to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			} else {
+				winnerPanel.drawString("Opponent takes" , Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+				winnerPanel.drawString(getDamageRatioInString() + " damage." , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			}
+			
 		} else {
 			winnerPanel = new Panel(Panel.PANEL_2_POSITION_X, Panel.PANEL_2_POSITION_Y);
-			winnerPanel.drawString("Press U to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
-			winnerDiceObject = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y );
+			if(currentState == ROLLING){
+				winnerPanel.drawString("Press U to stop.", Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+			} else {
+				winnerPanel.drawString("Opponent takes" , Panel.ALIGN_LEFT, Panel.ALIGN_TOP);
+				winnerPanel.drawString(getDamageRatioInString() + " damage." , Panel.ALIGN_LEFT, Panel.ALIGN_BOTTOM);
+			}
 		}
 				
 	}
@@ -173,22 +218,16 @@ public class BattlePhase extends Phase {
 			winnerDiceObject = new DiceObject(DiceObject.DICE2_POSITION_X, DiceObject.DICE2_POSITION_Y );
 		}
 		
-		winnerDiceObject.setImageByDiceNum(winnerCurrentDice);
+		winnerDiceObject.setImageByDiceNum(getTurnWinner().getDice().getCurrent());
 				
 	}
-		
-	/**
-	 * calculateDamage - Calculate damage dealt to rollLoser
-	 * @throws Exception exception throws when either players has not selected their moves thus cannot calculdate damage.
-	 */
-	private void calculateDamage(int initialDamage) throws Exception {
+	
+	private float getDamageRatio(){
 		
 		Player turnWinner = getTurnWinner();
 		Player turnLoser = getTurnLoser();
 		
-		if(turnWinner.getTurnInfo().getMove() == Player.NOT_SELECT || turnLoser.getTurnInfo().getMove() == Player.NOT_SELECT) {
-			throw new Exception("One of the players have not selected move");
-		}
+		float damageRatio = 1 ;
 		
 		// CASE 1: Winner selected ATTACK.
 		if (turnWinner.getTurnInfo().getMove() == Player.ATTACK) {
@@ -196,17 +235,13 @@ public class BattlePhase extends Phase {
 			// Loser selected ATTACK or SPECIAL_ATTACK takes full damage.
 			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 				
-				int damage = initialDamage;
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
-				
+				damageRatio = 1;
+			
 			// Loser selected BLOCK takes half damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
-				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
-								
+				damageRatio = 1/2;			
+			
 			}
 			
 		// CASE 2: Winner selected BLOCK.	
@@ -215,16 +250,12 @@ public class BattlePhase extends Phase {
 			// Loser selected ATTACK or SPECIAL_ATTACK takes half damage.
 			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 				
-				int damage = (int) Math.ceil(initialDamage * (float) 1/2);
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
+				damageRatio = 1/2;
 				
 			// Loser selected BLOCK takes a quarter of damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
-				int damage = (int) Math.ceil(initialDamage * (float) 1/4);
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
+				damageRatio = 1/4;
 								
 			}
 		
@@ -235,27 +266,48 @@ public class BattlePhase extends Phase {
 			// Loser selected ATTACK or SPECIAL_ATTACK takes doubled damage.
 			if (turnLoser.getTurnInfo().getMove() == Player.ATTACK || turnLoser.getTurnInfo().getMove() == Player.SPECIAL_ATTACK) {
 						
-				int damage = 2 * initialDamage;
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
+				damageRatio = 2;
 				
 			// Loser selected BLOCK takes full normal damage.
 			} else if (turnLoser.getTurnInfo().getMove() == Player.BLOCK) {
 				
-				int damage = initialDamage;
-				// Set damage.
-				turnLoser.setHealth(turnLoser.getHealth() - damage);
-								
+				damageRatio = 1;
+				
 			}
 		
 		}
 		
+		return damageRatio;
+		
 	}
-
+	
+	private String getDamageRatioInString(){
+		String ratio = "";
+		if( getDamageRatio()== (float)1 ){
+			ratio = "full";
+		} else if( getDamageRatio()== (float)1/2 ){
+			ratio = "half";
+		} else if( getDamageRatio()== (float)1/4 ){
+			ratio = "1/4";
+		} else if( getDamageRatio()== (float)2 ){
+			ratio = "double";
+		}
+		return ratio;
+	}
+		
+	/**
+	 * calculateDamage - Calculate damage dealt to rollLoser
+	 */
+	private void calculateDamage(int initialDamage) {
+		
+		Player turnLoser = getTurnLoser();
+		
+		int damage = (int) Math.ceil( getDamageRatio() * initialDamage);
+		turnLoser.setHealth(turnLoser.getHealth() - damage);
+	}
+	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -274,8 +326,6 @@ public class BattlePhase extends Phase {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

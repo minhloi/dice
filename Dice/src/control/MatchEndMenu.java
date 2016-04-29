@@ -21,9 +21,10 @@ import boundary.SelectableMenu;
 public class MatchEndMenu implements Listenable {
 	
 	private GameController gameController;
+	private ArrayList<GameObject> objectList;
+	
 	private String[] menuItems; 
 	private int menuLength;
-	private ArrayList<GameObject> objectList;
 	private SelectableMenu menu;
 	private int selectedOption;
 	

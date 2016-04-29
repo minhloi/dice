@@ -51,7 +51,7 @@ public class ViewRankState extends State{
 	/**
 	 * print - Display each of the player's rankings (wins and losses)
 	 */
-	public void print(){
+	public void render(){
 
 		objectList.add(background);
 		
