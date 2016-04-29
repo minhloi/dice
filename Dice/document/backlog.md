@@ -8,5 +8,5 @@
 | 6  | GUI for main menu | 1 2 3 4 5 | 6 | 4 | COMPLETED |
 | 7  | Basic GUI for playing games | 1 2 3 4 5| 9 | 4 | COMPLETED |
 | 8  | GUI for view ranking | 6 7 | 7 | 4 | COMPLETED |
-| 9  | GUI for sub-menus when the game is paused or ended | 6 7 8 | 6 | 5 | IN PROGRESS |
-| 10  | Enhanced GUI (such as animation) for playing games| 7 | 10 | 5 | IN PROGRESS  |
+| 9  | GUI for sub-menus when the game is paused or ended | 6 7 8 | 6 | 5 | COMPLETED |
+| 10  | Enhanced GUI (such as animation) for playing games| 7 | 10 | 5 | COMPLETED  |
