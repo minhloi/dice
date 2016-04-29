@@ -113,6 +113,10 @@ public class RollDicePhase extends Phase {
 		
 	}
 	
+	/**
+	*  rollingDie rolls the die until the players press the stop button
+	*  
+	*/
 	private void rollingDie(){
 		// Keep rolling until players press stop.
 		if(dice1Stopped == false ){
@@ -123,6 +127,11 @@ public class RollDicePhase extends Phase {
 		}
 	}
 	
+	 /**
+	 *  setwinner returns a boolean of true for the player that won the game
+	 *  
+	 * @return hasWinner - retruns true for the player that won the game
+	 */
 	private boolean setWinner(){
 		boolean hasWinner = false;
 		if(player1CurrentDice > player2CurrentDice ){
@@ -135,6 +144,10 @@ public class RollDicePhase extends Phase {
 		return hasWinner;
 	}
 	
+	 /**
+	 *  setToRollAgain resets the dice from the stopped state in preparation to roll again
+	 *  
+	 */
 	private void setToRollAgain(){
 		dice1Stopped = false;
 		dice2Stopped = false;
@@ -145,7 +158,12 @@ public class RollDicePhase extends Phase {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	 /**
+	 *  onKeyReleased listens for the key to be pressed to stop the die
+	 *  
+	 * @param keyEvent - the button that gets pressed
+	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 
