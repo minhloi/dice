@@ -9,8 +9,8 @@ import boundary.ProfileTextField;
 import entity.Player;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * The ProfileForm class is the profile data for player 1 and player 2
+ * 
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -42,6 +42,10 @@ public class ProfileForm implements Listenable {
 		
 	}
 	
+	 /**
+	 *  render updates and adds a profile
+	 *  
+	 */
 	public void render(){
 		
 		objectList.add(background);
@@ -51,15 +55,29 @@ public class ProfileForm implements Listenable {
 		objectList.add(profileTextField);		
 	}
 	
+	 /**
+	 * createNewProfileFor creates a new profile for the current player
+	 *  
+	 * @param player - player of object player
+	 */
 	public void createNewProfileFor(Player player){
 		this.currentText = "";
 		this.currentPlayer = player;
 	}
-
+	
+	 /**
+	 *  isCompleted returns completed if the profile is created
+	 *  
+	 * @return completed - returns completed if the profile is completed
+	 */
 	public boolean isCompleted(){
 		return completed;
 	}
 	
+	 /**
+	 *  setCompleted sets completed to true
+	 *  
+	 */
 	private void setCompleted(){
 		completed = true;
 	}
@@ -69,7 +87,12 @@ public class ProfileForm implements Listenable {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	 /**
+	 *  onKeyReleased listens for the enter button to be pressed when ceating a profile
+	 *  
+	 * @param keyEvent - the button that gets pressed
+	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
