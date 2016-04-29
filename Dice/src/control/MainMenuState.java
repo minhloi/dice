@@ -2,7 +2,6 @@ package control;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import boundary.Background;
 import boundary.GameCanvas;
