@@ -1,10 +1,8 @@
 package control;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import boundary.DiceObject;
 import boundary.GameObject;

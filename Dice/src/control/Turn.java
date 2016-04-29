@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import boundary.GameObject;
-import boundary.HealthBar;
 import boundary.Move;
 import boundary.PlayerObject;
 import entity.Player;
@@ -30,9 +29,9 @@ public class Turn implements Listenable {
 		this.objectList = objectList;
 		
 		phaseList = new Phase[Phase.LENGTH];
-		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(player1, player2, player1Object, player2Object, objectList);
-		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(player1, player2, player1Object, player2Object, objectList);
-		phaseList[Phase.BATTLE_PHASE] = new BattlePhase(player1, player2, player1Object, player2Object, objectList);
+		phaseList[Phase.SELECT_MOVE_PHASE] = new SelectMovePhase(this.player1, this.player2, this.player1Object, this.player2Object, this.objectList);
+		phaseList[Phase.ROLL_DICE_PHASE] = new RollDicePhase(this.player1, this.player2, this.player1Object, this.player2Object, this.objectList);
+		phaseList[Phase.BATTLE_PHASE] = new BattlePhase(this.player1, this.player2, this.player1Object, this.player2Object, this.objectList);
 		
 		// The initial phase is SelectMovePhase.
 		this.currentPhase = Phase.SELECT_MOVE_PHASE;

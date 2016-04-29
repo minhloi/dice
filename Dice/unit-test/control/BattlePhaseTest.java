@@ -38,9 +38,10 @@ public class BattlePhaseTest {
 			e.printStackTrace();
 		}
 		
-		ArrayList<GameObject> objectList = new ArrayList();
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
 		
 		BattlePhase battlePhase = new BattlePhase(player1, player2, player1Object, player2Object, objectList);
+		
 		assertNotNull(battlePhase);
 			
 	}
