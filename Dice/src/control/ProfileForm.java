@@ -65,7 +65,7 @@ public class ProfileForm implements Listenable {
 		switch (keycode){
 			case KeyEvent.VK_ENTER:
 				if(currentText != ""){
-					currentPlayer.setUsername(currentText);
+					currentPlayer.setUsername(currentText.trim());
 					if(currentPlayer.getNumber() == 1){
 						createNewProfileFor(player2);
 					} else if(currentPlayer.getNumber() == 2){
