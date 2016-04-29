@@ -1,7 +1,7 @@
 package boundary;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
+ * The WinnerTitle displays the player who wins the game at the end of a match
  * causes damage to the rollLoser.
  * 
  * @author Thien Duc Phung
@@ -15,7 +15,14 @@ public class WinnerTitle extends GameObject {
 	
 	public static final int HEIGHT = 37;
 	public static final int WIDTH = 273;
-		
+	
+	/**
+ 	* WinnerTitle displays the image of who won at the end of a match
+	* 
+	* @param playerNumber - The number of the player who wins the game
+	* @param positionX - The x position of the winner image
+	* @param positionY - The y position of the winner image
+	**/	
 	public WinnerTitle(int playerNumber, int positionX, int positionY){
 		
 		setPosition(positionX, positionY);
