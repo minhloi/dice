@@ -22,6 +22,9 @@
   - Font used for titles is Sniglet: https://www.fontsquirrel.com/fonts/sniglet 
   - All other assets are created by us.  
 
+####4. Unit tests:
+All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test).
+
 ***
 
 ### Deliverable 2
