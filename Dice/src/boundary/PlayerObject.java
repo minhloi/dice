@@ -1,8 +1,7 @@
 package boundary;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * PlayerObject class - Player image at different states in the game
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -10,7 +9,6 @@ package boundary;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 public class PlayerObject extends GameObject{
 	
 	private int playerNumber;
@@ -46,6 +44,12 @@ public class PlayerObject extends GameObject{
 	// Running speed: How many pixels it moves in the x-axis per 25 ms (The game loop runs every 25 ms).
 	public static final int RUNNING_SPEED = 8;
 	
+	/**
+	 * Identify the player and map character image
+	 * 
+	 * @param playerNumber Player identification number
+	 * @throws Exception Player identification number isn't valid
+	 */
 	public PlayerObject(int playerNumber) throws Exception{
 		
 		if(playerNumber != 1 && playerNumber != 2){
@@ -56,6 +60,9 @@ public class PlayerObject extends GameObject{
 		this.resourceFolder = "/character/player" + this.playerNumber + "/";
 	}
 	
+	/**
+	 * setIdle - Set character's position to default when idle
+	 */
 	public void setIdle(){
 		
 		if(playerNumber == 1){
@@ -72,6 +79,12 @@ public class PlayerObject extends GameObject{
 		setImageByPath(resourceFolder + "idle.png");		
 	}
 	
+	/**
+	 * setIdle - Set and move character to certain position when idle
+	 * 
+	 * @param positionX
+	 * @param positionY
+	 */
 	public void setIdle(int positionX, int positionY){
 		
 		currentPositionX = positionX;
@@ -82,12 +95,22 @@ public class PlayerObject extends GameObject{
 	
 	}
 	
+	/**
+	 * setDead - Set character image as dead
+	 * 
+	 */
 	public void setDead(){
 		
 		setImageByPath(resourceFolder + "dead_10.png");		
 	
 	}
-		
+	
+	/**
+	 * runRight - Move character to the right position
+	 * 
+	 * @param destinationX Destination position
+	 * @return Returns true or false if completed
+	 */
 	public boolean runRight(int destinationX){
 		
 		boolean completed;
@@ -112,6 +135,12 @@ public class PlayerObject extends GameObject{
 		return completed;
 	}
 	
+	/**
+	 * runLeft - Move character to the left position
+	 * 
+	 * @param destinationX Destination position
+	 * @return Returns true or false if completed
+	 */
 	public boolean runLeft(int destinationX){
 		
 		boolean completed;
@@ -135,6 +164,11 @@ public class PlayerObject extends GameObject{
 		return completed;
 	}
 	
+	/**
+	 * dying - Set the character's image to a dead character 
+	 * 
+	 * @return Returns true or false if completed
+	 */
 	public boolean dying(){
 		
 		boolean completed;
@@ -155,6 +189,11 @@ public class PlayerObject extends GameObject{
 			
 	}
 	
+	/**
+	 * attack - Set character's image to a character in attack mode
+	 * 
+	 * @return Returns true or false if completed
+	 */
 	public boolean attack(){
 		
 		boolean completed;
@@ -173,11 +212,21 @@ public class PlayerObject extends GameObject{
 		
 		return completed;
 	}
-			
+	
+	/**
+	 * getState - Get the current state
+	 * 
+	 * @return Return the current state
+	 */
 	public int getState(){
 		return currentState;
 	}
 	
+	/**
+	 * isIdle - Check if state is idle
+	 *  
+	 * @return Returns true or false if state is idle
+	 */
 	public boolean isIdle(){
 		boolean isIdle;
 		if(currentState == IDLE){
@@ -188,14 +237,23 @@ public class PlayerObject extends GameObject{
 		return isIdle;	 
 	}
 	
+	/**
+	 * resetRunState - Set run state to zero (0)
+	 */
 	private void resetRunState(){
 		runState = 0;
 	}
 	
+	/**
+	 * resetAttackState - Set attack state to zero (0)
+	 */
 	private void resetAttackState(){
 		attackState = 0;
 	}
 	
+	/**
+	 * resetDyingState - Set dying state to zero (0)
+	 */
 	private void resetDyingState(){
 		dyingState = 0;
 	}
