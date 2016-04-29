@@ -44,7 +44,7 @@ public class PlayerObject extends GameObject{
 	private static final int NUM_OF_DYING_STATE = 10;
 	
 	// Running speed: How many pixels it moves in the x-axis per 25 ms (The game loop runs every 25 ms).
-	public static final int RUNNING_SPEED = 8;
+	public static final int RUNNING_SPEED = 10;
 	
 	public PlayerObject(int playerNumber) throws Exception{
 		
