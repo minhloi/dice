@@ -16,14 +16,14 @@
   - Import the project in Eclipse. 
   - Compile the GameEngine.java in sr/main package. 
 
-####3. Licenses and Credits: 
+####3. Unit tests:
+All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test).
+
+####4. Licenses and Credits: 
   - In-game background by bvigec: http://bvigec.deviantart.com/art/Level-background-for-a-mobile-game-355249548
   - All character sprites by gameart2d.com: http://www.gameart2d.com/freebies.html
   - Font used for titles is Sniglet: https://www.fontsquirrel.com/fonts/sniglet 
   - All other assets are created by us.  
-
-####4. Unit tests:
-All test cases are in [Dice/unit-test folder](https://github.com/minhloi/dice/tree/master/Dice/unit-test).
 
 ***
 
