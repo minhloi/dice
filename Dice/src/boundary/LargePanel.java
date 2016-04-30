@@ -1,7 +1,7 @@
 package boundary;
 
 /**
- * LargePanel class - Displays a large panel for after-game instructions
+ * The LargePanel class - use to render a large panel  
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

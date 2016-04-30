@@ -1,8 +1,7 @@
 package boundary;
 
 /**
- * The WinnerTitle displays the player who wins the game at the end of a match
- * causes damage to the rollLoser.
+ * The WinnerTitle displays the player who wins the game at the end of a match.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -17,12 +16,12 @@ public class WinnerTitle extends GameObject {
 	public static final int WIDTH = 273;
 	
 	/**
- 	* WinnerTitle displays the image of who won at the end of a match
-	* 
-	* @param playerNumber - The number of the player who wins the game
-	* @param positionX - The x position of the winner image
-	* @param positionY - The y position of the winner image
-	**/	
+ 	 * WinnerTitle displays the image of who won at the end of a match
+	 * 
+	 * @param playerNumber - The number of the player who wins the game
+	 * @param positionX - The x position of the title image
+	 * @param positionY - The y position of the title image
+	 */	
 	public WinnerTitle(int playerNumber, int positionX, int positionY){
 		
 		setPosition(positionX, positionY);

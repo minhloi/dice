@@ -8,7 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 /**
- * The RankingTable class demonstates the leaderboard with usernames
+ * The RankingTable class demonstrates the leaderboard with usernames
  * as well as win and loss information
  * 
  * @author Thien Duc Phung
@@ -39,9 +39,8 @@ public class RankingTable extends GameObject {
 	private int currentLine;
 	
 	/**
- 	* The default position of the ranking table
-	*
- 	**/
+	 * The default position of the ranking table
+	 */
 	public RankingTable(){
 		
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
@@ -50,9 +49,8 @@ public class RankingTable extends GameObject {
 	}
 	
 	/**
- 	* Text and the position of the rankings header
-	* 
-	**/
+ 	 * Text and the position of the rankings header
+	 */
 	public void drawHeader(){
 		
 		Graphics2D graphics = image.createGraphics();
@@ -75,13 +73,13 @@ public class RankingTable extends GameObject {
 	}
 	
 	/**
- 	* Provides the username with their respective wins and losses on the rankings board
-	* 
-	* @param username - The value of the username to be displayed on the rankings
-	* @param wins - The wins to be displayed in the rankings with respect to the given username
-	* @param losses - The losses to  be displayed in the rankings with respect to the given username
-	* @param diff - The differential between wins and losses for the respective given username
-	**/
+ 	 * Provides the username with their respective wins and losses on the rankings board
+	 * 
+	 * @param username - The value of the username to be displayed on the rankings
+	 * @param wins - The wins to be displayed in the rankings with respect to the given username
+	 * @param losses - The losses to  be displayed in the rankings with respect to the given username
+	 * @param diff - The differential between wins and losses for the respective given username
+	 */
 	public void drawPlayerScore(String username, int wins, int losses, int diff){
 		
 		Graphics2D graphics = image.createGraphics();
@@ -105,9 +103,8 @@ public class RankingTable extends GameObject {
 	}
 	
 	/**
- 	* This is displayed when there are no rankings available
-	* 
-	**/
+ 	 * This is displayed when there are no rankings available
+	 */
 	public void drawNoRecords(){
 		
 		Graphics2D graphics = image.createGraphics();

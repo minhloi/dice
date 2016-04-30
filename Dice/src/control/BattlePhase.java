@@ -10,7 +10,7 @@ import boundary.PlayerObject;
 import entity.Player;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
+ * The BattlePhase class demonstrates a phase of a match, where the rollWinner
  * causes damage to the rollLoser.
  * 
  * @author Thien Duc Phung
@@ -87,7 +87,7 @@ public class BattlePhase extends Phase {
 			boolean completed = runBack();
 			
 			if(isLoserDead()){
-				setLoserDeadPosition();
+				setLoserDead();
 			} else if(hasWinner()) {
 				loserDying();
 			}
@@ -105,6 +105,9 @@ public class BattlePhase extends Phase {
 											
 	}
 	
+	/**
+	 * Make winner run towards opponent 
+	 */
 	private boolean runTowardsOpponent(){
 		
 		boolean completed;
@@ -117,6 +120,9 @@ public class BattlePhase extends Phase {
 		
 	}
 	
+	/**
+	 * Make winner run back to its default position 
+	 */
 	private boolean runBack(){
 		
 		boolean completed;
@@ -129,6 +135,9 @@ public class BattlePhase extends Phase {
 		
 	}
 	
+	/**
+	 * Check if there is a winner of the match 
+	 */
 	private boolean hasWinner(){
 		boolean hasWinner = false;
 		if(getTurnLoser().getHealth() <= 0){
@@ -137,6 +146,9 @@ public class BattlePhase extends Phase {
 		return hasWinner;
 	}
 	
+	/**
+	 * Render dying animation of the loser
+	 */
 	private void loserDying(){
 		if(getTurnLoser().getNumber() == 1){
 			loserDead = player1Object.dying();
@@ -145,11 +157,17 @@ public class BattlePhase extends Phase {
 		}
 	}
 	
+	/**
+	 * Check if loser dying animation is completed 
+	 */
 	private boolean isLoserDead(){
 		return loserDead;
 	}
 	
-	private void setLoserDeadPosition(){
+	/**
+	 * Render the dead image of the loser
+	 */
+	private void setLoserDead(){
 		if(getTurnLoser().getNumber() == 1){
 			player1Object.setDead();
 		} else {
@@ -157,6 +175,9 @@ public class BattlePhase extends Phase {
 		}
 	}
 	
+	/**
+	 * Get the loser of the current turn
+	 */
 	private Player getTurnLoser(){
 		Player turnLoser;
 		if(!player1.getTurnInfo().isTurnWinner()){
@@ -167,6 +188,9 @@ public class BattlePhase extends Phase {
 		return turnLoser;
 	}
 	
+	/**
+	 * Get the winner of current turn
+	 */
 	private Player getTurnWinner(){
 		Player turnWinner;
 		if(player1.getTurnInfo().isTurnWinner()){
@@ -177,6 +201,9 @@ public class BattlePhase extends Phase {
 		return turnWinner;
 	}
 	
+	/**
+	 * Get object of current turn winner.
+	 */
 	private PlayerObject getTurnWinnerObject(){
 		PlayerObject turnWinnerObject;
 		if(player1.getTurnInfo().isTurnWinner()){
@@ -187,6 +214,9 @@ public class BattlePhase extends Phase {
 		return turnWinnerObject;
 	}
 	
+	/**
+	 * Render a panel which is exclusively for the winner
+	 */
 	private void renderWinnerPanel(){
 		
 		if(player1.getTurnInfo().isTurnWinner()){
@@ -210,6 +240,9 @@ public class BattlePhase extends Phase {
 				
 	}
 	
+	/**
+	 * Render dice object for the winner
+	 */
 	private void renderWinnerDiceObject(){
 		
 		if(player1.getTurnInfo().isTurnWinner()){
@@ -222,6 +255,9 @@ public class BattlePhase extends Phase {
 				
 	}
 	
+	/**
+	 * Get the damage ratio based on the rules of the game
+	 */
 	private double getDamageRatio(){
 		
 		Player turnWinner = getTurnWinner();
@@ -281,6 +317,9 @@ public class BattlePhase extends Phase {
 		
 	}
 	
+	/**
+	 * Get damage ratio in String
+	 */
 	private String getDamageRatioInString(){
 		String ratio = "";
 		if( getDamageRatio()== (double)1 ){

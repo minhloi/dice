@@ -9,7 +9,7 @@ import boundary.GameObject;
 import boundary.SelectableMenu;
 
 /**
- * MatchEnd class with all method to act when the match of the game ended
+ * The MatchEndMenu class which displays menu when a match ended
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -37,10 +37,10 @@ public class MatchEndMenu implements Listenable {
 	private static final int MENU_HEIGHT = 346;
 	
 	/**
-	 * Method with assigned array at end game
+	 * Constructor - Initializes the menu list and other properties.
 	 * 
-	 * @param controller
-	 * @param scanner
+	 * @param controller GameController object
+	 * @param objectList the ArrayList of all game objects
 	 */
 	public MatchEndMenu(GameController controller, ArrayList<GameObject> objectList) {
 		
@@ -56,6 +56,9 @@ public class MatchEndMenu implements Listenable {
 		this.selectedOption = REMATCH;
 	}
 	
+	/**
+	 * Render the menu
+	 */
 	public void render() {
 		
 		menu = new SelectableMenu(MENU_WIDTH, MENU_HEIGHT, Match.PANEL_POSITION_X, Match.PANEL_POSITION_Y + 120);
@@ -71,8 +74,8 @@ public class MatchEndMenu implements Listenable {
 	}
 	
 	/**
-	 * Method to decide what to do after the game base on players' choice
-	 * 
+	 * Route a specific state based on selected option 
+	 *
 	 * @param selectedOption
 	 */
 	private void route() {
@@ -115,6 +118,9 @@ public class MatchEndMenu implements Listenable {
 		
 	}
 	
+	/**
+	 * Select next option
+	 */
 	private void selectNextOption(){
 		if(selectedOption >= menuLength - 1){
 			selectedOption = 0;
@@ -123,6 +129,9 @@ public class MatchEndMenu implements Listenable {
 		}
 	}
 	
+	/**
+	 * Select prev option
+	 */
 	private void selectPrevOption(){
 		if(selectedOption <= 0){
 			selectedOption = menuLength - 1;

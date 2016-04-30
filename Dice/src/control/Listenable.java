@@ -3,7 +3,8 @@ package control;
 import java.awt.event.KeyEvent;
 
 /**
- * The Listenable class is for keys actions
+ * The Listenable class is the interface class,
+ * where implemented classes can listen to key events.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi

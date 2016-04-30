@@ -58,7 +58,7 @@ public class PlayerObject extends GameObject{
 	}
 	
 	/**
-	 * setIdle - Set character's position to default when idle
+	 * setIdle - Set character's position to default and to idle state
 	 */
 	public void setIdle(){
 		
@@ -77,7 +77,7 @@ public class PlayerObject extends GameObject{
 	}
 	
 	/**
-	 * setIdle - Set and move character to certain position when idle
+	 * setIdle - Set characters to a specific position when idle
 	 * 
 	 * @param positionX
 	 * @param positionY
@@ -106,7 +106,7 @@ public class PlayerObject extends GameObject{
 	 * runRight - Move character to the right position
 	 * 
 	 * @param destinationX Destination position
-	 * @return Returns true or false if completed
+	 * @return Returns true if completed
 	 */
 	public boolean runRight(int destinationX){
 		
@@ -136,7 +136,7 @@ public class PlayerObject extends GameObject{
 	 * runLeft - Move character to the left position
 	 * 
 	 * @param destinationX Destination position
-	 * @return Returns true or false if completed
+	 * @return Returns true if completed
 	 */
 	public boolean runLeft(int destinationX){
 		
@@ -162,9 +162,9 @@ public class PlayerObject extends GameObject{
 	}
 	
 	/**
-	 * dying - Set the character's image to a dead character 
+	 * dying - Render dying animation of the character 
 	 * 
-	 * @return Returns true or false if completed
+	 * @return Returns true if completed
 	 */
 	public boolean dying(){
 		
@@ -187,9 +187,9 @@ public class PlayerObject extends GameObject{
 	}
 	
 	/**
-	 * attack - Set character's image to a character in attack mode
+	 * attack - Render attack animation
 	 * 
-	 * @return Returns true or false if completed
+	 * @return Returns true if completed
 	 */
 	public boolean attack(){
 		
@@ -212,7 +212,7 @@ public class PlayerObject extends GameObject{
 	/**
 	 * isIdle - Check if state is idle
 	 *  
-	 * @return Returns true or false if state is idle
+	 * @return Returns true if state is idle
 	 */
 	public boolean isIdle(){
 		boolean isIdle;

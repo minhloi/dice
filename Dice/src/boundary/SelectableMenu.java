@@ -8,7 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 /**
- * The SelectableMenu is the main menu of the game with the various buttons available to selct from
+ * The SelectableMenu is a menu with the various options available to select from
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -29,13 +29,13 @@ public class SelectableMenu extends GameObject {
 	private Font font;
 	
 	/**
- 	* SelectableMenu is the position and color of the buttons on the main menu
-	* 
-	* @param width - The width of the button to be displayed
-	* @param height - The height of the button to be displayed
-	* @param positionX - The x position of the button to be displayed
-	* @param positionY - The y position of the button to be displayed
-	**/
+ 	 * SelectableMenu is the position and color of the options on the menu
+	 *  
+	 * @param width - The width of the menu to be displayed
+	 * @param height - The height of the menu to be displayed
+	 * @param positionX - The x position of the menu to be displayed
+	 * @param positionY - The y position of the menu to be displayed
+	 */
 	public SelectableMenu(int width, int height, int positionX, int positionY){
 		this.width = width;
 		this.height = height;
@@ -51,9 +51,8 @@ public class SelectableMenu extends GameObject {
 	}
 	
 	/**
- 	* drawMenu is the actual drawing of the buttons onto the main menu
-	* 
-	**/
+ 	 * drawMenu is the actual drawing of the options onto the menu
+	 */
 	public void drawMenu(String[] itemList){
 		
 		Graphics2D graphics = image.createGraphics();
@@ -82,45 +81,43 @@ public class SelectableMenu extends GameObject {
 	}
 	
 	/**
- 	* setFont sets the font of the text on the button
-	* 
-	* @param font - the current font of the main menu buttons
-	**/
+ 	 * setFont sets the font of the text on the option
+	 * 
+	 * @param font - the current font of the main menu buttons
+	 */
 	public void setFont(Font font){
 		this.font = font;
 	}
 	
 	/**
- 	* setMarginTop sets the margin at the top of our menu
-	* 
-	* @param marginTop - the current size of the top margin on the main menu
-	**/
+ 	 * setMarginTop sets the margin top of each option
+	 * 
+	 * @param marginTop - the desired margin top 
+	 */
 	public void setMarginTop(int marginTop){
 		this.marginTop = marginTop;
 	}
 	
 	/**
- 	* setSelectedColor is the color given to a button that has been selected
-	* 
-	* @param color - the color of an selected button
-	**/
+ 	 * setSelectedColor is the color given to an option that has been selected
+	 * 
+	 * @param color - the color of an selected button
+	 */
 	public void setSelectedColor(Color color){
 		this.selectedColor = color;
 	}
 	
 	/**
- 	* setUnselectedColor is the color given to an unselected button
-	* 
-	* 
-	**/
+ 	 * setUnselectedColor is the color given to an unselected option
+	 */
 	public void setUnselectedColor(Color color){
 		this.unselectedColor = color;
 	}
 	
 	/**
- 	* setSelectedIndex shows if an index has been selected
+ 	* setSelectedIndex shows if an index of the option has been selected
 	* 
-	* @param index - The index of the button that is set to be selected
+	* @param index - The index of the option that is set to be selected
 	**/
 	public void setSelectedIndex(int index){
 		selectedIndex = index;

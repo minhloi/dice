@@ -9,8 +9,8 @@ import boundary.ProfileTextField;
 import entity.Player;
 
 /**
- * The ProfileForm class is the profile data for player 1 and player 2
- * 
+ * The ProfileForm class is the form for players 
+ * to create profiles 
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -30,6 +30,12 @@ public class ProfileForm implements Listenable {
 	private String currentText;
 	private boolean completed;
 	
+	/**
+	 * The ProfileForm constructor initializes its properties
+	 * @param player1 the Player object of the first player
+	 * @param player2 the Player object of the second player
+	 * @param objectList the ArrayList of all game objects
+	 */
 	public ProfileForm(Player player1, Player player2, ArrayList<GameObject> objectList){
 		
 		this.player1 = player1;
@@ -43,9 +49,8 @@ public class ProfileForm implements Listenable {
 	}
 	
 	 /**
-	 *  render updates and adds a profile
-	 *  
-	 */
+	  * Render the profile form
+	  */
 	public void render(){
 		
 		objectList.add(background);
@@ -56,9 +61,9 @@ public class ProfileForm implements Listenable {
 	}
 	
 	 /**
-	 * createNewProfileFor creates a new profile for the current player
+	 * createNewProfileFor creates a new profile for a player
 	 *  
-	 * @param player - player of object player
+	 * @param player - the desired player to create profile for
 	 */
 	public void createNewProfileFor(Player player){
 		this.currentText = "";
@@ -66,18 +71,15 @@ public class ProfileForm implements Listenable {
 	}
 	
 	 /**
-	 *  isCompleted returns completed if the profile is created
-	 *  
-	 * @return completed - returns completed if the profile is completed
-	 */
+	  * Returns true when both players complete the profiles
+	  */
 	public boolean isCompleted(){
 		return completed;
 	}
 	
 	 /**
-	 *  setCompleted sets completed to true
-	 *  
-	 */
+	  * Set completed when two players create profiles successfully
+	  */
 	private void setCompleted(){
 		completed = true;
 	}

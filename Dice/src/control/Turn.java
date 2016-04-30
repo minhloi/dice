@@ -9,7 +9,7 @@ import boundary.PlayerObject;
 import entity.Player;
 
 /**
- * Turn class show which stage the game is in during the match 
+ * The Turn class renders game objects and the current phase of each turn during the match 
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -34,9 +34,9 @@ public class Turn implements Listenable {
 	 *  
 	 * @param player1 - player1 of object type Player
 	 * @param player2 - player2 of object type Player
-	 * @param player1Object - player1Object of object PlayerObject
-	 * @param player2Object - player2Object of object PlayerObject
-	 * @param objectList - objectList of ArrayList of GameObject
+	 * @param player1Object - character object of player 1
+	 * @param player2Object - character object of player 2
+	 * @param objectList - the ArrayList of all game objects.
 	 */
 	public Turn(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		
@@ -58,8 +58,7 @@ public class Turn implements Listenable {
 	}
 	
 	/**
-	 *  render is the updating of the gui screen
-	 *  
+	 * Render GUI for current turn
 	 */
 	public void render(){
 	
@@ -83,8 +82,7 @@ public class Turn implements Listenable {
 	}
 	
 	/**
-	 *  resetTurn restes the turn for both players
-	 *  
+	 * Reset turn info for both players  
 	 */	
 	private void resetTurn(){
 		player1.resetTurnInfo();
@@ -92,8 +90,7 @@ public class Turn implements Listenable {
 	}
 	
 	/**
-	 *  hasNextPhase checks if there is a next phase
-	 *  
+	 * Checks if there is a next phase
 	 */
 	private boolean hasNextPhase(){
 		boolean hasNext;
@@ -106,8 +103,7 @@ public class Turn implements Listenable {
 	}
 	
 	/**
-	 *  setNextPhase sets the next phase of the game
-	 *  
+	 * Sets the next phase of the game
 	 */
 	private void setNextPhase(){
 		if(hasNextPhase() == true){
@@ -116,18 +112,14 @@ public class Turn implements Listenable {
 	}
 	
 	/**
-	 *  isTurnCompleted checks if the players have completed their turn
-	 *  
-	 * @return turnCompleted - returns if the players have completed their turns
-	 * 
+	 * Checks if the players have completed their turn
 	 */
 	public boolean isTurnCompleted(){
 		return turnCompleted;
 	}
 	
 	/**
-	 *  setTurnCompleted sets the turn to complete
-	 *  
+	 * Sets the turn to complete
 	 */
 	private void setTurnCompleted(){
 		turnCompleted = true;
@@ -138,11 +130,6 @@ public class Turn implements Listenable {
 	
 	}
 
-	/**
-	 *  onKeyReleased listens for a button to be pressed
-	 *  
-	 * @param keyEvent - the button that is pressed
-	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		phaseList[currentPhase].onKeyReleased(keyEvent);

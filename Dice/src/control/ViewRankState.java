@@ -30,9 +30,8 @@ public class ViewRankState extends State{
 	private int backState;
 	
 	/**
-	 * Constructor - Prepare ranking menu, initialize controller, scanner and database
-	 * 				objects 
-	 * 
+	 * Constructor - Prepare ranking menu, initialize controller, game objects and database
+	 * 				
 	 * @param controller
 	 * @param scanner
 	 * @param database
@@ -48,7 +47,7 @@ public class ViewRankState extends State{
 	}
 	
 	/**
-	 * print - Display each of the player's rankings (wins and losses)
+	 * render - Display each of the player's rankings (wins and losses)
 	 */
 	public void render(){
 
@@ -88,7 +87,7 @@ public class ViewRankState extends State{
 	}
 	
 	/**
- 	* setBackState sets the state equal to the previous state
+ 	* setBackState sets the state of the previous state
 	* 
 	* @param state - The state to be set to the previous one
 	**/
@@ -99,15 +98,8 @@ public class ViewRankState extends State{
 	
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	/**
- 	* onKeyReleased listens for the escape key to be pressed
-	* 
-	* @param keyEvent - is the key that got pressed
-	**/
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();
@@ -119,7 +111,5 @@ public class ViewRankState extends State{
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 }

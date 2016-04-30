@@ -117,15 +117,24 @@ public class Match implements Listenable {
 			
 	}
 	
+	/**
+	 * Create a new turn
+	 */
 	private void setNewTurn(){
 		currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
 		
 	}
 	
+	/**
+	 * Set match as ended
+	 */
 	private void setMatchEnd(){
 		matchEnded = true;
 	}
 	
+	/**
+	 * Save data 
+	 */
 	private void saveData(){
 
 		database.incrementWinByName(getWinner().getUserName());
@@ -133,6 +142,9 @@ public class Match implements Listenable {
 		database.saveData();
 	}
 	
+	/**
+	 * Get winner of current match
+	 */
 	private Player getWinner(){
 		Player winner = null;
 		if (player1.getHealth() <= 0) {
@@ -143,6 +155,9 @@ public class Match implements Listenable {
 		return winner;
 	}
 	
+	/**
+	 * Get loser of current match
+	 */
 	private Player getLoser(){
 		Player loser = null;
 		if (player1.getHealth() <= 0) {
@@ -153,6 +168,9 @@ public class Match implements Listenable {
 		return loser;
 	}
 	
+	/**
+	 * Get object of current winner
+	 */
 	private PlayerObject getWinnerObject(){
 		PlayerObject winnerObject;
 		if(getWinner().getNumber() == 1){
@@ -163,6 +181,9 @@ public class Match implements Listenable {
 		return winnerObject;
 	}
 	
+	/**
+	 * Get object of current loser.
+	 */
 	private PlayerObject getLoserObject(){
 		PlayerObject loserObject;
 		if(getLoser().getNumber() == 1){
@@ -173,6 +194,9 @@ public class Match implements Listenable {
 		return loserObject;
 	}
 	
+	/**
+	 * Display menu when the match ended
+	 */
 	private void displayMenu(){
 		
 		objectList.add(menuPanel);

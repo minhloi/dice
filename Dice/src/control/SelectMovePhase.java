@@ -32,11 +32,13 @@ public class SelectMovePhase extends Phase {
 	public static final char[] PLAYER2_MOVE_SET = {'J', 'K', 'L'};
 	
 	/**
-	 * Constructor - Prepare Player and Scanner objects
+	 * Constructor - receives Players, PlayerObjects and 
 	 * 
-	 * @param player1
-	 * @param player2
-	 * @param scanner
+	 * @param player1 the Player object of player 1
+	 * @param player2 the Player object of player 2
+	 * @param player1Object character object of player 1 
+	 * @param player2Object character object of player 2
+	 * @param objectList the ArrayList of all game object
 	 */
 	public SelectMovePhase(Player player1, Player player2, PlayerObject player1Object, PlayerObject player2Object, ArrayList<GameObject> objectList){
 		this.player1 = player1;
@@ -48,9 +50,7 @@ public class SelectMovePhase extends Phase {
 	}
 	
 	/**
-	 * render - Display HP and move-sets. Then check whether block is disabled for
-	 * 			both players and if they can use their special attack. Finally, collect
-	 * 			player's choice of action
+	 * render - Display instructions in the panels for each players 
 	 */
 	public void render(){
 		
@@ -85,9 +85,9 @@ public class SelectMovePhase extends Phase {
 	}
 	
 	/**
-	 *  getAvailabelMoveSet sets the player move based on the available moves
+	 *  getAvailabelMoveSet print out all available moves
 	 *  
-	 * @param playerNum - the number of the player making the move
+	 * @param playerNum - the number of the player
 	 */
 	private String getAvailabelMoveSet(int playerNum){
 		String moveSet;
@@ -112,9 +112,7 @@ public class SelectMovePhase extends Phase {
 	}
 	
 	/**
-	 *  isPlayer1Selected checks to see if player 1 has selected a move
-	 *  
-	 * @return result - retruns true if the player has selcected his move false if not
+	 * Checks to see if player 1 has selected a move
 	 */
 	private boolean isPlayer1Selected(){
 		boolean result;
@@ -126,10 +124,8 @@ public class SelectMovePhase extends Phase {
 		return result;
 	}
 	
-	 /**
-	 *  isPlayer2Selected checks to see if player 2 has selected a move
-	 *  
-	 * @return result - retruns true if the player has selcected his move false if not
+	/**
+	 * Checks to see if player 2 has selected a move
 	 */
 	private boolean isPlayer2Selected(){
 		boolean result;
@@ -141,10 +137,8 @@ public class SelectMovePhase extends Phase {
 		return result;
 	}
 	
-	 /**
-	 *  isBothSelected checks to see if both players have selected their moves
-	 *  
-	 * @return result - retruns true if both players have selcected their move false if not
+	/**
+	 * Checks to see if both players have selected their moves
 	 */
 	private boolean isBothSelected(){
 		boolean result;
@@ -162,7 +156,7 @@ public class SelectMovePhase extends Phase {
 		
 	}
 	
-	 /**
+	/**
 	 *  onKeyReleased checks to see which key was selected
 	 *  
 	 * @param keyEvent the key that gets selected
@@ -173,27 +167,27 @@ public class SelectMovePhase extends Phase {
 		
 		try {
 			switch(keyCode){
-				case 65: //a
+				case KeyEvent.VK_A: //a
 					if(!isPlayer1Selected())
 						player1.getTurnInfo().setMove(Player.ATTACK);
 					break;
-				case 83: //s
+				case KeyEvent.VK_S: //s
 					if(!isPlayer1Selected() && player1.getTurnInfo().isBlockDisabled() == false)
 						player1.getTurnInfo().setMove(Player.BLOCK);
 					break;
-				case 68: //d
+				case KeyEvent.VK_D: //d
 					if(!isPlayer1Selected() && player1.canUseSpecial() == true)
 						player1.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
 					break;
-				case 74: //j
+				case KeyEvent.VK_J: //j
 					if(!isPlayer2Selected())
 						player2.getTurnInfo().setMove(Player.ATTACK);
 					break;
-				case 75: //k
+				case KeyEvent.VK_K: //k
 					if(!isPlayer2Selected() && player2.getTurnInfo().isBlockDisabled() == false)
 						player2.getTurnInfo().setMove(Player.BLOCK);
 					break;
-				case 76: //l
+				case KeyEvent.VK_L: //l
 					if(!isPlayer2Selected() && player2.canUseSpecial() == true)
 						player2.getTurnInfo().setMove(Player.SPECIAL_ATTACK);
 					break;

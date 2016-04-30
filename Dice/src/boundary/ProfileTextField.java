@@ -30,8 +30,7 @@ public class ProfileTextField extends GameObject {
 	
 	/**
 	 * The default position of the profile text field
-	 * 
-	 * */
+	 */
 	public ProfileTextField(){
 		setPosition(DEFAULT_POSITION_X, DEFAULT_POSITION_Y);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
@@ -43,7 +42,7 @@ public class ProfileTextField extends GameObject {
 	 * 
 	 * @param positionX - the X position of the text field
 	 * @param positionY - the Y position of the text field
-	 * */
+	 */
 	public ProfileTextField(int positionX, int positionY){
 		setPosition(positionX, positionY);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);		
@@ -53,9 +52,9 @@ public class ProfileTextField extends GameObject {
 	/**
 	 * Informs the user to enter a username for either player 1 and 2 
 	 * 
-	 * @param playernumber - shows the user which player 1 or 2 needs to enter username
+	 * @param playerNumber - shows the user which player 1 or 2 needs to enter username
 	 * @param username - The name the gets entered for the desired player
-	 * */
+	 */
 	public void drawUsername(int playerNumber, String username){
 		
 		Graphics2D graphics = image.createGraphics();

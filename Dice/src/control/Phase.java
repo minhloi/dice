@@ -22,10 +22,16 @@ public abstract class Phase implements Listenable {
 	
 	public abstract void render();
 	
+	/**
+	 * Return true if the phase is completed 
+	 */
 	public boolean isCompleted(){
 		return isCompleted;
 	}
 	
+	/**
+	 * Set the phase as completed
+	 */
 	public void setCompleted(){
 		isCompleted = true;
 	}
