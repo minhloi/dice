@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import entity.Player;
 
 /**
- * The HealthBar class is setting HP bar for the game
+ * The HealthBar class to render health bars of players.
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -20,7 +20,7 @@ import entity.Player;
 
 public class HealthBar extends GameObject {
 
-	// Size of the Health Bar panel
+	// Size of the HealthBar image
 	public static final int HEIGHT = 50;
 	public static final int WIDTH = 280;
 	
@@ -29,13 +29,17 @@ public class HealthBar extends GameObject {
 	public static final int BAR_MAX_WIDTH = WIDTH - HEALTH_NUM_WIDTH;
 	public static final int BAR_HEIGHT = 12;
 	
-	// Position variables of Health Bar
+	// Default positions of two health bars
 	public static final int PLAYER1_POSITION_X = 30;
 	public static final int PLAYER1_POSITION_Y = 60;
 	public static final int PLAYER2_POSITION_X = GameCanvas.WIDTH - WIDTH - 30;
 	public static final int PLAYER2_POSITION_Y = 60;
 	
-	// Setting position for the Health Bar
+	/**
+	 * The HealthBar constructor initializes position of health bar
+	 * @param positionX
+	 * @param positionY
+	 */
 	public HealthBar(int positionX, int positionY){
 		
 		setPosition(positionX, positionY);
@@ -43,7 +47,10 @@ public class HealthBar extends GameObject {
 		
 	}
 	
-	// Setting the image and number representiation of the Health Bar
+	/**
+	 * Render health bar with health point aside.
+	 * @param healthPoint current health point of the players
+	 */
 	public void setHealthBar(int healthPoint){
 		
 		if(healthPoint < 0 ){
