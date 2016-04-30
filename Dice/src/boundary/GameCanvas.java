@@ -16,7 +16,8 @@ import javax.swing.Timer;
 import control.GameController;
 
 /**
- * The GameCanvas class is use for creating the entire game screen
+ * The GameCanvas class is used to render game objects
+ * in a loop for the game
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -27,18 +28,20 @@ import control.GameController;
 @SuppressWarnings("serial")
 public class GameCanvas extends JPanel {
 	
-	// Game screen size
+	// Game window size
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 650;
 	
-	// Timer every round of games
+	// Timer used for the game loop
 	public static final int TIMER = 25; // in ms
 	
 	private GameController gameController;
 	private ArrayList<GameObject> objectList;
 	private Timer timer;
 	
-	// Create the game screen 
+	/**
+	 * The GameCanvas constructor initializes its properties.
+	 */
 	public GameCanvas(){
 		
 		setBackground(Color.WHITE);
@@ -50,6 +53,9 @@ public class GameCanvas extends JPanel {
 		timer = new Timer(TIMER, new GameLoop());
 	}
 	
+	/**
+	 * Call necessary functions for the game to begin
+	 */
 	public void render(){
 		
 		// Load data
@@ -63,7 +69,10 @@ public class GameCanvas extends JPanel {
 					
 	}
 	
-	// Paint method to paint the background of the game screen
+	/**
+	 * Paint all GameObjects in the ArrayList.
+	 */
+	@Override
 	public void paintComponent(Graphics graphics){
 		
 		super.paintComponent(graphics);
@@ -77,6 +86,10 @@ public class GameCanvas extends JPanel {
 		objectList.clear();
 	}
 		
+	/**
+	 * Render the current game state
+	 * and repaint all components in the loop.
+	 */
 	private class GameLoop implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			gameController.renderCurrentState();
@@ -84,7 +97,9 @@ public class GameCanvas extends JPanel {
 		}
 	}
 	
-	// Key methods for actions picking between two players
+	/**
+	 * Listen to key events and pass them to the current game state
+	 */
 	private class CanvasKeyListener implements KeyListener{
 
 		@Override
