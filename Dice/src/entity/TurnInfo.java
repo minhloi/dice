@@ -16,7 +16,8 @@ public class TurnInfo {
 	private boolean moveAlreadySet;
 	
 	/**
-	 * Set blockDisabled, turnWinner, and moveAlreadySet to false. Also, set currentMove to not selected
+	 * Set blockDisabled, turnWinner, and moveAlreadySet to false as default. 
+	 * Also, set currentMove to not selected
 	 */
 	public TurnInfo(){
 		blockDisabled = false;

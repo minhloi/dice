@@ -67,6 +67,10 @@ public class Player {
 		return this.health;
 	}
 	
+	/**
+	 * Set username for the player
+	 * @param username username string to be set
+	 */
 	public void setUsername(String username){
 		this.username = username;
 	}
@@ -114,11 +118,17 @@ public class Player {
 			return true;	
 	}
 
+	/**
+	 * Increment number of special used
+	 */
 	public void incrementSpecialUsed(){
 		++numSpecialUsed;
 		
 	}
 	
+	/**
+	 * Reset the turnInfo object
+	 */
 	public void resetTurnInfo(){
 		
 		int previous = turnInfo.getMove();
