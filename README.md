@@ -10,6 +10,7 @@
 ### Deliverable 3 (Final)
 
 ####1. Executable: 
+The game works completely in GUI. You can play the game with two players and view rankings. You can also pause the game by pressing ESC, restart and quit the game while playing. Note that this game only uses keyboard to navigate and data is only saved after each match. The executable file is Dice/FightingDice.jar
 
 ####2. How to compile: 
   - Clone the Github repo in Eclipse.
