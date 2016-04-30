@@ -87,6 +87,11 @@ public class ViewRankState extends State{
 	
 	}
 	
+	/**
+ 	* setBackState sets the state equal to the previous state
+	* 
+	* @param state - The state to be set to the previous one
+	**/
 	public void setBackState(int state){
 		backState = state;		
 	}
@@ -98,6 +103,11 @@ public class ViewRankState extends State{
 		
 	}
 
+	/**
+ 	* onKeyReleased listens for the escape key to be pressed
+	* 
+	* @param keyEvent - is the key that got pressed
+	**/
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keycode = keyEvent.getKeyCode();

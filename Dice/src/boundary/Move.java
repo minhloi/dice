@@ -17,7 +17,7 @@ public class Move extends GameObject {
 	private String resourceFolder;
 	
 	/**
-	 * Constructor - Find and set the appropriate move image  
+	 * Find and set the appropriate move image  
 	 * 
 	 * @param move Move type
 	 * @param positionX Horizontal position in pixels

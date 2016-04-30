@@ -2,7 +2,7 @@
 
 #####Team members:
 - Brett Bauman (bbauman1)
-- Daniel Enriquez (denriquez12)
+- Daniel Enriquez (denriquez12 and denriquez)
 - Minh Loi (minhloi)  
 - Thien Duc Phung (thphung)
 - Tanner Siffren  (tanner-siffren)

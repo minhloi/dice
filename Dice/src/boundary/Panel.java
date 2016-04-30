@@ -6,8 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 /**
- * The BattlePhase class demonstates a phase of a match, where the rollWinner
- * causes damage to the rollLoser.
+ * Panel class - Displays a panel for in-game instructions 
  * 
  * @author Thien Duc Phung
  * @author Minh Loi
@@ -31,7 +30,13 @@ public class Panel extends GameObject {
 	public static final int ALIGN_TOP = 30;
 	public static final int ALIGN_BOTTOM = 60;
 	public static final int ALIGN_LEFT = 15;
-		
+	
+	/**
+	 * Set the panel's coordinates and image
+	 * 
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 */	
 	public Panel(int positionX, int positionY){
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -39,19 +44,51 @@ public class Panel extends GameObject {
 		this.defaultFont = new Font("SansSerif", Font.BOLD, 16);
 		setImageByPath("/panel.png");
 	}
-		
+	
+	/**
+	 * drawString - Displays a string
+	 * 
+	 * @param string String to be displayed
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 */
 	public void drawString(String string, int positionX, int positionY){
 		drawString(string, positionX, positionY, defaultColor, defaultFont);
 	}
 	
+	/**
+	 * drawString - Displays a string with color
+	 * 
+	 * @param string String to be displayed
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 * @param color Color object
+	 */
 	public void drawString(String string, int positionX, int positionY, Color color){
 		drawString(string, positionX, positionY, color, defaultFont);
 	}
 	
+	/**
+	 * drawString - Displays a string with a font
+	 * 
+	 * @param string String to be displayed
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 * @param font Font object
+	 */	
 	public void drawString(String string, int positionX, int positionY, Font font){
 		drawString(string, positionX, positionY, defaultColor, font);
 	}
 		
+	/**
+	 * drawString - Displays a rendered string with color and font
+	 * 
+	 * @param string String to be displayed
+	 * @param positionX Horizontal position in pixels
+	 * @param positionY Vertical position in pixels
+	 * @param color Color object
+	 * @param font Font object
+	 */
 	public void drawString(String string, int positionX, int positionY, Color color, Font font){
 		Graphics2D graphics = image.createGraphics();
 		

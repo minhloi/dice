@@ -84,6 +84,11 @@ public class SelectMovePhase extends Phase {
 	
 	}
 	
+	/**
+	 *  getAvailabelMoveSet sets the player move based on the available moves
+	 *  
+	 * @param playerNum - the number of the player making the move
+	 */
 	private String getAvailabelMoveSet(int playerNum){
 		String moveSet;
 		if(playerNum == player1.getNumber()){
@@ -106,7 +111,11 @@ public class SelectMovePhase extends Phase {
 		return moveSet;
 	}
 	
-	
+	/**
+	 *  isPlayer1Selected checks to see if player 1 has selected a move
+	 *  
+	 * @return result - retruns true if the player has selcected his move false if not
+	 */
 	private boolean isPlayer1Selected(){
 		boolean result;
 		if(player1.getTurnInfo().getMove() != Player.NOT_SELECT){
@@ -117,6 +126,11 @@ public class SelectMovePhase extends Phase {
 		return result;
 	}
 	
+	 /**
+	 *  isPlayer2Selected checks to see if player 2 has selected a move
+	 *  
+	 * @return result - retruns true if the player has selcected his move false if not
+	 */
 	private boolean isPlayer2Selected(){
 		boolean result;
 		if(player2.getTurnInfo().getMove() != Player.NOT_SELECT){
@@ -127,6 +141,11 @@ public class SelectMovePhase extends Phase {
 		return result;
 	}
 	
+	 /**
+	 *  isBothSelected checks to see if both players have selected their moves
+	 *  
+	 * @return result - retruns true if both players have selcected their move false if not
+	 */
 	private boolean isBothSelected(){
 		boolean result;
 		
@@ -142,7 +161,12 @@ public class SelectMovePhase extends Phase {
 	public void onKeyPressed(KeyEvent keyEvent) {
 		
 	}
-
+	
+	 /**
+	 *  onKeyReleased checks to see which key was selected
+	 *  
+	 * @param keyEvent the key that gets selected
+	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		int keyCode = keyEvent.getKeyCode();
