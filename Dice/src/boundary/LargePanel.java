@@ -25,6 +25,5 @@ public class LargePanel extends GameObject {
 		setPosition(positionX, positionY);
 		setImageByPath("/big_panel.png");
 	}
-	
-	
+		
 }

@@ -19,9 +19,6 @@ public class PlayerObject extends GameObject{
 	private int runState;
 	private int attackState;
 	private int dyingState;
-
-	private int currentPositionX;
-	private int currentPositionY;
 	
 	public static final int HEIGHT = 110;
 	public static final int WIDTH = 120;
@@ -59,25 +56,25 @@ public class PlayerObject extends GameObject{
 	public void setIdle(){
 		
 		if(playerNumber == 1){
-			currentPositionX = PLAYER1_DEFAULT_POSITION_X;
-			currentPositionY = PLAYER1_DEFAULT_POSITION_Y;
+			positionX = PLAYER1_DEFAULT_POSITION_X;
+			positionY = PLAYER1_DEFAULT_POSITION_Y;
 		} else {
-			currentPositionX = PLAYER2_DEFAULT_POSITION_X;
-			currentPositionY = PLAYER2_DEFAULT_POSITION_Y;
+			positionX = PLAYER2_DEFAULT_POSITION_X;
+			positionY = PLAYER2_DEFAULT_POSITION_Y;
 		}
 		
 		currentState = IDLE;
 		
-		setPosition(currentPositionX, currentPositionY);
+		setPosition(positionX, positionY);
 		setImageByPath(resourceFolder + "idle.png");		
 	}
 	
 	public void setIdle(int positionX, int positionY){
 		
-		currentPositionX = positionX;
-		currentPositionY = positionY;
+		this.positionX = positionX;
+		this.positionY = positionY;
 	
-		setPosition(currentPositionX, currentPositionY);
+		setPosition(positionX, positionY);
 		setImageByPath(resourceFolder + "idle.png");		
 	
 	}
@@ -93,15 +90,15 @@ public class PlayerObject extends GameObject{
 		boolean completed;
 		
 		currentState = RUNNING;
-		currentPositionX += RUNNING_SPEED;
+		positionX += RUNNING_SPEED;
 		
 		int currentRunningState = (((runState / 2) + 1) % NUM_OF_RUN_STATE) + 1;
 		
 		setImageByPath(resourceFolder + "run_right_" + currentRunningState + ".png");
 			
-		setPositionX(currentPositionX);
+		setPositionX(positionX);
 		
-		if(currentPositionX >= destinationX){
+		if(positionX >= destinationX){
 			completed = true;	
 		} else {
 			completed = false;
@@ -117,14 +114,14 @@ public class PlayerObject extends GameObject{
 		boolean completed;
 		
 		currentState = RUNNING;
-		currentPositionX -= RUNNING_SPEED;
+		positionX -= RUNNING_SPEED;
 
 		int currentRunningState = (((runState / 2) + 1) % NUM_OF_RUN_STATE) + 1;
 		
-		setPositionX(currentPositionX);
+		setPositionX(positionX);
 		setImageByPath(resourceFolder + "run_left_" + currentRunningState + ".png");
 	
-		if(currentPositionX <= destinationX){
+		if(positionX <= destinationX){
 			completed = true;
 			resetRunState();;
 		} else {
@@ -173,11 +170,7 @@ public class PlayerObject extends GameObject{
 		
 		return completed;
 	}
-			
-	public int getState(){
-		return currentState;
-	}
-	
+		
 	public boolean isIdle(){
 		boolean isIdle;
 		if(currentState == IDLE){

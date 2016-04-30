@@ -120,7 +120,15 @@ public class Player {
 	}
 	
 	public void resetTurnInfo(){
+		
+		int previous = turnInfo.getMove();
+			
 		turnInfo = new TurnInfo();
+		if(previous == Player.BLOCK){
+			turnInfo.disableBlock();
+		} else if(previous == Player.SPECIAL_ATTACK){
+			incrementSpecialUsed();
+		}
 	}
 					
 }

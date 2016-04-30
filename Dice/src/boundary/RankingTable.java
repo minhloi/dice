@@ -110,7 +110,7 @@ public class RankingTable extends GameObject {
 	**/
 	public void drawNoRecords(){
 		
-Graphics2D graphics = image.createGraphics();
+		Graphics2D graphics = image.createGraphics();
 		
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		graphics.setFont(new Font("Tahoma", Font.BOLD, 32));

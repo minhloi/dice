@@ -119,6 +119,7 @@ public class Match implements Listenable {
 	
 	private void setNewTurn(){
 		currentTurn = new Turn(player1, player2, player1Object, player2Object, objectList);
+		
 	}
 	
 	private void setMatchEnd(){

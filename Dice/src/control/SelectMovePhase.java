@@ -91,7 +91,7 @@ public class SelectMovePhase extends Phase {
 			if(player1.getTurnInfo().isBlockDisabled() == false){
 				moveSet += "   " + PLAYER1_MOVE_SET[Player.BLOCK] + ": Block";
 			}
-			if(player1.canUseSpecial()){
+			if(player1.canUseSpecial() == true){
 				moveSet += "   " + PLAYER1_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
 			}
 		} else {
@@ -99,7 +99,7 @@ public class SelectMovePhase extends Phase {
 			if(player2.getTurnInfo().isBlockDisabled() == false){
 				moveSet += "   " + PLAYER2_MOVE_SET[Player.BLOCK] + ": Block";
 			}
-			if(player2.canUseSpecial()){
+			if(player2.canUseSpecial() == true){
 				moveSet += "   " + PLAYER2_MOVE_SET[Player.SPECIAL_ATTACK] + ": Special";
 			}
 		}

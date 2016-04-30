@@ -24,7 +24,6 @@ import control.GameController;
  * @author Brett Bauman
  * @author Tanner Siffren
  */
-
 @SuppressWarnings("serial")
 public class GameCanvas extends JPanel {
 	
@@ -102,6 +101,5 @@ public class GameCanvas extends JPanel {
 		public void keyTyped(KeyEvent keyEvent) {
 			gameController.getCurrentStateObject().onKeyTyped(keyEvent);
 		}
-		
 	}
 }
