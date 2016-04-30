@@ -8,33 +8,69 @@ public class SelectableMenuTest {
 
 	@Test
 	public void testSelectableMenu() {
-		SelectableMenu menu = new SelectableMenu(0, 0, 0, 0);
+		
+		// Test if a SelectableMenu object is created
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
 		assertNotNull(menu);
 	}
+	
+	@Test
+	public void testBufferedImageCreated() {
+		// Test if a BufferedImage is created
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		assertNotNull(menu.getImage());
+	}
+	
 	@Test
 	public void testSetPosition(){
-		/*SelectableMenu table = new RankingTable();
-		table.setPosition(10, 40);
 		
-		assertEquals(10, table.getPositionX());
-		assertEquals(40, table.getPositionY());
-	*/
+		// Test if the position is set correctly
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		menu.setPosition(10, 40);
+		
+		assertEquals(10, menu.getPositionX());
+		assertEquals(40, menu.getPositionY());
+	
 	}
 	
 	@Test
 	public void testSetPositionX(){
-		RankingTable table = new RankingTable();
-		table.setPositionX(10);
 		
-		assertEquals(10, table.getPositionX());
+		// Test if the positionX is set correctly
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		menu.setPositionX(30);
+		
+		assertEquals(30, menu.getPositionX());
 	}
-
+	
 	@Test
 	public void testSetPositionY(){
-		RankingTable table = new RankingTable();
-		table.setPositionY(25);
 		
-		assertEquals(25, table.getPositionY());
-	}	
+		// Test if the positionT is set correctly
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		menu.setPositionY(25);
+		
+		assertEquals(25, menu.getPositionY());
+	}
 	
+	@Test
+	public void testGetPositionX(){
+		
+		// Test if the positionX is returned correctly
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		menu.setPositionX(30);
+		
+		assertEquals(30, menu.getPositionX());
+	}
+	
+	@Test
+	public void testGetPositionY(){
+		
+		// Test if the positionY is returned correctly
+		SelectableMenu menu = new SelectableMenu(10, 10, 0, 0);
+		menu.setPositionY(25);
+		
+		assertEquals(25, menu.getPositionY());
+	}
+
 }

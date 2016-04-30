@@ -8,6 +8,7 @@ public class PanelTest {
 
 	@Test
 	public void testPanel() {
+		// Test if a Panel object is created successfully
 		Panel panel = new Panel(0, 0);
 		assertNotNull(panel);
 	}
@@ -22,8 +23,9 @@ public class PanelTest {
 	@Test
 	public void testSetPosition(){
 		Panel panel = new Panel(0, 0);
-		panel.setPosition(10, 20);
 		
+		// Test if the position for the panel is set correctly
+		panel.setPosition(10, 20);
 		assertEquals(10, panel.getPositionX());
 		assertEquals(20, panel.getPositionY());
 		
@@ -34,6 +36,7 @@ public class PanelTest {
 		Panel panel = new Panel(0, 0);
 		panel.setPositionX(20);
 		
+		// Test if the positionX for the panel is set successfully
 		assertEquals(10, panel.getPositionX());
 	}
 	
@@ -42,6 +45,25 @@ public class PanelTest {
 		Panel panel = new Panel(0, 0);
 		panel.setPositionY(40);
 		
+		// Test if the positionY for the panel is set successfully.
+		assertEquals(40, panel.getPositionY());
+	}
+	
+	@Test
+	public void testGetPositionX(){
+		Panel panel = new Panel(0, 0);
+		panel.setPositionX(20);
+		
+		// Test if the positionX for the panel is returned correctly
+		assertEquals(10, panel.getPositionX());
+	}
+	
+	@Test
+	public void testGetPositionY(){
+		Panel panel = new Panel(0, 0);
+		panel.setPositionY(40);
+		
+		// Test if the positionY for the panel is returned correctly
 		assertEquals(40, panel.getPositionY());
 	}
 

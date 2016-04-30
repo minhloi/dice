@@ -8,18 +8,10 @@ public class GameCanvasTest {
 
 	@Test
 	public void testGameCanvas() {
+		
+		// Test if a GameCanvas object is created successfully.
 		GameCanvas gameCanvas = new GameCanvas();
 		assertNotNull(gameCanvas);
-	}
-
-	@Test
-	public void testRender() {
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPaintComponentGraphics() {
-		//fail("Not yet implemented");
 	}
 
 }
