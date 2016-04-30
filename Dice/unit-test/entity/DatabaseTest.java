@@ -58,7 +58,7 @@ public class DatabaseTest {
 			PlayerScore current = gameData.get(index);
 			PlayerScore next = gameData.get(index + 1);
 			
-			assertTrue(current.getDifference() > next.getDifference());			
+			assertTrue(current.getDifference() >= next.getDifference());			
 		}
 		
 	}

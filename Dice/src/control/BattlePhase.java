@@ -315,9 +315,9 @@ public class BattlePhase extends Phase {
 		int keyCode = keyEvent.getKeyCode();
 		
 		if(currentState == ROLLING){
-			if(player1.getTurnInfo().isTurnWinner() && keyCode == 69){
+			if(player1.getTurnInfo().isTurnWinner() && keyCode == KeyEvent.VK_E){
 				currentState++;
-			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == 85){
+			} else if(player2.getTurnInfo().isTurnWinner() && keyCode == KeyEvent.VK_U){
 				currentState++;
 			}
 		}

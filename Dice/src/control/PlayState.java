@@ -62,6 +62,9 @@ public class PlayState extends State implements Listenable {
 				
 	}
 	
+	/**
+	 * beginMatch - set state to PLAYING and create a new match
+	 */
 	public void beginMatch(){
 		
 		setState(PLAYING);
@@ -93,27 +96,6 @@ public class PlayState extends State implements Listenable {
 	}
 	
 	/**
-	 * createProfiles - Ask users for usernames. Then store each one for player1 
-	 * 					and player2
-	 */
-	/* private void createProfiles(){
-		
-		String player1Username;
-		String player2Username;
-		
-		System.out.print("Please enter username for Player 1: ");
-		player1Username = scanner.next();
-		
-		System.out.print("Please enter username for Player 2: ");
-		player2Username = scanner.next();
-		
-		// Create new players.
-		player1 = new Player(1, player1Username);
-		player2 = new Player(2, player2Username);
-			
-	} */
-	
-	/**
 	 *  copyProfiles - Keep current user profiles 
 	 */
 	private void copyProfiles(){
@@ -143,15 +125,21 @@ public class PlayState extends State implements Listenable {
 		}
 	}
 	
+	/**
+	 * Set the state of PlayState such as PLAYING or CREATING_PROFILES
+	 * @param state the state of PlayState
+	 */
 	private void setState(int state){
 		currentState = state;
 	}
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		
 	}
 
+	/**
+	 * Handles key event when a key is released
+	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
 		if(currentState == PLAYING){
@@ -162,7 +150,6 @@ public class PlayState extends State implements Listenable {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		
 	};
 			
 }

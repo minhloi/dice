@@ -133,7 +133,6 @@ public class MatchEndMenu implements Listenable {
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		
 	}
 
 	@Override
@@ -155,9 +154,5 @@ public class MatchEndMenu implements Listenable {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-
-
 	}
-		
-	
 }

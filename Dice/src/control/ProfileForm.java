@@ -89,9 +89,9 @@ public class ProfileForm implements Listenable {
 	}
 	
 	 /**
-	 *  onKeyReleased listens for the enter button to be pressed when ceating a profile
+	 *  onKeyReleased listens to input key when creating profiles 
 	 *  
-	 * @param keyEvent - the button that gets pressed
+	 * @param keyEvent - keyEvent object
 	 */
 	@Override
 	public void onKeyReleased(KeyEvent keyEvent) {
@@ -124,7 +124,5 @@ public class ProfileForm implements Listenable {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 }

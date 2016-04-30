@@ -51,7 +51,7 @@ public class DiceObjectTest {
 		
 		// Test if dice positionY is set
 		diceObject.setPositionY(35);
-		assertEquals(35, diceObject.getPositionX());
+		assertEquals(35, diceObject.getPositionY());
 		
 	}
 	
@@ -71,7 +71,7 @@ public class DiceObjectTest {
 		
 		// Test if dice positionY is returned correctly.
 		diceObject.setPositionY(35);
-		assertEquals(35, diceObject.getPositionX());
+		assertEquals(35, diceObject.getPositionY());
 		
 	}
 

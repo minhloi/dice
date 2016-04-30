@@ -149,8 +149,6 @@ public class MainMenuState extends State{
 	// Keys action
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 		
 }

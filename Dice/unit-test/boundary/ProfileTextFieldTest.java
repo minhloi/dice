@@ -48,7 +48,7 @@ public class ProfileTextFieldTest {
 		textField.setPositionX(20);
 		
 		// Test if the positionX for the text field is set successfully
-		assertEquals(10, textField.getPositionX());
+		assertEquals(20, textField.getPositionX());
 	}
 	
 	@Test
@@ -66,7 +66,7 @@ public class ProfileTextFieldTest {
 		textField.setPositionX(20);
 		
 		// Test if the positionX for the text field is returned correctly
-		assertEquals(10, textField.getPositionX());
+		assertEquals(20, textField.getPositionX());
 	}
 	
 	@Test

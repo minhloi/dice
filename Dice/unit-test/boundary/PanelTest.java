@@ -37,7 +37,7 @@ public class PanelTest {
 		panel.setPositionX(20);
 		
 		// Test if the positionX for the panel is set successfully
-		assertEquals(10, panel.getPositionX());
+		assertEquals(20, panel.getPositionX());
 	}
 	
 	@Test
@@ -52,10 +52,10 @@ public class PanelTest {
 	@Test
 	public void testGetPositionX(){
 		Panel panel = new Panel(0, 0);
-		panel.setPositionX(20);
+		panel.setPositionX(40);
 		
 		// Test if the positionX for the panel is returned correctly
-		assertEquals(10, panel.getPositionX());
+		assertEquals(40, panel.getPositionX());
 	}
 	
 	@Test

@@ -28,10 +28,25 @@ public class ViewRankStateTest {
 		GameController controller = new GameController(objectList);
 		Database database = new Database();
 		
-		// Test if a MainMenuState object is created
+		// Test if a ViewRankState object is created
 		ViewRankState viewRankState = new ViewRankState(controller, objectList, database);
 		assertNotNull(viewRankState);
 			
 	}
+	
+	@Test
+	public void render(){
 		
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController controller = new GameController(objectList);
+		Database database = new Database();
+		
+		ViewRankState viewRankState = new ViewRankState(controller, objectList, database);
+		int initial = objectList.size();
+		
+		// Test if render method() can add objects to list
+		viewRankState.render();
+		assertTrue(objectList.size() > initial);
+	}
+			
 }

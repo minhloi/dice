@@ -41,8 +41,35 @@ public class RollDicePhaseTest {
 		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
 		
 		RollDicePhase rollDicePhase = new RollDicePhase(player1, player2, player1Object, player2Object, objectList);
-		
 		assertNotNull(rollDicePhase);
+	
+	}
+	
+	@Test
+	public void testRender(){
+		
+		Player player1 = new Player(1);
+		Player player2 = new Player(2);
+		PlayerObject player1Object = null;
+		PlayerObject player2Object = null;
+		
+		try {
+			player1Object = new PlayerObject(1);
+			player2Object = new PlayerObject(2);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		
+		RollDicePhase rollDicePhase = new RollDicePhase(player1, player2, player1Object, player2Object, objectList);
+		int initial = objectList.size();
+		
+		// Test if render method can add objects to the list
+		rollDicePhase.render();
+		assertNotNull(objectList.size() > initial);
+	
 	
 	}
 

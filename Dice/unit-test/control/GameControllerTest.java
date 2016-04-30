@@ -46,8 +46,29 @@ public class GameControllerTest {
 	}
 	
 	@Test
-	public void testExitGame() {
+	public void testSetState() {
 	
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController gameController = new GameController(objectList);
+		
+		PausedState paused = (PausedState) gameController.getState(State.PAUSED_STATE);
+		
+		//Test if game state is set successfully.
+		gameController.setState(State.PAUSED_STATE);
+		assertEquals(paused, gameController.getCurrentStateObject());
+			
+	}
+	
+	@Test
+	public void testGetCurrentState() {
+	
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController gameController = new GameController(objectList);
+		
+		PlayState playState = (PlayState) gameController.getState(State.PLAY_STATE);
+		gameController.setState(State.PLAY_STATE);
+		// Test if a GameState object is returned correctly
+		assertEquals(playState, gameController.getCurrentStateObject());
 			
 	}
 

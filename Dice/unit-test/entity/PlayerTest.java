@@ -94,6 +94,7 @@ public class PlayerTest {
 			e.printStackTrace();
 		}
 		
+		// Test if turnInfo of a player is reset successfully
 		player.resetTurnInfo();
 		assertEquals(Player.NOT_SELECT, player.getTurnInfo().getMove());
 		

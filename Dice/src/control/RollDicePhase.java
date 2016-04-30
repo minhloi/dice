@@ -155,8 +155,6 @@ public class RollDicePhase extends Phase {
 
 	@Override
 	public void onKeyPressed(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	 /**
@@ -171,10 +169,10 @@ public class RollDicePhase extends Phase {
 		if(currentState == ROLLING || currentState == TIE_ROLLING_AGAIN){
 			
 			switch(keyCode){
-				case 69: //e
+				case KeyEvent.VK_E: //e
 					dice1Stopped = true;
 					break;
-				case 85: //u
+				case KeyEvent.VK_U: //u
 					dice2Stopped = true;
 					break;
 			}
@@ -191,11 +189,11 @@ public class RollDicePhase extends Phase {
 		} else if(currentState == HAS_WINNER){
 			
 			switch(keyCode){
-				case 69: //e
+				case KeyEvent.VK_E: //e
 					if(player1.getTurnInfo().isTurnWinner())
 						setCompleted();
 					break;
-				case 85: //u
+				case KeyEvent.VK_U: //u
 					if(player2.getTurnInfo().isTurnWinner())
 						setCompleted();
 					break;
@@ -207,8 +205,6 @@ public class RollDicePhase extends Phase {
 
 	@Override
 	public void onKeyTyped(KeyEvent keyEvent) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

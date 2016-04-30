@@ -37,5 +37,23 @@ public class MatchTest {
 		assertNotNull(match);
 	
 	}
+	
+	@Test
+	public void testRenderTurn(){
+		
+		Player player1 = new Player(1);
+		Player player2 = new Player(2);
 
+		ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+		GameController controller = new GameController(objectList);
+		Database database = new Database();
+		
+		// Test if a Match object is created
+		Match match = new Match(player1, player2, controller, objectList, database);
+		int initial = objectList.size();
+		match.renderTurn();
+		
+		assertTrue(objectList.size() > initial);
+	
+	}
 }
